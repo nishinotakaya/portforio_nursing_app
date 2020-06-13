@@ -24,3 +24,4 @@ Things you may want to cover:
 * ...
 * 
 echo "# Kintai-B"
+Git(HTTPSからSSH通信へ変更)
