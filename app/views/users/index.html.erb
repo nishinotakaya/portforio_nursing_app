@@ -7,13 +7,20 @@
     <thead>
       <tr>
         <th><%= User.human_attribute_name :name %></th>
-        <th></th>
+        <th><%= User.human_attribute_name :department %></th>
+        <% if current_user.admin? %>
+        <th><%= User.human_attribute_name :basic_time %></th>
+        <th><%= User.human_attribute_name :work_time %></th>
+        <% end %>
       </tr>
     </thead>
 
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.name, user %></td>
+         <td class="center"><%= user.department.present? ? user.department : "未所属" %></td>
+        <td class="center"><%= format_basic_info(user.basic_time) %></td></td>
+        <td class="center"><%= format_basic_info(user.work_time) %></td>
         <td>
           <% if current_user.admin? && !current_user?(user) %>
             <%= link_to "削除", user, method: :delete,

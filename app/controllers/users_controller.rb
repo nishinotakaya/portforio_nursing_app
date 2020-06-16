@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(basic_info_params)
       flash[:success] = "#{@user.name}の基本情報を更新しました。"
     else
-      flash[:danger] = "#{@user.name}の更新は失敗しました。<br>" + @user.errors.full_messages.join("<br>")
+      flash[:danger] = "#{@user.name}の更新は失敗しました。" + @user.errors.full_messages.join("<br>")
     end
     redirect_to users_url
   end
