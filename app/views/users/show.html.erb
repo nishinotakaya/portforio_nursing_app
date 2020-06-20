@@ -86,7 +86,7 @@
             <td><%= day.started_at.floor_to(15.minutes).strftime('%M') if day.started_at.present? %></td>
             <td>
               <% if (Date.current == day.worked_on) && day.started_at.nil? %>
-                <%= link_to "出社", user_attendance_system_path(@user, day), method: :patch, class: "btn btn-default btn-dark form-control" %>
+                <%= link_to "出社", user_attendance_path(@user, day), method: :patch, class: "btn btn-default btn-dark form-control" %>
               <% end %>  
             </td>
             <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
