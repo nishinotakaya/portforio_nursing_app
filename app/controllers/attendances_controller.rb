@@ -43,13 +43,28 @@ class AttendancesController < ApplicationController
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
+  
+  def edit_overwork_request
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
+  end
+  
+  def update_overwork_request
+    @user = User.find(params[:attendance][:user_id])
+  end
     
   
    private
+   
+    def overwork_request_params
+       params.require(:user).permit(attendances: [:id, :day, :scheduled_end_time, :work_description])[:attendances] 
+    end
     # 1ヶ月分の勤怠情報を扱います。
     def attendances_params
       params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]
     end
+    
+    
     
     def admin_or_correct_user
       @user = User.find(params[:user_id]) if @user.blank?

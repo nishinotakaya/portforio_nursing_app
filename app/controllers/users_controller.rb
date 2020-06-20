@@ -65,18 +65,11 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
-  def edit_overwork_request
-   @day = Date.parse(params[:day]) 
-  end
   
-  def update_overwork_request
-  end
 
 private
 
-    def overwork_request_params
-       params.require(:user).permit(:id) 
-    end
+    
 
     def user_params
       params.require(:user).permit(:name, :email, :department, :password, :password_confirmation)

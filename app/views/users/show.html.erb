@@ -51,7 +51,7 @@
           'text-danger'
         end %>
         <tr>
-          <td><%= link_to"残業申請",  edit_overwork_request_user_path,(@user) class: "btn btn-primary" %></td>
+          <td><%= link_to "残業申請", edit_overwork_request_user_attendance_path(@user, day), remote: true, class: "btn btn-primary" %></td>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
           <td>
@@ -88,5 +88,6 @@
     </tfoot>    
   </table>
 </div>
-    
+<div id="edit-overwork-request" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+ 
     
