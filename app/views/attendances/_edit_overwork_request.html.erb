@@ -29,11 +29,11 @@
                 
                   <tr>
                     <td><%= l(@attendance.worked_on, format: :short) %></td>
-                    <td><%= f.text_field : %></td>
-                    <td><%= f.text_field : %></td> 
-                    <td><%= f.text_field : %></td> 
-                    <td><%= f.text_field : %></td> 
-                    <td><%= f.text_field : %></td> 
+                    <td></td>
+                    <td><%= f.time_field :plan_finished_at, class: "form-control" %></td> 
+                    <td><%= f.check_box :tomorrow,{}, "true", "false" %> </td> 
+                    <td><%= f.text_field :business_processing_contents, class: "form-control" %></td> 
+                    <td><%= f.select :instructor_confirmation,[["選択してください"],["上長A"],["上長B"]]%></td> 
                   </tr>
               </tbody>
             </table>
