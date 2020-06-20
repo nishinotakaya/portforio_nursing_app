@@ -12,8 +12,10 @@ Rails.application.routes.draw do
       get 'edit_basic_info'
       patch 'update_basic_info'
       get 'attendances/edit_one_month'
-      patch 'attendances/update_one_month' # この行が追加対象です。
-    end
+      patch 'attendances/update_one_month'
+      get 'edit_overwork_request'
+      post 'update_overwork_request', to: 'users#update_overwork_request'
+    end  
     resources :attendances, only: :update
   end
 end

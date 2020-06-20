@@ -22,12 +22,15 @@
 </div>
 <div class="btn-users-show">
 <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
+<%= link_to "CSV出力", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
+<%= link_to "勤怠修正ログ（承認済）", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
 </div>
 
 <div>
   <table class="table table-bordered table-condensed table-hover" id="table-attendances">
     <thead>
       <tr>
+        <th>残業申請</th>
         <th>日付</th>
         <th>曜日</th>
         <th>勤怠登録</th>
@@ -48,6 +51,7 @@
           'text-danger'
         end %>
         <tr>
+          <td><%= link_to"残業申請",  edit_overwork_request_user_path,(@user) class: "btn btn-primary" %></td>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
           <td>
