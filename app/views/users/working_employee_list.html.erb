@@ -4,13 +4,18 @@
     <th>社員番号</th>
     <th>名前</th>
   </tr> 
+    <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td></td>
-        <td><%= user.name %></td>
-      </tr>
-    <% end %>  
-</table>
-        
+       <% user.attendances.each do |attendance| %>
+          <% if (Date.current == attendance.worked_on) && attendance.started_at != nil && attendance.finished_at == nil %>
+        <tr>
+          <td><%= user.employee_number %></td>
+          <td><%= user.name %></td>
+        </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>      
        
   
