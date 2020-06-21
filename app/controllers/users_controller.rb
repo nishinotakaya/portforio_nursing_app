@@ -65,6 +65,10 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  def working_employee_list
+    @users = User.where(id: params[:id])
+  end 
+  
   
 
 private
@@ -109,5 +113,6 @@ private
         redirect_to(root_url)
       end  
     end
-
+    
+    
 end
