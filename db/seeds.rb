@@ -7,9 +7,27 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!(name: "Sample User",
              email: "sample@email.com",
+             employee_number: 1,
              password: "password",
              password_confirmation: "password",
              admin: true)
+             
+User.create!(name: "上長A",
+             email: "senior-1@email.com",
+             employee_number: 2,
+             password: "password",
+             password_confirmation: "password",
+             department: "上長A",
+             senior: true)
+
+User.create!(name: "上長B",
+             email: "senior-2@email.com",
+             employee_number: 3,
+             password: "password",
+             password_confirmation: "password",
+             department: "上長B",
+             senior: true)
+             
 
             
 
@@ -19,6 +37,7 @@ User.create!(name: "Sample User",
   password = "password"
   User.create!(name: name,
                email: email,
+               employee_number: n+4,
                password: password,
                password_confirmation: password)
 end
