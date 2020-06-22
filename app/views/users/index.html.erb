@@ -1,35 +1,36 @@
-<% provide(:title, 'All Users') %>
-<h1>ユーザー一覧</h1>
-<p>検索</p>
-
-
-<%= form_tag(users_path, :method => 'get' ) do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag 'Search', :name => nil %>
+  <% provide(:title, 'All Users') %>
+  <h1>ユーザー一覧</h1>
+  <p>検索</p>
+  
+  <%= form_tag import_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "インポート" %>
 <% end %>
-
-<div class="col-md-10 col-md-offset-1">
   
-  
-    <table class="table">
-    <% @users.each do |user| %>
-      <tr>
-        <td>
+  <div class="col-md-10 col-md-offset-1">
+    <!--%= will_paginate %-->
+      <table class="table">
+      <% @users.each do |user| %>
+        <tr>
+          <td>
           <% if current_user.admin? && !current_user?(user) %>
-          <%= user.name %><br>
-          <%= link_to "削除", user, method: :delete,
-                data: { confirm: "削除してよろしいですか？" },
-                class: "btn btn-primary" %>
-          <br><%= link_to "編集", user, remote: false, class: "btn btn-primary btn-lg" %>
-        </td>              
+            <%= user.name %><br>
+            <%= link_to "削除", user, method: :delete,
+                  data: { confirm: "削除してよろしいですか？" },
+                  class: "btn btn-primary" %>
+            <br><%= link_to "編集", user, remote: false, class: "btn btn-primary btn-lg" %>
+          </td>              
           <% end %>
-      </tr>
-    <% end %>
-    </table>
-  </table>
-</div>
-
-<div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+        </tr>
+      <% end %>
+      </table>
+    <!--%= will_paginate %-->
+  </div>
+    
+  
+    
+  
+  <div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
         
          
   

@@ -8,10 +8,23 @@ class UsersController < ApplicationController
   
 
   def index
-    @users = User.paginate(page: params[:page]).search(params[:search])
+    @users = User.paginate(page: params[:page])
+    @users = User.all
+    
     # if params[:search].present?
     #   @users = @Users.search(params[:search])
     # end
+  end
+  
+  def import
+    if params[:file].blank?
+      flash[:warning] = "CSVファイルが選択されていません。"
+    else  
+    # fileはtmpに自動で一時保存される
+      User.import(params[:file])
+      flash[:success] = "ユーザー情報をインポートしました。"
+      redirect_to users_url
+    end
   end
   
  
