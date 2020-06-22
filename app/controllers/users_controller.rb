@@ -66,8 +66,7 @@ class UsersController < ApplicationController
   end
   
   def working_employee_list
-    @users = User.where(id: params[:id])
-    @attendance = Attendance.where(id: params[:id])
+    @users = User.all.includes(:attendances)
   end 
   
   
