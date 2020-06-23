@@ -20,4 +20,8 @@ ja:
           started_at: 出社
           finished_at: 退社
           note: 備考
-          user: ユーザーID
+          user_id: ユーザーID
+          uid: カードID
+          employee_number: 社員番号
+          designated_work_start_time: 指定勤務開始時間
+          designated_work_end_time: 指定勤務終了時間

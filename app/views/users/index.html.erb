@@ -1,11 +1,12 @@
   <% provide(:title, 'All Users') %>
   <h1>ユーザー一覧</h1>
   <p>検索</p>
-  
+ 
+   
   <%= form_tag import_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "インポート" %>
-<% end %>
+  <% end %>
   
   <div class="col-md-10 col-md-offset-1">
     
@@ -25,6 +26,7 @@
       <% end %>
       </table>
   </div>
+    
     
     
   
