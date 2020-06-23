@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
-  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
-  before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: [:index,  :destroy, :update_basic_info, :edit_basic_info]
+  before_action :logged_in_user, only: [:index, :show, :edit, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :correct_user, only: [:edit]
+  before_action :admin_user, only: [:index, :update,  :destroy, :update_basic_info, :edit_basic_info]
   before_action :admin_or_correct_user, only: :show
   before_action :set_one_month, only: :show
   
