@@ -14,6 +14,7 @@
         get 'attendances/edit_one_month'
         patch 'attendances/update_one_month'
         get 'working_employee_list'
+        get 'base_list'
       end
         
       resources :attendances, only: :update do
@@ -22,8 +23,11 @@
           patch 'update_overwork_request'
         end  
       end
-    end  
+    end
     post '/import' , to: 'users#import', as: 'import'
+    
+    resources :offices do
+    end  
   end
     
       
