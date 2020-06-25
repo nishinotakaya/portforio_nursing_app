@@ -1,7 +1,7 @@
 <% provide(:title, '拠点情報一覧') %>
 <h1>拠点情報一覧</h1>
 
-    <table class="table table-bordered table-codensed user-table">
+     <table class="table table-bordered table-condensed user-table">
       <thead>
         <tr>
           <td></td>
@@ -13,9 +13,10 @@
       </thead>
       
       <tbody>
+        
       <% @offices.each do |office| %>
         <tr>
-        <td><%= link_to "修正",  users_path, remote:true, class: "btn btn-primary" %></td>
+       
         <% if current_user.admin? %>
         <td><% link_to"削除", office, method: :delete,
                   data: { confirm: "削除してよろしいですか？" },

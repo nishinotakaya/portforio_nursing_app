@@ -27,6 +27,11 @@ User.create!(name: "上長B",
              password_confirmation: "password",
              department: "上長B",
              senior: true)
+             
+Office.create!(office_name: "拠点A",
+               office_number: "1",
+               office_modality: "出勤"
+               )             
 
             
 

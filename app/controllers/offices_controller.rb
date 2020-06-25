@@ -3,6 +3,10 @@ class OfficesController < ApplicationController
   def index
     @offices = Office.all
   end
+  
+  def edit
+    @office = office.find(params[:id])
+  end  
 
   
   private
