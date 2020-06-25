@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  office_number: MyString
+  office_name: MyString
+  office_modality: MyString
+  user: one
+
+two:
+  office_number: MyString
+  office_name: MyString
+  office_modality: MyString
+  user: two

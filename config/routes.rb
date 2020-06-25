@@ -1,4 +1,6 @@
   Rails.application.routes.draw do
+  get 'offices/index'
+
     root 'static_pages#top'
     get '/signup', to: 'users#new'
   
@@ -23,11 +25,12 @@
           patch 'update_overwork_request'
         end  
       end
+      
     end
-    post '/import' , to: 'users#import', as: 'import'
+    post '/import', to: 'users#import', as: 'import'
     
-    resources :offices do
-    end  
+    resources :offices  #拠点
+    
   end
     
       

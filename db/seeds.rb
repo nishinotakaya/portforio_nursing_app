@@ -27,7 +27,6 @@ User.create!(name: "上長B",
              password_confirmation: "password",
              department: "上長B",
              senior: true)
-             
 
             
 
@@ -40,4 +39,5 @@ User.create!(name: "上長B",
                employee_number: n+4,
                password: password,
                password_confirmation: password)
+               
 end
