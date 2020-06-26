@@ -16,9 +16,9 @@ class OfficesController < ApplicationController
     @office = Office.new(office_params)
     if @office.save
       flash[:success] = "拠点を追加しました"
-      redirect_to office_url
+      redirect_to offices_url
     else
-      redirect_to
+      redirect_to :show
     end
   end
   
