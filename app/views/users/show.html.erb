@@ -27,7 +27,7 @@
 <div class="btn-users-show">
 <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
 <%= link_to "CSV出力", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
-<br><%= link_to "勤怠修正ログ（承認済）", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %></br>
+<br><%= link_to "勤怠修正ログ（承認済）", kintailog_user_path(@user), remote: true, class: "btn btn-success" %></br>
 </div>
 
 <div>
@@ -126,6 +126,6 @@
     </table>
   </div>
   <div id="edit-overwork-request" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-    
+  <div id="kintailog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
  
     
