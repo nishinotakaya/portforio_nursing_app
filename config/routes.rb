@@ -1,5 +1,5 @@
   Rails.application.routes.draw do
-  get 'offices/index'
+  
 
     root 'static_pages#top'
     get '/signup', to: 'users#new'
@@ -29,7 +29,9 @@
     end
     post '/import', to: 'users#import', as: 'import'
     
-    resources :offices  #拠点
+    resources :offices #拠点
+      
+                   
     
   end
     
