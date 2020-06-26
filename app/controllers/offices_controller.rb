@@ -9,16 +9,20 @@ class OfficesController < ApplicationController
   end
   
   def show
-     @office = Office.find(params[:id])
+    
   end
+  
+  def new
+     @office = Office.new
+  end  
 
   def create
     @office = Office.new(office_params)
     if @office.save
       flash[:success] = "拠点を追加しました"
-      redirect_to offices_url
+      redirect_to 
     else
-      redirect_to :show
+      redirect_to  
     end
   end
   
@@ -39,7 +43,7 @@ class OfficesController < ApplicationController
     @office = Office.find(params[:id])
     @office.destroy
     flash[:success] = "拠点を削除しました。"
-    redirect_to office_url
+    redirect_to offices_url
   end
   
   

@@ -1,8 +1,8 @@
-<h1>拠点情報編集</h1>
+<h1>拠点追加</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @office, url: office_path(@office), local: true, method: :patch) do |f| %>
+    <%= form_with(model: @office, url: offices_url(@office), local: true, method: :post) do |f| %>
     <%= render 'shared/error_messages',  object: @office %>
     
     <%= f.label :office_name, class: "label-#{yield(:class_text)}" %>
@@ -12,10 +12,10 @@
     <%= f.text_field :office_number, class: "form-control" %>
     
     <%= f.label :office_modality, class: "label-#{yield(:class_text)}" %>
-    <%= f.text_field :office_modality, class: "form-control" %>
+    <%= f.select :office_modality, [["出勤", "出勤"], ["退勤", "退勤"]] , class:"form-control" %>
     
     
-    <%= f.submit :編集, class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+    <%= f.submit :追加, class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
     <% end %>
   </div>
 </div>

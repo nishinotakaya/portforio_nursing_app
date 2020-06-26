@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       attendance: 勤怠
+      office: 
     attributes:
         user:
           id: ID
@@ -25,3 +26,7 @@ ja:
           employee_number: 社員番号
           designated_work_start_time: 指定勤務開始時間
           designated_work_end_time: 指定勤務終了時間
+        office: 
+          office_name: 拠点名
+          office_modality: 拠点種類 
+          office_number: 拠点番号
