@@ -13,20 +13,20 @@ User.create!(name: "Sample User",
              admin: true)
              
 User.create!(name: "上長A",
-             email: "senior-1@email.com",
+             email: "superior-1@email.com",
              employee_number: 2,
              password: "password",
              password_confirmation: "password",
              department: "上長A",
-             senior: true)
+             superior: true)
 
 User.create!(name: "上長B",
-             email: "senior-2@email.com",
+             email: "superior-2@email.com",
              employee_number: 3,
              password: "password",
              password_confirmation: "password",
              department: "上長B",
-             senior: true)
+             superior: true)
              
 Office.create!(office_name: "拠点A",
                office_number: "1",
@@ -35,7 +35,7 @@ Office.create!(office_name: "拠点A",
 
             
 
-60.times do |n|
+3.times do |n|
   name  = Faker::Name.name
   email = "sample-#{n+1}@email.com"
   password = "password"
