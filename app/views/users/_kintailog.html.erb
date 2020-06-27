@@ -10,18 +10,24 @@
       <h1 class="modal-title" , style="text-align:center">勤勉修正ログ</h1>
       <div class="modal-body">
         <table class="apporoved-log-table-header table-bordered table-striped table-condensed">
-          <tbody>
-          <tr>
-            <td>年</td>
-            <td></td>
-          <tr>
-            <td>月</td>
-            <td></td>  
-          </tr>
-          </tr>
+  　　　   　<form method="post" action="example.cgi">
+  　　　    　<p><input type="reset" value="リセット"></p>
+           <tbody>
+              <tr>
+                <td>年</td>
+                <td><%= form_with(model: @user,url: users_path(@user), local: true) do |f| %>
+                    <%= f.date_select(:date_separator, discard_month:true) %> 
+                    <% end %></td>
+              <tr>
+                <td>月</td>
+                <td><%= form_with(model: @user,url: users_path(@user), local: true) do |f| %>
+                    <%= f.date_select(:use_month_numbers, discard_year:true, discard_day:true) %>
+                    <% end %></td>  
+              </tr>
+              </tr>
+            </tbody>
+          </form>
         </table>  
-        </tbody>
-        
         <table class="apporoved-log-table table-bordered table-striped table-condensed">
           <thead>
             <tr>
@@ -61,3 +67,4 @@
     </div>
   </div>
 </div>  
+   %>

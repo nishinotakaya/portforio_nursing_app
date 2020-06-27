@@ -9,4 +9,9 @@ module ApplicationHelper
       page_name + " | " + base_title # 文字列を連結して返す
     end
   end
+  
+  def reset_tag(value = "Reset form", options = {})
+  options = options.stringify_keys
+  tag :input, { "type" => "reset", "value" => value }.update(options)
+  end
 end
