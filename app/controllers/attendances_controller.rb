@@ -63,7 +63,8 @@ class AttendancesController < ApplicationController
     def attendances_params
       params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]
     end
-    
+    #require(:user)は中の(attendances: [:started_at, :finished_at, :note])[:attendances]のこと
+    #require(:user)ない場合はパラメーターの中のものを探すだから第一改装しか見ない！updateできない
     
     
     def admin_or_correct_user
