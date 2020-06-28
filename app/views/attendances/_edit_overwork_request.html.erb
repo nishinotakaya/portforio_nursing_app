@@ -9,8 +9,8 @@
       </button>
       <h1 class="modal-title">残業申請</h1>
     </div>
-    <div class="modal-body">
-      <%= form_with(model: @user, url: update_overwork_request_user_attendance_path(@user, @attendance), local: true, method: :patch) do |f| %>
+    <div class="modal-body"><!--form_withのモデルは@attendanceの情報の更新のため@attendance-->
+      <%= form_with(model: @attendance, url: update_overwork_request_user_attendance_path(@user, @attendance), local: true, method: :patch) do |f| %>
         <table class="table table-bordered table-hover" id="table-attendances">
           <thead>
             <tr>
@@ -31,7 +31,7 @@
             when '日'
               'text-danger'
             end %>
-            
+            <!--attendanceカラム名の更新-->
             <tr>
               <td><%= l(@attendance.worked_on, format: :short) %></td>
               <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[@attendance.worked_on.wday] %></td>

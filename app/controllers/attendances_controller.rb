@@ -50,18 +50,27 @@ class AttendancesController < ApplicationController
   end
   
   def update_overwork_request
-    @user = User.find(params[:attendance][:user_id])
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id]) #attendanceを更新！
+    if  @attendance.update_attributes(overwork_params) #←ストロングパラメータの名前
+      flash[:success] = "残業申請を更新しました"
+      redirect_to user_url #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる　 
+    else
+      flash[:danger] = "残業申請を更新できませんでした。"
+      render :show
+    end
   end
+  
     
   
    private
    
-    def overwork_request_params
-       params.require(:user).permit(attendances: [:id, :day, :scheduled_end_time, :work_description])[:attendances] 
+    def overwork_params #ストロングパラメーター
+       params.require(:attendance).permit(:plan_finished_at, :tomorrow, :business_processing_contents, :instructor_confirmation)#この中のものを更新する！_edit_overwork_request.html.erbから更新」
     end
     # 1ヶ月分の勤怠情報を扱います。
     def attendances_params
-      params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]
+      params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]#この中の物は複数ある時に更新する
     end
     #require(:user)は中の(attendances: [:started_at, :finished_at, :note])[:attendances]のこと
     #require(:user)ない場合はパラメーターの中のものを探すだから第一改装しか見ない！updateできない
