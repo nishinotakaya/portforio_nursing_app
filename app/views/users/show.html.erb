@@ -24,6 +24,7 @@
     </tr>
   </table>
 </div>
+<% if current_user.superior? %>
 <div>
   [所属長承認のお知らせ]
 </div>
@@ -33,7 +34,7 @@
 <div>
   [残業申請のお知らせ]
 </div>
-  
+<% end %>  
 
 <br><div class="btn-users-show">
 <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
@@ -109,8 +110,8 @@
               <% end %>     
             </td>
             <td><%= day.note %></td>
-            <td><%= day.plan_finished_at.date_select(discard_year:true, discard_day:true) %></td>
-            <td><%= day.plan_finished_at.date_select(discard_year:true, discard_month:true) %></td>
+            <td><%= day.plan_finished_at %></td>
+            <td><%= day.plan_finished_at %></td>
             <td></td>
             <td><%= day.business_processing_contents %></td>
             <td><%= day.instructor_confirmation %></td>
