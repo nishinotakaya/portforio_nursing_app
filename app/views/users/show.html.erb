@@ -109,8 +109,8 @@
               <% end %>     
             </td>
             <td><%= day.note %></td>
-            <td><%= day.plan_finished_at %></td>
-            <td></td>
+            <td><%= day.plan_finished_at.date_select(discard_year:true, discard_day:true) %></td>
+            <td><%= day.plan_finished_at.date_select(discard_year:true, discard_month:true) %></td>
             <td></td>
             <td><%= day.business_processing_contents %></td>
             <td><%= day.instructor_confirmation %></td>
