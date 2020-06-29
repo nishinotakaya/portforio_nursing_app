@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
-  before_action :set_user, only: [:edit_one_month, :update_one_month]
+  before_action :set_user, only: [:edit_one_month, :update_one_month, ]
   before_action :logged_in_user, only: [:update, :edit_one_month]
   before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
   before_action :set_one_month, only: :edit_one_month
@@ -54,10 +54,10 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.find(params[:id]) #attendanceを更新！
     if  @attendance.update_attributes(overwork_params) #←ストロングパラメータの名前
       flash[:success] = "残業申請を更新しました"
-      redirect_to user_url #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる　 
+      redirect_to user_url(@user) #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる　 
     else
       flash[:danger] = "残業申請を更新できませんでした。"
-      render :show
+      redirect_to user_url(@user) #←user_urlの中に(@user)を入れることによりuser_urlに飛ばされる！
     end
   end
   
