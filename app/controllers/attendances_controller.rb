@@ -57,7 +57,7 @@ class AttendancesController < ApplicationController
       redirect_to user_url(@user) #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる　 
     else
       flash[:danger] = "残業申請を更新できませんでした。"
-      redirect_to user_url(@user) #←user_urlの中に(@user)を入れることによりuser_urlに飛ばされる！
+      redirect_to user_url(@user) #←user_urlの中に(@user)を入れることにより@userがuser_urlに飛ばされる！
     end
   end
   

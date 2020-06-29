@@ -110,8 +110,8 @@
               <% end %>     
             </td>
             <td><%= day.note %></td>
-            <td><%= day.plan_finished_at %></td>
-            <td><%= day.plan_finished_at %></td>
+            <td><%= l(day.plan_finished_at, format: :time) if day.plan_finished_at.present? %></td>
+            <td></td>
             <td></td>
             <td><%= day.business_processing_contents %></td>
             <td><%= day.instructor_confirmation %></td>
