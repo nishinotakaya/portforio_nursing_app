@@ -1,1 +1,53 @@
-<h1>テストからの残業申請</h1>
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header" , style="border:none">
+      <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+        <span aria-hidden="true">
+          <font style="vertical-align: inherit;">×
+          </font>
+        </span>
+        </button>
+      <h1 class="modal-title" , style="text-align:center">【 テストからの残業申請】</h1>
+      <div class="modal-body">
+        <table class="apporoved-log-table-header table-bordered table-striped table-condensed">
+          
+          <thead>
+            <tr>
+              <th>日付</th>
+              <th>曜日</th>
+              <th>終了予定時間</th>
+              <th>指定勤務終了時間</th>
+              <th>時間外時間</th>
+              <th>業務処理内容</th>
+              <th>指示者確認</th>
+              <th>変更</th>
+              <th>勤怠を確認する</th>
+            </tr>
+          </thead>
+          
+          <% @attendances.each do |day| %>
+          <% css_class = 
+          case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
+          when '土'
+            'text-primary'
+          when '日'
+            'text-danger'
+          end %>
+          <tbody>
+            <td><%= day.worked_on %></td>
+            <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
+            <td><%= day.plan_finished_at.strftime("%R") %></td>
+            <td><%= day.finished_at %></td>
+            <td><%= day.over_time %></td>
+            <td><%= day.business_processing_contents %></td>
+            <td><%= day.instructor_confirmation %></td>
+            <td><%= day.change %></td>
+            <td></td>
+          </tbody>
+          <% end %>
+        </table>  
+      </div>  
+    </div>
+  </div>
+</div>  
+          

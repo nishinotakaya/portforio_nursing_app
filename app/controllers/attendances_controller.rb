@@ -52,6 +52,7 @@ class AttendancesController < ApplicationController
   def update_overwork_request
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id]) #attendanceを更新！
+    params[:attendance][:overtime_status] = "申請中"
     if  @attendance.update_attributes(overwork_params) #←ストロングパラメータの名前
       flash[:success] = "残業申請を更新しました"
       redirect_to user_url(@user) #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる　 
@@ -63,7 +64,7 @@ class AttendancesController < ApplicationController
   
   def edit_superior_announcement
     @user = User.find(params[:user_id])
-    @attendance = Attendance.find(params[:id])
+    @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name) #申請中で勤怠のattendanceのレコード
   end
   
   def update_superior_announcement
@@ -74,11 +75,11 @@ class AttendancesController < ApplicationController
    private
    
     def overwork_params #ストロングパラメーター
-       params.require(:attendance).permit(:plan_finished_at, :tomorrow, :business_processing_contents, :instructor_confirmation)#この中のものを更新する！_edit_overwork_request.html.erbから更新」
+       params.require(:attendance).permit(:plan_finished_at, :tomorrow, :business_processing_contents, :instructor_confirmation, :overtime_status)#この中のものを更新する！_edit_overwork_request.html.erbから更新」
     end
     # 1ヶ月分の勤怠情報を扱います。
     def attendances_params
-      params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]#この中の物は複数ある時に更新する
+      params.require(:user).permit(attendances: [:change, :overtime_status])[:attendances]#この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
     end
     #require(:user)は中の(attendances: [:started_at, :finished_at, :note])[:attendances]のこと
     #require(:user)ない場合はパラメーターの中のものを探すだから第一改装しか見ない！updateできない

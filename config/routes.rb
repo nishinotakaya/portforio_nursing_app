@@ -21,10 +21,12 @@
         patch 'update_kintailog'
       end
         
-      resources :attendances, only: :update do
-        member do
+      resources :attendances, only: :update do #
+        member do #idが付く！memberは特定のデータにアクションを利用する
           get 'edit_overwork_request'
           patch 'update_overwork_request'
+        end
+        collection do #idが付かない！collectionは全体のデータにアクションを利用する
           get 'edit_superior_announcement'
           patch 'update_superior_announcement'
         end  

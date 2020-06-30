@@ -5,9 +5,11 @@ class CreateAttendances < ActiveRecord::Migration[5.1]
       t.datetime :started_at #勤務開始時間
       t.datetime :finished_at #勤務終了時間
       t.string :note #備考
-      t.datetime :plan_finished_at #終了予定時間 
+      t.datetime :plan_finished_at #終了予定時間
+      t.datetime :over_time #時間外時間
       t.boolean :tomorrow #翌日 booleanはtrueかfolse
       t.string :business_processing_contents #業務処理内容
+      t.boolean :change #変更
       t.string :instructor_confirmation #上長の名前 string 文字型
       t.string :overtime_status #残業申請の状態
       
