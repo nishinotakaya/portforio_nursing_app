@@ -32,7 +32,7 @@
   [勤怠変更お知らせ]
 </div>
 <div>
-  [残業申請のお知らせ]
+  <%= link_to "[残業申請のお知らせ]", edit_superior_announcement_user_attendance_path(@user), remote: true  %>
 </div>
 <% end %>  
 
@@ -133,5 +133,5 @@
   </div>
   <div id="edit-overwork-request" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
   <div id="kintailog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
- 
+  <div id="edit-superior-announcement" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     

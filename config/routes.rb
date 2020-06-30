@@ -25,6 +25,8 @@
         member do
           get 'edit_overwork_request'
           patch 'update_overwork_request'
+          get 'edit_superior_announcement'
+          patch 'update_superior_announcement'
         end  
       end
       

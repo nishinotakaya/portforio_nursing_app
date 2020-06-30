@@ -61,6 +61,14 @@ class AttendancesController < ApplicationController
     end
   end
   
+  def edit_superior_announcement
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
+  end
+  
+  def update_superior_announcement
+  end
+  
     
   
    private
