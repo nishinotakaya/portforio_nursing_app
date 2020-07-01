@@ -70,6 +70,11 @@ class AttendancesController < ApplicationController
   def update_superior_announcement
   end
   
+  def new_show
+    @user = User.find(params[:user_id])
+  end  
+  
+  
     
   
    private
