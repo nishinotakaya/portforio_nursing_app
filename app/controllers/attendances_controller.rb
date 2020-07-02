@@ -72,8 +72,8 @@ class AttendancesController < ApplicationController
   
   def new_show
     @user = User.find(params[:user_id])
-    @attendances = Attendance.find(params[:id])
-   
+    @attendance = Attendance.find(params[:id])
+    
   end  
   
   
