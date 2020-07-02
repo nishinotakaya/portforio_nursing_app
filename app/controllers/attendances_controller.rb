@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
-  before_action :set_user, only: [:edit_one_month, :update_one_month, ]
+  before_action :set_user, only: [:edit_one_month, :update_one_month]
   before_action :logged_in_user, only: [:update, :edit_one_month]
   before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
   before_action :set_one_month, only: :edit_one_month
@@ -64,16 +64,27 @@ class AttendancesController < ApplicationController
   
   def edit_superior_announcement
     @user = User.find(params[:user_id])
-    @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name) #申請中で勤怠のattendanceのレコード
+    @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name)
   end
   
   def update_superior_announcement
+    ActiveRecord::Base.transaction do
+      @user = User.find(params[:user_id])
+      attendances_params.each do |id, item|
+        attendance = Attendance.find(id)  
+        attendance.update_attributes!(item)
+      end
+    end  
+    flash[:success] = "残業申請を0件なし・0件承認・0件否認にしました。"
+    redirect_to user_url(@user)
+  rescue ActiveRecord::RecordInvalid
+    flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+    redirect_to user_url(@user)
   end
   
   def new_show
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
-    
   end  
   
   
@@ -82,11 +93,11 @@ class AttendancesController < ApplicationController
    private
    
     def overwork_params #ストロングパラメーター
-       params.require(:attendance).permit(:plan_finished_at, :tomorrow, :business_processing_contents, :instructor_confirmation, :overtime_status)#この中のものを更新する！_edit_overwork_request.html.erbから更新」
+       params.require(:attendance).permit(:plan_finished_at, :tomorrow, :business_processing_contents, :instructor_confirmation, :overtime_status) #この中のものを更新する！_edit_overwork_request.html.erbから更新」
     end
     # 1ヶ月分の勤怠情報を扱います。
     def attendances_params
-      params.require(:user).permit(attendances: [:change, :overtime_status])[:attendances]#この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
+      params.require(:user).permit(attendances: [:change, :overtime_status])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
     end
     #require(:user)は中の(attendances: [:started_at, :finished_at, :note])[:attendances]のこと
     #require(:user)ない場合はパラメーターの中のものを探すだから第一改装しか見ない！updateできない

@@ -1,16 +1,15 @@
 <div class="modal-dialog modal-lg modal-dialog-center">
   <div class="modal-content">
-    <div class="modal-header" , style="border:none">
-      <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-        <span aria-hidden="true">
-          <font style="vertical-align: inherit;">×
-          </font>
+    <div class="modal-header", style="border:none">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;
         </span>
         </button>
-    <h1 class="modal-title" , style="text-align:center">[#{@user.name}からの残業申請]</h1>
+    <h1 class="modal-title" , style="text-align:center">[<%= @user.name %>からの残業申請]</h1>
       <div class="modal-body">
+      <!--tableの外にform_withがある場合はtableの外にsubmitを書く-->  
+      <%= form_with(model: @user, url: update_superior_announcement_user_attendances_path(@user), method: :patch, local: true) do |f| %>
         <table class="apporoved-log-table-header table-bordered table-striped table-condensed">
-          
           <thead>
             <tr>
               <th>日付</th>
@@ -25,7 +24,7 @@
             </tr>
           </thead>
           
-          <%= form_with url: update_superior_announcement_user_attendances_path(@user) do |f| %>
+          
             <% @attendances.each do |day| %>
               <%= f.fields_for "attendances[]", day do |a| %> 
               <tbody>
@@ -50,7 +49,7 @@
               </tbody>
               <% end %>
             <% end %>
-        </table>  
+          </table>  
           <%= f.submit "変更を送信する", class: "btn btn-primary" %>
         <% end %>
       </div>  
