@@ -7,7 +7,7 @@
           </font>
         </span>
         </button>
-      <h1 class="modal-title" , style="text-align:center">[<% (@user.name) %>からの残業申請]</h1>
+      <h1 class="modal-title" , style="text-align:center">[テストからの残業申請]</h1>
       <div class="modal-body">
         <table class="apporoved-log-table-header table-bordered table-striped table-condensed">
           
@@ -26,24 +26,28 @@
           </thead>
           
           <% @attendances.each do |day| %>
-          <% css_class = 
-          case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
-          when '土'
-            'text-primary'
-          when '日'
-            'text-danger'
-          end %>
+            
           <tbody>
-            <td><%= l(day.worked_on, format: :short) %></td> 
-            <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
-            <td><%= day.plan_finished_at.strftime("%R") %></td>
-            <td><%= day.finished_at %></td>
-            <td><%= day.over_time %></td>
-            <td><%= day.business_processing_contents %></td>
-            <%= form_with url: update_superior_announcement_user_attendances_path(@user, day) do |f| %>
-            <td><%= f.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
-            <td><%= f.check_box :change, {}, "true", "false" %></td>
-            <td><%= link_to "確認", url: new_show_user_attendances_path(@user, day), class: "btn btn-primary" %></td>
+            <tr>
+            <% css_class = 
+            case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
+            when '土'
+              'text-primary'
+            when '日'
+              'text-danger'
+            end %>
+              <td><%= l(day.worked_on, format: :short) %></td> 
+              <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
+              <td><%= day.plan_finished_at.strftime("%R") %></td>
+              <td><%=  format_basic_info(@user.designated_work_end_time) %></td>
+              <td><%= day.over_time %></td>
+              <td><%= day.business_processing_contents %></td>
+              <%= form_with url: update_superior_announcement_user_attendances_path(@user, day) do |f| %>
+              <td><%= f.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
+              <td><%= f.check_box :change, {}, "true", "false" %></td>
+              <td><%= link_to "確認", new_show_user_attendance_path(@user, day), class: "btn btn-primary" %></td>
+              <%= f.submit "変更を送信する", class: "btn btn-primary" %>
+            </tr>
           </tbody>
             <% end %>
           <% end %>
