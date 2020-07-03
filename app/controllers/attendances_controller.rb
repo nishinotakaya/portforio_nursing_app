@@ -68,6 +68,7 @@ class AttendancesController < ApplicationController
   def edit_superior_announcement 
     @user = User.find(params[:user_id])
     @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name)
+    @users = User.all.where.not(id: @user.id)
   end
   
   def update_superior_announcement
