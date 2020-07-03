@@ -17,7 +17,6 @@ User.create!(name: "上長A",
              employee_number: 2,
              password: "password",
              password_confirmation: "password",
-             department: "上長A",
              superior: true)
 
 User.create!(name: "上長B",
@@ -25,7 +24,6 @@ User.create!(name: "上長B",
              employee_number: 3,
              password: "password",
              password_confirmation: "password",
-             department: "上長B",
              superior: true)
              
 Office.create!(office_name: "拠点A",

@@ -44,9 +44,11 @@ class AttendancesController < ApplicationController
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
   
+  # 残業申請のモーダル！
   def edit_overwork_request
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
+    @superior = User.where(superior: true).where.not(id: @user.id) #最初のwhereは自分、where.notを付け加えることによって自分以外の上長! 
   end
   
   def update_overwork_request
@@ -62,7 +64,8 @@ class AttendancesController < ApplicationController
     end
   end
   
-  def edit_superior_announcement
+  # 残業申請承認モーダル！
+  def edit_superior_announcement 
     @user = User.find(params[:user_id])
     @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name)
   end
