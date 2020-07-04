@@ -68,7 +68,8 @@ class AttendancesController < ApplicationController
   def edit_superior_announcement 
     @user = User.find(params[:user_id])
     @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name)
-    @users = User.all.where.not(id: @user.id)
+    #@users = User.where(attendances:{overtime_status: "申請中"}).where.not(id: @user.id) #userひもづいてるattendanceモデルの中のovertime_statusの中の申請中のでーたを持ってるuserたちを持ってっ来る！
+    @users = User.joins(:attendances).group("users.id").where(attendances:{overtime_status: "申請中"}) #joinsでattendancesのURLを持っているuserを集めてる！
   end
   
   def update_superior_announcement
