@@ -54,7 +54,7 @@ class AttendancesController < ApplicationController
   def update_overwork_request
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id]) #attendanceを更新！
-    params[:attendance][:overtime_status] = "申請中"
+    params[:attendance][:overtime_status] = "申請中" #[:attendance]の[overtime_status]が申請中だった場合
     if  @attendance.update_attributes(overwork_params) #←ストロングパラメータの名前
       flash[:success] = "残業申請を更新しました"
       redirect_to user_url(@user) #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる　 
@@ -87,9 +87,11 @@ class AttendancesController < ApplicationController
     redirect_to user_url(@user)
   end
   
-  def new_show
+  
+  def new_show #勤怠申請モーダルの確認ボタン
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
+    @attendances = Attendance.where.not(id: @user)
   end  
   
   
