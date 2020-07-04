@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     else  
     # fileはtmpに自動で一時保存される
       User.import(params[:file])
-      flash[:success] = "ユーザー情報をインポートしました。"
+      flash[:success] = "ユーザー情報をインポートしました。"  #{num.to_s}
       redirect_to users_url
     end
   end

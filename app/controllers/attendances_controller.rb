@@ -91,7 +91,10 @@ class AttendancesController < ApplicationController
   def new_show #勤怠申請モーダルの確認ボタン
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
-    @attendances = Attendance.where.not(id: @user)
+    @first_day = @attendance.worked_on.beginning_of_month #worked_on.日付、beginning_of_month月初日を計算してくれる。
+    @last_day = @first_day.end_of_month #end_of_month月末日を計算してくれる。
+    @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on) #order日付順に並び変える,..は～から～まで
+    @worked_sum = @attendances.where.not(started_at: nil).count
   end  
   
   

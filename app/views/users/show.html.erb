@@ -32,7 +32,12 @@
   [勤怠変更お知らせ]
 </div>
 <div>
-  <%= link_to "[残業申請のお知らせ]", edit_superior_announcement_user_attendances_path(@user), remote: true %>
+  <% if overtime_status = "申請中".present? %>
+  <%= link_to "[残業申請のお知らせ]", edit_superior_announcement_user_attendances_path(@user), remote: true, class: "btn-danger" %>
+  <p class="container"><%= 件のおしらせ %></p> 
+  <% else %>
+  [残業申請のお知らせ]
+  <% end %>
 </div>
 <% end %>  
 
