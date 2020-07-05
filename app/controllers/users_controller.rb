@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info] #before_actionは一番最初に定義される！
   before_action :logged_in_user, only: [:index, :show, :edit, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:index, :update, :destroy, :update_basic_info, :edit_basic_info]
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     else  
     # fileはtmpに自動で一時保存される
       User.import(params[:file])
-      flash[:success] = "ユーザー情報をインポートしました。"  #{num.to_s}
+      flash[:success] = "ユーザー情報をインポートしました。"  
       redirect_to users_url
     end
   end
