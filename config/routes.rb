@@ -31,7 +31,9 @@
           get 'edit_superior_announcement' #残業申請お知らせモーダル
           patch 'update_superior_announcement'
           get 'edit_superior_approval' #所属長承認モーダル
-          patch 'update_superior_approval' 
+          patch 'update_superior_approval'
+          get 'attendance_change' #勤怠変更申請モーダル
+          patch 'update_attendance_change'
         end  
       end
       

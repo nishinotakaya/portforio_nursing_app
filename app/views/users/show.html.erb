@@ -29,7 +29,7 @@
   <%= link_to"[所属長承認のお知らせ]", edit_superior_approval_user_attendances_path(@user), remote: true, class: "btn-danger" %>
 </div>
 <div>
-  [勤怠変更お知らせ]
+  <%= link_to"[勤怠変更お知らせ]", attendance_change_user_attendances_path(@user), remote: true, class: "btn-danger" %>
 </div>
 <div>
   <% if @overwork_count != 0 %>
@@ -146,6 +146,7 @@
       </tfoot>
     </table>
   </div>
+  <div id="attendance-change" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
   <div id="edit-superior-approval" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
   <div id="edit-overwork-request" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
   <div id="kintailog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
