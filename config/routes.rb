@@ -28,8 +28,10 @@
            get 'new_show'
         end
         collection do #idが付かない！collectionは全体のデータにアクションを利用する
-          get 'edit_superior_announcement'
+          get 'edit_superior_announcement' #残業申請お知らせモーダル
           patch 'update_superior_announcement'
+          get 'edit_superior_approval' #所属長承認モーダル
+          patch 'update_superior_approval' 
         end  
       end
       
