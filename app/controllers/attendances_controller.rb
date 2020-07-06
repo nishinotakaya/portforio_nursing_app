@@ -74,18 +74,27 @@ class AttendancesController < ApplicationController
   
   def update_superior_announcement
     ActiveRecord::Base.transaction do
-      @overtime_status = Attendance.where(overtime_status: "申請中").count
-      @overtime_status1 = Attendance.where(overtime_status: "なし").count
-      @overtime_status2 = Attendance.where(overtime_status: "承認").count
-      @overtime_status3 = Attendance.where(overtime_status: "否認").count
       @user = User.find(params[:user_id])
+      n1 = 0
+      n2 = 0
+      n3 = 0
+      n4 = 0
       attendances_params.each do |id, item|
+        if item[:overtime_status] == "申請中" 
+          n1 = n1 + 1
+        elsif item[:overtime_status] == "承認" 
+          n2 = n2 + 1
+        elsif item[:overtime_status] == "否認" 
+          n3 = n3 + 1
+        elsif item[:overtime_status] == "なし" 
+          n4 = n4 + 1
+        end  
         attendance = Attendance.find(id)  
         attendance.update_attributes!(item)
       end
-    end  
-    flash[:success] = "残業申請を#{@overtime_status}件、なしを#{@overtime_status1}件、承認を#{@overtime_status2}件、否認を#{@overtime_status3}件にしました。"
+    flash[:success] = "残業申請→申請中を#{n1}件、承認を#{n2}件、否認を#{n3}件、なしを#{n4}件送信しました"
     redirect_to user_url(@user)
+    end
   rescue ActiveRecord::RecordInvalid
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
     redirect_to user_url(@user)
