@@ -120,7 +120,7 @@
             <td></td>
             <td><%= day.business_processing_contents %></td>
             <td><% if day.overtime_status == "申請中" %> 
-                <%= "#{day.instructor_confirmation}申請中確認済み" %>
+                <%= "#{day.instructor_confirmation}へ申請中済み" %>
                 <% elsif day.overtime_status == "承認" %>
                 <%= "#{day.instructor_confirmation}承認確認済み" %>
                 <% elsif day.overtime_status == "否認" %>
