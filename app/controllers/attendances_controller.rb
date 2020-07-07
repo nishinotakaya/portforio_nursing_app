@@ -112,9 +112,14 @@ class AttendancesController < ApplicationController
     @worked_sum = @attendances.where.not(started_at: nil).count
   end
   
+  # 勤怠変更更新モーダル
   def attendance_change
     @user = User.find(params[:user_id])
     @attendances = Attendance.where(started_at: (1.days.ago)..(Time.now), instructor_confirmation: @user.name)
+    @users = User.joins(:attendances).group("users.id").where(attendances:{started_at: (1.days.ago)..(Time.now), finished_at: (1.days.ago)..(Time.now)})
+  end
+  
+  def update_attendance_change
   end  
   
   

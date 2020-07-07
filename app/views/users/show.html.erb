@@ -32,6 +32,8 @@
   <% if @edit_one_month_count != 0 %>
   <%= link_to"[勤怠変更お知らせ]", attendance_change_user_attendances_path(@user), remote: true, class: "btn-danger" %>
   <%= "#{@edit_one_month_count}件のおしらせ" %>
+  <% else %>
+  [勤怠変更お知らせ]
   <% end %>
 </div>
 <div>

@@ -46,9 +46,9 @@
                         <td><%= format_basic_info(@user.designated_work_end_time) %></td>
                         <td><%= day.over_time %></td>
                         <td><%= day.business_processing_contents %></td>
-                          <td><%= a.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
-                          <td><%= a.check_box :change, {}, "true", "false" %></td>
-                          <td><%= link_to "確認", new_show_user_attendance_path(user, day), class: "btn btn-primary" %></td>
+                        <td><%= a.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
+                        <td><%= a.check_box :change, {}, "true", "false" %></td>
+                        <td><%= link_to "確認", new_show_user_attendance_path(user, day), class: "btn btn-primary" %></td>
                       </tr>
                     </tbody>
                     <% end %>
