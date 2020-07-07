@@ -27,6 +27,8 @@ class AttendancesController < ApplicationController
   end
 
   def edit_one_month
+    @attendance = Attendance.find(params[:id])
+    @superior = User.where(superior: true).where.not(id: @user.id)
   end
 
   def update_one_month
@@ -108,6 +110,11 @@ class AttendancesController < ApplicationController
     @last_day = @first_day.end_of_month #end_of_month月末日を計算してくれる。
     @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on) #order日付順に並び変える,..は～から～まで
     @worked_sum = @attendances.where.not(started_at: nil).count
+  end
+  
+  def attendance_change
+    @user = User.find(params[:user_id])
+    @attendances = Attendance.where(started_at: (1.days.ago)..(Time.now), instructor_confirmation: @user.name)
   end  
   
   

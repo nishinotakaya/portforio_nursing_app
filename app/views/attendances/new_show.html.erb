@@ -73,7 +73,7 @@
             <td><%= day.started_at.floor_to(15.minutes).strftime('%M') if day.started_at.present? %></td>
             <td></td>
             </td>
-             <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
+            <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
             <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
             <td></td>
             <td>

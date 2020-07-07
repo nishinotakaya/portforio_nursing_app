@@ -1,8 +1,76 @@
-<div class="modal-dialog modal-lg modal-dialog-center">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h1 class="modal-title">上長からの残業申請</h1>
+ <div class="modal-dialog modal-lg modal-dialog-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <%= form_with(model: @user, url: update_superior_announcement_user_attendances_path(@user), method: :patch, local: true) do |f| %>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         
+        <h1 class="modal-title">テストからの1ヵ月申請</h1>
+      </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+            <thead>
+              <tr>
+              <th rowspan = "3">日付</th>
+              <th rowspan = "3">曜日</th>
+              <th colspan = "4">変更前</th>
+              <th colspan = "4">変更後</th>
+              <th rowspan = "3">備考</th>
+              <th rowspan = "3">指示者確認㊞</th>
+              <th rowspan = "3">変更</th>
+              <th rowspan = "3">勤務を確認する</th>
+              </tr>
+              
+              <tr>
+                <th colspan ="2">出社</th>
+                <th colspan ="2">退社</th>
+                <th colspan ="2">出社</th>
+                <th colspan ="2">退社</th>
+              </tr>
+              <tr>
+                <th>時</th>
+                <th>分</th>
+                <th>時</th>
+                <th>分</th>
+                <th>時</th>
+                <th>分</th>
+                <th>時</th>
+                <th>分</th>
+              </tr>
+             </thead>
+             
+             <tbody>
+              <% @attendances.each do |day| %>
+                <%= f.fields_for "attendances[]", day do |a| %>
+              <% css_class = 
+          case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
+          when '土'
+            'text-primary'
+          when '日'
+            'text-danger'
+          end %>
+              <td><%= l(day.worked_on, format: :short) %></td>
+              <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
+              <td><%= day.started_at.strftime('%-H') if day.started_at.present? %></td>
+              <td><%= day.started_at.floor_to(15.minutes).strftime('%M') if day.started_at.present? %></td>
+              <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
+              <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
+              
+              <td><%= day.started_at.strftime('%-H') if day.started_at.present? %></td>
+              <td><%= day.started_at.floor_to(15.minutes).strftime('%M') if day.started_at.present? %></td>
+              <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
+              <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
+              <td></td>
+              <td><%= a.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
+              <td><%= a.check_box :change, {}, "true", "false" %></td>
+              <td></td>
+             </tbody>
+              <% end %>
+                <% end %>
+          </table>  
+        <% end %>
+        </div>
+      </div>    
     </div>
+  </div>

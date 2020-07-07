@@ -29,7 +29,10 @@
   <%= link_to"[所属長承認のお知らせ]", edit_superior_approval_user_attendances_path(@user), remote: true, class: "btn-danger" %>
 </div>
 <div>
+  <% if @edit_one_month_count != 0 %>
   <%= link_to"[勤怠変更お知らせ]", attendance_change_user_attendances_path(@user), remote: true, class: "btn-danger" %>
+  <%= "#{@edit_one_month_count}件のおしらせ" %>
+  <% end %>
 </div>
 <div>
   <% if @overwork_count != 0 %>
@@ -101,7 +104,7 @@
               <% end %>
             </td>
             </td>
-             <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
+            <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
             <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
             <td>
               <% if attendance_state(day) && day.started_at.present? &&  day.finished_at.blank? %>
