@@ -5,71 +5,71 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-          <% @users.each do |user| %>    
-        <h1 class="modal-title"><%= user.name %>からの1ヵ月申請</h1>
-      </div>
-        <div class="modal-body">
-          <table class="table table-bordered table-condensed table-hover" id="table-attendances">
-            <thead>
-              <tr>
-              <th rowspan = "3">日付</th>
-              <th rowspan = "3">曜日</th>
-              <th colspan = "4">変更前</th>
-              <th colspan = "4">変更後</th>
-              <th rowspan = "3">備考</th>
-              <th rowspan = "3">指示者確認㊞</th>
-              <th rowspan = "3">変更</th>
-              <th rowspan = "3">勤務を確認する</th>
-              </tr>
-              
-              <tr>
-                <th colspan ="2">出社</th>
-                <th colspan ="2">退社</th>
-                <th colspan ="2">出社</th>
-                <th colspan ="2">退社</th>
-              </tr>
-              <tr>
-                <th>時</th>
-                <th>分</th>
-                <th>時</th>
-                <th>分</th>
-                <th>時</th>
-                <th>分</th>
-                <th>時</th>
-                <th>分</th>
-              </tr>
-             </thead>
-             
-             <tbody>
-              <% @attendances.each do |day| %>
-                <%= f.fields_for "attendances[]", day do |a| %>
-              <% css_class = 
-          case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
-          when '土'
-            'text-primary'
-          when '日'
-            'text-danger'
-          end %>
-              <td><%= l(day.worked_on, format: :short) %></td>
-              <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
-              <td><%= day.started_at.strftime('%-H') if day.started_at.present? %></td>
-              <td><%= day.started_at.floor_to(15.minutes).strftime('%M') if day.started_at.present? %></td>
-              <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
-              <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
-              
-              <td><%= day.started_at.strftime('%-H') if day.started_at.present? %></td>
-              <td><%= day.started_at.floor_to(15.minutes).strftime('%M') if day.started_at.present? %></td>
-              <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
-              <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
-              <td><%= a.text_field :note, class: "form-control" %></td>
-              <td><%= a.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
-              <td><%= a.check_box :change, {}, "true", "false" %></td>
-              <td><%= link_to "確認", new_show_user_attendance_path(user, day), class: "btn btn-primary" %></td>
-             </tbody>
-              <% end %>
+            <% @users.each do |user| %>    
+          <h1 class="modal-title"><%= user.name %>からの1ヵ月申請</h1>
+        </div>
+          <div class="modal-body">
+            <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+              <thead>
+                <tr>
+                <th rowspan = "3">日付</th>
+                <th rowspan = "3">曜日</th>
+                <th colspan = "4">変更前</th>
+                <th colspan = "4">変更後</th>
+                <th rowspan = "3">備考</th>
+                <th rowspan = "3">指示者確認㊞</th>
+                <th rowspan = "3">変更</th>
+                <th rowspan = "3">勤務を確認する</th>
+                </tr>
+                
+                <tr>
+                  <th colspan ="2">出社</th>
+                  <th colspan ="2">退社</th>
+                  <th colspan ="2">出社</th>
+                  <th colspan ="2">退社</th>
+                </tr>
+                <tr>
+                  <th>時</th>
+                  <th>分</th>
+                  <th>時</th>
+                  <th>分</th>
+                  <th>時</th>
+                  <th>分</th>
+                  <th>時</th>
+                  <th>分</th>
+                </tr>
+               </thead>
+               
+               <tbody>
+                <% @attendances.each do |day| %>
+                  <%= f.fields_for "attendances[]", day do |a| %>
+                <% css_class = 
+            case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
+            when '土'
+              'text-primary'
+            when '日'
+              'text-danger'
+            end %>
+                  <td><%= l(day.worked_on, format: :short) %></td>
+                  <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
+                  <td><%= day.started_at.strftime('%-H') if day.started_at.present? %></td>
+                  <td><%= day.started_at.floor_to(15.minutes).strftime('%M') if day.started_at.present? %></td>
+                  <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
+                  <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
+                  
+                  <td><%= day.before_started_at.strftime('%-H') if day.before_started_at.present? %></td>
+                  <td><%= day.before_started_at.floor_to(15.minutes).strftime('%M') if day.before_started_at.present? %></td>
+                  <td><%= day.before_finished_at.strftime('%-H') if day.before_finished_at.present? %></td>
+                  <td><%= day.before_finished_at.floor_to(15.minutes).strftime('%M') if day.before_finished_at.present? %></td>
+                  <td><%= a.text_field :note, class: "form-control" %></td>
+                  <td><%= a.select :change_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
+                  <td><%= a.check_box :change, {}, "true", "false" %></td>
+                  <td><%= link_to "確認", new_show_user_attendance_path(user, day), class: "btn btn-primary" %></td>
+               </tbody>
+                  <% end %>
                 <% end %>
-          </table>  
-          <% end %>
+            </table>  
+            <% end %>
            <%= f.submit "変更を送信する", class: "btn btn-primary" %>
           <% end %>
         </div>

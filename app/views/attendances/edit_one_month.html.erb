@@ -29,18 +29,18 @@
           <td><%= l(day.worked_on, format: :short) %></td>
           <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
           <% if logged_in? && (Date.current < day.worked_on) %>
-            <td><%= attendance.time_field :started_at, readonly: true, class: "form-control" %></td>
-            <td><%= attendance.time_field :finished_at, readonly: true, class: "form-control" %></td>
+            <td><%= attendance.time_field :before_started_at, readonly: true, class: "form-control" %></td>
+            <td><%= attendance.time_field :before_finished_at, readonly: true, class: "form-control" %></td>
           <% else %>
-            <td><%= attendance.time_field :started_at, class: "form-control" %></td>
-            <td><%= attendance.time_field :finished_at, class: "form-control" %></td>
+            <td><%= attendance.time_field :before_started_at, class: "form-control" %></td>
+            <td><%= attendance.time_field :before_finished_at, class: "form-control" %></td>
           <% end %>
           <td>
-            <% if day.started_at.present? && day.finished_at.present? %>
-              <%= working_times(day.started_at, day.finished_at) %>
+            <% if day.before_started_at.present? && day.before_finished_at.present? %>
+              <%= working_times(day.before_started_at, day.before_finished_at) %>
             <% end %>
           </td>
-          <td><%= attendance.text_field :note, class: "form-control" %></td>
+          <td></td>
           <td><%= attendance.text_field :note, class: "form-control" %></td>
           <td><%= attendance.text_field :instructor_confirmation, class: "form-control" %></td>
         </tr>

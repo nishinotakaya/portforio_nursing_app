@@ -16,6 +16,9 @@ ActiveRecord::Schema.define(version: 20200624124645) do
     t.date "worked_on"
     t.datetime "started_at"
     t.datetime "finished_at"
+    t.datetime "before_started_at"
+    t.datetime "before_finished_at"
+    t.datetime "attended_time"
     t.string "note"
     t.datetime "plan_finished_at"
     t.datetime "over_time"
@@ -24,6 +27,7 @@ ActiveRecord::Schema.define(version: 20200624124645) do
     t.boolean "change"
     t.string "instructor_confirmation"
     t.string "overtime_status"
+    t.string "change_status"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,16 +50,16 @@ ActiveRecord::Schema.define(version: 20200624124645) do
     t.string "password_digest"
     t.string "remember_digest"
     t.string "department"
-    t.datetime "basic_time", default: "2020-07-05 23:00:00"
-    t.datetime "work_time", default: "2020-07-05 22:30:00"
+    t.datetime "basic_time", default: "2020-07-07 23:00:00"
+    t.datetime "work_time", default: "2020-07-07 22:30:00"
     t.boolean "admin"
     t.boolean "superior", default: false
     t.string "employee_number"
     t.string "uid"
-    t.datetime "designated_work_start_time", default: "2020-07-05 22:00:00"
-    t.datetime "designated_work_end_time", default: "2020-07-06 09:00:00"
+    t.datetime "designated_work_start_time", default: "2020-07-07 22:00:00"
+    t.datetime "designated_work_end_time", default: "2020-07-08 09:00:00"
     t.string "user_id"
-    t.datetime "basic_work_time", default: "2020-07-05 21:30:00"
+    t.datetime "basic_work_time", default: "2020-07-07 21:30:00"
     t.string "affiliation"
     t.index ["email"], name: "index_users_on_email", unique: true
   end

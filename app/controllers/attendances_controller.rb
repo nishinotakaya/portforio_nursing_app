@@ -33,7 +33,8 @@ class AttendancesController < ApplicationController
 
   def update_one_month
     ActiveRecord::Base.transaction do # トランザクションを開始します。
-      attendances_params.each do |id, item|
+      edit_one_month_params.each do |id, item|
+        #item[:change_status] = "申請中"
         attendance = Attendance.find(id)
         attendance.attributes = item
         attendance.save!(context: :attendance_update)
@@ -115,8 +116,8 @@ class AttendancesController < ApplicationController
   # 勤怠変更更新モーダル
   def attendance_change
     @user = User.find(params[:user_id])
-    @attendances = Attendance.where(started_at: (1.days.ago)..(Time.now), instructor_confirmation: @user.name)
-    @users = User.joins(:attendances).group("users.id").where(attendances:{started_at: (1.days.ago)..(Time.now), finished_at: (1.days.ago)..(Time.now)})
+    @attendances = Attendance.where(change_status: "申請中")
+    @users = User.joins(:attendances).group("users.id")
   end
   
   def update_attendance_change
@@ -130,12 +131,18 @@ class AttendancesController < ApplicationController
     def overwork_params #ストロングパラメーター
        params.require(:attendance).permit(:plan_finished_at, :tomorrow, :business_processing_contents, :instructor_confirmation, :overtime_status) #この中のものを更新する！_edit_overwork_request.html.erbから更新」
     end
-    # 1ヶ月分の勤怠情報を扱います。
+    # 残業申請のお知らせ
     def attendances_params
       params.require(:user).permit(attendances: [:change, :overtime_status])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
     end
     #require(:user)は中の(attendances: [:started_at, :finished_at, :note])[:attendances]のこと
     #require(:user)ない場合はパラメーターの中のものを探すだから第一改装しか見ない！updateできない
+    
+    def edit_one_month_params #変更申請ストロングパラメーター 
+      params.require(:user).permit(attendances: [:before_started_at, :before_finished_at, :note, :instructor_confirmation, :change_status])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
+    end
+    
+    
     
     
     def admin_or_correct_user
