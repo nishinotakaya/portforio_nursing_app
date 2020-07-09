@@ -34,17 +34,23 @@ class AttendancesController < ApplicationController
   def update_one_month
     ActiveRecord::Base.transaction do # トランザクションを開始します。
       edit_one_month_params.each do |id, item|
-        #item[:change_status] = "申請中"
-        attendance = Attendance.find(id)
-        attendance.attributes = item
-        attendance.save!(context: :attendance_update)
+        if item[:instructor_confirmation].present?
+          if item[:before_started_at].blank? || item[:before_finished_at].blank?
+            flash[:danger] = "時間を入力してください。"
+            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return #上長が入ってなく、時間が入ってなかったら更新されません。and returnは繰り返しredirectが使われていること！
+          end  
+          item[:change_status] = "申請中"
+          attendance = Attendance.find(id)
+          attendance.attributes = item
+          attendance.save!(context: :attendance_update)
+        end  
       end
    end
     flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
     redirect_to user_url(date: params[:date])
   rescue ActiveRecord::RecordInvalid # トランザクションによるエラーの分岐です。
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
-    redirect_to attendances_edit_one_month_user_url(date: params[:date])
+    redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return
   end
   
   # 残業申請のモーダル！
@@ -116,9 +122,14 @@ class AttendancesController < ApplicationController
   # 勤怠変更更新モーダル
   def attendance_change
     @user = User.find(params[:user_id])
-    @attendances = Attendance.where(change_status: "申請中")
-    @users = User.joins(:attendances).group("users.id")
+    @attendances = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).order(:worked_on, :user_id).group_by(&:user_id)
+    
   end
+      
+       
+        
+        
+      
   
   def update_attendance_change
   end  

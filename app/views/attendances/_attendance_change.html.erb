@@ -5,8 +5,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-            <% @users.each do |user| %>    
-          <h1 class="modal-title"><%= user.name %>からの1ヵ月申請</h1>
+            <% @attendances.each do |id, attendance| %>  
+          <h1 class="modal-title"><%= User.find(id).name %>からの1ヵ月申請</h1>
         </div>
           <div class="modal-body">
             <table class="table table-bordered table-condensed table-hover" id="table-attendances">
@@ -41,7 +41,8 @@
                </thead>
                
                <tbody>
-                <% @attendances.each do |day| %>
+                <!--attendanceの中に風数のレコードが入っていて、dayに一つ-->
+                <% attendance.each do |day| %>
                   <%= f.fields_for "attendances[]", day do |a| %>
                 <% css_class = 
             case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
@@ -64,7 +65,7 @@
                   <td><%= a.text_field :note, class: "form-control" %></td>
                   <td><%= a.select :change_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
                   <td><%= a.check_box :change, {}, "true", "false" %></td>
-                  <td><%= link_to "確認", new_show_user_attendance_path(user, day), class: "btn btn-primary" %></td>
+                  <td><%= link_to "確認", new_show_user_attendance_path(@user, day), class: "btn btn-primary" %></td>
                </tbody>
                   <% end %>
                 <% end %>

@@ -29,7 +29,12 @@
   <%= link_to"[所属長承認のお知らせ]", edit_superior_approval_user_attendances_path(@user), remote: true, class: "btn-danger" %>
 </div>
 <div>
-  <%= link_to"[勤怠変更お知らせ]", attendance_change_user_attendances_path(@user), remote: true, class: "btn-danger" %>
+  <% if @overchange_count != 0 %>
+    <%= link_to"[勤怠変更お知らせ]", attendance_change_user_attendances_path(@user), remote: true, class: "btn-danger" %>
+    <%= "#{@overchange_count}件のおしらせ" %>
+  <% else %>
+    [勤怠変更お知らせ]
+  <% end %>  
 </div>
 <div>
   <% if @overwork_count != 0 %>

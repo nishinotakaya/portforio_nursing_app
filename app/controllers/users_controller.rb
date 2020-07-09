@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   def show
     @worked_sum = @attendances.where.not(started_at: nil).count
     @overwork_count = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name).count #残業申請のお知らせの件数
+    @overchange_count = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).count
     @edit_one_month_count = Attendance.where(before_started_at: (1.days.ago)..(Time.now), before_finished_at: (1.days.ago)..(Time.now), instructor_confirmation: @user.name).count #勤怠変更更新のお知らせ件数
   end
 
