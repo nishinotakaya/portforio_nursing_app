@@ -125,13 +125,14 @@ class AttendancesController < ApplicationController
     @attendances = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).order(:worked_on, :user_id).group_by(&:user_id)
     
   end
-      
-       
-        
-        
-      
   
+      
   def update_attendance_change
+  end
+  
+  def new_show_change
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
   end  
   
   

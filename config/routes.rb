@@ -26,6 +26,7 @@
           get 'edit_overwork_request'
           patch 'update_overwork_request'
            get 'new_show'
+           get 'new_show_change'
         end
         collection do #idが付かない！collectionは全体のデータにアクションを利用する
           get 'edit_superior_announcement' #残業申請お知らせモーダル
