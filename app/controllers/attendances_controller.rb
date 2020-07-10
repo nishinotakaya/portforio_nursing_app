@@ -102,11 +102,11 @@ class AttendancesController < ApplicationController
         attendance.update_attributes!(item)
       end
     flash[:success] = "残業申請→申請中を#{n1}件、承認を#{n2}件、否認を#{n3}件、なしを#{n4}件送信しました"
-    redirect_to user_url(@user)
+    redirect_to user_url(@user) and return
     end
   rescue ActiveRecord::RecordInvalid
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
-    redirect_to user_url(@user)
+    redirect_to user_url(@user) and return
   end
   
   
@@ -128,11 +128,44 @@ class AttendancesController < ApplicationController
   
       
   def update_attendance_change
+    ActiveRecord::Base.transaction do
+      @user = User.find(params[:user_id])
+        m1 = 0
+        m2 = 0
+        m3 = 0
+        m4 = 0
+      edit_one_month_params.each do |id, item|
+        if item[:change_status] == "申請中" 
+          m1 = m1 + 1
+        elsif item[:change_status] == "承認" 
+          m2 = m2 + 1
+        elsif item[:change_status] == "否認" 
+          m3 = m3 + 1
+        elsif item[:change_status] == "なし" 
+          m4 = m4 + 1
+        end  
+        attendance = Attendance.find(id)  
+        attendance.update_attributes!(item)
+      end
+      flash[:success] = "残業申請→申請中を#{m1}件、承認を#{m2}件、否認を#{m3}件、なしを#{m4}件送信しました"
+      redirect_to user_url(@user) and return
+    end
+  rescue ActiveRecord::RecordInvalid
+    flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+    redirect_to user_url(@user) and return
   end
+        
+    
+    
+      
   
   def new_show_change
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
+    @first_day = @attendance.worked_on.beginning_of_month #worked_on.日付、beginning_of_month月初日を計算してくれる。
+    @last_day = @first_day.end_of_month
+    @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on) #order日付順に並び変える,..は～から～まで
+    @worked_sum = @attendances.where.not(started_at: nil).count
   end  
   
   

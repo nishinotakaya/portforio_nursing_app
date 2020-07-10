@@ -133,6 +133,15 @@
                 <% elsif day.overtime_status == "なし" %>
                 <%= "#{day.instructor_confirmation}なし確認済み" %>
                 <% end %>
+                <% if day.change_status == "申請中" %>
+                <%= "#{day.instructor_confirmation}勤怠編集申請中済み" %>
+                <% elsif day.change_status == "承認" %>
+                <%= "#{day.instructor_confirmation}勤怠編集承認確認済み" %>
+                <% elsif day.change_status == "否認" %>
+                <%= "#{day.instructor_confirmation}勤怠編集否認確認済み" %>
+                <% elsif day.change_status == "なし" %>
+                <%= "#{day.instructor_confirmation}勤怠編集なし確認済み" %>
+                <% end %>
                 </td>
           </tr>
         <% end %>
