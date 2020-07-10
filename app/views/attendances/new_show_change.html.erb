@@ -85,7 +85,15 @@
             <td><%= day.plan_finished_at.strftime('%M')if day.plan_finished_at.present? %></td>
             <td></td>
             <td><%= day.business_processing_contents %></td>
-            <td><%= day.instructor_confirmation %></td>
+            <td><% if day.change_status == "申請中" %>
+                <%= "#{day.instructor_confirmation}勤怠編集申請中" %>
+                <% elsif day.change_status == "承認" %>
+                <%= "#{day.instructor_confirmation}勤怠編集承認 確認済" %>
+                <% elsif day.change_status == "否認" %>
+                <%= "#{day.instructor_confirmation}勤怠編集否認 確認済" %>
+                <% elsif day.change_status == "なし" %>
+                <%= "#{day.instructor_confirmation}勤怠編集なし 確認済" %>
+                <% end %></td>
           </tr>
         <% end %>
       </tbody>

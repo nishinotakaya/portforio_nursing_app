@@ -87,7 +87,15 @@
             <td><%= day.plan_finished_at.strftime('%M')if day.plan_finished_at.present? %></td>
             <td></td>
             <td><%= day.business_processing_contents %></td>
-            <td><%= day.instructor_confirmation %></td>
+            <td><% if day.overtime_status == "申請中" %> 
+                <%= "#{day.instructor_confirmation}申請中" %>
+                <% elsif day.overtime_status == "承認" %>
+                <%= "#{day.instructor_confirmation}残業承認" %>
+                <% elsif day.overtime_status == "否認" %>
+                <%= "#{day.instructor_confirmation}残業否認" %>
+                <% elsif day.overtime_status == "なし" %>
+                <%= "#{day.instructor_confirmation}残業なし" %>
+                <% end %></td>
           </tr>
         <% end %>
       </tbody>

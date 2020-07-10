@@ -125,22 +125,22 @@
             <td></td>
             <td><%= day.business_processing_contents %></td>
             <td><% if day.overtime_status == "申請中" %> 
-                <%= "#{day.instructor_confirmation}へ申請中済み" %>
+                <%= "#{day.instructor_confirmation}へ申請中" %>
                 <% elsif day.overtime_status == "承認" %>
-                <%= "#{day.instructor_confirmation}承認確認済み" %>
+                <%= "#{day.instructor_confirmation}残業承認" %>
                 <% elsif day.overtime_status == "否認" %>
-                <%= "#{day.instructor_confirmation}否認確認済み" %>
+                <%= "#{day.instructor_confirmation}残業否認" %>
                 <% elsif day.overtime_status == "なし" %>
-                <%= "#{day.instructor_confirmation}なし確認済み" %>
+                <%= "#{day.instructor_confirmation}残業なし" %>
                 <% end %>
                 <% if day.change_status == "申請中" %>
-                <%= "#{day.instructor_confirmation}勤怠編集申請中済み" %>
+                <%= "#{day.instructor_confirmation}勤怠編集申請中" %>
                 <% elsif day.change_status == "承認" %>
-                <%= "#{day.instructor_confirmation}勤怠編集承認確認済み" %>
+                <%= "#{day.instructor_confirmation}勤怠編集承認 確認済" %>
                 <% elsif day.change_status == "否認" %>
-                <%= "#{day.instructor_confirmation}勤怠編集否認確認済み" %>
+                <%= "#{day.instructor_confirmation}勤怠編集否認 確認済" %>
                 <% elsif day.change_status == "なし" %>
-                <%= "#{day.instructor_confirmation}勤怠編集なし確認済み" %>
+                <%= "#{day.instructor_confirmation}勤怠編集なし 確認済" %>
                 <% end %>
                 </td>
           </tr>
