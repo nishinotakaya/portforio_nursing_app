@@ -65,7 +65,7 @@
                   <td><%= a.text_field :note, class: "form-control" %></td>
                   <td><%= a.select :change_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
                   <td><%= a.check_box :change, {}, "true", "false" %></td>
-                  <td><%= link_to "確認", new_show_change_user_attendance_path(@user, day), class: "btn btn-primary" %></td>
+                  <td><%= link_to "確認", new_show_change_user_attendance_path(attendance, day), class: "btn btn-primary" %></td>
                </tbody>
                   <% end %>
                 <% end %>
