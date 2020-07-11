@@ -86,6 +86,7 @@
 
 
     <tbody>
+        <%= form_with(model: @user, url: update_show_user_attendances_path(@user), method: :patch, local: true) do |f| %>
         <% @attendances.each do |day| %>
         <% css_class = 
           case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
@@ -154,7 +155,9 @@
           <td><%= format("%.2f", @total_working_times.to_f) %></td>
           <td colspan="5"></td>
           <td>所属長承認&emsp;
-          <br><%= link_to "申請", edit_overwork_request_user_attendance_path(@user), remote: true, class: "btn btn-primary" %></td>
+          <br><%= f.collection_select :instructor_confirmation, @superior, :name, :name %>
+          <br><%= f.submit "申請", class: "btn btn-primary" %></td>
+        <% end %>      
           </td>
         </tr>
       </tfoot>

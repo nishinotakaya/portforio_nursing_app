@@ -166,6 +166,29 @@ class AttendancesController < ApplicationController
     @last_day = @first_day.end_of_month
     @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on) #order日付順に並び変える,..は～から～まで
     @worked_sum = @attendances.where.not(started_at: nil).count
+  end
+  
+  def update_show #show.html.erb承認ボタン
+    @user = User.find(params[:user_id])
+    ActiveRecord::Base.transaction do # トランザクションを開始します。
+      user_attendance_show_params.each do |id, item|
+        if item[:instructor_confirmation].present?
+          attendance = Attendance.find(id)
+          attendance.attributes = item
+          attendance.save!(context: :attendance_update)
+        end  
+      end
+    end
+    flash[:success] = "1ヶ月分の勤怠情報を申請しました。"
+    redirect_to user_url(@user)
+  end
+  
+  def edit_superior_approval
+    @user = User.find(params[:user_id])
+    @attendances = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).order(:worked_on, :user_id).group_by(&:user_id)
+  end
+  
+  def update_superior_approval
   end  
   
   
@@ -186,6 +209,10 @@ class AttendancesController < ApplicationController
     def edit_one_month_params #変更申請ストロングパラメーター 
       params.require(:user).permit(attendances: [:before_started_at, :before_finished_at, :note, :instructor_confirmation, :change_status])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
     end
+    
+    def user_attendance_show_params #一ヵ月分の勤怠申請
+      params.require(:user).permit(attendances:[:user_one_month_attendance_status, :instructor_confirmation])
+    end  
     
     
     

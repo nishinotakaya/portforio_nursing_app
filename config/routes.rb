@@ -35,6 +35,7 @@
           patch 'update_superior_approval'
           get 'attendance_change' #勤怠変更申請モーダル
           patch 'update_attendance_change'
+          patch 'update_show' #show,htmlの承認ボタン
         end  
       end
       
