@@ -54,7 +54,8 @@
 
 <div>
   <table class="table table-bordered table-condensed table-hover" id="table-attendances">
-    <tr>
+    <thead>  
+      <tr>
         <th rowspan="2"></th>
         <th rowspan = "3">日付</th>
         <th rowspan = "3">曜日</th>
@@ -86,8 +87,7 @@
 
 
     <tbody>
-        <%= form_with(model: @user, url: update_show_user_attendances_path(@user), method: :patch, local: true) do |f| %>
-        <% @attendances.each do |day| %>
+      <% @attendances.each do |day| %>
         <% css_class = 
           case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
           when '土'
@@ -95,60 +95,63 @@
           when '日'
             'text-danger'
           end %>
-          <tr>
-            <td><%= link_to "残業申請", edit_overwork_request_user_attendance_path(@user, day), remote: true, class: "btn btn-primary" %></td>
-            <td><%= l(day.worked_on, format: :short) %></td>
-            <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
-            <td><%= day.started_at.strftime('%-H') if day.started_at.present? %></td>
-            <td><%= day.started_at.floor_to(15.minutes).strftime('%M') if day.started_at.present? %></td>
-            <td>
-              <% if attendance_state(day) && day.started_at.blank? %>
-               <%= link_to "出社", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
-              <% end %>
-            </td>
-            </td>
-            <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
-            <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
-            <td>
-              <% if attendance_state(day) && day.started_at.present? &&  day.finished_at.blank? %>
-                <%= link_to "退社", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
-              <% end %>  
-            </td>
-            <td>
-              <% if day.started_at.present? && day.finished_at.present? %>
-                <%= str_times = working_times(day.started_at.floor_to(15.minutes), day.finished_at.floor_to(15.minutes)) %>
-                <% @total_working_times = @total_working_times.to_f + str_times.to_f %>
-              <% end %>     
-            </td>
-            <td><%= day.note %></td>
-            <td><%= day.plan_finished_at.strftime('%H')if day.plan_finished_at.present? %></td>
-            <td><%= day.plan_finished_at.strftime('%M')if day.plan_finished_at.present? %></td>
-            <td></td>
-            <td><%= day.business_processing_contents %></td>
-            <td><% if day.overtime_status == "申請中" %> 
-                <%= "#{day.instructor_confirmation}へ申請中" %>
-                <% elsif day.overtime_status == "承認" %>
-                <%= "#{day.instructor_confirmation}残業承認" %>
-                <% elsif day.overtime_status == "否認" %>
-                <%= "#{day.instructor_confirmation}残業否認" %>
-                <% elsif day.overtime_status == "なし" %>
-                <%= "#{day.instructor_confirmation}残業なし" %>
-                <% end %>
-                <% if day.change_status == "申請中" %>
-                <%= "#{day.instructor_confirmation}勤怠編集申請中" %>
-                <% elsif day.change_status == "承認" %>
-                <%= "#{day.instructor_confirmation}勤怠編集承認 確認済" %>
-                <% elsif day.change_status == "否認" %>
-                <%= "#{day.instructor_confirmation}勤怠編集否認 確認済" %>
-                <% elsif day.change_status == "なし" %>
-                <%= "#{day.instructor_confirmation}勤怠編集なし 確認済" %>
-                <% end %>
-                </td>
-          </tr>
-        <% end %>
-      </tbody>
-      <tfoot>
-         <tr>
+        <tr>
+          <td><%= link_to "残業申請", edit_overwork_request_user_attendance_path(@user, day), remote: true, class: "btn btn-primary" %></td>
+          <td><%= l(day.worked_on, format: :short) %></td>
+          <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
+          <td><%= day.started_at.strftime('%-H') if day.started_at.present? %></td>
+          <td><%= day.started_at.floor_to(15.minutes).strftime('%M') if day.started_at.present? %></td>
+          <td>
+            <% if attendance_state(day) && day.started_at.blank? %>
+             <%= link_to "出社", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
+            <% end %>
+          </td>
+          </td>
+          <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
+          <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
+          <td>
+            <% if attendance_state(day) && day.started_at.present? &&  day.finished_at.blank? %>
+              <%= link_to "退社", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
+            <% end %>  
+          </td>
+          <td>
+            <% if day.started_at.present? && day.finished_at.present? %>
+              <%= str_times = working_times(day.started_at.floor_to(15.minutes), day.finished_at.floor_to(15.minutes)) %>
+              <% @total_working_times = @total_working_times.to_f + str_times.to_f %>
+            <% end %>     
+          </td>
+          <td><%= day.note %></td>
+          <td><%= day.plan_finished_at.strftime('%H')if day.plan_finished_at.present? %></td>
+          <td><%= day.plan_finished_at.strftime('%M')if day.plan_finished_at.present? %></td>
+          <td></td>
+          <td><%= day.business_processing_contents %></td>
+          <td>
+            <% if day.overtime_status == "申請中" %> 
+              <%= "#{day.instructor_confirmation}へ申請中" %>
+            <% elsif day.overtime_status == "承認" %>
+              <%= "#{day.instructor_confirmation}残業承認" %>
+            <% elsif day.overtime_status == "否認" %>
+              <%= "#{day.instructor_confirmation}残業否認" %>
+            <% elsif day.overtime_status == "なし" %>
+              <%= "#{day.instructor_confirmation}残業なし" %>
+            <% end %>
+            <% if day.change_status == "申請中" %>
+              <%= "#{day.instructor_confirmation}勤怠編集申請中" %>
+            <% elsif day.change_status == "承認" %>
+              <%= "#{day.instructor_confirmation}勤怠編集承認 確認済" %>
+            <% elsif day.change_status == "否認" %>
+              <%= "#{day.instructor_confirmation}勤怠編集否認 確認済" %>
+            <% elsif day.change_status == "なし" %>
+              <%= "#{day.instructor_confirmation}勤怠編集なし 確認済" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <%= form_with(model: @user, url: update_show_user_attendances_path(@user), method: :patch, local: true) do |f| %>
+        <%= f.hidden_field :first_day, :value => @first_day %>
+        <tr>
           <td></td>
           <td colspan = "2"><%= format_basic_info(@user.basic_time).to_f*@worked_sum %></td>
           <td colspan = "6"></td>
@@ -157,15 +160,14 @@
           <td>所属長承認&emsp;
           <br><%= f.collection_select :instructor_confirmation, @superior, :name, :name %>
           <br><%= f.submit "申請", class: "btn btn-primary" %></td>
-        <% end %>      
-          </td>
         </tr>
-      </tfoot>
-    </table>
-  </div>
-  <div id="attendance-change" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-  <div id="edit-superior-approval" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-  <div id="edit-overwork-request" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-  <div id="kintailog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-  <div id="edit-superior-announcement" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+      <% end %>      
+    </tfoot>
+  </table>
+</div>
+<div id="attendance-change" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="edit-superior-approval" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="edit-overwork-request" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="kintailog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="edit-superior-announcement" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     

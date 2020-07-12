@@ -170,16 +170,12 @@ class AttendancesController < ApplicationController
   
   def update_show #show.html.erb承認ボタン
     @user = User.find(params[:user_id])
-    ActiveRecord::Base.transaction do # トランザクションを開始します。
-      user_attendance_show_params.each do |id, item|
-        if item[:instructor_confirmation].present?
-          attendance = Attendance.find(id)
-          attendance.attributes = item
-          attendance.save!(context: :attendance_update)
-        end  
-      end
-    end
-    flash[:success] = "1ヶ月分の勤怠情報を申請しました。"
+    if params[:user][:instructor_confirmation].present? #userはform_with
+      attendance = @user.attendances.find_by(worked_on: params[:user][:first_day]) #@userのattendanceの中に入れるworked_onをどの人の何月の月初日を特定
+      attendance.user_one_month_attendance_status = "申請中" #特定したレコードに対して申請中とuser_one_month_attendance_statusに入れてあげる
+      attendance.update(user_attendance_show_params) #:attendance.updateで更新
+      flash[:success] = "1ヶ月分の勤怠情報を申請しました。"
+    end  
     redirect_to user_url(@user)
   end
   
@@ -211,7 +207,7 @@ class AttendancesController < ApplicationController
     end
     
     def user_attendance_show_params #一ヵ月分の勤怠申請
-      params.require(:user).permit(attendances:[:user_one_month_attendance_status, :instructor_confirmation])
+      params.require(:user).permit(:instructor_confirmation)
     end  
     
     
