@@ -179,13 +179,40 @@ class AttendancesController < ApplicationController
     redirect_to user_url(@user)
   end
   
+  # 所属長承認のお知らせモーダル
   def edit_superior_approval
     @user = User.find(params[:user_id])
     @attendances = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).order(:worked_on, :user_id).group_by(&:user_id)
   end
   
   def update_superior_approval
+    ActiveRecord::Base.transaction do
+      @user = User.find(params[:user_id])
+        x1 = 0
+        x2 = 0
+        x3 = 0
+        x4 = 0
+      edit_superior_approval_params.each do |id, item|
+        if item[:user_one_month_attendance_status] == "申請中" 
+          x1 = x1 + 1
+        elsif item[:user_one_month_attendance_status] == "承認" 
+          x2 = x2 + 1
+        elsif item[:user_one_month_attendance_status] == "否認" 
+          x3 = x3 + 1
+        elsif item[:user_one_month_attendance_status] == "なし" 
+          x4 = x4 + 1
+        end  
+        attendance = Attendance.find(id)  
+        attendance.update_attributes!(item)
+      end
+      flash[:success] = "残業申請→申請中を#{x1}件、承認を#{x2}件、否認を#{x3}件、なしを#{x4}件送信しました"
+      redirect_to user_url(@user) and return
+    end
+  rescue ActiveRecord::RecordInvalid
+    flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+    redirect_to user_url(@user) and return
   end  
+  
   
   
     
@@ -208,6 +235,10 @@ class AttendancesController < ApplicationController
     
     def user_attendance_show_params #一ヵ月分の勤怠申請
       params.require(:user).permit(:instructor_confirmation)
+    end
+    
+    def edit_superior_approval_params #所属長承認モーダル
+      params.require(:user).permit(attendances: [:instructor_confirmation, :user_one_month_attendance_status])[:attendances]  
     end  
     
     

@@ -26,7 +26,12 @@
 </div>
 <% if current_user.superior? %>
 <div>
-  <%= link_to"[所属長承認のお知らせ]", edit_superior_approval_user_attendances_path(@user), remote: true, class: "btn-danger" %>
+  <% if @user_one_month_attendance_count != 0 %>
+    <%= link_to"[所属長承認のお知らせ]", edit_superior_approval_user_attendances_path(@user), remote: true, class: "btn-danger" %>
+    <% "#{@user_one_month_attendance_count}件のお知らせ" %>
+  <% else %>
+    [所属長承認のお知らせ]
+  <% end %>  
 </div>
 <div>
   <% if @overchange_count != 0 %>
