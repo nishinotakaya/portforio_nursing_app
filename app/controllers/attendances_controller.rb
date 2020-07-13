@@ -159,7 +159,7 @@ class AttendancesController < ApplicationController
     
       
   
-  def new_show_change
+  def new_show_change #確認ボタン
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
     @first_day = @attendance.worked_on.beginning_of_month #worked_on.日付、beginning_of_month月初日を計算してくれる。
@@ -169,10 +169,12 @@ class AttendancesController < ApplicationController
   end
   
   def update_show #show.html.erb承認ボタン
-    @user = User.find(params[:user_id])
-    if params[:user][:instructor_confirmation].present? #userはform_with
-      attendance = @user.attendances.find_by(worked_on: params[:user][:first_day]) #@userのattendanceの中に入れるworked_onをどの人の何月の月初日を特定
-      attendance.user_one_month_attendance_status = "申請中" #特定したレコードに対して申請中とuser_one_month_attendance_statusに入れてあげる
+    @user = User.find(params[:user_id]) #誰から申請きたか？
+    if params[:user][:instructor_confirmation].present? #userはform_with 上長が指定されてるか？（空っぽの時の送られないように）
+      attendance = @user.attendances.find_by(worked_on: params[:user][:first_day])
+      #@userのattendanceのレコードを探すその中からfind_byの条件にあうもの@first_day(選択した月初日)を選ぶ項目
+      attendance.user_one_month_attendance_status = "申請中" 
+      #特定したレコードに対して申請中とuser_one_month_attendance_statusに入れてあげる
       attendance.update(user_attendance_show_params) #:attendance.updateで更新
       flash[:success] = "1ヶ月分の勤怠情報を申請しました。"
     end  
@@ -233,7 +235,7 @@ class AttendancesController < ApplicationController
       params.require(:user).permit(attendances: [:before_started_at, :before_finished_at, :note, :instructor_confirmation, :change_status])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
     end
     
-    def user_attendance_show_params #一ヵ月分の勤怠申請
+    def user_attendance_show_params #一ヵ月分の勤怠申請承認ボタンから
       params.require(:user).permit(:instructor_confirmation)
     end
     

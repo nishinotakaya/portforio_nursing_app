@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     @overchange_count = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).count #勤怠編集のお知らせ件数
     @user_one_month_attendance_count = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).count #所属長承認申請のお知らせ件数
     @superior = User.where(superior: true).where.not(id: @user.id)
+    @attendance_first_day = @user.attendances.find_by(worked_on: @first_day)
   end
   
 

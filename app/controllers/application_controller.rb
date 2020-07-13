@@ -30,10 +30,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless current_user.admin?
   end
 
-  # ページ出力前に1ヶ月分のデータの存在を確認・セットします。
+  # ページ出力前に1ヶ月分のデータの存在を確認・セットします。set_one_month(一ヵ月分の勤怠情報)
   def set_one_month 
-    @first_day = params[:date].nil? ?
-    Date.current.beginning_of_month : params[:date].to_date
+    @first_day = params[:date].nil? ? 
+    #params[:date]（showの月の隣の矢印が押されたか？)がnilか？
+    #月初日が今月か？先月か？先々月か？のもの #当月分のデータを取得してだしてあげてる！
+    Date.current.beginning_of_month : params[:date].to_date 
+    #nilだったら Date.current.beginning_of_month（当月の月初日)を@first_dayに入れる 
+    #nilじゃなかったらparams[:date].to_dateにいれる！ @first_day= 1/1や2/1, その日の月の1日
     @last_day = @first_day.end_of_month
     one_month = [*@first_day..@last_day] # 対象の月の日数を代入します。
     # ユーザーに紐付く一ヶ月分のレコードを検索し取得します。

@@ -23,7 +23,7 @@
              <%= f.fields_for "attendances[]", day do |a| %>
               <tbody>
                 <tr>
-                  <td><%= day.worked_on.strftime('%-m') %> </td>
+                  <td><%= day.worked_on.strftime('%-m') %></td>
                   <td><%= a.select :user_one_month_attendance_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
                   <td><%= a.check_box :change, {}, "true", "false" %></td>
                   <td><%= link_to "確認", new_show_user_attendance_path(id, day), class: "btn btn-primary" %></td>
