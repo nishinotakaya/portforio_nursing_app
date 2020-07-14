@@ -17,8 +17,6 @@
         patch 'attendances/update_one_month'
         get 'working_employee_list'
         get 'base_list'
-        get 'kintailog'
-        patch 'update_kintailog'
       end
         
       resources :attendances, only: :update do #
@@ -36,6 +34,7 @@
           get 'attendance_change' #勤怠変更申請モーダル
           patch 'update_attendance_change'
           patch 'update_show' #show,htmlの承認ボタン
+          get 'kintailog' #勤怠ログ
         end  
       end
       

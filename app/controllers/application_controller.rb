@@ -35,8 +35,8 @@ class ApplicationController < ActionController::Base
     @first_day = params[:date].nil? ? 
     #params[:date]（showの月の隣の矢印が押されたか？)がnilか？
     #月初日が今月か？先月か？先々月か？のもの #当月分のデータを取得してだしてあげてる！
-    Date.current.beginning_of_month : params[:date].to_date 
-    #nilだったら Date.current.beginning_of_month（当月の月初日)を@first_dayに入れる 
+    Date.current.beginning_of_month : params[:date].to_date
+    #nilだったら Date.current.beginning_of_month（当月の月初日)を@first_dayに入れる「Date.current=今日」 
     #nilじゃなかったらparams[:date].to_dateにいれる！ @first_day= 1/1や2/1, その日の月の1日
     @last_day = @first_day.end_of_month
     one_month = [*@first_day..@last_day] # 対象の月の日数を代入します。

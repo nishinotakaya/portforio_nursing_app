@@ -123,7 +123,6 @@ class AttendancesController < ApplicationController
   def attendance_change
     @user = User.find(params[:user_id])
     @attendances = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).order(:worked_on, :user_id).group_by(&:user_id)
-    
   end
   
       
@@ -135,16 +134,17 @@ class AttendancesController < ApplicationController
         m3 = 0
         m4 = 0
       edit_one_month_params.each do |id, item|
+        attendance = Attendance.find(id)
         if item[:change_status] == "申請中" 
           m1 = m1 + 1
         elsif item[:change_status] == "承認" 
           m2 = m2 + 1
+          attendance.good_day = Date.current #承認日
         elsif item[:change_status] == "否認" 
           m3 = m3 + 1
         elsif item[:change_status] == "なし" 
           m4 = m4 + 1
-        end  
-        attendance = Attendance.find(id)  
+        end
         attendance.update_attributes!(item)
       end
       flash[:success] = "残業申請→申請中を#{m1}件、承認を#{m2}件、否認を#{m3}件、なしを#{m4}件送信しました"
@@ -213,7 +213,14 @@ class AttendancesController < ApplicationController
   rescue ActiveRecord::RecordInvalid
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
     redirect_to user_url(@user) and return
-  end  
+  end
+  
+  
+  #勤怠ログ
+  def kintailog
+    @user = User.find(params[:user_id])
+    @attendances = @user.attendances.where(change_status: "承認").order(:worked_on) #@user(自分)のattendance
+  end
   
   
   

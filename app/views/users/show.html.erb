@@ -28,7 +28,7 @@
 <div>
   <% if @user_one_month_attendance_count != 0 %>
     <%= link_to"[所属長承認のお知らせ]", edit_superior_approval_user_attendances_path(@user), remote: true, class: "btn-danger" %>
-    <% "#{@user_one_month_attendance_count}件のお知らせ" %>
+    <%= "#{@user_one_month_attendance_count}件のお知らせ" %>
   <% else %>
     [所属長承認のお知らせ]
   <% end %>  
@@ -54,7 +54,7 @@
 <br><div class="btn-users-show">
 <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
 <%= link_to "CSV出力", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
-<br><%= link_to "勤怠修正ログ（承認済）", kintailog_user_path(@user), remote: true, class: "btn btn-success" %></br>
+<br><%= link_to "勤怠修正ログ（承認済）", kintailog_user_attendances_path(@user), remote: true, class: "btn btn-success" %></br>
 </div>
 
 <div>
