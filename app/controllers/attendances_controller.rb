@@ -89,17 +89,19 @@ class AttendancesController < ApplicationController
       n3 = 0
       n4 = 0
       attendances_params.each do |id, item|
-        if item[:overtime_status] == "申請中" 
-          n1 = n1 + 1
-        elsif item[:overtime_status] == "承認" 
-          n2 = n2 + 1
-        elsif item[:overtime_status] == "否認" 
-          n3 = n3 + 1
-        elsif item[:overtime_status] == "なし" 
-          n4 = n4 + 1
-        end  
-        attendance = Attendance.find(id)  
-        attendance.update_attributes!(item)
+        if item[:change] == "true"
+          if item[:overtime_status] == "申請中" 
+            n1 = n1 + 1
+          elsif item[:overtime_status] == "承認" 
+            n2 = n2 + 1
+          elsif item[:overtime_status] == "否認" 
+            n3 = n3 + 1
+          elsif item[:overtime_status] == "なし" 
+            n4 = n4 + 1
+          end
+          attendance = Attendance.find(id)
+          attendance.update_attributes!(item)
+        end
       end
     flash[:success] = "残業申請→申請中を#{n1}件、承認を#{n2}件、否認を#{n3}件、なしを#{n4}件送信しました"
     redirect_to user_url(@user) and return
@@ -114,7 +116,7 @@ class AttendancesController < ApplicationController
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
     @first_day = @attendance.worked_on.beginning_of_month #worked_on.日付、beginning_of_month月初日を計算してくれる。
-    @last_day = @first_day.end_of_month #end_of_month月末日を計算してくれる。
+    @last_day = @first_day.end_of_month #end_of_month���末日を計算してくれる。
     @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on) #order日付順に並び変える,..は～から～まで
     @worked_sum = @attendances.where.not(started_at: nil).count
   end
@@ -134,23 +136,27 @@ class AttendancesController < ApplicationController
         m3 = 0
         m4 = 0
       edit_one_month_params.each do |id, item|
-        attendance = Attendance.find(id)
-        if item[:change_status] == "申請中" 
-          m1 = m1 + 1
-        elsif item[:change_status] == "承認" 
-          m2 = m2 + 1
-          attendance.good_day = Date.current #承認日
-        elsif item[:change_status] == "否認" 
-          m3 = m3 + 1
-        elsif item[:change_status] == "なし" 
-          m4 = m4 + 1
+        if item[:change] == "true"
+          attendance = Attendance.find(id)
+          if item[:change_status] == "申請中"   
+            m1 = m1 +   1
+          elsif item[:change_status] == "承認"   
+            m2 = m2 +   1
+            attendance.good_day = Date.current #承認日
+          elsif item[:change_status] == "否認"   
+            m3 = m3 +   1
+          elsif item[:change_status] == "なし"   
+            m4 = m4 +   1
+          end
+          attendance.update_attributes!(item)
         end
-        attendance.update_attributes!(item)
       end
       flash[:success] = "残業申請→申請中を#{m1}件、承認を#{m2}件、否認を#{m3}件、なしを#{m4}件送信しました"
       redirect_to user_url(@user) and return
     end
-  rescue ActiveRecord::RecordInvalid
+  rescue ActiveRecord::RecordInval
+     id
+     
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
     redirect_to user_url(@user) and return
   end
@@ -195,17 +201,19 @@ class AttendancesController < ApplicationController
         x3 = 0
         x4 = 0
       edit_superior_approval_params.each do |id, item|
-        if item[:user_one_month_attendance_status] == "申請中" 
-          x1 = x1 + 1
-        elsif item[:user_one_month_attendance_status] == "承認" 
-          x2 = x2 + 1
-        elsif item[:user_one_month_attendance_status] == "否認" 
-          x3 = x3 + 1
-        elsif item[:user_one_month_attendance_status] == "なし" 
-          x4 = x4 + 1
-        end  
-        attendance = Attendance.find(id)  
-        attendance.update_attributes!(item)
+        if item[:change] == "true"
+          if item[:user_one_month_attendance_status] == "申請中" 
+            x1 = x1 + 1
+          elsif item[:user_one_month_attendance_status] == "承認" 
+            x2 = x2 + 1
+          elsif item[:user_one_month_attendance_status] == "否認" 
+            x3 = x3 + 1
+          elsif item[:user_one_month_attendance_status] == "なし" 
+            x4 = x4 + 1
+          end  
+          attendance = Attendance.find(id)  
+          attendance.update_attributes!(item)
+        end
       end
       flash[:success] = "残業申請→申請中を#{x1}件、承認を#{x2}件、否認を#{x3}件、なしを#{x4}件送信しました"
       redirect_to user_url(@user) and return
