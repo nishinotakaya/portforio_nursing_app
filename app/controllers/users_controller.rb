@@ -89,6 +89,13 @@ class UsersController < ApplicationController
     @users = User.all.includes(:attendances)
   end 
   
+  #勤怠ログ
+  def kintailog
+    @user = User.find(params[:id])
+    @attendances = @user.attendances.where(change_status: "承認").order(:worked_on) #@user(自分)のattendance
+    
+  end
+  
   
   
   
@@ -129,7 +136,7 @@ private
     end
     
     def admin_or_correct_user
-      @user = User.find(params[:user_id]) if @user.blank?
+      @user = User.find(params[:id]) if @user.blank?
       unless current_user?(@user) || current_user.admin?
         flash[:danger] = "編集権限がありません。"
         redirect_to(root_url)

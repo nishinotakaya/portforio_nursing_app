@@ -54,7 +54,7 @@
 <br><div class="btn-users-show">
 <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
 <%= link_to "CSV出力", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
-<br><%= link_to "勤怠修正ログ（承認済）", kintailog_user_attendances_path(@user), remote: true, class: "btn btn-success" %></br>
+<br><%= link_to "勤怠修正ログ（承認済）",kintailog_user_path(@user), remote: true, class: "btn btn-success" %></br>
 </div>
 
 <div>
@@ -73,7 +73,7 @@
         <th rowspan="2">在社時間</th>
         <th rowspan="2">備考</th>
         <th colspan="2">終了予定時間</th>
-        <th rowspan="2">時間外処理</th>
+        <th rowspan="2">時間外時間</th>
         <th rowspan="2">業務処理内容</th>
         <th rowspan="2">指示者確認</th>
       </tr>

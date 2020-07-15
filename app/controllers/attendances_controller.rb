@@ -103,8 +103,8 @@ class AttendancesController < ApplicationController
           attendance.update_attributes!(item)
         end
       end
-    flash[:success] = "残業申請→申請中を#{n1}件、承認を#{n2}件、否認を#{n3}件、なしを#{n4}件送信しました"
-    redirect_to user_url(@user) and return
+      flash[:success] = "残業申請→申請中を#{n1}件、承認を#{n2}件、否認を#{n3}件、なしを#{n4}件送信しました"
+      redirect_to user_url(@user) and return
     end
   rescue ActiveRecord::RecordInvalid
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
@@ -136,17 +136,17 @@ class AttendancesController < ApplicationController
         m3 = 0
         m4 = 0
       edit_one_month_params.each do |id, item|
+        attendance = Attendance.find(id)
         if item[:change] == "true"
-          attendance = Attendance.find(id)
           if item[:change_status] == "申請中"   
-            m1 = m1 +   1
+            m1 = m1 + 1
           elsif item[:change_status] == "承認"   
-            m2 = m2 +   1
+            m2 = m2 + 1
             attendance.good_day = Date.current #承認日
           elsif item[:change_status] == "否認"   
-            m3 = m3 +   1
+            m3 = m3 + 1
           elsif item[:change_status] == "なし"   
-            m4 = m4 +   1
+            m4 = m4 + 1
           end
           attendance.update_attributes!(item)
         end
@@ -155,11 +155,10 @@ class AttendancesController < ApplicationController
       redirect_to user_url(@user) and return
     end
   rescue ActiveRecord::RecordInval
-     id
-     
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
     redirect_to user_url(@user) and return
   end
+          
         
     
     
@@ -224,11 +223,6 @@ class AttendancesController < ApplicationController
   end
   
   
-  #勤怠ログ
-  def kintailog
-    @user = User.find(params[:user_id])
-    @attendances = @user.attendances.where(change_status: "承認").order(:worked_on) #@user(自分)のattendance
-  end
   
   
   
@@ -247,7 +241,7 @@ class AttendancesController < ApplicationController
     #require(:user)ない場合はパラメーターの中のものを探すだから第一改装しか見ない！updateできない
     
     def edit_one_month_params #変更申請ストロングパラメーター 
-      params.require(:user).permit(attendances: [:before_started_at, :before_finished_at, :note, :instructor_confirmation, :change_status])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
+      params.require(:user).permit(attendances: [:before_started_at, :before_finished_at, :note, :instructor_confirmation, :change_status, :change])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
     end
     
     def user_attendance_show_params #一ヵ月分の勤怠申請承認ボタンから
@@ -255,7 +249,7 @@ class AttendancesController < ApplicationController
     end
     
     def edit_superior_approval_params #所属長承認モーダル
-      params.require(:user).permit(attendances: [:instructor_confirmation, :user_one_month_attendance_status])[:attendances]  
+      params.require(:user).permit(attendances: [:instructor_confirmation, :user_one_month_attendance_status, :change])[:attendances]
     end  
     
     
