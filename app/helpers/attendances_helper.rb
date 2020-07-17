@@ -15,7 +15,7 @@ module AttendancesHelper
     format("%.2f", (((finish - start) / 60) / 60.0))
   end
   
-  
+  # attendancesカラムのuserカラムの終了予定時間と指定勤務時間を引いて再出
   def over_time(tomorrow, plan_finished_at, designated_work_end_time)
     if tomorrow == true
       format("%.2f", (((plan_finished_at.hour - designated_work_end_time.hour) * 60) + 

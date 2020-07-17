@@ -4,8 +4,10 @@ class CreateAttendances < ActiveRecord::Migration[5.1]
       t.date :worked_on # 日付
       t.datetime :started_at #勤務開始時間
       t.datetime :finished_at #勤務終了時間
-      t.datetime :before_started_at #編集用の開始時間(edit_one_month用)
-      t.datetime :before_finished_at #編集用の終了時間(edit_one_month用)
+      t.datetime :before_started_at #変更前の開始時間(edit_one_month用)
+      t.datetime :before_finished_at #変更前の終了時間(edit_one_month用)
+      t.datetime :edit_started_at #編集用の開始時間(edit_one_month用)
+      t.datetime :edit_finished_at #編集用の終了時間(edit_one_month用)
       t.date :good_day #承認日
       t.datetime :attended_time #在社時間
       t.string :note #備考

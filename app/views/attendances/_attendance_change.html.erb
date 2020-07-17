@@ -60,10 +60,10 @@
                     <td><%= day.finished_at.strftime('%-H') if day.finished_at.present? %></td>
                     <td><%= day.finished_at.floor_to(15.minutes).strftime('%M') if day.finished_at.present? %></td>
                     
-                    <td><%= day.before_started_at.strftime('%-H') if day.before_started_at.present? %></td>
-                    <td><%= day.before_started_at.floor_to(15.minutes).strftime('%M') if day.before_started_at.present? %></td>
-                    <td><%= day.before_finished_at.strftime('%-H') if day.before_finished_at.present? %></td>
-                    <td><%= day.before_finished_at.floor_to(15.minutes).strftime('%M') if day.before_finished_at.present? %></td>
+                    <td><%= day.edit_started_at.strftime('%-H') if day.edit_started_at.present? %></td>
+                    <td><%= day.edit_started_at.floor_to(15.minutes).strftime('%M') if day.edit_started_at.present? %></td>
+                    <td><%= day.edit_finished_at.strftime('%-H') if day.edit_finished_at.present? %></td>
+                    <td><%= day.edit_finished_at.floor_to(15.minutes).strftime('%M') if day.edit_finished_at.present? %></td>
                     <td><%= a.text_field :note, class: "form-control" %></td>
                     <td><%= a.select :change_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
                     <td><%= a.check_box :change, {}, "true", "false" %></td>

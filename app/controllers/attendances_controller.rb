@@ -35,7 +35,7 @@ class AttendancesController < ApplicationController
     ActiveRecord::Base.transaction do # トランザクションを開始します。
       edit_one_month_params.each do |id, item|
         if item[:instructor_confirmation].present?
-          if item[:before_started_at].blank? || item[:before_finished_at].blank?
+          if item[:edit_started_at].blank? || item[:edit_finished_at].blank?
             flash[:danger] = "時間を入力してください。"
             redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return #上長が入ってなく、時間が入ってなかったら更新されません。and returnは繰り返しredirectが使われていること！
           end  
@@ -89,6 +89,7 @@ class AttendancesController < ApplicationController
       n3 = 0
       n4 = 0
       attendances_params.each do |id, item|
+        attendance = Attendance.find(id)
         if item[:change] == "true"
           if item[:overtime_status] == "申請中" 
             n1 = n1 + 1
@@ -99,7 +100,6 @@ class AttendancesController < ApplicationController
           elsif item[:overtime_status] == "なし" 
             n4 = n4 + 1
           end
-          attendance = Attendance.find(id)
           attendance.update_attributes!(item)
         end
       end
@@ -143,10 +143,25 @@ class AttendancesController < ApplicationController
           elsif item[:change_status] == "承認"   
             m2 = m2 + 1
             attendance.good_day = Date.current #承認日
+            # もしbefore_started_atがからだったら、before_started_atにstarted_atをいれてあげる。
+            if attendance.before_started_at.blank?
+              attendance.before_started_at = attendance.started_at
+            end  
+            if attendance.before_finished_at.blank?
+               attendance.before_finished_at = attendance.finished_at
+            end  
+            attendance.started_at = attendance.edit_started_at
+            attendance.finished_at = attendance.edit_finished_at
           elsif item[:change_status] == "否認"   
             m3 = m3 + 1
           elsif item[:change_status] == "なし"   
             m4 = m4 + 1
+            attendance.edit_started_at = nil
+            attendance.edit_finished_at = nil
+            attendance.note = nil
+            attendance.instructor_confirmation = nil
+            item[:change_status] = nil #ストロングパラメーターからきているためitemのchange_status 
+            item[:change] = false 
           end
           attendance.update_attributes!(item)
         end
@@ -154,7 +169,7 @@ class AttendancesController < ApplicationController
       flash[:success] = "残業申請→申請中を#{m1}件、承認を#{m2}件、否認を#{m3}件、なしを#{m4}件送信しました"
       redirect_to user_url(@user) and return
     end
-  rescue ActiveRecord::RecordInval
+  rescue ActiveRecord::RecordInvalid
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
     redirect_to user_url(@user) and return
   end
@@ -240,8 +255,8 @@ class AttendancesController < ApplicationController
     #require(:user)は中の(attendances: [:started_at, :finished_at, :note])[:attendances]のこと
     #require(:user)ない場合はパラメーターの中のものを探すだから第一改装しか見ない！updateできない
     
-    def edit_one_month_params #変更申請ストロングパラメーター 
-      params.require(:user).permit(attendances: [:before_started_at, :before_finished_at, :note, :instructor_confirmation, :change_status, :change])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
+    def edit_one_month_params #edit_one_month.ストロングパラメーター 
+      params.require(:user).permit(attendances: [:edit_started_at, :edit_finished_at, :note, :instructor_confirmation, :change_status, :change])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
     end
     
     def user_attendance_show_params #一ヵ月分の勤怠申請承認ボタンから
@@ -250,7 +265,12 @@ class AttendancesController < ApplicationController
     
     def edit_superior_approval_params #所属長承認モーダル
       params.require(:user).permit(attendances: [:instructor_confirmation, :user_one_month_attendance_status, :change])[:attendances]
-    end  
+    end
+    
+    def attendance_change_params #変更申請ストロングパラメーター
+      params.require(:user).permit(attendances: [:change_status, :change])[:attendances] #複数のための定義
+    end
+      
     
     
     
