@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   end 
   
   #勤怠ログ
-  def kintailog
+  def attendance_log
     @user = User.find(params[:id])
     @attendances = @user.attendances.where(change_status: "承認").order(:worked_on) #@user(自分)のattendance
     

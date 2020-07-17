@@ -17,7 +17,7 @@
         patch 'attendances/update_one_month'
         get 'working_employee_list'
         get 'base_list'
-        get 'kintailog' #勤怠ログ
+        get 'attendance_log' #勤怠ログ
       end
         
       resources :attendances, only: :update do #

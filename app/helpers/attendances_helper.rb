@@ -14,4 +14,16 @@ module AttendancesHelper
   def working_times(start, finish)
     format("%.2f", (((finish - start) / 60) / 60.0))
   end
+  
+  
+  def over_time(tomorrow, plan_finished_at, designated_work_end_time)
+    if tomorrow == true
+      format("%.2f", (((plan_finished_at.hour - designated_work_end_time.hour) * 60) + 
+                       (plan_finished_at.min - designated_work_end_time.min) / 60.0) + 24)
+    else
+      format("%.2f", ((((plan_finished_at.hour - designated_work_end_time.hour) * 60) +
+                       (plan_finished_at.min - designated_work_end_time.min)) / 60.0)) 
+    end
+  end
+
 end
