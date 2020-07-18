@@ -16,11 +16,11 @@
               <%= f.submit "リセット" %>
                 <tr>
                   <td>年</td>
-                  <td><%= f.date_select(:select_year, discard_month:true) %></td>
+                  <td><%= f.date_select(:select_year, discard_month:true, selected: @year) %></td>
                 </tr>  
                 <tr>
                   <td>月</td>
-                  <td><%= f.date_select(:select_month, discard_year:true, discard_day:true) %></td>
+                  <td><%= f.date_select(:select_month, discard_year:true, discard_day:true, selected: @month) %></td>
                 </tr>
               </tbody>
             </form>
@@ -51,8 +51,8 @@
                 <td><%= day.good_day.strftime('%F') %></td>
               </tr>
             </tbody>
-          <% end %>  
-        </table>  
+          <% end %>   
+        </table>
       </div>  
     </div>
   </div>

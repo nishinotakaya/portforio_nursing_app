@@ -99,6 +99,10 @@ class AttendancesController < ApplicationController
             n3 = n3 + 1
           elsif item[:overtime_status] == "なし" 
             n4 = n4 + 1
+            attendance.note = nil
+            attendance.instructor_confirmation = nil
+            item[:change] = false 
+            item[:overtime_status] = nil
           end
           attendance.update_attributes!(item)
         end
@@ -135,7 +139,7 @@ class AttendancesController < ApplicationController
         m2 = 0
         m3 = 0
         m4 = 0
-      edit_one_month_params.each do |id, item|
+       attendance_change_params.each do |id, item|
         attendance = Attendance.find(id)
         if item[:change] == "true"
           if item[:change_status] == "申請中"   
@@ -224,6 +228,10 @@ class AttendancesController < ApplicationController
             x3 = x3 + 1
           elsif item[:user_one_month_attendance_status] == "なし" 
             x4 = x4 + 1
+            attendance.note = nil
+            attendance.instructor_confirmation = nil
+            item[:change] = false 
+            item[:user_one_month_attendance_status] = nil
           end  
           attendance = Attendance.find(id)  
           attendance.update_attributes!(item)

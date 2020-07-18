@@ -92,8 +92,14 @@ class UsersController < ApplicationController
   #勤怠ログ
   def attendance_log
     @user = User.find(params[:id])
-    @attendances = @user.attendances.where(change_status: "承認").order(:worked_on) #@user(自分)のattendance
-    
+    params["select_year(1i)"].present? ? @year = Date.new(params["select_year(1i)"].to_i, params["select_year(2i)"].to_i, 1) #最初に条件を書いて、条件がtrueだったらうえfalseは下
+                                        : @year = Date.today
+    params["select_month(2i)"].present? ? @month = Date.new(params["select_month(1i)"].to_i, params["select_month(2i)"].to_i, 1) #三項演算子
+                                        : @month = Date.today
+    @attendances = @user.attendances.where(change_status: "承認").where("worked_on LIKE ?", "%#{@year.year}-#{@month.to_s[5..6]}%").order(:worked_on) #@user(自分)のattendance
+      
+                                 
+                                      
   end
   
   
@@ -115,6 +121,7 @@ private
     def set_user
       @user = User.find(params[:id])
     end
+  
 
     # ログイン済みのユーザーか確認します。
     def logged_in_user
