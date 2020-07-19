@@ -53,7 +53,7 @@
 
 <br><div class="btn-users-show">
 <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
-<%= link_to "CSV出力", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
+<%= link_to "CSV出力", user_path(format: :csv), class: "btn btn-success" %>
 <br><%= link_to "勤怠修正ログ（承認済）",attendance_log_user_path(@user), remote: true, class: "btn btn-success" %></br>
 </div>
 

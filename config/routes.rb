@@ -18,6 +18,7 @@
         get 'working_employee_list'
         get 'base_list'
         get 'attendance_log' #勤怠ログ
+       
       end
         
       resources :attendances, only: :update do #

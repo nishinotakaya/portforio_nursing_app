@@ -37,7 +37,18 @@ class UsersController < ApplicationController
     @user_one_month_attendance_count = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).count #所属長承認申請のお知らせ件数
     @superior = User.where(superior: true).where.not(id: @user.id)
     @attendance_first_day = @user.attendances.find_by(worked_on: @first_day)
+    
+    respond_to do |format|
+      format.html do
+          #html用の処理を書く
+      end 
+      format.csv do
+        @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on)
+      end
+    end
   end
+  
+    
   
 
   def new
@@ -92,11 +103,13 @@ class UsersController < ApplicationController
   #勤怠ログ
   def attendance_log
     @user = User.find(params[:id])
-    params["select_year(1i)"].present? ? @year = Date.new(params["select_year(1i)"].to_i, params["select_year(2i)"].to_i, 1) #最初に条件を書いて、条件がtrueだったらうえfalseは下
+    #最初に条件を書いて、条件がtrueだったらうえfalseは下
+    params["select_year(1i)"].present? ? @year = Date.new(params["select_year(1i)"].to_i, params["select_year(2i)"].to_i, 1)
                                         : @year = Date.today
-    params["select_month(2i)"].present? ? @month = Date.new(params["select_month(1i)"].to_i, params["select_month(2i)"].to_i, 1) #三項演算子
+    params["select_month(2i)"].present? ? @month = Date.new(params["select_month(1i)"].to_i, params["select_month(2i)"].to_i, 1)
                                         : @month = Date.today
-    @attendances = @user.attendances.where(change_status: "承認").where("worked_on LIKE ?", "%#{@year.year}-#{@month.to_s[5..6]}%").order(:worked_on) #@user(自分)のattendance
+    #@user(自分)のattendance、@year(年）@month(月) @month.to_s[5..6]は6文字目、7文字目抜き取る                                   
+    @attendances = @user.attendances.where(change_status: "承認").where("worked_on LIKE ?", "%#{@year.year}-#{@month.to_s[5..6]}%").order(:worked_on) 
       
                                  
                                       
