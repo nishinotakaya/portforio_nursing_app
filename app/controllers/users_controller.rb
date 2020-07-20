@@ -152,7 +152,7 @@ private
 
     # システム管理権限所有かどうか判定します。
     def admin_user
-      redirect_to root_url unless current_user.admin?
+      redirect_to (users_url) unless current_user.admin?
     end
     
     def admin_or_correct_user

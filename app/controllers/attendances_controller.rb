@@ -36,14 +36,32 @@ class AttendancesController < ApplicationController
       edit_one_month_params.each do |id, item|
         if item[:instructor_confirmation].present?
           if item[:edit_started_at].blank? || item[:edit_finished_at].blank?
-            flash[:danger] = "時間を入力してください。"
-            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return #上長が入ってなく、時間が入ってなかったら更新されません。and returnは繰り返しredirectが使われていること！
-          end  
+              flash[:danger] = "時間を入力してください。"
+              redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return #上長が入ってなく、時間が入ってなかったら更新されません。and returnは繰り返しredirectが使われていること！
+          end
+          if item[:edit_started_at].present? && item[:edit_finished_at].present?
+            if item[:edit_started_at] > item[:edit_finished_at]
+              flash[:danger] = "出社時間より早い退社時間は無効です"
+              redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
+            end
+          end
+          if item[:edit_started_at].present? && item[:edit_finished_at].blank?
+            flash[:danger] = "出社時間と退社時間の入力が必要です"
+            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
+          end
+          if item[:edit_started_at].blank? && item[:edit_finished_at].present?
+            flash[:danger] = "出社時間と退社時間の入力が必要です"
+            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
+          end
+          if item[:note].blank?
+            flash[:danger] = "備考欄を入力してください"
+            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
+          end
           item[:change_status] = "申請中"
           attendance = Attendance.find(id)
           attendance.attributes = item
           attendance.save!(context: :attendance_update)
-        end  
+        end
       end
    end
     flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
