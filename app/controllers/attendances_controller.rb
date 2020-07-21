@@ -46,14 +46,6 @@ class AttendancesController < ApplicationController
               redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
             end
           end
-          if item[:edit_started_at].present? && item[:edit_finished_at].blank?
-            flash[:danger] = "出社時間と退社時間の入力が必要です"
-            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
-          end
-          if item[:edit_started_at].blank? && item[:edit_finished_at].present?
-            flash[:danger] = "出社時間と退社時間の入力が必要です"
-            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
-          end
           if item[:note].blank?
             flash[:danger] = "備考欄を入力してください"
             redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
@@ -83,24 +75,16 @@ class AttendancesController < ApplicationController
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id]) #attendanceを更新！
     params[:attendance][:overtime_status] = "申請中" #[:attendance]の[overtime_status]が申請中だった場合
-    if @attendance.started_at.blank? && @attendance.finished_at.blank?
-      flash[:danger] = "出社時間と退勤時間がありません"
-      redirect_to user_url(@user)and return
-    end
-    if @attendance.started_at.blank?
-      flash[:danger] = "出社時間がありません"
-      redirect_to user_url(@user)and return
-    end
-    if @attendance.finished_at.blank?
-      flash[:danger] = "退社時間がありません"
-      redirect_to user_url(@user)and return
-    end
-    if @attendance.finished_at.present? && @attendance.plan_finished_at.present?
-      if @attendance.finished_at > @attendance.plan_finished_at
-         flash[:danger] = "退社時間が退社終了予定時間を超えています"
+      if @attendance.started_at.blank? || @attendance.finished_at.blank?
+        flash[:danger] = "出社、又は退社しておりません"
         redirect_to user_url(@user)and return
       end
-    end
+      if @attendance.finished_at.present? && @attendance.plan_finished_at.present?
+        if @attendance.finished_at > @attendance.plan_finished_at
+           flash[:danger] = "退社時間が退社終了予定時間を超えています"
+          redirect_to user_url(@user)and return
+        end
+      end
     if @attendance.update_attributes(overwork_params) #←ストロングパラメータの名前
       flash[:success] = "残業申請を更新しました"
       redirect_to user_url(@user)and return #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる
@@ -290,18 +274,18 @@ class AttendancesController < ApplicationController
   
    private
    
-    def overwork_params #ストロングパラメーター
+    def overwork_params #残業申請ストロングパラメーター
        params.require(:attendance).permit(:plan_finished_at, :tomorrow, :business_processing_contents, :instructor_confirmation, :overtime_status) #この中のものを更新する！_edit_overwork_request.html.erbから更新」
     end
     # 残業申請のお知らせ
     def attendances_params
-      params.require(:user).permit(attendances: [:change, :overtime_status])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
+      params.require(:user).permit(attendances: [:change, :overtime_status])[:attendances] #この中の物は複数ある時に更新する [:attendances]はviewファイルで指定したところ
     end
     #require(:user)は中の(attendances: [:started_at, :finished_at, :note])[:attendances]のこと
     #require(:user)ない場合はパラメーターの中のものを探すだから第一改装しか見ない！updateできない
     
-    def edit_one_month_params #edit_one_month.ストロングパラメーター 
-      params.require(:user).permit(attendances: [:edit_started_at, :edit_finished_at, :note, :instructor_confirmation, :change_status, :change])[:attendances] #この中の物は複数ある時に更新する [:attendance]はviewファイルで指定したところ
+    def edit_one_month_params #edit_one_month（勤怠編集)のストロングパラメーター 
+      params.require(:user).permit(attendances: [:edit_started_at, :edit_finished_at, :note, :instructor_confirmation, :change_status, :change])[:attendances] #この中の物は複数ある時に更新する [:attendances]はviewファイルで指定したところ
     end
     
     def user_attendance_show_params #一ヵ月分の勤怠申請承認ボタンから
