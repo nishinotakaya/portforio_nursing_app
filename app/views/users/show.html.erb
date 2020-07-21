@@ -27,24 +27,30 @@
 <% if current_user.superior? %>
 <div>
   <% if @user_one_month_attendance_count != 0 %>
-    <%= link_to"[所属長承認のお知らせ]", edit_superior_approval_user_attendances_path(@user), remote: true, class: "btn-danger" %>
-    <%= "#{@user_one_month_attendance_count}件のお知らせ" %>
+    <%= link_to"[所属長承認のお知らせ]", edit_superior_approval_user_attendances_path(@user), remote: true, class: "text-danger" %>
+    <a style="color:#ff0000" data-remote="true">
+    <%= "#{@user_one_month_attendance_count}件のお知らせ"  %>
+    </a>
   <% else %>
     [所属長承認のお知らせ]
   <% end %>  
 </div>
 <div>
   <% if @overchange_count != 0 %>
-    <%= link_to"[勤怠変更お知らせ]", attendance_change_user_attendances_path(@user), remote: true, class: "btn-danger" %>
+    <%= link_to"[勤怠変更お知らせ]", attendance_change_user_attendances_path(@user), remote: true, class: "text-danger" %>
+    <a style="color:#ff0000" data-remote="true">
     <%= "#{@overchange_count}件のおしらせ" %>
+    </a>
   <% else %>
     [勤怠変更お知らせ]
   <% end %>  
 </div>
 <div>
   <% if @overwork_count != 0 %>
-    <%= link_to "[残業申請のお知らせ]", edit_superior_announcement_user_attendances_path(@user), remote: true, class: "btn-danger" %>
-    <%= "#{@overwork_count}件のおしらせ" %> 
+    <%= link_to "[残業申請のお知らせ]", edit_superior_announcement_user_attendances_path(@user), remote: true, class: "text-danger" %>
+    <a style="color:#ff0000" data-remote="true">
+    <%= "#{@overwork_count}件のおしらせ" %>
+    </a>
   <% else %>
     [残業申請のお知らせ]
   <% end %>

@@ -21,7 +21,7 @@
         <% if current_user.admin? %>
         <td><%= link_to "削除", office_path(office), method: :delete,
                   data: { confirm: "削除してよろしいですか？" },
-                  class: "btn btn-primary" %>
+                  class: "btn btn-danger" %>
             </td>
         <% end %>          
         <td><%= office.office_number %></td>

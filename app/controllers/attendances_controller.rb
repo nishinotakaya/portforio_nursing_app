@@ -37,7 +37,7 @@ class AttendancesController < ApplicationController
       edit_one_month_params.each do |id, item|
         if item[:instructor_confirmation].present?
           if item[:edit_started_at].blank? || item[:edit_finished_at].blank?
-              flash[:danger] = "時間を入力してください。"
+              flash[:danger] = "時間を入力してください"
               redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return #上長が入ってなく、時間が入ってなかったら更新されません。and returnは繰り返しredirectが使われていること！
           end
           if item[:edit_started_at].present? && item[:edit_finished_at].present?
@@ -93,10 +93,6 @@ class AttendancesController < ApplicationController
     end
     if @attendance.finished_at.blank?
       flash[:danger] = "退社時間がありません"
-      redirect_to user_url(@user)and return
-    end
-    if @attendance.business_processing_contents.blank?
-      flash[:danger] = "業務処理内容を入力してください"
       redirect_to user_url(@user)and return
     end
     if @attendance.finished_at.present? && @attendance.plan_finished_at.present?

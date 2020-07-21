@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       log_in user
       # [:seession][:remember_me]1入ってたら覚えろ入ってなければ忘れろ
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      # adminはboolean型なので?の聞き方！
       if user.admin?
         redirect_to users_url
       else
