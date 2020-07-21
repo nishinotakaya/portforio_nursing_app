@@ -3,7 +3,7 @@
   <h1>勤怠管理システム</h1>
   <% if logged_in? %>
    <a class= "btn btn-lg btn-primary disabled">ログイン済み</a>
-    <a class= "btn primary disabled">アカウント作成済み</a>
+  <p>アカウント作成は<%= link_to "こちら", signup_path, class: "btn primary" %>から</p>
   <% else %>
   <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %>
   <p>アカウント作成は<%= link_to "こちら", signup_path, class: "btn primary" %>から</p>
