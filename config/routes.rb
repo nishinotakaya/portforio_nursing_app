@@ -9,12 +9,6 @@
     post   '/login', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'
     
-    # 管理者ログイン
-    resources :users, only: [:index] 
-      namespace :admin do
-        resources :users, only: [:index, :new, :create, :edit, :destroy]
-    end
-    
   
     resources :users do
       member do

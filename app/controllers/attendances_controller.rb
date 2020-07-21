@@ -26,6 +26,7 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
 
+  # 勤怠編集
   def edit_one_month
     @attendance = Attendance.find(params[:id])
     @superior = User.where(superior: true).where.not(id: @user.id)
@@ -82,12 +83,34 @@ class AttendancesController < ApplicationController
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id]) #attendanceを更新！
     params[:attendance][:overtime_status] = "申請中" #[:attendance]の[overtime_status]が申請中だった場合
-    if  @attendance.update_attributes(overwork_params) #←ストロングパラメータの名前
+    if @attendance.started_at.blank? && @attendance.finished_at.blank?
+      flash[:danger] = "出社時間と退勤時間がありません"
+      redirect_to user_url(@user)and return
+    end
+    if @attendance.started_at.blank?
+      flash[:danger] = "出社時間がありません"
+      redirect_to user_url(@user)and return
+    end
+    if @attendance.finished_at.blank?
+      flash[:danger] = "退社時間がありません"
+      redirect_to user_url(@user)and return
+    end
+    if @attendance.business_processing_contents.blank?
+      flash[:danger] = "業務処理内容を入力してください"
+      redirect_to user_url(@user)and return
+    end
+    if @attendance.finished_at.present? && @attendance.plan_finished_at.present?
+      if @attendance.finished_at > @attendance.plan_finished_at
+         flash[:danger] = "退社時間が退社終了予定時間を超えています"
+        redirect_to user_url(@user)and return
+      end
+    end
+    if @attendance.update_attributes(overwork_params) #←ストロングパラメータの名前
       flash[:success] = "残業申請を更新しました"
-      redirect_to user_url(@user) #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる　 
+      redirect_to user_url(@user)and return #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる
     else
       flash[:danger] = "残業申請を更新できませんでした。"
-      redirect_to user_url(@user) #←user_urlの中に(@user)を入れることにより@userがuser_urlに飛ばされる！
+      redirect_to user_url(@user)and return #←user_urlの中に(@user)を入れることにより@userがuser_urlに飛ばされる！
     end
   end
   
