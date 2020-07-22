@@ -128,7 +128,7 @@ private
     end
 
     def user_params
-      params.require(:user).permit(:basic_time, :work_time)
+      params.require(:user).permit(:name, :email, :department, :affiliation, :password, :password_confirmation, :employee_number, :uid, :designated_work_start_time, :designated_work_end_time)
     end
     
     def set_user
