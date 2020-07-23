@@ -108,9 +108,8 @@ class UsersController < ApplicationController
                                         : @year = Date.today
     params["select_month(2i)"].present? ? @month = Date.new(params["select_month(1i)"].to_i, params["select_month(2i)"].to_i, 1)
                                         : @month = Date.today
-    #@user(自分)のattendance、@year(年）@month(月) @month.to_s[5..6]は6文字目、7文字目抜き取る                                   
-    @attendances = @user.attendances.where(change_status: "承認").where("worked_on LIKE ?", "%#{@year.year}-#{@month.to_s[5..6]}%").order(:worked_on) 
-      
+    #@user(自分)のattendance、@year(年）@month(月) @month.to_s[5..6]は6文字目、7文字目抜き取る
+    @attendances = @user.attendances.where(change_status: "承認").where('cast(worked_on as text) LIKE ?', "%#{@year.year}-#{@month.to_s[5..6]}%").order(:worked_on) 
                                  
                                       
   end

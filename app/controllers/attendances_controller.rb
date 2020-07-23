@@ -97,7 +97,7 @@ class AttendancesController < ApplicationController
   # 残業申請承認モーダル！
   def edit_superior_announcement 
     @user = User.find(params[:user_id])
-    @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name)
+    @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id)
     #@users = User.where(attendances:{overtime_status: "申請中"}).where.not(id: @user.id) #userひもづいてるattendanceモデルの中のovertime_statusの中の申請中のでーたを持ってるuserたちを持ってっ来る！
     @users = User.joins(:attendances).group("users.id").where(attendances:{overtime_status: "申請中"}) #joinsでattendancesのURLを持っているuserを集めてる！
   end
@@ -149,7 +149,7 @@ class AttendancesController < ApplicationController
   # 勤怠変更更新モーダル
   def attendance_change
     @user = User.find(params[:user_id])
-    @attendances = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).order(:worked_on, :user_id).group_by(&:user_id)
+    @attendances = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id).order(:worked_on, :user_id).group_by(&:user_id)
   end
   
       
@@ -229,7 +229,7 @@ class AttendancesController < ApplicationController
   # 所属長承認のお知らせモーダル
   def edit_superior_approval
     @user = User.find(params[:user_id])
-    @attendances = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).order(:worked_on, :user_id).group_by(&:user_id)
+    @attendances = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id).order(:worked_on, :user_id).group_by(&:user_id)
   end
   
   def update_superior_approval

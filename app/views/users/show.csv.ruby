@@ -10,7 +10,10 @@ CSV.generate do |csv|
   attendance.started_at.present? ? started_at = attendance.started_at.strftime('%R')
                                   : started_at = nil
   attendance.finished_at.present? ? finished_at = attendance.finished_at.strftime('%R')
-                                  : finished_at = nil                                
+                                  : finished_at = nil
+                                  
+   l(attendance.worked_on, format: :short)
+   
     column_values = [
       attendance.worked_on,
       started_at,
