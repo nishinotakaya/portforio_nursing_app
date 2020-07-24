@@ -3,7 +3,7 @@ require 'csv'
 CSV.generate do |csv|
     
 
-  column_names = %w(worked_on started_at finished_at note )
+  column_names = %w(worked_on started_at finished_at)
   csv << column_names
   @attendances.each do |attendance|
   started_at = attendance.started_at 
@@ -18,7 +18,6 @@ CSV.generate do |csv|
       attendance.worked_on,
       started_at,
       finished_at,
-      attendance.note,
     ]
     csv << column_values
   end

@@ -75,15 +75,9 @@ class AttendancesController < ApplicationController
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id]) #attendanceを更新！
     params[:attendance][:overtime_status] = "申請中" #[:attendance]の[overtime_status]が申請中だった場合
-      if @attendance.started_at.blank? || @attendance.finished_at.blank?
-        flash[:danger] = "出社、又は退社しておりません"
-        redirect_to user_url(@user)and return
-      end
-      if @attendance.finished_at.present? && @attendance.plan_finished_at.present?
-        if @attendance.finished_at > @attendance.plan_finished_at
-           flash[:danger] = "退社時間が退社終了予定時間を超えています"
+      if @attendance.started_at.blank?
+           flash[:danger] = "出社時間がありません"
           redirect_to user_url(@user)and return
-        end
       end
     if @attendance.update_attributes(overwork_params) #←ストロングパラメータの名前
       flash[:success] = "残業申請を更新しました"

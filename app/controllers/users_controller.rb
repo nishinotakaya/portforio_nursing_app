@@ -36,14 +36,14 @@ class UsersController < ApplicationController
     @overchange_count = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).count #勤怠編集のお知らせ件数
     @user_one_month_attendance_count = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).count #所属長承認申請のお知らせ件数
     @superior = User.where(superior: true).where.not(id: @user.id)
-    @attendance_first_day = @user.attendances.find_by(worked_on: @first_day)
+    @attendance_first_day = @user.attendances.find_by(worked_on: @first_day) #@userのattendancesモデルの中から日付の月初日を入れてあげる。
     
     respond_to do |format|
       format.html do
           #html用の処理を書く
       end 
       format.csv do
-        @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on)
+        send_data render_to_string, filename: "(勤怠情報).csv", type: :csv
       end
     end
   end
