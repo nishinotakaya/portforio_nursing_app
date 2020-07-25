@@ -1,6 +1,7 @@
 class AttendancesController < ApplicationController
   before_action :set_user, only: [:edit_one_month, :update_one_month]
   before_action :logged_in_user, only: [:update, :edit_one_month]
+  before_action :correct_user, only: [:edit_one_month, :update_one_month]
   before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
   before_action :set_one_month, only: :edit_one_month
 
@@ -294,9 +295,29 @@ class AttendancesController < ApplicationController
       params.require(:user).permit(attendances: [:change_status, :change])[:attendances] #複数のための定義
     end
       
+    def set_user
+      @user = User.find(params[:id])
+    end
+  
+
+    # ログイン済みのユーザーか確認します。
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "ログインしてください。"
+        redirect_to login_url
+      end
+    end
+
+    # アクセスしたユーザーが現在ログインしているユーザーか確認します。
+    def correct_user
+      redirect_to(root_url) unless current_user?(@user)
+    end
+
     
-    
-    
+    def admin_user
+      redirect_to (root_url) unless current_user.admin?
+    end
     
     def admin_or_correct_user
       @user = User.find(params[:user_id]) if @user.blank?

@@ -136,7 +136,7 @@
           <td><%= day.plan_finished_at.strftime('%M') if day.plan_finished_at.present? %></td>
           <td>
             <% if day.plan_finished_at.present? %> 
-              <%= over_time(day.tomorrow, day.plan_finished_at, @user.designated_work_end_time) %>
+              <%= over_time(day.tomorrow, day.plan_finished_at, @user.designated_work_end_time, day.started_at) %>
             <% end %>
           </td>
           <td><%= day.business_processing_contents %></td>
