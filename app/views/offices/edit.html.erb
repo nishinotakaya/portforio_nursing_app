@@ -12,7 +12,7 @@
     <%= f.text_field :office_number, class: "form-control" %>
     
     <%= f.label :office_modality, class: "label-#{yield(:class_text)}" %>
-    <%= f.text_field :office_modality, class: "form-control" %>
+    <%= f.select :office_modality,  [["出勤", "出勤"], ["退勤", "退勤"]], class: "form-control" %>
     
     
     <%= f.submit :編集, class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
