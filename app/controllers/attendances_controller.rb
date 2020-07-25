@@ -93,7 +93,7 @@ class AttendancesController < ApplicationController
     @user = User.find(params[:user_id])
     @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id)
     #@users = User.where(attendances:{overtime_status: "申請中"}).where.not(id: @user.id) #userひもづいてるattendanceモデルの中のovertime_statusの中の申請中のでーたを持ってるuserたちを持ってっ来る！
-    @users = User.joins(:attendances).group("users.id").where(attendances:{overtime_status: "申請中"}) #joinsでattendancesのURLを持っているuserを集めてる！
+    @users = User.joins(:attendances).group("users.id").where(attendances:{overtime_status: "申請中"}).where.not(id: @user.id) #joinsでattendancesのURLを持っているuserを集めてる！
   end
   
   def update_superior_announcement
@@ -164,13 +164,13 @@ class AttendancesController < ApplicationController
             attendance.good_day = Date.current #承認日
             # もしbefore_started_atがからだったら、before_started_atにstarted_atをいれてあげる。
             if attendance.before_started_at.blank?
-              attendance.before_started_at = attendance.started_at
+              attendance.before_started_at = attendance.started_at #勤怠ログの開始時間になにも入っていなかったら,承認されたら、勤怠ログに入る設定！
             end  
             if attendance.before_finished_at.blank?
-               attendance.before_finished_at = attendance.finished_at
+               attendance.before_finished_at = attendance.finished_at #勤怠ログの終了時間になにも入っていなかったら,承認されたら、勤怠ログに入る設定！
             end  
             attendance.started_at = attendance.edit_started_at
-            attendance.finished_at = attendance.edit_finished_at
+            attendance.finished_at = attendance.edit_finished_at #編集したものが承認されshow.htmlの表に定義される設定
           elsif item[:change_status] == "否認"   
             m3 = m3 + 1
           elsif item[:change_status] == "なし"   

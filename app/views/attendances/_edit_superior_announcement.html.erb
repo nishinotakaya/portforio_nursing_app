@@ -44,7 +44,9 @@
                         <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
                         <td><%= day.plan_finished_at.strftime("%R") %></td>
                         <td><%= format_basic_info(@user.designated_work_end_time) %></td>
-                        <td><%= day.over_time %></td>
+                        <td><% if day.plan_finished_at.present? %> 
+                              <%= over_time(day.tomorrow, day.plan_finished_at, @user.designated_work_end_time) %>
+                            <% end %></td>
                         <td><%= day.business_processing_contents %></td>
                         <td><%= a.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
                         <td><%= a.check_box :change, {}, "true", "false" %></td>
