@@ -36,7 +36,7 @@ class AttendancesController < ApplicationController
   def update_one_month
     ActiveRecord::Base.transaction do # トランザクションを開始します。
       edit_one_month_params.each do |id, item|
-        if item[:instructor_confirmation].present?
+        if item[:instructor_confirmation].present? 
           if item[:edit_started_at].blank? || item[:edit_finished_at].blank?
               flash[:danger] = "時間を入力してください"
               redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return #上長が入ってなく、時間が入ってなかったら更新されません。and returnは繰り返しredirectが使われていること！
@@ -46,10 +46,6 @@ class AttendancesController < ApplicationController
               flash[:danger] = "出社時間より早い退社時間は無効です"
               redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
             end
-          end
-          if item[:note].blank?
-            flash[:danger] = "備考欄を入力してください"
-            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return 
           end
           item[:change_status] = "申請中"
           attendance = Attendance.find(id)
@@ -76,10 +72,6 @@ class AttendancesController < ApplicationController
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id]) #attendanceを更新！
     params[:attendance][:overtime_status] = "申請中" #[:attendance]の[overtime_status]が申請中だった場合
-      if @attendance.started_at.blank?
-           flash[:danger] = "出社時間がありません"
-          redirect_to user_url(@user)and return
-      end
     if @attendance.update_attributes(overwork_params) #←ストロングパラメータの名前
       flash[:success] = "残業申請を更新しました"
       redirect_to user_url(@user)and return #処理で飛ばす先.com/rails/info/routesとホームページの方に書くとroute見れる
@@ -172,6 +164,18 @@ class AttendancesController < ApplicationController
             end  
             attendance.started_at = attendance.edit_started_at
             attendance.finished_at = attendance.edit_finished_at #編集したものが承認されshow.htmlの表に定義される設定
+            if attendance.edit_started_at.present?
+              attendance.edit_started_at = nil
+            end  
+            if attendance.edit_finished_at.present?
+              attendance.edit_finished_at = nil
+            end
+            if attendance.instructor_confirmation.present?
+              attendance.instructor_confirmation = nil
+            end
+            if attendance.note.present?
+              attendance.note = nil
+            end  
           elsif item[:change_status] == "否認"   
             m3 = m3 + 1
           elsif item[:change_status] == "なし"   

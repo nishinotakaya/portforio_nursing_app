@@ -1,5 +1,7 @@
 class OfficesController < ApplicationController
   
+  before_action :admin_user, only:[:edit, :update, :destroy, :index, :update, :destroy, :create]
+  
   def index
     @offices = Office.all
   end
@@ -56,6 +58,10 @@ class OfficesController < ApplicationController
     
     def office_params
       params.require(:office).permit(:office_number, :office_name, :office_modality)
+    end
+    
+    def admin_user
+      redirect_to (root_url) unless current_user.admin?
     end
     
     

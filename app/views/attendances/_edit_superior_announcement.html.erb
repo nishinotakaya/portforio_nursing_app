@@ -29,32 +29,30 @@
               
               <!--ifのログインしてるuserと上長のカラム名が一緒であること、かつ申請中だったら表示する。かつattendance.idとuser.idが一緒であること！-->
                 <% attendance.each do |day| %>
-                  
-                    <%= f.fields_for "attendances[]", day do |a| %> 
-                    <tbody>
-                      <tr>
-                        <% css_class = 
-                        case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
-                        when '土'
-                          'text-primary'
-                        when '日'
-                          'text-danger'
-                        end %>
-                        <td><%= l(day.worked_on, format: :short) %></td> 
-                        <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
-                        <td><%= day.plan_finished_at.strftime("%R") %></td>
-                        <td><%= format_basic_info(@user.designated_work_end_time) %></td>
-                        <td><% if day.plan_finished_at.present? %> 
-                              <%= over_time(day.tomorrow, day.plan_finished_at, @user.designated_work_end_time, day.started_at) %>
-                            <% end %></td>
-                        <td><%= day.business_processing_contents %></td>
-                        <td><%= a.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
-                        <td><%= a.check_box :change, {}, "true", "false" %></td>
-                        <td><%= link_to "確認", new_show_user_attendance_path(@user, day), class: "btn btn-primary" %></td>
-                      </tr>
-                    </tbody>
-                    <% end %>
-                    
+                  <%= f.fields_for "attendances[]", day do |a| %> 
+                  <tbody>
+                    <tr>
+                      <% css_class = 
+                      case %w{日 月 火 水 木 金 土}[day.worked_on.wday]
+                      when '土'
+                        'text-primary'
+                      when '日'
+                        'text-danger'
+                      end %>
+                      <td><%= l(day.worked_on, format: :short) %></td> 
+                      <td class="<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
+                      <td><%= day.plan_finished_at.strftime("%R") %></td>
+                      <td><%= format_basic_info(@user.designated_work_end_time) %></td>
+                      <td><% if day.plan_finished_at.present? %> 
+                            <%= over_time(day.tomorrow, day.plan_finished_at, @user.designated_work_end_time, day.started_at) %>
+                          <% end %></td>
+                      <td><%= day.business_processing_contents %></td>
+                      <td><%= a.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
+                      <td><%= a.check_box :change, {}, "true", "false" %></td>
+                      <td><%= link_to "確認", new_show_user_attendance_path(@user, day), class: "btn btn-primary" %></td>
+                    </tr>
+                  </tbody>
+                  <% end %>
                 <% end %>
               </table>
             <% end %>
@@ -65,6 +63,8 @@
     </div>
   </div>
 </div>  
+                    
+                  
             
               
               

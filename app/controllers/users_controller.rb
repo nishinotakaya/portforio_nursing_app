@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info] #before_actionは一番最初に定義される！
-  before_action :logged_in_user, only: [:index, :show, :update, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :logged_in_user, only: [:show, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only: [:show, :edit, :update]
   before_action :admin_user, only: [:index, :update, :destroy]
   before_action :admin_or_correct_user, only: :show
@@ -32,9 +32,9 @@ class UsersController < ApplicationController
  
   def show
     @worked_sum = @attendances.where.not(started_at: nil).count
-    @overwork_count = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name).count #残業申請のお知らせの件数
-    @overchange_count = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).count #勤怠編集のお知らせ件数
-    @user_one_month_attendance_count = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).count #所属長承認申請のお知らせ件数
+    @overwork_count = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id).count #残業申請のお知らせの件数
+    @overchange_count = Attendance.where(change_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id).count #勤怠編集のお知らせ件数
+    @user_one_month_attendance_count = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id).count #所属長承認申請のお知らせ件数
     @superior = User.where(superior: true).where.not(id: @user.id)
     @attendance_first_day = @user.attendances.find_by(worked_on: @first_day) #@userのattendancesモデルの中から日付の月初日を入れてあげる。
     
