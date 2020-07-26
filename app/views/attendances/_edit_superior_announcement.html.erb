@@ -7,8 +7,8 @@
         </span>
         </button>
       <!--tableの外にform_withがある場合はtableの外にsubmitを書く-->  
-          <% @users.each do |user| %>    
-      <h1 class="modal-title" , style="text-align:center">[<%= user.name %>からの残業申請]</h1>
+          <% @attendances.each do |id, attendance| %>    
+      <h1 class="modal-title" , style="text-align:center">[<%= User.find(id).name %>からの残業申請]</h1>
         <div class="modal-body">
           <div class= "row">
               
@@ -28,8 +28,8 @@
               </thead>
               
               <!--ifのログインしてるuserと上長のカラム名が一緒であること、かつ申請中だったら表示する。かつattendance.idとuser.idが一緒であること！-->
-                <% @attendances.each do |day| %>
-                  <% if current_user.name == day.instructor_confirmation && day.overtime_status == "申請中" && day.user_id == user.id %>
+                <% attendance.each do |day| %>
+                  
                     <%= f.fields_for "attendances[]", day do |a| %> 
                     <tbody>
                       <tr>
@@ -50,11 +50,11 @@
                         <td><%= day.business_processing_contents %></td>
                         <td><%= a.select :overtime_status, [["承認"],["申請中"],["否認"],["なし"]] %></td>
                         <td><%= a.check_box :change, {}, "true", "false" %></td>
-                        <td><%= link_to "確認", new_show_user_attendance_path(user, day), class: "btn btn-primary" %></td>
+                        <td><%= link_to "確認", new_show_user_attendance_path(@user, day), class: "btn btn-primary" %></td>
                       </tr>
                     </tbody>
                     <% end %>
-                  <% end %>  
+                    
                 <% end %>
               </table>
             <% end %>

@@ -89,12 +89,12 @@ class AttendancesController < ApplicationController
     end
   end
   
-  # 残業申請承認モーダル！
+  # 残業申請承認(お知らせ)モーダル！
   def edit_superior_announcement 
     @user = User.find(params[:user_id])
-    @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id)
+    @attendances = Attendance.where(overtime_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id).order(:worked_on, :user_id).group_by(&:user_id)
     #@users = User.where(attendances:{overtime_status: "申請中"}).where.not(id: @user.id) #userひもづいてるattendanceモデルの中のovertime_statusの中の申請中のでーたを持ってるuserたちを持ってっ来る！
-    @users = User.joins(:attendances).group("users.id").where(attendances:{overtime_status: "申請中"}).where.not(id: @user.id) #joinsでattendancesのURLを持っているuserを集めてる！
+    #@users = User.joins(:attendances).group("users.id").where(attendances:{overtime_status: "申請中"}).where.not(id: @user.id) #joinsでattendancesのURLを持っているuserを集めてる！
   end
   
   def update_superior_announcement
@@ -221,7 +221,7 @@ class AttendancesController < ApplicationController
     redirect_to user_url(@user)
   end
   
-  # 所属長承認のお知らせモーダル
+  # 所属長承認のモーダル
   def edit_superior_approval
     @user = User.find(params[:user_id])
     @attendances = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @user.name).where.not(id: @user.id).order(:worked_on, :user_id).group_by(&:user_id)
