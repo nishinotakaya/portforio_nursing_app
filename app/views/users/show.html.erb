@@ -24,7 +24,7 @@
     </tr>
   </table>
 </div>
-<% if current_user.superior? %>
+<% if current_user.nurse? %>
 <div>
   <% if @user_one_month_attendance_count != 0 %>
     <%= link_to"[所属長承認のお知らせ]", edit_superior_approval_user_attendances_path(@user), remote: true, class: "text-danger" %>
