@@ -46,16 +46,25 @@ Office.create!(office_name: "拠点A",
                office_modality: "出勤"
                )             
 
-            
+User.create!(name: "利用者",
+             email: "user-1@email.com",
+             password: "password",
+             password_confirmation: "password",
+             client: true
+             )
+             
+User.create!(name: "利用者2",
+             email: "user-2@email.com",
+             password: "password",
+             password_confirmation: "password",
+             client: true
+             )             
+             
+User.create!(name: "利用者3",
+             email: "user-3@email.com",
+             password: "password",
+             password_confirmation: "password",
+             client: true
+             )                          
+                         
 
-45.times do |n|
-  name  = Faker::Name.name
-  email = "sample-#{n+1}@email.com"
-  password = "password"
-  User.create!(name: name,
-               email: email,
-               employee_number: n+4,
-               password: password,
-               password_confirmation: password)
-               
-end
