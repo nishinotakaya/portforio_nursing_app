@@ -19,10 +19,10 @@ class CreateAttendances < ActiveRecord::Migration[5.1]
       t.string :instructor_confirmation #上長の名前 string 文字型
       t.string :overtime_status #残業申請の状態
       t.string :change_status #変更申請の状態
-      t.string :user_one_month_attendance_status #一ヵ月の勤怠申請の状態
+      t.string :staff_one_month_attendance_status #一ヵ月の勤怠申請の状態
       
       
-      t.references :user, foreign_key: true
+      t.references :staff, foreign_key: true
 
       t.timestamps
     end

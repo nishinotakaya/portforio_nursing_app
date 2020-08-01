@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200731013650) do
+ActiveRecord::Schema.define(version: 20200731105442) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -31,11 +31,28 @@ ActiveRecord::Schema.define(version: 20200731013650) do
     t.string "instructor_confirmation"
     t.string "overtime_status"
     t.string "change_status"
-    t.string "user_one_month_attendance_status"
-    t.integer "user_id"
+    t.string "staff_one_month_attendance_status"
+    t.integer "staff_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_attendances_on_user_id"
+    t.index ["staff_id"], name: "index_attendances_on_staff_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "client_name"
+    t.string "client_email"
+    t.string "nursing_number"
+    t.date "date_of_day"
+    t.string "client_disorder"
+    t.integer "temperature"
+    t.integer "affter_temperature"
+    t.integer "vital"
+    t.integer "pulse"
+    t.boolean "bath"
+    t.boolean "medicine"
+    t.integer "food"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "offices", force: :cascade do |t|
@@ -46,30 +63,27 @@ ActiveRecord::Schema.define(version: 20200731013650) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "staffs", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
-    t.string "department"
-    t.datetime "basic_time", default: "2020-07-30 23:00:00"
-    t.datetime "work_time", default: "2020-07-30 22:30:00"
+    t.datetime "basic_time", default: "2020-07-31 23:00:00"
+    t.datetime "work_time", default: "2020-07-31 22:30:00"
     t.boolean "admin"
-    t.boolean "superior", default: false
     t.string "employee_number"
     t.string "uid"
-    t.datetime "designated_work_start_time", default: "2020-07-30 22:00:00"
-    t.datetime "designated_work_end_time", default: "2020-07-31 09:00:00"
-    t.string "user_id"
-    t.datetime "basic_work_time", default: "2020-07-30 21:30:00"
+    t.datetime "designated_work_start_time", default: "2020-07-31 22:00:00"
+    t.datetime "designated_work_end_time", default: "2020-08-01 09:00:00"
+    t.string "staff_id"
+    t.datetime "basic_work_time", default: "2020-07-31 21:30:00"
     t.string "affiliation"
     t.boolean "nurse", default: false
     t.boolean "counselor", default: false
     t.boolean "nursing_care_staff", default: false
-    t.boolean "client", default: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_staffs_on_email", unique: true
   end
 
 end

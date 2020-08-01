@@ -2,7 +2,7 @@
   
 
     root 'static_pages#top'
-    get '/signup', to: 'users#new'
+    get '/signup', to: 'staffrs#new'
   
     # ログイン機能
     get    '/login', to: 'sessions#new'
@@ -10,7 +10,7 @@
     delete '/logout', to: 'sessions#destroy'
     
   
-    resources :users do
+    resources :staffs do
       member do
         get 'edit_basic_info'
         patch 'update_basic_info'
@@ -21,7 +21,9 @@
         get 'attendance_log' #勤怠ログ
        
       end
-        
+      
+     
+       
       resources :attendances, only: :update do #
         member do #idが付く！memberは特定のデータにアクションを利用する
           get 'edit_overwork_request'
@@ -39,11 +41,15 @@
           patch 'update_show' #show,htmlの承認ボタン
         end  
       end
-      
     end
     post '/import', to: 'users#import', as: 'import'
     
-    resources :offices #拠点
+    resources :clients do#利用者
+       
+       
+    
+    end
+    
       
                    
     

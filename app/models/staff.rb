@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class Staff < ApplicationRecord
   has_many :attendances, dependent: :destroy
   # 「remember_token」という仮想の属性を作成します。
   attr_accessor :remember_token
@@ -10,14 +10,14 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
-  validates :department, length: { in: 2..50 }, allow_blank: true
+  
   validates :basic_time, presence: true
   validates :work_time, presence: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   # 渡された文字列のハッシュ値を返します。
-  def User.digest(string)
+  def Staff.digest(string)
     cost = 
       if ActiveModel::SecurePassword.min_cost
         BCrypt::Engine::MIN_COST
@@ -28,14 +28,14 @@ class User < ApplicationRecord
   end
 
   # ランダムなトークンを返します。
-  def User.new_token
+  def Staff.new_token
     SecureRandom.urlsafe_base64
   end
 
   # 永続セッションのためハッシュ化したトークンをデータベースに記憶します。
   def remember
-    self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token))
+    self.remember_token = Staff.new_token
+    update_attribute(:remember_digest, Staff.digest(remember_token))
   end
 
   # トークンがダイジェストと一致すればtrueを返します。
@@ -53,11 +53,11 @@ class User < ApplicationRecord
   def self.import(file)
     CSV.foreach(file.path, headers: true, encoding: 'Shift_JIS:UTF-8') do |row|
       # IDが見つかれば、レコードを呼び出し、見つかれなければ、新しく作成
-      user = find_by(id: row["id"]) || new
+      staff = find_by(id: row["id"]) || new
       # CSVからデータを取得し、設定する
-      user.attributes = row.to_hash.slice(*updatable_attributes)
+      staff.attributes = row.to_hash.slice(*updatable_attributes)
       # 保存する
-      user.save
+      staff.save
     end
   end
 

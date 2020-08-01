@@ -10,7 +10,7 @@
       <h1 class="modal-title">残業申請</h1>
     </div>
     <div class="modal-body"><!--form_withのモデルは@attendanceの情報の更新のため@attendanceはパラメーターの-->
-      <%= form_with(model: @attendance, url: update_overwork_request_user_attendance_path(@user, @attendance), local: true, method: :patch) do |f| %>
+      <%= form_with(model: @attendance, url: update_overwork_request_staff_attendance_path(@staff, @attendance), local: true, method: :patch) do |f| %>
         <table class="table table-bordered table-hover" id="table-attendances">
           <thead>
             <tr>

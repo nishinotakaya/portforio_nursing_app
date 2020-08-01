@@ -6,17 +6,17 @@ class SessionsController < ApplicationController
  # userの最初のログイン先
  # userをみつけてきて代入
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      log_in user
+    staff = Staff.find_by(email: params[:session][:email].downcase)
+    if staff && staff.authenticate(params[:session][:password])
+      log_in staff
       # [:seession][:remember_me]1入ってたら覚えろ入ってなければ忘れろ
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      params[:session][:remember_me] == '1' ? remember(staff) : forget(staff)
       # adminはboolean型なので?の聞き方！
-      if user.admin?
-        redirect_to users_url
+      if staff.admin?
+        redirect_to staffs_url
       else
         # 前に戻れ！
-        redirect_back_or user
+        redirect_back_or staff
       end  
     else
       flash.now[:danger] = '認証に失敗しました。'

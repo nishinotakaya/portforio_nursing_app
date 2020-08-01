@@ -5,35 +5,35 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(name: "施設長",
+Staff.create!(name: "施設長",
              email: "sample@email.com",
              employee_number: 1,
              password: "password",
              password_confirmation: "password",
              admin: true)
              
-User.create!(name: "看護師",
+Staff.create!(name: "看護師",
              email: "superior-1@email.com",
              employee_number: 2,
              password: "password",
              password_confirmation: "password",
              nurse: true)
 
-User.create!(name: "相談員",
+Staff.create!(name: "相談員",
              email: "superior-2@email.com",
              employee_number: 3,
              password: "password",
              password_confirmation: "password",
              counselor: true)
              
-User.create!(name: "介護職員1",
+Staff.create!(name: "介護職員1",
              email: "employee-1@email.com",
              employee_number: 4,
              password: "password",
              password_confirmation: "password",
              nursing_care_staff: true)
              
-User.create!(name: "介護職員2",
+Staff.create!(name: "介護職員2",
              email: "employee-2@email.com",
              employee_number: 4,
              password: "password",
@@ -44,27 +44,14 @@ User.create!(name: "介護職員2",
 Office.create!(office_name: "拠点A",
                office_number: "1",
                office_modality: "出勤"
-               )             
+               )
+               
+Client.create!(client_name: "よしこさん",
+               client_email: "simamura@email.com",
+               nursing_number: "要介護2",
+               date_of_day: "毎日"
+               )                
 
-User.create!(name: "利用者",
-             email: "user-1@email.com",
-             password: "password",
-             password_confirmation: "password",
-             client: true
-             )
-             
-User.create!(name: "利用者2",
-             email: "user-2@email.com",
-             password: "password",
-             password_confirmation: "password",
-             client: true
-             )             
-             
-User.create!(name: "利用者3",
-             email: "user-3@email.com",
-             password: "password",
-             password_confirmation: "password",
-             client: true
-             )                          
+
                          
 

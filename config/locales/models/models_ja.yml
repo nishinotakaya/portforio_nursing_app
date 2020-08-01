@@ -1,11 +1,11 @@
 ja:
   activerecord:
     models:
-      user: ユーザー
+      staff:
       attendance: 勤怠
       office: 
     attributes:
-        user:
+        staff:
           id: ID
           name: 名前
           email: メールアドレス
@@ -35,3 +35,12 @@ ja:
           office_name: 拠点名
           office_modality: 拠点種類 
           office_number: 拠点番号
+        client:
+          temperature: 来所時体温
+          affter_temperature: 帰宅時体温
+          vital: 血圧
+          pulse: 脈拍
+          bath: 入浴
+          medicine: 薬
+          food: 食事量
+          
