@@ -40,17 +40,24 @@ Staff.create!(name: "介護職員2",
              password_confirmation: "password",
              nursing_care_staff: true)            
              
-             
-Office.create!(office_name: "拠点A",
-               office_number: "1",
-               office_modality: "出勤"
-               )
                
-Client.create!(client_name: "よしこさん",
-               client_email: "simamura@email.com",
+Client.create!(client_name: "よしこ",
+               client_email: "0471-33333",
                nursing_number: "要介護2",
                date_of_day: "毎日"
-               )                
+               )
+               
+Client.create!(client_name: "近藤",
+               client_email: "0471999",
+               nursing_number: "要介護1",
+               date_of_day: "毎日"
+               )
+               
+Client.create!(client_name: "すがはら",
+               client_email: "0471999",
+               nursing_number: "要介護5",
+               date_of_day: "毎日"
+               )                  
 
 
                          

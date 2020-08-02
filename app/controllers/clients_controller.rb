@@ -7,16 +7,37 @@ class ClientsController < ApplicationController
   def show
    
   end
-  
-  def edit
-  end
-  
+
   def new
   end
   
-  def nurse_diary
-    
+  def edit_basic_info
+    @client = Client.find(params[:id])
   end  
   
+  def update_basic_info
+      @client = Client.find(params[:id])
+      if @client.update_attributes(client_params)
+        flash[:success] = "#{@client.client_name}の基本情報を更新しました。"
+      else
+        flash[:danger] = "#{@client.client_name}の更新は失敗しました。<br>" + @client.errors.full_messages.join("<br>")
+      end
+      redirect_to clients_url
+  
+  end
+  
+  def monitoring_basic_info
+    @client = Client.find(params[:id])
+  end  
+  
+  def update_monitoring_basic_info
+  end  
+  
+  private
+  
+  def client_params
+    params.require(:client).permit(:client_name, :client_email, :nursing_number, :date_of_day_monday, :date_of_day_tuesday, :date_of_day_wednesday,
+                                    :date_of_day_thursday, :date_of_day_friday, :date_of_day_saturday, :date_of_day_sunday)
+  end
   
 end

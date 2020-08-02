@@ -1,7 +1,7 @@
 ja:
   activerecord:
     models:
-      staff:
+      staff: 従業員
       attendance: 勤怠
       office: 
     attributes:
@@ -43,4 +43,15 @@ ja:
           bath: 入浴
           medicine: 薬
           food: 食事量
+          client_name: 利用者名
+          client_email: ご連絡先
+          nursing_number: 要介護
+          date_of_day: 利用日
+          date_of_day_monday: 月
+          date_of_day_tuesday: 火
+          date_of_day_wednesday: 水
+          date_of_day_thursday: 木
+          date_of_day_friday: 金
+          date_of_day_saturday: 土
+          date_of_day_sunday: 日
           

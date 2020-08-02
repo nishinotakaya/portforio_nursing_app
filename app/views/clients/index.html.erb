@@ -16,12 +16,19 @@
   <tbody>
     <% @clients.each do |client| %>
       <tr>
-        <td><%= link_to "利用者情報編集", edit_client_path(client) %></td>
+        <td><%= link_to "利用者情報編集", edit_basic_info_client_path(client) %></td>
         <td></td>
         <td><%= client.client_name %></td>
         <td><%= client.client_email %></td>
         <td><%= client.nursing_number %></td>
-        <td><%= client.date_of_day %></td>
+        <td><%= client.date_of_day_monday %>
+            <%= client.date_of_day_tuesday %>
+            <%= client.date_of_day_wednesday %>
+            <%= client.date_of_day_thursday %>
+            <%= client.date_of_day_friday %>
+            <%= client.date_of_day_saturday %>
+            <%= client.date_of_day_sunday %></td>
+        <td><%= link_to "モニタリング", monitoring_basic_info_client_path(client) %></td>
       </tr>
     <% end %>  
   </tbody>

@@ -1,5 +1,5 @@
-  <% provide(:title, 'All Users') %>
-  <h1>ユーザー一覧</h1>
+  <% provide(:title, 'All Staffs') %>
+  <h1>職員一覧</h1>
   <p>検索</p>
  
    
@@ -29,7 +29,7 @@
                 </h4>
               </div>
               <div id="collapse<%= staff.id %>" class="panel-collapse collapse">
-                <div class="panel-body"><%= render 'user', {staff: staff} %></div> 
+                <div class="panel-body"><%= render 'staff', {staff: staff} %></div> 
                 </div>
               </div>
             </div>

@@ -45,7 +45,12 @@
     post '/import', to: 'users#import', as: 'import'
     
     resources :clients do#利用者
-       
+      member do
+        get 'edit_basic_info'
+        patch 'update_basic_info'
+        get 'monitoring_basic_info'
+        patch 'update_monitoring_basic_info'
+      end  
        
     
     end

@@ -1,0 +1,39 @@
+<h1>利用者編集</h1>
+<%= form_with(model: @client, url:  update_basic_info_client_path(@client), local: true, method: :patch) do |f| %>
+  <%= render 'shared/error_messages',  object: @client %>
+
+  <%= f.label :client_name, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :client_name, class: "form-control" %>
+
+  <%= f.label :client_email, class: "label-#{yield(:class_text)}" %>
+  <%= f.email_field :client_email, class: "form-control" %>
+
+  <%= f.label :nursing_number, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :nursing_number, class: "form-control" %>
+  
+  <%= f.label :date_of_day, class: "label-#{yield(:class_text)}" %>
+  <%= f.label :date_of_day_monday, class: "label-#{yield(:class_text)}" %>
+  <%= f.check_box :date_of_day_monday, {}, "月", "" %>
+  
+  <%= f.label :date_of_day_tuesday, class: "label-#{yield(:class_text)}" %>
+  <%= f.check_box :date_of_day_tuesday, {}, "火", "" %>
+  
+  <%= f.label :date_of_day_wednesday, class: "label-#{yield(:class_text)}" %>
+  <%= f.check_box :date_of_day_wednesday, {}, "水", "" %>
+  
+  <%= f.label :date_of_day_thursday, class: "label-#{yield(:class_text)}" %>
+  <%= f.check_box :date_of_day_thursday, {}, "木", "" %>
+  
+  <%= f.label :date_of_day_friday, class: "label-#{yield(:class_text)}" %>
+  <%= f.check_box :date_of_day_friday, {}, "金", "" %>
+  
+  <%= f.label :date_of_day_saturday, class: "label-#{yield(:class_text)}" %>
+  <%= f.check_box :date_of_day_saturday, {}, "土", "" %>
+  
+  <%= f.label :date_of_day_sunday, class: "label-#{yield(:class_text)}" %>
+  <%= f.check_box :date_of_day_sunday, {}, "日", "" %>
+  
+  
+  
+  <%= f.submit :編集する, class: "btn btn-primary btn-block btn- active btn-#{yield(:class_text)}" %>
+<% end %>
