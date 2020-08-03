@@ -42,19 +42,19 @@ Staff.create!(name: "介護職員2",
              
                
 Client.create!(client_name: "よしこ",
-               client_email: "0471-33333",
+               telephone_number: "0471-33333",
                nursing_number: "要介護2",
                date_of_day: "毎日"
                )
                
 Client.create!(client_name: "近藤",
-               client_email: "0471999",
+               telephone_number: "0471999",
                nursing_number: "要介護1",
                date_of_day: "毎日"
                )
                
 Client.create!(client_name: "すがはら",
-               client_email: "0471999",
+               telephone_number: "0471999",
                nursing_number: "要介護5",
                date_of_day: "毎日"
                )                  

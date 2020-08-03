@@ -5,13 +5,14 @@
   <%= f.label :client_name, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :client_name, class: "form-control" %>
 
-  <%= f.label :client_email, class: "label-#{yield(:class_text)}" %>
-  <%= f.email_field :client_email, class: "form-control" %>
+  <%= f.label :telephone_number, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :telephone_number, class: "form-control" %>
 
-  <%= f.label :nursing_number, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :nursing_number, class: "form-control" %>
   
-  <%= f.label :date_of_day, class: "label-#{yield(:class_text)}" %>
+  <%= f.label :介護度, class: "label-#{yield(:class_text)}" %>
+  <%= f.select :nursing_number,[["要支援1", "要支援1"], ["要支援2", "要支援2"], ["要介護1", "要介護1"], ["要介護2", "要介護2"], ["要介護3", "要介護3"], ["要介護4", "要介護4"], ["要介護5", "要介護5"]], class: "form-control" %>
+  
+  <br><%= f.label :date_of_day, class: "label-#{yield(:class_text)}" %>
   <%= f.label :date_of_day_monday, class: "label-#{yield(:class_text)}" %>
   <%= f.check_box :date_of_day_monday, {}, "月", "" %>
   
@@ -32,6 +33,9 @@
   
   <%= f.label :date_of_day_sunday, class: "label-#{yield(:class_text)}" %>
   <%= f.check_box :date_of_day_sunday, {}, "日", "" %>
+  
+  <br><%= f.label :client_birthday, class: "label-#{yield(:class_text)}" %>
+  <%= f.date_field :client_birthday, class: "form-control" %>
   
   
   

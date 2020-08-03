@@ -56,7 +56,7 @@ class StaffsController < ApplicationController
   end
 
   def create
-    @staff = User.new(user_params)
+    @staff = Staff.new(user_params)
     if @staff.save
       log_in @staff
       flash[:success] = '新規作成に成功しました。'

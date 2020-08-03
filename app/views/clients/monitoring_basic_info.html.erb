@@ -1,5 +1,22 @@
-<h1>利用者情報報告書</h1>
-  <%= form_with(model: @client, url: update_monitoring_basic_info_client_path(@client), method: :patch, local: true) do |f| %>
-    <p>利用者名: <%= @client.client_name %>様の令和 年 月の利用者状況をご報告いたします。</p>
-  <% end %>  
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-client">
+  <h1>利用者情報報告書</h1>
+    <%= form_with(model: @client, url: update_monitoring_basic_info_client_path(@client), method: :patch, local: true) do |f| %>
+      <p><span class="under">利用者名: <%= @client.client_name %>様の令和
+      <%= f.number_field :monitoring_worked_on_year, class: "hoge", min: 1, max: 99, size: 1 %>年
+      <%= f.number_field :monitoring_worked_on_month, class: "hoge", min: 1, max: 12, size: 1 %>月
+      の利用者の状況をご報告いたします。
+      </span></p>
+      <%= f.label :monitoring_needs, class: "label-#{yield(:class_text)}" %>
+      <br><%= f.text_area :monitoring_needs, class: "hoge", size: "80x10" %>
+      
+      <%= f.label :monitoring_short_run_target, class: "label-#{yield(:class_text)}" %>
+      <br><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "80x10" %>
+      
+      <%= f.label :monitoring_service_adl, class: "label-#{yield(:class_text)}" %>
+     
+    <% end %>  
+  </table>  
+</div>            
 
+        

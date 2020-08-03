@@ -1,0 +1,2 @@
+class UseTime < ApplicationRecord
+end

@@ -44,7 +44,7 @@ ja:
           medicine: 薬
           food: 食事量
           client_name: 利用者名
-          client_email: ご連絡先
+          client_email: メールアドレス
           nursing_number: 要介護
           date_of_day: 利用日
           date_of_day_monday: 月
@@ -54,4 +54,6 @@ ja:
           date_of_day_friday: 金
           date_of_day_saturday: 土
           date_of_day_sunday: 日
+          telephone_number: ご連絡先
+          
           

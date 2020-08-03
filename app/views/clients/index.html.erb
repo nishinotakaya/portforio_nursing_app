@@ -9,6 +9,7 @@
       <td>連絡先</td>
       <td>介護度</td>
       <td>利用日</td>
+      <td>生年月日</td>
     </tr>
   </thead>
   
@@ -18,8 +19,8 @@
       <tr>
         <td><%= link_to "利用者情報編集", edit_basic_info_client_path(client) %></td>
         <td></td>
-        <td><%= client.client_name %></td>
-        <td><%= client.client_email %></td>
+        <td><%= client.client_name %>様</td>
+        <td><%= client.telephone_number %></td>
         <td><%= client.nursing_number %></td>
         <td><%= client.date_of_day_monday %>
             <%= client.date_of_day_tuesday %>
@@ -28,9 +29,11 @@
             <%= client.date_of_day_friday %>
             <%= client.date_of_day_saturday %>
             <%= client.date_of_day_sunday %></td>
+        <td><%= client.client_birthday.strftime("%F")if client.client_birthday.present? %></td>    
         <td><%= link_to "モニタリング", monitoring_basic_info_client_path(client) %></td>
       </tr>
-    <% end %>  
+    <% end %>
+    <%= link_to "利用者追加", new_client_path, class: "btn btn-success" %>
   </tbody>
 </table>  
         

@@ -50,9 +50,13 @@
         patch 'update_basic_info'
         get 'monitoring_basic_info'
         patch 'update_monitoring_basic_info'
-      end  
-       
-    
+      end
+      
+      resources :use_time, only: :update do #利用時間
+        member do #idが付く！memberは特定のデータにアクションを利用する
+          
+        end
+      end    
     end
     
       

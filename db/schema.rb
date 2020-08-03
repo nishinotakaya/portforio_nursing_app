@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200731105442) do
+ActiveRecord::Schema.define(version: 20200803102609) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20200731105442) do
   create_table "clients", force: :cascade do |t|
     t.string "client_name"
     t.string "client_email"
+    t.integer "telephone_number"
     t.string "nursing_number"
     t.string "date_of_day"
     t.string "date_of_day_monday"
@@ -58,8 +59,53 @@ ActiveRecord::Schema.define(version: 20200731105442) do
     t.boolean "bath"
     t.boolean "medicine"
     t.integer "food"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "client_birthday"
+    t.datetime "monitoring_worked_on_year"
+    t.datetime "monitoring_worked_on_month"
+    t.string "monitoring_needs"
+    t.string "monitoring_short_run_target"
+    t.string "monitoring_service_adl"
+    t.string "monitoring_exchange"
+    t.string "monitoring_exchange_yes"
+    t.string "monitoring_exchange_so_yes"
+    t.string "monitoring_exchange_so_no"
+    t.string "monitoring_exchange_no"
+    t.string "monitoring_go_to_home"
+    t.string "monitoring_go_to_home_yes"
+    t.string "monitoring_go_to_home_no"
+    t.string "monitoring_go_to_home_no_reason"
+    t.string "monitoring_walking"
+    t.string "monitoring_eating"
+    t.string "monitoring_eating_yes_self_support"
+    t.string "monitoring_eating_so_no_self_support"
+    t.string "monitoring_eating_no_self_support"
+    t.string "monitoring_situation_of_participation"
+    t.string "monitoring_situation_of_participation_yes"
+    t.string "monitoring_situation_of_participation_so_yes"
+    t.string "monitoring_situation_of_participation_so_no"
+    t.string "monitoring_both"
+    t.string "monitoring_both_yes"
+    t.string "monitoring_both_so_yes"
+    t.string "monitoring_both_no"
+    t.string "monitoring_both_skin_trouble"
+    t.string "monitoring_changing_clothes"
+    t.string "monitoring_changing_clothes_yes"
+    t.string "monitoring_changing_clothes_so_yes"
+    t.string "monitoring_changing_clothes_no"
+    t.string "monitoring_community"
+    t.string "monitoring_community_yes"
+    t.string "monitoring_community_content"
+    t.string "monitoring_community_no"
+    t.string "monitoring_community_nothing"
+    t.string "monitoring_situation_dey"
+    t.string "monitoring_situation_dey_yes"
+    t.string "monitoring_situation_dey_no"
+    t.string "monitoring_situation_dey_reason"
+    t.string "monitoring_attention"
+    t.string "monitoring_service_need"
+    t.string "monitoring_service_need_no"
+    t.string "monitoring_service_need_yes"
+    t.string "monitoring_service_need_yes_reason"
   end
 
   create_table "offices", force: :cascade do |t|
@@ -93,6 +139,13 @@ ActiveRecord::Schema.define(version: 20200731105442) do
     t.boolean "counselor", default: false
     t.boolean "nursing_care_staff", default: false
     t.index ["email"], name: "index_staffs_on_email", unique: true
+  end
+
+  create_table "use_times", force: :cascade do |t|
+    t.date "use_worked_on"
+    t.date "use_worked_on_month"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
