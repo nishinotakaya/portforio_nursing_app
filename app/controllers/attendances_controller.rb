@@ -91,7 +91,7 @@ class AttendancesController < ApplicationController
   
   def update_superior_announcement
     ActiveRecord::Base.transaction do
-      @user = User.find(params[:staff_id])
+      @staff = Staff.find(params[:staff_id])
       n1 = 0
       n2 = 0
       n3 = 0

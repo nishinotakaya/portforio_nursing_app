@@ -67,3 +67,11 @@ ja:
           monitoring_go_to_home_yes: 問題なし
           monitoring_go_to_home_no: 問題あり
           monitoring_go_to_home_no_reason: 問題あり理由
+          monitoring_walking: ［歩行］
+          monitoring_walking_yes_self_support: 自立
+          monitoring_walking_so_yes_self_support: 見守り
+          monitoring_walking_so_no_self_support: 一部介助
+          monitoring_walking_no_self_support: 介助
+          monitoring_walking_no_self_support_car_chaice: 車いす
+          
+          
