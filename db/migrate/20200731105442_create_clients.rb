@@ -37,11 +37,11 @@ class CreateClients < ActiveRecord::Migration[5.1]
       t.string :monitoring_go_to_home_no #問題あり
       t.string :monitoring_go_to_home_no_reason #問題あり理由
       t.string :monitoring_walking #歩行
-      t.string :monitoring_walking #自立
-      t.string :monitoring_walking #見守り
-      t.string :monitoring_walking #一部介助
-      t.string :monitoring_walking #介助
-      t.string :monitoring_walking #車いす
+      t.string :monitoring_walking_yes_self_support #自立
+      t.string :monitoring_walking_so_yes_self_support #見守り
+      t.string :monitoring_walking_so_no_self_support#一部介助
+      t.string :monitoring_walking_no_self_support #介助
+      t.string :monitoring_walking_no_self_support_car_chaice #車いす
       t.string :monitoring_eating #食事
       t.string :monitoring_eating_yes_self_support #自立
       t.string :monitoring_eating_so_no_self_support #一部介助

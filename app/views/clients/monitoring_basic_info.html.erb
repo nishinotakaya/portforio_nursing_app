@@ -1,22 +1,42 @@
-<div>
-  <table class="table table-bordered table-condensed table-hover" id="table-client">
-  <h1>利用者情報報告書</h1>
-    <%= form_with(model: @client, url: update_monitoring_basic_info_client_path(@client), method: :patch, local: true) do |f| %>
+  <div class= "center">
+    <table class="table table-bordered table-condensed table-hover" id="table-client">
+        <h1>利用者情報報告書</h1>
+      <%= form_with(model: @client, url: update_monitoring_basic_info_client_path(@client), method: :patch, local: true) do |f| %>
       <p><span class="under">利用者名: <%= @client.client_name %>様の令和
-      <%= f.number_field :monitoring_worked_on_year, class: "hoge", min: 1, max: 99, size: 1 %>年
-      <%= f.number_field :monitoring_worked_on_month, class: "hoge", min: 1, max: 12, size: 1 %>月
-      の利用者の状況をご報告いたします。
-      </span></p>
-      <%= f.label :monitoring_needs, class: "label-#{yield(:class_text)}" %>
-      <br><%= f.text_area :monitoring_needs, class: "hoge", size: "80x10" %>
+        <%= f.number_field :monitoring_worked_on_year, class: "hoge", min: 1, max: 99, size: 1 %>年
+        <%= f.number_field :monitoring_worked_on_month, class: "hoge", min: 1, max: 12, size: 1 %>月
+        の利用者の状況をご報告いたします。
+        </span></p>
       
-      <%= f.label :monitoring_short_run_target, class: "label-#{yield(:class_text)}" %>
-      <br><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "80x10" %>
+        <%= f.label :monitoring_needs, class: "label-#{yield(:class_text)}" %>
+        <br><%= f.text_area :monitoring_needs, class: "hoge", size: "80x10" %></br>
       
-      <%= f.label :monitoring_service_adl, class: "label-#{yield(:class_text)}" %>
+        <br><%= f.label :monitoring_short_run_target, class: "label-#{yield(:class_text)}" %>
+        <br><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "80x10" %></br>
+      
+        <br><%= f.label :monitoring_service_adl, class: "label-#{yield(:class_text)}" %></br>
+        
+          
+        <td align="left"><%= f.label :monitoring_exchange, class: "label-#{yield(:class_text)}" %>
+        &ensp;<%= f.check_box :monitoring_exchange_yes, {}, "保たれている", "" %>
+        <%= f.label :monitoring_exchange_yes, class: "label-#{yield(:class_text)}" %>
+        
+        &ensp;<%= f.check_box :monitoring_exchange_so_yes, {}, "ほぼ保たれている", "" %>
+        <%= f.label :monitoring_exchange_so_yes, class: "label-#{yield(:class_text)}" %>
+        
+        &ensp;<%= f.check_box :monitoring_exchange_so_no, {}, "ほぼ保たれていない", "" %>
+        <%= f.label :monitoring_exchange_so_no, class: "label-#{yield(:class_text)}" %>
+        
+        &ensp;<%= f.check_box :monitoring_exchange_no, {}, "保たれていない", "" %>
+        <%= f.label :monitoring_exchange_no, class: "label-#{yield(:class_text)}" %>
+        
+        </td>
+        
+      <% end %>  
+    </table>  
+  </div>            
+      
+      
      
-    <% end %>  
-  </table>  
-</div>            
 
         
