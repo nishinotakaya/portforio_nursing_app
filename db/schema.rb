@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20200803102609) do
     t.string "monitoring_situation_of_participation_yes"
     t.string "monitoring_situation_of_participation_so_yes"
     t.string "monitoring_situation_of_participation_so_no"
+    t.string "monitoring_situation_of_participation_no"
     t.string "monitoring_both"
     t.string "monitoring_both_yes"
     t.string "monitoring_both_so_yes"

@@ -73,5 +73,36 @@ ja:
           monitoring_walking_so_no_self_support: 一部介助
           monitoring_walking_no_self_support: 介助
           monitoring_walking_no_self_support_car_chaice: 車いす
-          
+          monitoring_eating: 食事
+          monitoring_eating_yes_self_support: 自立
+          monitoring_eating_so_no_self_support: 一部介助
+          monitoring_eating_no_self_support: 全介助
+          monitoring_situation_of_participation: 参加状況
+          monitoring_situation_of_participation_yes: 毎回参加
+          monitoring_situation_of_participation_so_yes: ほぼ毎回参加
+          monitoring_situation_of_participation_so_no: 時々参加
+          monitoring_situation_of_participation_no: あまりしない
+          monitoring_both: 入浴
+          monitoring_both_yes: 自立
+          monitoring_both_so_yes: 一部介助
+          monitoring_both_no: 全介助
+          monitoring_both_skin_trouble: 皮膚トラブル
+          monitoring_changing_clothes: 更衣
+          monitoring_changing_clothes_yes: 自立
+          monitoring_changing_clothes_so_yes: 一部自立
+          monitoring_changing_clothes_no: 全介助
+          monitoring_community: 社会参加
+          monitoring_community_yes: 社会参加している
+          monitoring_community_content: 社会参加内容
+          monitoring_community_no: 社会参加していない
+          monitoring_community_nothing: 実施なし
+          monitoring_situation_dey: 利用状況
+          monitoring_situation_dey_yes: 休みなく利用
+          monitoring_situation_dey_no: 休んだ日がある
+          monitoring_situation_dey_reason: 休んだ理由
+          monitoring_attention: 日常生活上の留意点 及び 介護の工夫など(総合的評価)
+          monitoring_service_need: サービス変更の必要性
+          monitoring_service_need_no: 必要なし
+          monitoring_service_need_yes: 必要あり
+          monitoring_service_need_yes_reason: 必要あり理由
           

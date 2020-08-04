@@ -50,11 +50,11 @@ class CreateClients < ActiveRecord::Migration[5.1]
       t.string :monitoring_situation_of_participation_yes #毎回実施
       t.string :monitoring_situation_of_participation_so_yes #ほぼ毎回実施
       t.string :monitoring_situation_of_participation_so_no #時々参加
-      t.string :monitoring_situation_of_participation #あまりしない
+      t.string :monitoring_situation_of_participation_no #あまりしない
       t.string :monitoring_both #入浴
       t.string :monitoring_both_yes #自立
       t.string :monitoring_both_so_yes #一部介助
-      t.string :monitoring_both_no #全解除
+      t.string :monitoring_both_no #全介助
       t.string :monitoring_both_skin_trouble #皮膚トラブル
       t.string :monitoring_changing_clothes #更衣
       t.string :monitoring_changing_clothes_yes #自立

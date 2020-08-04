@@ -16,20 +16,49 @@
       
         <br><%= f.label :monitoring_service_adl, class: "label-#{yield(:class_text)}" %></br>
         
-          
+        <tr>  
         <td align="left"><%= f.label :monitoring_exchange, class: "label-#{yield(:class_text)}" %>
-        &ensp;<%= f.check_box :monitoring_exchange_yes, {}, "保たれている", "" %>
-        <%= f.label :monitoring_exchange_yes, class: "label-#{yield(:class_text)}" %>
-        
-        &ensp;<%= f.check_box :monitoring_exchange_so_yes, {}, "ほぼ保たれている", "" %>
-        <%= f.label :monitoring_exchange_so_yes, class: "label-#{yield(:class_text)}" %>
-        
-        &ensp;<%= f.check_box :monitoring_exchange_so_no, {}, "ほぼ保たれていない", "" %>
-        <%= f.label :monitoring_exchange_so_no, class: "label-#{yield(:class_text)}" %>
-        
-        &ensp;<%= f.check_box :monitoring_exchange_no, {}, "保たれていない", "" %>
-        <%= f.label :monitoring_exchange_no, class: "label-#{yield(:class_text)}" %>
-        
+          &ensp;<%= f.check_box :monitoring_exchange_yes, {}, "保たれている", "" %>
+          <%= f.label :monitoring_exchange_yes, class: "label-#{yield(:class_text)}" %>
+          
+          &ensp;<%= f.check_box :monitoring_exchange_so_yes, {}, "ほぼ保たれている", "" %>
+          <%= f.label :monitoring_exchange_so_yes, class: "label-#{yield(:class_text)}" %>
+          
+          &ensp;<%= f.check_box :monitoring_exchange_so_no, {}, "ほぼ保たれていない", "" %>
+          <%= f.label :monitoring_exchange_so_no, class: "label-#{yield(:class_text)}" %>
+          
+          &ensp;<%= f.check_box :monitoring_exchange_no, {}, "保たれていない", "" %>
+          <%= f.label :monitoring_exchange_no, class: "label-#{yield(:class_text)}" %>
+          
+          
+          
+          <br><%= f.label :monitoring_go_to_home, class: "label-#{yield(:class_text)}" %>
+          &ensp;<%= f.check_box :monitoring_go_to_home_yes, {}, "問題なし", "" %>
+          <%= f.label:monitoring_go_to_home_yes, class: "label-#{yield(:class_text)}" %>
+          
+          &ensp;<%= f.check_box :monitoring_go_to_home_no, {}, "問題あり", "" %>
+          <%= f.label :monitoring_go_to_home_no, class: "label-#{yield(:class_text)}" %></br>
+          
+          <%= f.label :monitoring_go_to_home_no_reason, class: "label-#{yield(:class_text)}" %>
+          <%= f.text_field :monitoring_go_to_home_no_reason, class: "form-control" %>
+          
+          <br><%= f.label :monitoring_walking, class: "label-#{yield(:class_text)}" %>
+          &ensp;<%= f.check_box :monitoring_walking_yes_self_support, {}, "自立", "" %>
+          <%= f.label :monitoring_walking_yes_self_support, class: "label-#{yield(:class_text)}" %>
+          
+          &ensp;<%= f.check_box :monitoring_walking_so_yes_self_support, {}, "見守り", "" %>
+          <%= f.label :monitoring_walking_so_yes_self_support, class: "label-#{yield(:class_text)}" %>
+           
+          &ensp;<%= f.check_box :monitoring_walking_so_no_self_support, {}, "一部介助", "" %>
+          <%= f.label :monitoring_walking_so_no_self_support, class: "label-#{yield(:class_text)}" %>
+           
+          &ensp;<%= f.check_box :monitoring_walking_no_self_support, {}, "介助", "" %>
+          <%= f.label :monitoring_walking_no_self_support, class: "label-#{yield(:class_text)}" %>
+           
+          &ensp;<%= f.check_box :monitoring_walking_no_self_support_car_chaice, {}, "見守り", "" %>
+          <%= f.label :monitoring_walking_no_self_support_car_chaice, class: "label-#{yield(:class_text)}" %>
+           
+           
         </td>
         
       <% end %>  
