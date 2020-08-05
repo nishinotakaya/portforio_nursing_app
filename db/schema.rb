@@ -12,32 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20200803102609) do
 
-  create_table "attendances", force: :cascade do |t|
-    t.date "worked_on"
-    t.datetime "started_at"
-    t.datetime "finished_at"
-    t.datetime "before_started_at"
-    t.datetime "before_finished_at"
-    t.datetime "edit_started_at"
-    t.datetime "edit_finished_at"
-    t.date "good_day"
-    t.datetime "attended_time"
-    t.string "note"
-    t.datetime "plan_finished_at"
-    t.datetime "over_time"
-    t.boolean "tomorrow"
-    t.string "business_processing_contents"
-    t.boolean "change"
-    t.string "instructor_confirmation"
-    t.string "overtime_status"
-    t.string "change_status"
-    t.string "staff_one_month_attendance_status"
-    t.integer "staff_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["staff_id"], name: "index_attendances_on_staff_id"
-  end
-
   create_table "clients", force: :cascade do |t|
     t.string "client_name"
     t.string "client_email"
@@ -52,26 +26,15 @@ ActiveRecord::Schema.define(version: 20200803102609) do
     t.string "monitoring_service_adl"
     t.string "monitoring_exchange"
     t.string "monitoring_go_to_home"
-    t.string "monitoring_go_to_home_no_reason"
     t.string "monitoring_walking"
     t.string "monitoring_eating"
     t.string "monitoring_situation_of_participation"
     t.string "monitoring_both"
-    t.string "monitoring_both_skin_trouble"
     t.string "monitoring_changing_clothes"
     t.string "monitoring_community"
-    t.string "monitoring_community_content"
     t.string "monitoring_situation_dey"
     t.string "monitoring_attention"
     t.string "monitoring_service_need"
-  end
-
-  create_table "offices", force: :cascade do |t|
-    t.string "office_number"
-    t.string "office_name"
-    t.string "office_modality"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "staffs", force: :cascade do |t|

@@ -5,9 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "トップへ", root_path %></li>
         <% if logged_in? %>
-          <% if current_staff.admin? %>
           <li><%= link_to "利用者ー覧", clients_path %></li>
-          <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               アカウント<b class="caret"></b>
@@ -17,7 +15,6 @@
               <% else %>
               <li><%= link_to "プロフィール", current_staff %></li>
               <% end %>
-              <li><%= link_to "設定",  edit_staff_path(current_staff) %></li>
               <li class="divider"></li>
               <li>
                <%= link_to "ログアウト", logout_path, method: :delete %>

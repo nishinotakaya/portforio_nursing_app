@@ -13,39 +13,10 @@ class StaffsController < ApplicationController
       @staffs = @staffs.search(params[:search])
     end
   end
-   
- 
-    
-  
-  def import
-    if params[:file].blank?
-      flash[:warning] = "CSVファイルが選択されていません。"
-    else  
-    # fileはtmpに自動で一時保存される
-      Staff.import(params[:file])
-      flash[:success] = "ユーザー情報をインポートしました。"  
-      redirect_to users_url
-    end
-  end
   
  
  
   def show
-    @worked_sum = @attendances.where.not(started_at: nil).count
-    @overwork_count = Attendance.where(overtime_status: "申請中", instructor_confirmation: @staff.name).where.not(id: @staff.id).count #残業申請のお知らせの件数
-    @overchange_count = Attendance.where(change_status: "申請中", instructor_confirmation: @staff.name).where.not(id: @staff.id).count #勤怠編集のお知らせ件数
-    @user_one_month_attendance_count = Attendance.where(user_one_month_attendance_status: "申請中", instructor_confirmation: @staff.name).where.not(id: @staff.id).count #所属長承認申請のお知らせ件数
-    @superior = Staff.where(superior: true).where.not(id: @staff.id)
-    @attendance_first_day = @staff.attendances.find_by(worked_on: @first_day) #@staffのattendancesモデルの中から日付の月初日を入れてあげる。
-    
-    respond_to do |format|
-      format.html do
-          #html用の処理を書く
-      end 
-      format.csv do
-        send_data render_to_string, filename: "(勤怠情報).csv", type: :csv
-      end
-    end
   end
   
     
@@ -95,24 +66,8 @@ class StaffsController < ApplicationController
     end
     redirect_to users_url
   end
+
   
-  def working_employee_list
-    @staffs = Staff.all.includes(:attendances)
-  end 
-  
-  #勤怠ログ
-  def attendance_log
-    @staff = Staff.find(params[:id])
-    #最初に条件を書いて、条件がtrueだったらうえfalseは下
-    params["select_year(1i)"].present? ? @year = Date.new(params["select_year(1i)"].to_i, params["select_year(2i)"].to_i, 1)
-                                        : @year = Date.today
-    params["select_month(2i)"].present? ? @month = Date.new(params["select_month(1i)"].to_i, params["select_month(2i)"].to_i, 1)
-                                        : @month = Date.today
-    #@staff(自分)のattendance、@year(年）@month(月) @month.to_s[5..6]は6文字目、7文字目抜き取る
-    @attendances = @staff.attendances.where(change_status: "承認").where('cast(worked_on as text) LIKE ?', "%#{@year.year}-#{@month.to_s[5..6]}%").order(:worked_on) 
-                                 
-                                      
-  end
   
   
   

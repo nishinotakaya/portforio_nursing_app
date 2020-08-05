@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(staff) : forget(staff)
       # adminはboolean型なので?の聞き方！
       if staff.admin?
-        redirect_to staffs_url
+        redirect_to clients_url
       else
         # 前に戻れ！
         redirect_back_or staff

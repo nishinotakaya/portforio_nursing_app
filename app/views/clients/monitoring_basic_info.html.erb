@@ -9,109 +9,109 @@
     </span></p>
   
     <%= f.label :monitoring_needs, class: "label-#{yield(:class_text)}" %>
-    <br><%= f.text_area :monitoring_needs, class: "hoge", size: "100x10" %></br>
+    <br><%= f.text_area :monitoring_needs, class: "hoge", size: "50x7" %></br>
   
     <br><%= f.label :monitoring_short_run_target, class: "label-#{yield(:class_text)}" %>
-    <br><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "100x10" %></br>
+    <br><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "50x7" %></br>
   
     <br><%= f.label :monitoring_service_adl, class: "label-#{yield(:class_text)}" %></br>
     
     <tr>  
       <td align="center"><%= f.label :monitoring_exchange, class: "label-#{yield(:class_text)}" %>
-      <br><%= f.check_box :monitoring_exchange, {multiple: true}, "保たれている", nil %>
+      <br><%= f.radio_button :monitoring_exchange, :保たれている,checked: "checked" %>
       <%= f.label "保たれている", class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :monitoring_exchange, {multiple: true}, "ほぼ保たれている", nil %>
+      <%= f.radio_button :monitoring_exchange, :保たれている, checked: "checked" %>
       <%= f.label "ほぼ保たれている", class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :monitoring_exchange, {multiple: true}, "あまり保たれていない", nil %>
+       <%= f.radio_button :monitoring_exchange, :ほぼ保たれている, checked: "checked" %>
       <%= f.label "あまり保たれていない", class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :monitoring_exchange, {multiple: true}, "保たれていない", nil %>
+      <%= f.radio_button :monitoring_exchange, :保たれていない, checked: "checked" %>
       <%= f.label "保たれていない", class: "label-#{yield(:class_text)}" %>
       
         
         <!--送迎-->
         <br><%= f.label :monitoring_go_to_home, class: "label-#{yield(:class_text)}" %></br>
-            <%= f.check_box :monitoring_go_to_home, {multiple: true}, "問題あり", nil %>
+            <%= f.radio_button :monitoring_go_to_home, :問題あり, checked: "checked" %>
             <%= f.label "問題あり", class: "label-#{yield(:class_text)}" %>
-            <%= f.check_box :monitoring_go_to_home, {multiple: true}, "問題なし", nil %>
+            <%= f.radio_button :monitoring_go_to_home, :問題なし, checked: "checked" %>
             <%= f.label "問題なし", class: "label-#{yield(:class_text)}" %>
         <br><%= f.label "問題あり理由", class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :monitoring_go_to_home, class: "form-control" %>
+        <br><%= f.text_area :monitoring_go_to_home, class: "hoge", size: "40x2" %>
         
         
         <!--歩行-->
         <br><%= f.label :monitoring_walking, class: "label-#{yield(:class_text)}" %>
-        <br><%= f.check_box :monitoring_walking, {multiple: true}, "自立", nil %>
+        <br><%= f.radio_button :monitoring_walking, :自立, checked: "checked" %>
       <%= f.label "自立", class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :monitoring_walking, {multiple: true}, "見守り", nil %>
+      <%= f.radio_button :monitoring_walking, :見守り, checked: "checked" %>
       <%= f.label "見守り", class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :monitoring_walking, {multiple: true}, "一部介助", nil %>
+      <%= f.radio_button :monitoring_walking, :一部介助, checked: "checked" %>
       <%= f.label "一部介助", class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :monitoring_walking, {multiple: true}, "介助", nil %>
+      <%= f.radio_button :monitoring_walking, :介助, checked: "checked" %>
       <%= f.label "介助", class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :monitoring_walking, {multiple: true}, "車いす", nil %>
+      <%= f.radio_button :monitoring_walking, :車いす, checked: "checked" %>
       <%= f.label "車いす", class: "label-#{yield(:class_text)}" %>
          
          <!--食事-->
         <br><%= f.label :monitoring_eating, class: "label-#{yield(:class_text)}" %>
-        <br><%= f.check_box :monitoring_eating, {multiple: true}, "自立", nil %>
+        <br><%= f.radio_button  :monitoring_eating, :自立, checked: "checked" %>
       <%= f.label "自立", class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :monitoring_eating, {multiple: true}, "一部介助", nil %>
-      <%= f.label "見守り", class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :monitoring_eating, {multiple: true}, "全介助", nil %>
+      <%= f.radio_button  :monitoring_eating, :一部介助, checked: "checked" %>
+      <%= f.label "一部介助", class: "label-#{yield(:class_text)}" %>
+      <%= f.radio_button  :monitoring_eating, :全介助, checked: "checked" %>
       <%= f.label "全介助", class: "label-#{yield(:class_text)}" %>
         
         <!--参加状況-->
         <br><%= f.label :monitoring_situation_of_participation, class: "label-#{yield(:class_text)}" %>
-        <br><%= f.check_box :monitoring_situation_of_participation, {multiple: true}, "毎回実施", nil %>
+        <br><%= f.radio_button  :monitoring_situation_of_participation, :毎回実施, checked: "checked" %>
         <%= f.label "毎回実施", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_situation_of_participation, {multiple: true}, "ほぼ毎回実施", nil %>
+        <%= f.radio_button  :monitoring_situation_of_participation, :ほぼ毎回実施, checked: "checked" %>
         <%= f.label "ほぼ毎回実施", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_situation_of_participation, {multiple: true}, "時々実施", nil %>
+        <%= f.radio_button  :monitoring_situation_of_participation, :時々実施, checked: "checked" %>
         <%= f.label "時々実施", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_situation_of_participation, {multiple: true}, "あまりしない", nil %>
+        <%= f.radio_button  :monitoring_situation_of_participation, :あまりしない, checked: "checked" %>
         <%= f.label "あまりしない", class: "label-#{yield(:class_text)}" %>
         
         <!--入浴-->
         <br><%= f.label :monitoring_both, class: "label-#{yield(:class_text)}" %>
-        <br><%= f.check_box :monitoring_both, {multiple: true}, "自立", nil %>
+        <br><%= f.radio_button :monitoring_both, :自立, checked: "checked" %>
         <%= f.label "自立", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_both, {multiple: true}, "一部介助", nil %>
+        <%= f.radio_button :monitoring_both, :一部介助, checked: "checked" %>
         <%= f.label "一部介助", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_both, {multiple: true}, "全介助", nil %>
+        <%= f.radio_button :monitoring_both, :全介助, checked: "checked" %>
         <%= f.label "全介助", class: "label-#{yield(:class_text)}" %>
         
         <br><%= f.label "皮膚トラブル" , class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :monitoring_both_skin_trouble, class: "form-control" %></br>
+        <br><%= f.text_area :monitoring_both, class: "hoge", size: "40x3" %>
         
         <!--更衣-->
-         <%= f.label :monitoring_changing_clothes, class: "label-#{yield(:class_text)}" %>
-         <br><%= f.check_box :monitoring_changing_clothes, {multiple: true}, "自立", nil %>
+         <br><%= f.label :monitoring_changing_clothes, class: "label-#{yield(:class_text)}" %>
+         <br><%= f.radio_button :monitoring_changing_clothes, :自立, checked: "checked" %>
         <%= f.label "自立", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_changing_clothes, {multiple: true}, "一部介助", nil %>
+        <%= f.radio_button :monitoring_changing_clothes, :一部介助, checked: "checked" %>
         <%= f.label "一部介助", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_changing_clothes, {multiple: true}, "全介助", nil %>
+        <%= f.radio_button :monitoring_changing_clothes, :全介助, checked: "checked" %>
         <%= f.label "全介助", class: "label-#{yield(:class_text)}" %>
         
         <!--社会参加-->
         <br><%= f.label :monitoring_community, class: "label-#{yield(:class_text)}" %>
-        <br><%= f.check_box :monitoring_community, {multiple: true}, "参加している", nil %>
+        <br><%= f.radio_button :monitoring_community, :参加している, checked: "checked" %>
         <%= f.label "参加している", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_community, {multiple: true}, "参加していない", nil %>
+        <%= f.radio_button :monitoring_community, :参加していない, checked: "checked" %>
         <%= f.label "参加していない", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_community, {multiple: true}, "実施なし", nil %>
+       <%= f.radio_button :monitoring_community, :実施なし, checked: "checked" %>
         <%= f.label "実施なし", class: "label-#{yield(:class_text)}" %>
         
         <br><%= f.label "社会参加しているもの", class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :monitoring_community_content, class: "form-control" %>
+        <br><%= f.text_area :monitoring_community, class: "hoge", size: "40x3" %>
         
         <!--利用状況-->
         <br><%= f.label :monitoring_situation_dey, class: "label-#{yield(:class_text)}" %>
-        <br><%= f.check_box :monitoring_situation_dey, {multiple: true}, "休みなく利用", nil %>
+        <br><%= f.radio_button :monitoring_situation_dey, :休みなく利用, checked: "checked" %>
         <%= f.label "休みなく利用", class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :monitoring_situation_dey, {multiple: true}, "休んだ日がある", nil %>
+        <%= f.radio_button :monitoring_situation_dey, :休んだ日がある, checked: "checked" %>
         <%= f.label "休んだ日がある", class: "label-#{yield(:class_text)}" %>
         <br><%= f.label "休んだ日がある理由" , class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :monitoring_situation_dey, class: "form-control" %></br>
+        <br><%= f.text_area :monitoring_situation_dey, class: "hoge", size: "40x3" %>
         
       </td>
     </tr>
@@ -120,19 +120,19 @@
         <td>
           <br><%= f.label :monitoring_attention, class: "label-#{yield(:class_text)}" %>
           <br>※ 上記の内容を詳しく 又は利用中の様子や気づいた点を記入
-          <br><%= f.text_area :monitoring_attention, class: "hoge", size: "100x10" %></br>
+          <br><%= f.text_area :monitoring_attention, class: "hoge", size: "50x10" %></br>
         </td>
         
       </tr>
         <td>
           <br><%= f.label :monitoring_service_need, class: "label-#{yield(:class_text)}" %>
           
-          <br><%= f.check_box :monitoring_service_need, {multiple: true}, "必要あり", nil %>
+          <br><%= f.radio_button :monitoring_service_need, :必要あり, checked: "checked" %>
               <%= f.label "必要あり", class: "label-#{yield(:class_text)}" %>
-              <%= f.check_box :monitoring_service_need, {multiple: true}, "必要なし", nil %>
+              <%= f.radio_button :monitoring_service_need, :必要なし, checked: "checked" %>
               <%= f.label "必要なし", class: "label-#{yield(:class_text)}" %>
           <br><%= f.label "必要あり理由", class: "label-#{yield(:class_text)}" %>
-              <%= f.text_field :monitoring_service_need, class: "form-control" %>
+              <br><%= f.text_area :monitoring_service_need, class: "hoge", size: "40x3" %>
           <br><%= f.submit "更新", class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
         </td>
       <% end %>  
