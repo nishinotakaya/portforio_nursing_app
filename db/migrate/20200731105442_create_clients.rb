@@ -6,14 +6,6 @@ class CreateClients < ActiveRecord::Migration[5.1]
       t.integer :telephone_number #電話番号
       t.string :nursing_number #要介護
       t.string :date_of_day #利用日
-      t.string :client_disorder #疾患
-      t.integer :temperature #来所時体温
-      t.integer :affter_temperature #帰宅前体温
-      t.integer :vital #血圧
-      t.integer :pulse #脈伯
-      t.boolean :bath #入浴
-      t.boolean :medicine #薬
-      t.integer :food #食事量
       t.datetime :client_birthday #生年月日
       t.string :monitoring_worked_on_year #モニタリング作成年
       t.string :monitoring_worked_on_month #モニタリング作成年

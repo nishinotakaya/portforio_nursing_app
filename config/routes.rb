@@ -52,7 +52,7 @@
         patch 'update_monitoring_basic_info'
       end
       
-      resources :use_time, only: :update do #利用時間
+      resources :use_time, only: :update do #モニタリング
         member do #idが付く！memberは特定のデータにアクションを利用する
           
         end
