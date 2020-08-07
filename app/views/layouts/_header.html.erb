@@ -7,16 +7,6 @@
         <% if logged_in? %>
           <li><%= link_to "利用者ー覧", clients_path %></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              アカウント<b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <% if current_staff.admin? %>
-              <% else %>
-              <li><%= link_to "プロフィール", current_staff %></li>
-              <% end %>
-              <li class="divider"></li>
-              <li>
                <%= link_to "ログアウト", logout_path, method: :delete %>
               </li>
             </ul>

@@ -47,14 +47,8 @@ ja:
           client_email: メールアドレス
           nursing_number: 要介護
           date_of_day: 利用日
-          date_of_day_monday: 月
-          date_of_day_tuesday: 火
-          date_of_day_wednesday: 水
-          date_of_day_thursday: 木
-          date_of_day_friday: 金
-          date_of_day_saturday: 土
-          date_of_day_sunday: 日
           telephone_number: ご連絡先
+        monitoring:
           monitoring_needs: 【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)】
           monitoring_short_run_target: 【居宅介護支援計画書の短期目標】
           monitoring_service_adl: 基本的サービスの状況(ADLを含む)

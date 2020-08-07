@@ -1,10 +1,12 @@
 <div class= "center">
   <table class="table table-bordered table-condensed table-hover" id="table-client">
+    <meta charset = " utf-8 " />
+    <%= link_to "PDF", client_monitoring_path(@client, format: "pdf") %>
     <h1>利用者情報報告書</h1>
-    <%= form_with(model: @client, url: update_monitoring_basic_info_client_path(@client), method: :patch, local: true) do |f| %>
+    <%= form_with( url:  create_monitoring_basic_info_client_monitoring_path(@client), local: true) do |f| %>
   <p><span class="under">利用者名: <%= @client.client_name %>様の令和
-    <%= f.number_field :monitoring_worked_on_year, class: "hoge", min: 1, max: 99, size: 1 %>年
-    <%= f.number_field :monitoring_worked_on_month, class: "hoge", min: 1, max: 12, size: 1 %>月
+    <%= f.date_select(:monitoring_worked_on_year, discard_month:true) %>年
+    <%= f.date_select(:monitoring_worked_on_month, discard_year:true, discard_day:true) %>
     の利用者の状況をご報告いたします。
     </span></p>
   
@@ -133,7 +135,10 @@
               <%= f.label "必要なし", class: "label-#{yield(:class_text)}" %>
           <br><%= f.label "必要あり理由", class: "label-#{yield(:class_text)}" %>
               <br><%= f.text_area :monitoring_service_need, class: "hoge", size: "40x3" %>
-          <br><%= f.submit "更新", class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+          <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
+              <%= f.check_box :check_monitoring, {}, "true", "false" %>
+          <br><%= f.submit "更新", class: "btn btn-primary " ,
+          data: { confirm: "更新してもよろしいでしょうか？" } %>
         </td>
       <% end %>  
     </table>  

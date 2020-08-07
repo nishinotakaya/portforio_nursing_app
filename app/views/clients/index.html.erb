@@ -1,39 +1,42 @@
 <h1>利用者一覧</h1>
 
-<table class="table table-bordered table-condensed table-hover" id="table-clients">
-  <thead>
-    <tr>
-      <th></th>
-      <th>利用者名</th>
-      <th>連絡先</th>
-      <th>介護度</th>
-      <th>利用日</th>
-      <th>生年月日</th>
-      <th>モニタリング(利用者状況報告書)</th>
-      <th>退所</th>
-    </tr>
-  </thead>
-  
-  
-  <tbody>
-    <% @clients.each do |client| %>
+<%= will_paginate %> 
+  <table class="table table-bordered table-condensed table-hover" id="table-clients">
+    <thead>
       <tr>
-        <td><%= link_to "利用者情報編集", edit_basic_info_client_path(client) %></td>
-        <td><%= client.client_name %>様</td>
-        <td><%= client.telephone_number %></td>
-        <td><%= client.nursing_number %></td>
-        <td><%= client.date_of_day %></td>
-        <td><%= client.client_birthday.strftime("%F")if client.client_birthday.present? %></td>
-        <td><%= link_to "モニタリング編集", monitoring_basic_info_client_path(client) %>
-            <br><%= link_to "モニタリング確認"  %></td>
-        <td><%= link_to "退所", client_path(client), method: :delete,
-                  data: { confirm: "削除してよろしいですか？" },
-                  class: "btn btn-danger" %>
-            </td>    
+        <th>本日利用チェック</th>
+        <th>日誌</th>
+        <th>利用者情報編集</th>
+        <th>利用者名</th>
+        <th>連絡先</th>
+        <th>介護度</th>
+        <th>利用日</th>
+        <th>生年月日</th>
+        <th>モニタリング(利用者状況報告書)</th>
+        <th>退所</th>
       </tr>
-    <% end %>
-    <%= link_to "利用者追加", new_client_path, class: "btn btn-success" %>
-  </tbody>
-</table>  
-        
+    </thead>
+    
+    <tbody>
+      <% @clients.each do |client| %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><%= link_to "利用者情報編集", edit_basic_info_client_path(client) %></td>
+          <td><%= client.client_name %>様</td>
+          <td><%= client.telephone_number %></td>
+          <td><%= client.nursing_number %></td>
+          <td><%= client.date_of_day %></td>
+          <td><%= client.client_birthday.strftime("%F")if client.client_birthday.present? %></td>
+          <td><%= link_to "利用者情報一覧",client_path(client) %></td>
+          <td><%= link_to "退所", client_path(client), method: :delete,
+                    data: { confirm: "削除してよろしいですか？" },
+                    class: "btn btn-danger" %></td>
+      <% end %>
+          </td>    
+        </tr>
+      <%= link_to "利用者追加", new_client_path, class: "btn btn-success" %>
+    </tbody>
+  </table>  
+ <%= will_paginate %>        
       

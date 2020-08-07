@@ -1,0 +1,35 @@
+<h1><%= @client.client_name %>様の個別記録</h1>
+<div>
+  <table class="table table-bordered table-condensed client-table">
+    <%= link_to "⇦先月 ", client_path(date: @first_day.prev_month), class: "btn btn-info" %>
+        
+    <%= link_to " 翌月⇨", client_path(date: @first_day.next_month), class: "btn btn-info" %>
+    <thead>
+    <tr>
+      <th>日付</th>
+      <th>送迎</th>
+      <th>入浴</th>
+      <th>食事量</th>
+      <th>バイタル</th>
+      <th>再チェック</th>
+      <th>口腔ケア</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @clients.each do |client| %>
+      <tr>
+        <td><%= l(client.monitoring.worked_on, format: :short) %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+      <% end %>
+  </table>
+  <tfoot>
+    <%= link_to "モニタリング",  monitoring_basic_info_client_monitoring_path(@client) %>
+  </tfoot>

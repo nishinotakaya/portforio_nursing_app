@@ -22,13 +22,13 @@
       member do
         get 'edit_basic_info'
         patch 'update_basic_info'
-        get 'monitoring_basic_info'
-        patch 'update_monitoring_basic_info'
       end
       
-      resources :use_time, only: :update do #モニタリング
+      resources :monitorings, only: :update do #モニタリング
         member do #idが付く！memberは特定のデータにアクションを利用する
-          
+        get 'monitoring_basic_info' #モニタリング編集
+        post 'create_monitoring_basic_info'
+        get 'monitoring_basic_info_affter' #過去のモニタリング
         end
       end    
     end
