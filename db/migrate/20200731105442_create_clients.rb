@@ -7,7 +7,7 @@ class CreateClients < ActiveRecord::Migration[5.1]
       t.string :nursing_number #要介護
       t.string :date_of_day #利用日
       t.datetime :client_birthday #生年月日
-      
+      t.date :worked_on #日付
     end
   end
 end

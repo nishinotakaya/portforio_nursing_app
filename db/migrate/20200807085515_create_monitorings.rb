@@ -19,7 +19,6 @@ class CreateMonitorings < ActiveRecord::Migration[5.1]
       t.string :monitoring_service_need #サービス変更の必要性
       t.boolean :check_monitoring #モニタリング間違いなしチェック
       t.references :client, foreign_key: true
-      t.date :worked_on #日付
       t.timestamps
     end
   end
