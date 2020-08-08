@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
 
   # ページ出力前に1ヶ月分のデータの存在を確認・セットします。set_one_month(一ヵ月分の勤怠情報)
   def set_one_month 
+    
     @first_day = params[:date].nil? ? 
     #params[:date]（showの月の隣の矢印が押されたか？)がnilか？
     #月初日が今月か？先月か？先々月か？のもの #当月分のデータを取得してだしてあげてる！
