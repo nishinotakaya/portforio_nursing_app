@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20200807085515) do
     t.string "nursing_number"
     t.string "date_of_day"
     t.datetime "client_birthday"
+    t.date "worked_on"
   end
 
   create_table "monitorings", force: :cascade do |t|
@@ -40,7 +41,6 @@ ActiveRecord::Schema.define(version: 20200807085515) do
     t.string "monitoring_service_need"
     t.boolean "check_monitoring"
     t.integer "client_id"
-    t.date "worked_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_monitorings_on_client_id"
@@ -55,15 +55,15 @@ ActiveRecord::Schema.define(version: 20200807085515) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
-    t.datetime "basic_time", default: "2020-08-06 23:00:00"
-    t.datetime "work_time", default: "2020-08-06 22:30:00"
+    t.datetime "basic_time", default: "2020-08-07 23:00:00"
+    t.datetime "work_time", default: "2020-08-07 22:30:00"
     t.boolean "admin"
     t.string "employee_number"
     t.string "uid"
-    t.datetime "designated_work_start_time", default: "2020-08-06 22:00:00"
-    t.datetime "designated_work_end_time", default: "2020-08-07 09:00:00"
+    t.datetime "designated_work_start_time", default: "2020-08-07 22:00:00"
+    t.datetime "designated_work_end_time", default: "2020-08-08 09:00:00"
     t.string "staff_id"
-    t.datetime "basic_work_time", default: "2020-08-06 21:30:00"
+    t.datetime "basic_work_time", default: "2020-08-07 21:30:00"
     t.string "affiliation"
     t.boolean "nurse", default: false
     t.boolean "counselor", default: false

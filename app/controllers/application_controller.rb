@@ -43,13 +43,13 @@ class ApplicationController < ActionController::Base
     # ユーザーに紐付く一ヶ月分のレコードを検索し取得します。
     @clients = Client.where(worked_on: @first_day..@last_day).order(:worked_on)
 
-    unless one_month.count == @clients.count # それぞれの件数（日数）が一致するか評価します。
-      ActiveRecord::Base.transaction do # トランザクションを開始します。
-        # 繰り返し処理により、1ヶ月分の勤怠データを生成します。
-        one_month.each { |client| Client.create!(worked_on: client) }
-      end
-    @clients = @client.monitoring.where(worked_on: @first_day..@last_day).order(:worked_on)
-    end
+    # unless one_month.count == @clients.count # それぞれの件数（日数）が一致するか評価します。
+    #   ActiveRecord::Base.transaction do # トランザクションを開始します。
+    #     # 繰り返し処理により、1ヶ月分の勤怠データを生成します。
+    #     one_month.each { |client| Client.create!(worked_on: client) }
+    #   end
+    # @clients = Client.where(worked_on: @first_day..@last_day).order(:worked_on)
+    # end
 
   rescue ActiveRecord::RecordInvalid # トランザクションによるエラーの分岐です。
     flash[:danger] = "ページ情報の取得に失敗しました、再アクセスしてください。"

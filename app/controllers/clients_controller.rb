@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
- before_action :set_one_month, only: :show
+before_action :set_one_month, only: :show
  
   
   def index

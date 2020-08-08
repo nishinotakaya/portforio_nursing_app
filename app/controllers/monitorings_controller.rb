@@ -1,5 +1,5 @@
 class MonitoringsController < ApplicationController
-    
+  # before_action :set_one_month, only: :create_monitoring_basic_info
   
   
 
@@ -15,12 +15,13 @@ class MonitoringsController < ApplicationController
   
   def create_monitoring_basic_info
     @client = Client.find(params[:client_id])
-      Monitoring.new(client_monitoring_params)
-    if @client.save
-      log_in @client
-      flash[:success] = "利用者情報報告書（モニタリング)を追加しました！"
-      redirect_to monitoring_basic_info_affter_client_monitoring_url(@client)and return
-    end  
+        @client = @client.monitorings.new(client_monitoring_params)
+      if @client.save
+        log_in @client
+        flash[:success] = "利用者情報報告書（モニタリング)を追加しました！"
+        redirect_to monitoring_basic_info_affter_client_monitoring_url(@client)and return
+      end
+    
   end
   
   
