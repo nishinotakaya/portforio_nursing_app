@@ -8,30 +8,19 @@
     
     <thead>
     <tr>
-      <th>日付</th>
-      <th>送迎</th>
-      <th>入浴</th>
-      <th>食事量</th>
-      <th>バイタル</th>
-      <th>再チェック</th>
-      <th>口腔ケア</th>
-      <th></th>
+      <th>モニタリング新規作成</th>
+      <th>アセスメントシート</th>
+      <th>ADL(日常生活動作)</th>
+      <th>IADL(手段的日常動作)</th>
     </tr>
     </thead>
     <tbody>
-      <% @clients.each do |client| %>
       <tr>
-        <td><%= l(client.worked_on, format: :short) %></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= link_to "モニタリング新規作成",  monitoring_basic_info_client_monitoring_path(@client) %></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
     </tbody>
-      <% end %>
   </table>
-  <tfoot>
-    <%= link_to "モニタリング",  monitoring_basic_info_client_monitoring_path(@client) %>
-  </tfoot>
+  

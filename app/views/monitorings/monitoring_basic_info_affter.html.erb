@@ -1,12 +1,15 @@
 <div class= "center">
   <table class="table table-bordered table-condensed table-hover" id="table-client">
-    <meta charset = " utf-8 " />
-      <h1 class="monitoring-title"><%= @client.client_name %>様の利用者情報報告書一覧</h1>
-      
-      
-        <p><span class="under">利用者名: <%= @client.client_name %>様の令和
-      
-      の利用者の状況をご報告いたします。
-      </span></p>
+  <meta charset = " utf-8 " />
+    <h1 class="monitoring-title"><%= @monitoring.client.client_name %>様の利用者情報報告書一覧</h1>
+    <p><span class="under">利用者名: <%= @monitoring.client.client_name %>様の
+    <%= l(@monitoring.monitoring_worked_on_year, format: :long, default: '-')  %>
+    <%= l(@monitoring.monitoring_worked_on_month, format: :long, default: '-') %>
+    の利用者の状況をご報告いたします。
+    </span></p>
+    <%= @monitoring.monitoring_needs %>
   </table>    
 </div>      
+    
+    
+    

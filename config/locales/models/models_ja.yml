@@ -4,6 +4,8 @@ ja:
       staff: 従業員
       attendance: 勤怠
       office: 
+      client:
+  monitoring:
     attributes:
         staff:
           id: ID
@@ -14,27 +16,7 @@ ja:
           work_time: 勤務時間
           password: パスワード
           password_confirmation: パスワード再入力
-          created_at: 作成日
-          updated_at: 更新日
-          employee_number: 社員番号
-          designated_work_start_time: 指定勤務開始時間
-          designated_work_end_time: 指定勤務終了時間
-          affiliation: 所属
-          uid: カードID
-        attendance:
-          worked_on: 日付
-          started_at: 出社
-          finished_at: 退社
-          note: 備考
-          user_id: ユーザーID
-          uid: カードID
-          employee_number: 社員番号
-          designated_work_start_time: 指定勤務開始時間
-          designated_work_end_time: 指定勤務終了時間
-        office: 
-          office_name: 拠点名
-          office_modality: 拠点種類 
-          office_number: 拠点番号
+        attributes:
         client:
           temperature: 来所時体温
           affter_temperature: 帰宅時体温
@@ -48,6 +30,7 @@ ja:
           nursing_number: 要介護
           date_of_day: 利用日
           telephone_number: ご連絡先
+          attributes:
         monitoring:
           monitoring_needs: 【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)】
           monitoring_short_run_target: 【居宅介護支援計画書の短期目標】
