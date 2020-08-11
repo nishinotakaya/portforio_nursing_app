@@ -1,15 +1,32 @@
-<div class= "center">
-  <table class="table table-bordered table-condensed table-hover" id="table-client">
-  <meta charset = " utf-8 " />
-    <h1 class="monitoring-title"><%= @monitoring.client.client_name %>様の利用者情報報告書一覧</h1>
-    <p><span class="under">利用者名: <%= @monitoring.client.client_name %>様の
-    <%= l(@monitoring.monitoring_worked_on_year, format: :long, default: '-')  %>
-    <%= l(@monitoring.monitoring_worked_on_month, format: :long, default: '-') %>
+  <div class= "center">
+    <table class="table table-bordered table-condensed table-hover" id="table-client">
+    <meta charset = " utf-8 " />
+    <h1 class="monitoring-title"><%= @client.client_name %>様の利用者情報報告書一覧</h1>
+    <p><span class="under">利用者名: <%= @client.client_name %>様の
+    <%= @monitoring.monitoring_worked_on_year.strftime("%Y") %>年
+    <%= @monitoring.monitoring_worked_on_month.strftime("%m") %>月
     の利用者の状況をご報告いたします。
     </span></p>
-    <%= @monitoring.monitoring_needs %>
-  </table>    
-</div>      
+      <label for="name">【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)】</label>
+       <br><textarea cols="50" id="page_content" name="page[content]" rows="7">
+         <%= @monitoring.monitoring_needs %>
+       </textarea>
+       <label for="name">【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)】</label>
+       <br><textarea cols="50" id="page_content" name="page[content]" rows="7">
+           <%= @monitoring.monitoring_short_run_target %>
+       </textarea>
+        <br><label for="name">基本的サービスの状況(ＡⅮⅬを含む)" </label>
+        <br>
+        <input type="radio" value="monitoring_exchange" name="client[monitoring]" id="@monitoring">
+        <label style=  "display: inline-block;" for = "@monitoring"><%= @monitoring.monitoring_exchange %></label>
+        <input type="radio" value="monitoring_exchange" name="client[monitoring]" id="@monitoring">
+        <label style=  "display: inline-block;" for = "@monitoring">ほぼ保たれている</label>
+        <input type="radio" value="monitoring_exchange" name="client[monitoring]" id="@monitoring">
+        <label style=  "display: inline-block;" for = "@monitoring">あまり保たれていない</label>
+        <input type="radio" value="monitoring_exchange" name="client[monitoring]" id="@monitoring">
+        <label style=  "display: inline-block;" for = "@monitoring">保たれていない</label>
+    </table>    
+  </div>      
     
     
     

@@ -30,13 +30,16 @@
       
       resources :monitorings, only: :update do #モニタリング
         member do #idが付く！memberは特定のデータにアクションを利用する
-        get 'monitoring_basic_info' #モニタリング編集
-        post 'create_monitoring_basic_info'
-        get 'monitoring_basic_info_affter' #過去のモニタリング
+          get 'monitoring_basic_info_affter' #過去のモニタリング
+        end
+        collection do
+          get 'monitoring_basic_info' #モニタリング新規作成
+          post 'create_monitoring_basic_info'#モニタリング新規作成
         end
       end    
     end
     
+        
       
                    
     
