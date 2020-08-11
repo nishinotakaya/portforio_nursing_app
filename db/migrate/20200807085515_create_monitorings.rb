@@ -8,15 +8,20 @@ class CreateMonitorings < ActiveRecord::Migration[5.1]
       t.string :monitoring_service_adl #基本的サービスの状況(ADLを含む
       t.string :monitoring_exchange #他者交流
       t.string :monitoring_go_to_home #送迎
+      t.string :monitoring_go_to_home_buy #送迎問題あり理由
       t.string :monitoring_walking #歩行
       t.string :monitoring_eating #食事
       t.string :monitoring_situation_of_participation #参加状況
       t.string :monitoring_both #入浴
+      t.string :monitoring_both_truble #皮膚トラブル
       t.string :monitoring_changing_clothes #更衣
       t.string :monitoring_community #社会参加
+      t.string :monitoring_community_what #社会参加しているもの
       t.string :monitoring_situation_dey #利用状況
+      t.string :monitoring_vacation_dey_buy #休んだ理由
       t.string :monitoring_attention #日常生活上の留意点 及び 介護の工夫など(総合的評価)
       t.string :monitoring_service_need #サービス変更の必要性
+      t.string :monitoring_service_need_what #必要あり理由
       t.boolean :check_monitoring #モニタリング間違いなしチェック
       t.references :client, foreign_key: true
       

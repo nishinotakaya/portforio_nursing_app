@@ -15,7 +15,7 @@
        <br><textarea cols="50" id="page_content" name="page[content]" rows="7">
            <%= @monitoring.monitoring_short_run_target %>
        </textarea>
-        <br><label for="name">基本的サービスの状況(ＡⅮⅬを含む)" </label>
+        <br><label for="name">基本的サービスの状況(ＡⅮⅬを含む) </label>
         <!--他者交流-->
         <br><lavel>[他者交流]</lavel>
         <% if @monitoring.monitoring_exchange == "保たれている" %>
@@ -52,11 +52,44 @@
         <% end %>
          <label style=  "display: inline-block;" for = "monitoring_go_save">問題あり</label>
         <% if @monitoring.monitoring_go_to_home == "問題なし" %>
-        <br><input type="radio" value="問題なし" name="monitoring_go_to_home" id="monitoring_go_not_save" checked>
+        <input type="radio" value="問題なし" name="monitoring_go_to_home" id="monitoring_go_not_save" checked>
         <% else %>
         <input type="radio" value="問題なし" name="monitoring_go_to_home" id="monitoring_go_not_save">
         <% end %>
         <label style=  "display: inline-block;" for = "monitoring_go_not_save">問題なし</label>
+        
+        <!--歩行-->
+        <br><lavel>[歩行]</lavel>
+         <% if @monitoring.monitoring_walking == "自立" %>
+          <br><input type="radio" value="自立" name="monitoring_walking" id="monitoring_walking_save" checked>
+        <% else %>
+          <br><input type="radio" value="自立" name="monitoring_walking" id="monitoring_walking_save">
+        <% end %>  
+        <label style=  "display: inline-block;" for = "monitoring_save">自立</label>
+        <% if @monitoring.monitoring_walking == "見守り" %>
+        <input type="radio" value="見守り" name="monitoring_walking" id="monitoring_walking_so_save" checked>
+        <% else %>
+        <input type="radio" value="見守り" name="monitoring_walking" id="monitoring_walking_so_save">
+        <% end %>
+        <label style=  "display: inline-block;" for = "monitoring_walking_so_save">見守り</label>
+        <% if @monitoring.monitoring_walking == "一部介助" %>
+        <input type="radio" value="一部介助" name="monitoring_walking" id="monitoring_walking_almost_save" checked>
+        <% else %>
+        <input type="radio" value="一部介助" name="monitoring_walking" id="monitoring_walking_almost_save">
+        <% end %>
+        <label style=  "display: inline-block;" for = "monitoring_walking_almost_save">一部介助</label>
+        <% if @monitoring.monitoring_walking == "介助" %>
+        <input type="radio" value="介助" name="monitoring_walking" id="monitoring_walking_not_save" checked>
+        <% else %>
+        <input type="radio" value="介助" name="monitoring_walking" id="monitoring_walking_not_save">
+        <% end %>
+        <label style=  "display: inline-block;" for = "monitoring_walking_not_save">介助</label>
+        <% if @monitoring.monitoring_walking == "車いす" %>
+        <input type="radio" value="車いす" name="monitoring_walking" id="monitoring_walking_car_save" checked>
+        <% else %>
+        <input type="radio" value="車いす" name="monitoring_walking" id="monitoring_walking_car_save">
+        <% end %>
+        <label style=  "display: inline-block;" for = "monitoring_walking_car_save">車いす</label>
     </table>    
   </div>      
     
