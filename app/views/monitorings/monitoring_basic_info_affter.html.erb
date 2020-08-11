@@ -1,7 +1,7 @@
   <div class= "center">
     <table class="table table-bordered table-condensed table-hover" id="table-client">
     <meta charset = " utf-8 " />
-    <h1 class="monitoring-title"><%= @client.client_name %>様の利用者情報報告書一覧</h1>
+    <h1 class="monitoring-title"><%= @client.client_name %>様の利用者情報報告書</h1>
     <p><span class="under">利用者名: <%= @client.client_name %>様の
     <%= @monitoring.monitoring_worked_on_year.strftime("%Y") %>年
     <%= @monitoring.monitoring_worked_on_month.strftime("%m") %>月
@@ -11,20 +11,52 @@
        <br><textarea cols="50" id="page_content" name="page[content]" rows="7">
          <%= @monitoring.monitoring_needs %>
        </textarea>
-       <label for="name">【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)】</label>
+       <br><label for="name">【居宅介護支援計画書の短期目標】</label>
        <br><textarea cols="50" id="page_content" name="page[content]" rows="7">
            <%= @monitoring.monitoring_short_run_target %>
        </textarea>
         <br><label for="name">基本的サービスの状況(ＡⅮⅬを含む)" </label>
-        <br>
-        <input type="radio" value="monitoring_exchange" name="client[monitoring]" id="@monitoring">
-        <label style=  "display: inline-block;" for = "@monitoring"><%= @monitoring.monitoring_exchange %></label>
-        <input type="radio" value="monitoring_exchange" name="client[monitoring]" id="@monitoring">
-        <label style=  "display: inline-block;" for = "@monitoring">ほぼ保たれている</label>
-        <input type="radio" value="monitoring_exchange" name="client[monitoring]" id="@monitoring">
-        <label style=  "display: inline-block;" for = "@monitoring">あまり保たれていない</label>
-        <input type="radio" value="monitoring_exchange" name="client[monitoring]" id="@monitoring">
-        <label style=  "display: inline-block;" for = "@monitoring">保たれていない</label>
+        <!--他者交流-->
+        <br><lavel>[他者交流]</lavel>
+        <% if @monitoring.monitoring_exchange == "保たれている" %>
+          <br><input type="radio" value="保たれている" name="monitoring_exchange" id="monitoring_save" checked>
+        <% else %>
+          <br><input type="radio" value="保たれている" name="monitoring_exchange" id="monitoring_save">
+        <% end %>  
+        <label style=  "display: inline-block;" for = "monitoring_save">保たれている</label>
+        <% if @monitoring.monitoring_exchange == "ほぼ保たれている" %>
+        <input type="radio" value="ほぼ保たれている" name="monitoring_exchange" id="monitoring_so_save" checked>
+        <% else %>
+        <input type="radio" value="ほぼ保たれている" name="monitoring_exchange" id="monitoring_so_save">
+        <% end %>
+        <label style=  "display: inline-block;" for = "monitoring_so_save">ほぼ保たれている</label>
+        <% if @monitoring.monitoring_exchange == "あまり保たれていない" %>
+        <input type="radio" value="あまり保たれていない" name="monitoring_exchange" id="monitoring_almost_save" checked>
+        <% else %>
+        <input type="radio" value="あまり保たれていない" name="monitoring_exchange" id="monitoring_almost_save">
+        <% end %>
+        <label style=  "display: inline-block;" for = "monitoring_almost_save">あまり保たれていない</label>
+        <% if @monitoring.monitoring_exchange == "保たれていない" %>
+        <input type="radio" value="保たれていない" name="monitoring_exchange" id="monitoring_not_save" checked>
+        <% else %>
+        <input type="radio" value="保たれていない" name="monitoring_exchange" id="monitoring_not_save">
+        <% end %>
+        <label style=  "display: inline-block;" for = "monitoring_not_save">保たれていない</label>
+        
+        <!--送迎-->
+        <br><lavel>[送迎]</lavel>
+        <% if @monitoring.monitoring_go_to_home == "問題あり" %>
+          <br><input type="radio" value="問題あり" name="monitoring_go_to_home" id="monitoring_go_save" checked>
+        <% else %>
+           <br><input type="radio" value="問題あり" name="monitoring_go_to_home" id="monitoring_go_save">
+        <% end %>
+         <label style=  "display: inline-block;" for = "monitoring_go_save">問題あり</label>
+        <% if @monitoring.monitoring_go_to_home == "問題なし" %>
+        <br><input type="radio" value="問題なし" name="monitoring_go_to_home" id="monitoring_go_not_save" checked>
+        <% else %>
+        <input type="radio" value="問題なし" name="monitoring_go_to_home" id="monitoring_go_not_save">
+        <% end %>
+        <label style=  "display: inline-block;" for = "monitoring_go_not_save">問題なし</label>
     </table>    
   </div>      
     
