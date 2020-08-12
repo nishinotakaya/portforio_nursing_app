@@ -3,7 +3,7 @@
     <meta charset = " utf-8 " />
     
     <h1>利用者情報報告書</h1>
-    <%= form_with( model: @monitoring, url: create_monitoring_basic_info_client_monitorings_path(@client), local: true, method: :post) do |f| %>
+    <%= form_with( model: @monitoring, url: create_monitoring_basic_info_client_monitorings_path(@client, @monitoring), local: true, method: :post) do |f| %>
   <p><span class="under">利用者名: <%= @client.client_name %>様の
     <%= f.date_select(:monitoring_worked_on_year, discard_month:true) %>年
     <%= f.date_select(:monitoring_worked_on_month, discard_year:true, discard_day:true) %>
@@ -136,8 +136,7 @@
               <br><%= f.text_area :monitoring_service_need, class: "hoge", size: "40x3" %>
           <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
               <%= f.check_box :check_monitoring, {}, "true", "false" %>
-          <br><%= f.submit "追加", class: "btn btn-primary " ,
-          data: { confirm: "追加してもよろしいでしょうか？" } %>
+          <br><%= f.submit "追加", class: "btn btn-primary "  %>
         </td>
       <% end %>  
     </table>  

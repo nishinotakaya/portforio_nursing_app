@@ -1,0 +1,2 @@
+class AdlChecksController < ApplicationController
+end

@@ -5,7 +5,7 @@ ja:
       attendance: 勤怠
       office: 
       client:
-  monitoring:
+    monitoring:
     attributes:
         staff:
           id: ID
@@ -16,7 +16,6 @@ ja:
           work_time: 勤務時間
           password: パスワード
           password_confirmation: パスワード再入力
-        attributes:
         client:
           temperature: 来所時体温
           affter_temperature: 帰宅時体温
@@ -30,7 +29,6 @@ ja:
           nursing_number: 要介護
           date_of_day: 利用日
           telephone_number: ご連絡先
-          attributes:
         monitoring:
           monitoring_needs: 【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)】
           monitoring_short_run_target: 【居宅介護支援計画書の短期目標】

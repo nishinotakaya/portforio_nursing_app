@@ -37,7 +37,16 @@
           get 'monitoring_basic_info' #モニタリング新規作成
           post 'create_monitoring_basic_info'#モニタリング新規作成
         end
-      end    
+      end
+      
+      resources :adl_checks, only: :update do #ADLcheck表
+        member do
+        end  
+        collection do
+          get 'adl_check_client'
+          post 'create_adl_client'
+        end
+      end  
     end
     
         

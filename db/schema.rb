@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200807085515) do
+ActiveRecord::Schema.define(version: 20200812141842) do
+
+  create_table "adl_checks", force: :cascade do |t|
+    t.integer "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_adl_checks_on_client_id"
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string "client_name"
