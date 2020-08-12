@@ -136,8 +136,8 @@
               <br><%= f.text_area :monitoring_service_need, class: "hoge", size: "40x3" %>
           <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
               <%= f.check_box :check_monitoring, {}, "true", "false" %>
-          <br><%= f.submit "更新", class: "btn btn-primary " ,
-          data: { confirm: "更新してもよろしいでしょうか？" } %>
+          <br><%= f.submit "追加", class: "btn btn-primary " ,
+          data: { confirm: "追加してもよろしいでしょうか？" } %>
         </td>
       <% end %>  
     </table>  

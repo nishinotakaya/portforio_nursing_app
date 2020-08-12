@@ -1,97 +1,146 @@
-  <div class= "center">
-    <table class="table table-bordered table-condensed table-hover" id="table-client">
+ <div class= "center">
+  <table class="table table-bordered table-condensed table-hover" id="table-client">
     <meta charset = " utf-8 " />
-    <h1 class="monitoring-title"><%= @client.client_name %>様の利用者情報報告書</h1>
-    <p><span class="under">利用者名: <%= @client.client_name %>様の
-    <%= @monitoring.monitoring_worked_on_year.strftime("%Y") %>年
-    <%= @monitoring.monitoring_worked_on_month.strftime("%m") %>月
+    
+    <h1>利用者情報報告書</h1>
+    <%= form_with( model: @monitoring, url: update_monitoring_basic_info_affter_client_monitoring_path(@client), local: true, method: :patch) do |f| %>
+  <p><span class="under">利用者名: <%= @client.client_name %>様の
+    <%= f.date_select(:monitoring_worked_on_year, discard_month:true) %>年
+    <%= f.date_select(:monitoring_worked_on_month, discard_year:true, discard_day:true) %>
     の利用者の状況をご報告いたします。
     </span></p>
-      <label for="name">【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)】</label>
-       <br><textarea cols="50" id="page_content" name="page[content]" rows="7">
-         <%= @monitoring.monitoring_needs %>
-       </textarea>
-       <br><label for="name">【居宅介護支援計画書の短期目標】</label>
-       <br><textarea cols="50" id="page_content" name="page[content]" rows="7">
-           <%= @monitoring.monitoring_short_run_target %>
-       </textarea>
-        <br><label for="name">基本的サービスの状況(ＡⅮⅬを含む) </label>
-        <!--他者交流-->
-        <br><lavel>[他者交流]</lavel>
-        <% if @monitoring.monitoring_exchange == "保たれている" %>
-          <br><input type="radio" value="保たれている" name="monitoring_exchange" id="monitoring_save" checked>
-        <% else %>
-          <br><input type="radio" value="保たれている" name="monitoring_exchange" id="monitoring_save">
-        <% end %>  
-        <label style=  "display: inline-block;" for = "monitoring_save">保たれている</label>
-        <% if @monitoring.monitoring_exchange == "ほぼ保たれている" %>
-        <input type="radio" value="ほぼ保たれている" name="monitoring_exchange" id="monitoring_so_save" checked>
-        <% else %>
-        <input type="radio" value="ほぼ保たれている" name="monitoring_exchange" id="monitoring_so_save">
-        <% end %>
-        <label style=  "display: inline-block;" for = "monitoring_so_save">ほぼ保たれている</label>
-        <% if @monitoring.monitoring_exchange == "あまり保たれていない" %>
-        <input type="radio" value="あまり保たれていない" name="monitoring_exchange" id="monitoring_almost_save" checked>
-        <% else %>
-        <input type="radio" value="あまり保たれていない" name="monitoring_exchange" id="monitoring_almost_save">
-        <% end %>
-        <label style=  "display: inline-block;" for = "monitoring_almost_save">あまり保たれていない</label>
-        <% if @monitoring.monitoring_exchange == "保たれていない" %>
-        <input type="radio" value="保たれていない" name="monitoring_exchange" id="monitoring_not_save" checked>
-        <% else %>
-        <input type="radio" value="保たれていない" name="monitoring_exchange" id="monitoring_not_save">
-        <% end %>
-        <label style=  "display: inline-block;" for = "monitoring_not_save">保たれていない</label>
+  
+    <%= f.label "【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)", class: "label-#{yield(:class_text)}" %>
+    <br><%= f.text_area :monitoring_needs, class: "hoge", size: "50x7" %></br>
+  
+    <br><%= f.label "【居宅介護支援計画書の短期目標】", class: "label-#{yield(:class_text)}" %>
+    <br><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "50x7" %></br>
+  
+    <br><%= f.label "基本的サービスの状況(ＡⅮⅬを含む)" ,class: "label-#{yield(:class_text)}" %></br>
+    
+    <tr>  
+      <td align="center"><%= f.label "［他者交流］", class: "label-#{yield(:class_text)}" %>
+      <br><%= f.radio_button :monitoring_exchange, "保たれている" %>
+      <%= f.label "保たれている", class: "label-#{yield(:class_text)}" %>
+      <%= f.radio_button :monitoring_exchange, "ほぼ保たれている" %>
+      <%= f.label "ほぼ保たれている", class: "label-#{yield(:class_text)}" %>
+       <%= f.radio_button :monitoring_exchange, "あまり保たれていない" %>
+      <%= f.label "あまり保たれていない", class: "label-#{yield(:class_text)}" %>
+      <%= f.radio_button :monitoring_exchange, "保たれていない" %>
+      <%= f.label "保たれていない", class: "label-#{yield(:class_text)}" %>
+      
         
         <!--送迎-->
-        <br><lavel>[送迎]</lavel>
-        <% if @monitoring.monitoring_go_to_home == "問題あり" %>
-          <br><input type="radio" value="問題あり" name="monitoring_go_to_home" id="monitoring_go_save" checked>
-        <% else %>
-           <br><input type="radio" value="問題あり" name="monitoring_go_to_home" id="monitoring_go_save">
-        <% end %>
-         <label style=  "display: inline-block;" for = "monitoring_go_save">問題あり</label>
-        <% if @monitoring.monitoring_go_to_home == "問題なし" %>
-        <input type="radio" value="問題なし" name="monitoring_go_to_home" id="monitoring_go_not_save" checked>
-        <% else %>
-        <input type="radio" value="問題なし" name="monitoring_go_to_home" id="monitoring_go_not_save">
-        <% end %>
-        <label style=  "display: inline-block;" for = "monitoring_go_not_save">問題なし</label>
+        <br><%= f.label "［送迎］", class: "label-#{yield(:class_text)}" %></br>
+            <%= f.radio_button :monitoring_go_to_home, "問題あり" %>
+            <%= f.label "問題あり", class: "label-#{yield(:class_text)}" %>
+            <%= f.radio_button :monitoring_go_to_home, "問題なし" %>
+            <%= f.label "問題なし", class: "label-#{yield(:class_text)}" %>
+       
+        
         
         <!--歩行-->
-        <br><lavel>[歩行]</lavel>
-         <% if @monitoring.monitoring_walking == "自立" %>
-          <br><input type="radio" value="自立" name="monitoring_walking" id="monitoring_walking_save" checked>
-        <% else %>
-          <br><input type="radio" value="自立" name="monitoring_walking" id="monitoring_walking_save">
-        <% end %>  
-        <label style=  "display: inline-block;" for = "monitoring_save">自立</label>
-        <% if @monitoring.monitoring_walking == "見守り" %>
-        <input type="radio" value="見守り" name="monitoring_walking" id="monitoring_walking_so_save" checked>
-        <% else %>
-        <input type="radio" value="見守り" name="monitoring_walking" id="monitoring_walking_so_save">
-        <% end %>
-        <label style=  "display: inline-block;" for = "monitoring_walking_so_save">見守り</label>
-        <% if @monitoring.monitoring_walking == "一部介助" %>
-        <input type="radio" value="一部介助" name="monitoring_walking" id="monitoring_walking_almost_save" checked>
-        <% else %>
-        <input type="radio" value="一部介助" name="monitoring_walking" id="monitoring_walking_almost_save">
-        <% end %>
-        <label style=  "display: inline-block;" for = "monitoring_walking_almost_save">一部介助</label>
-        <% if @monitoring.monitoring_walking == "介助" %>
-        <input type="radio" value="介助" name="monitoring_walking" id="monitoring_walking_not_save" checked>
-        <% else %>
-        <input type="radio" value="介助" name="monitoring_walking" id="monitoring_walking_not_save">
-        <% end %>
-        <label style=  "display: inline-block;" for = "monitoring_walking_not_save">介助</label>
-        <% if @monitoring.monitoring_walking == "車いす" %>
-        <input type="radio" value="車いす" name="monitoring_walking" id="monitoring_walking_car_save" checked>
-        <% else %>
-        <input type="radio" value="車いす" name="monitoring_walking" id="monitoring_walking_car_save">
-        <% end %>
-        <label style=  "display: inline-block;" for = "monitoring_walking_car_save">車いす</label>
-    </table>    
+        <br><%= f.label "［歩行］", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.radio_button :monitoring_walking, :自立, checked: "checked" %>
+      <%= f.label "自立", class: "label-#{yield(:class_text)}" %>
+      <%= f.radio_button :monitoring_walking, :見守り, checked: "checked" %>
+      <%= f.label "見守り", class: "label-#{yield(:class_text)}" %>
+      <%= f.radio_button :monitoring_walking, :一部介助, checked: "checked" %>
+      <%= f.label "一部介助", class: "label-#{yield(:class_text)}" %>
+      <%= f.radio_button :monitoring_walking, :介助, checked: "checked" %>
+      <%= f.label "介助", class: "label-#{yield(:class_text)}" %>
+      <%= f.radio_button :monitoring_walking, :車いす, checked: "checked" %>
+      <%= f.label "車いす", class: "label-#{yield(:class_text)}" %>
+         
+         <!--食事-->
+        <br><%= f.label "［食事］", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.radio_button  :monitoring_eating, :自立, checked: "checked" %>
+      <%= f.label "自立", class: "label-#{yield(:class_text)}" %>
+      <%= f.radio_button  :monitoring_eating, :一部介助, checked: "checked" %>
+      <%= f.label "一部介助", class: "label-#{yield(:class_text)}" %>
+      <%= f.radio_button  :monitoring_eating, :全介助, checked: "checked" %>
+      <%= f.label "全介助", class: "label-#{yield(:class_text)}" %>
+        
+        <!--参加状況-->
+        <br><%= f.label "［参加状況］", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.radio_button  :monitoring_situation_of_participation, :毎回実施, checked: "checked" %>
+        <%= f.label "毎回実施", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button  :monitoring_situation_of_participation, :ほぼ毎回実施, checked: "checked" %>
+        <%= f.label "ほぼ毎回実施", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button  :monitoring_situation_of_participation, :時々実施, checked: "checked" %>
+        <%= f.label "時々実施", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button  :monitoring_situation_of_participation, :あまりしない, checked: "checked" %>
+        <%= f.label "あまりしない", class: "label-#{yield(:class_text)}" %>
+        
+        <!--入浴-->
+        <br><%= f.label "［入浴］", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.radio_button :monitoring_both, :自立, checked: "checked" %>
+        <%= f.label "自立", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button :monitoring_both, :一部介助, checked: "checked" %>
+        <%= f.label "一部介助", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button :monitoring_both, :全介助, checked: "checked" %>
+        <%= f.label "全介助", class: "label-#{yield(:class_text)}" %>
+        
+        <br><%= f.label "皮膚トラブル" , class: "label-#{yield(:class_text)}" %>
+        <br><%= f.text_area :monitoring_both, class: "hoge", size: "40x3" %>
+        
+        <!--更衣-->
+         <br><%= f.label "［更衣］", class: "label-#{yield(:class_text)}" %>
+         <br><%= f.radio_button :monitoring_changing_clothes, :自立, checked: "checked" %>
+        <%= f.label "自立", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button :monitoring_changing_clothes, :一部介助, checked: "checked" %>
+        <%= f.label "一部介助", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button :monitoring_changing_clothes, :全介助, checked: "checked" %>
+        <%= f.label "全介助", class: "label-#{yield(:class_text)}" %>
+        
+        <!--社会参加-->
+        <br><%= f.label"［社会参加］", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.radio_button :monitoring_community, :参加している, checked: "checked" %>
+        <%= f.label "参加している", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button :monitoring_community, :参加していない, checked: "checked" %>
+        <%= f.label "参加していない", class: "label-#{yield(:class_text)}" %>
+       <%= f.radio_button :monitoring_community, :実施なし, checked: "checked" %>
+        <%= f.label "実施なし", class: "label-#{yield(:class_text)}" %>
+        
+        <br><%= f.label "社会参加しているもの", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.text_area :monitoring_community, class: "hoge", size: "40x3" %>
+        
+        <!--利用状況-->
+        <br><%= f.label "［利用状況］", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.radio_button :monitoring_situation_dey, :休みなく利用, checked: "checked" %>
+        <%= f.label "休みなく利用", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button :monitoring_situation_dey, :休んだ日がある, checked: "checked" %>
+        <%= f.label "休んだ日がある", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.label "休んだ日がある理由" , class: "label-#{yield(:class_text)}" %>
+        <br><%= f.text_area :monitoring_situation_dey, class: "hoge", size: "40x3" %>
+        
+      </td>
+    </tr>
+      <!--#日常生活上の留意点 及び 介護の工夫など(総合的評価)-->
+      <tr>
+        <td>
+          <br><%= f.label "【日常生活上の留意点 及び 介護の工夫など(総合的評価)】", class: "label-#{yield(:class_text)}" %>
+          <br>※ 上記の内容を詳しく 又は利用中の様子や気づいた点を記入
+          <br><%= f.text_area :monitoring_attention, class: "hoge", size: "50x10" %></br>
+        </td>
+        
+      </tr>
+        <td>
+          <br><%= f.label "【サービス変更の必要性】", class: "label-#{yield(:class_text)}" %>
+          
+          <br><%= f.radio_button :monitoring_service_need, :必要あり, checked: "checked" %>
+              <%= f.label "必要あり", class: "label-#{yield(:class_text)}" %>
+              <%= f.radio_button :monitoring_service_need, :必要なし, checked: "checked" %>
+              <%= f.label "必要なし", class: "label-#{yield(:class_text)}" %>
+          <br><%= f.label "必要あり理由", class: "label-#{yield(:class_text)}" %>
+              <br><%= f.text_area :monitoring_service_need, class: "hoge", size: "40x3" %>
+          <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
+              <%= f.check_box :check_monitoring, {}, "true", "false" %>
+          <br><%= f.submit "編集", class: "btn btn-primary " ,
+          data: { confirm: "編集してもよろしいでしょうか？" } %>
+        </td>
+      <% end %>  
+    </table>  
   </div>      
-    
     
     

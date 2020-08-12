@@ -5,10 +5,10 @@
     <!--< %= link_to "⇦先月 ", client_path(date: @first_day.prev_month), class: "btn btn-info" %>-->
         
     <!--< %= link_to " 翌月⇨", client_path(date: @first_day.next_month), class: "btn btn-info" %>-->
-    
+    <%= link_to "利用者情報報告書新規作成", monitoring_basic_info_client_monitorings_path(@client) %>
     <thead>
     <tr>
-      <th>モニタリング新規作成</th>
+      <th>利用者情報報告書</th>
       <th>アセスメントシート</th>
       <th>ADL(日常生活動作)</th>
       <th>IADL(手段的日常動作)</th>
@@ -16,7 +16,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= link_to "モニタリング新規作成", monitoring_basic_info_client_monitorings_path(@client) %></td>
+        <td><% @monitorings.each do |monitoring| %>
+            <%= link_to "月", monitoring_basic_info_affter_client_monitoring_path(@client) %>
+            <% end %>
+            </td>
         <td></td>
         <td></td>
         <td></td>

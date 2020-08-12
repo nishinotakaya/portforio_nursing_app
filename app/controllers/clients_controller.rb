@@ -13,6 +13,7 @@ before_action :set_one_month, only: :show
   
   def show
     @client = Client.find(params[:id])
+   @monitorings = Monitoring.where(check_monitoring: true).order(:monitoring_worked_on_year && :monitoring_worked_on_month)
   end  
   
   #def client_show

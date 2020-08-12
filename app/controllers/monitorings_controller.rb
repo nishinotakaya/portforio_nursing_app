@@ -13,11 +13,14 @@ class MonitoringsController < ApplicationController
     @monitorings = Monitoring.where(check_monitoring: true).order(:monitoring_worked_on_year && :monitoring_worked_on_month)
   end
   
+  def update_monitoring_basic_info_affter
+  end  
+  
   def create_monitoring_basic_info
       @monitoring = @client.monitorings.new(client_monitoring_params)
     if @monitoring.save
       flash[:success] = "利用者情報報告書（モニタリング)を追加しました！"
-      redirect_to monitoring_basic_info_affter_client_monitoring_url(@client, @monitoring)
+      redirect_back_or @client 
     else
       render monitoring_basic_info @client
     end
