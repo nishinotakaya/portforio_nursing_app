@@ -15,11 +15,11 @@
     </tr>
     </thead>
     <tbody>
+      <% @monitorings.each do |monitoring| %>
       <tr>
-        <td><% @monitorings.each do |monitoring| %>
-            <%= link_to "月", monitoring_basic_info_affter_client_monitoring_path(@client) %>
-            <% end %>
-            </td>
+        <td><%= link_to monitoring.monitoring_worked_on_year.strftime("%Y年")+monitoring.monitoring_worked_on_month.strftime("%m月"), monitoring_basic_info_affter_client_monitoring_path(@client) %>
+      <% end %>
+        </td>
         <td></td>
         <td></td>
         <td></td>
