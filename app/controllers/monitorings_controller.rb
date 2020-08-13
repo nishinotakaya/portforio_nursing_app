@@ -21,7 +21,9 @@ class MonitoringsController < ApplicationController
         flash[:danger] = "#{@client.client_name}様の利用者情報報告書の更新は失敗しました。<br>" + @client.errors.full_messages.join("<br>")
       end
       redirect_to client_url @client
-  end  
+  end
+  
+  
   
   def create_monitoring_basic_info
       @monitoring = @client.monitorings.new(client_monitoring_params)
@@ -34,6 +36,8 @@ class MonitoringsController < ApplicationController
     
      
   end
+  
+  
   
   
 private

@@ -13,7 +13,7 @@ before_action :set_one_month, only: :show
   
   def show
     @client = Client.find(params[:id])
-   @monitorings = @client.monitorings.where(check_monitoring: true).order(:monitoring_worked_on_year && :monitoring_worked_on_month)
+   @monitorings = @client.monitorings.where(check_monitoring: true).order(:monitoring_worked_on_year, :monitoring_worked_on_month).reverse_order
   end  
   
   #def client_show
@@ -65,6 +65,8 @@ before_action :set_one_month, only: :show
     flash[:success] = "利用者を削除しました。"
     redirect_to clients_url
   end
+  
+  
   
    
 

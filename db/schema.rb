@@ -10,13 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200812141842) do
+ActiveRecord::Schema.define(version: 20200813121259) do
 
   create_table "adl_checks", force: :cascade do |t|
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_adl_checks_on_client_id"
+  end
+
+  create_table "asesments", force: :cascade do |t|
+    t.datetime "asesment_create_day"
+    t.string "praxis_place"
+    t.string "filling_up"
+    t.string "why_assesment"
+    t.string "family_name"
+    t.string "family_joining"
+    t.string "family_age"
+    t.string "family_health"
+    t.string "crying_email_name"
+    t.string "crying_email_joining"
+    t.string "crying_email_life"
+    t.string "crying_call"
+    t.datetime "first_time_reception"
+    t.string "reception_method"
+    t.string "reception_requester"
+    t.string "counselling_route"
+    t.string "life_history"
+    t.string "life_now"
+    t.string "trauma_old_people_adl"
+    t.string "dementia_old_people_adl"
+    t.datetime "nursing_number_day"
+    t.string "nursing_number_duration"
+    t.string "nursing_care_on_sickness_insurance"
+    t.string "health_insurence"
+    t.string "handicapped_notebook"
+    t.string "livelihood_protection"
+    t.string "nursing_care_service"
+    t.string "nursing_care_service_call"
+    t.string "nursing_care_service_content"
+    t.integer "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_asesments_on_client_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -27,6 +63,7 @@ ActiveRecord::Schema.define(version: 20200812141842) do
     t.string "date_of_day"
     t.datetime "client_birthday"
     t.date "worked_on"
+    t.string "sex"
   end
 
   create_table "monitorings", force: :cascade do |t|
@@ -67,16 +104,7 @@ ActiveRecord::Schema.define(version: 20200812141842) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
-    t.datetime "basic_time", default: "2020-08-11 23:00:00"
-    t.datetime "work_time", default: "2020-08-11 22:30:00"
     t.boolean "admin"
-    t.string "employee_number"
-    t.string "uid"
-    t.datetime "designated_work_start_time", default: "2020-08-11 22:00:00"
-    t.datetime "designated_work_end_time", default: "2020-08-12 09:00:00"
-    t.string "staff_id"
-    t.datetime "basic_work_time", default: "2020-08-11 21:30:00"
-    t.string "affiliation"
     t.boolean "nurse", default: false
     t.boolean "counselor", default: false
     t.boolean "nursing_care_staff", default: false

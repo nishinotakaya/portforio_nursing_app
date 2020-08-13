@@ -18,6 +18,7 @@ gem 'rounding'
 gem 'roo'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'rubyXL'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

@@ -22,6 +22,7 @@
       member do
         get 'edit_basic_info'
         patch 'update_basic_info'
+       
       end
       
       resources :use_times, only: :update do #利用時間
@@ -36,18 +37,20 @@
         collection do
           get 'monitoring_basic_info' #モニタリング新規作成
           post 'create_monitoring_basic_info'#モニタリング新規作成
+          
         end
       end
       
-      resources :adl_checks, only: :update do #ADLcheck表
+      resources :asesments, only: :update do
         member do
-        end  
-        collection do
-          get 'adl_check_client'
-          post 'create_adl_client'
         end
+        collection do
+          get 'asesment_new'
+        end  
       end  
     end
+    
+    
     
         
       

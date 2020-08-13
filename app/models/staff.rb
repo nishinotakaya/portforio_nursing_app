@@ -11,8 +11,6 @@ class Staff < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   
-  validates :basic_time, presence: true
-  validates :work_time, presence: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
@@ -63,8 +61,7 @@ class Staff < ApplicationRecord
 
   # 更新を許可するカラムを定義
   def self.updatable_attributes
-    ["name", "email",	"affiliation", "user_id",	"uid", "basic_work_time",
-     "designated_work_start_time",	"designated_work_end_time",	"superior",	"admin", "password"
+    ["name", "email",	"affiliation",	"designated_work_end_time",	"superior",	"admin", "password"
     ]
   end
 end

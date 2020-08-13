@@ -5,41 +5,36 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Staff.create!(name: "施設長",
+Staff.create!(name: "相談員",
              email: "sample@email.com",
-             employee_number: 1,
              password: "password",
              password_confirmation: "password",
              admin: true)
              
-Staff.create!(name: "看護師",
-             email: "superior-1@email.com",
-             employee_number: 2,
-             password: "password",
-             password_confirmation: "password",
-             nurse: true)
-
-Staff.create!(name: "相談員",
-             email: "superior-2@email.com",
-             employee_number: 3,
-             password: "password",
-             password_confirmation: "password",
-             counselor: true)
              
 Staff.create!(name: "介護職員1",
-             email: "employee-1@email.com",
-             employee_number: 4,
+             email: "sample-1@email.com",
              password: "password",
              password_confirmation: "password",
              nursing_care_staff: true)
              
 Staff.create!(name: "介護職員2",
-             email: "employee-2@email.com",
-             employee_number: 4,
+             email: "sample-2@email.com",
              password: "password",
              password_confirmation: "password",
              nursing_care_staff: true)            
              
+Staff.create!(name: "看護師",
+             email: "sample-3@email.com",
+             password: "password",
+             password_confirmation: "password",
+             nurse: true)
+             
+Staff.create!(name: "厨房",
+             email: "food@email.com",
+             password: "password",
+             password_confirmation: "password",
+             )
                
 Client.create!(client_name: "よしこ",
                telephone_number: "0471-33333",
