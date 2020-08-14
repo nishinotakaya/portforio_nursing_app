@@ -13,10 +13,10 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(staff) : forget(staff)
       # adminはboolean型なので?の聞き方！
       if staff.admin?
-        redirect_to clients_url
+        redirect_to clients_url and return
       else
         # 前に戻れ！
-        redirect_back_or staff
+        redirect_to clients_url and return
       end  
     else
       flash.now[:danger] = '認証に失敗しました。'

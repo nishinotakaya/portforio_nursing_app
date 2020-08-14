@@ -24,7 +24,7 @@
           <td><%= client.telephone_number %></td>
           <td><%= client.nursing_number %></td>
           <td><%= client.date_of_day %></td>
-          <td></td>
+          <td><%= client.sex %></td>
           <td><%= client.client_birthday.strftime("%F")if client.client_birthday.present? %></td>
           <td><%= link_to "利用者情報一覧",client_path(client) %></td>
           <td><%= link_to "退所", client_path(client), method: :delete,

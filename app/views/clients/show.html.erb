@@ -5,7 +5,7 @@
     <!--< %= link_to "⇦先月 ", client_path(date: @first_day.prev_month), class: "btn btn-info" %>-->
         
     <!--< %= link_to " 翌月⇨", client_path(date: @first_day.next_month), class: "btn btn-info" %>-->
-    <%= link_to "利用者情報報告書新規作成", monitoring_basic_info_client_monitorings_path(@client), class: "btn btn-info" %>
+    <%= link_to "利用者情報報告書新規作成", monitoring_basic_info_client_monitorings_path(@client), class: "btn btn-info" %>&thinsp;
     <%= link_to "アセスメントシート新規作成", asesment_new_client_asesments_path(@client), class: "btn btn-info" %>
     <thead>
     <tr>
@@ -13,12 +13,12 @@
       <th>アセスメントシート</th>
     </tr>
     </thead>
-      <% @monitorings.each do |monitoring| %>
     <tbody>
       <tr>
         <td>
-        <%= link_to monitoring.monitoring_worked_on_year.strftime("%Y年")+monitoring.monitoring_worked_on_month.strftime("%m月"), 
-             monitoring_basic_info_affter_client_monitoring_path(@client, monitoring), class: "btn btn-primary" %>
+      <% @monitorings.each do |monitoring| %>
+        <br><%= link_to monitoring.monitoring_worked_on_year.strftime("%Y年")+monitoring.monitoring_worked_on_month.strftime("%m月"), 
+             monitoring_basic_info_affter_client_monitoring_path(@client, monitoring), class: "btn btn-primary" %></br>
       <% end %>
         </td>
         <td></td>

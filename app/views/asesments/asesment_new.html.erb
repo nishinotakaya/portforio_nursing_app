@@ -1,1 +1,8 @@
-<h1>アセスメントシート（基本情報）</h1>
+<div class= "center">
+  <table class="table table-bordered table-condensed table-hover" id="table-client">
+    <meta charset = " utf-8 " />
+    <h1>アセスメントシート（基本情報）</h1>
+    <%= form_with( model: @asesment, url: create_asesment_basic_info_client_asesments_path(@client, @asesment), local: true, method: :post) do |f| %>
+      
+    <% end %>
+

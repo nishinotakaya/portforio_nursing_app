@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20200813121259) do
   create_table "clients", force: :cascade do |t|
     t.string "client_name"
     t.string "client_email"
-    t.integer "telephone_number"
+    t.string "telephone_number"
     t.string "nursing_number"
     t.string "date_of_day"
     t.datetime "client_birthday"

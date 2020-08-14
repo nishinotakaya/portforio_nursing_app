@@ -22,6 +22,11 @@
     <%= f.check_box :date_of_day, {multiple: true}, "土", nil %>土
     <%= f.check_box :date_of_day, {multiple: true}, "日", nil %>日
   
+  <br><%= f.label :性別, class: "label-#{yield(:class_text)}" %>
+  <br><%= f.radio_button :sex, :男性, checked: "checked" %>
+        <%= f.label "男性", class: "label-#{yield(:class_text)}" %>
+        <%= f.radio_button :sex, :女性, checked: "checked" %>
+        <%= f.label "女性", class: "label-#{yield(:class_text)}" %>
   
   <br><%= f.label "生年月日", class: "label-#{yield(:class_text)}" %>
   <%= f.date_field :client_birthday, class: "form-control" %>

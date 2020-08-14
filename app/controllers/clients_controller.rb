@@ -78,11 +78,11 @@ before_action :set_one_month, only: :show
   
   
   def client_params
-    params.require(:client).permit(:client_name, :nursing_number, :client_birthday, date_of_day: [] )
+    params.require(:client).permit(:client_name, :telephone_number, :nursing_number, :client_birthday, :sex,  date_of_day: [] )
   end
   
   def client_create_params
-    params.permit(:client_name, :nursing_number, :client_birthday, date_of_day: [])
+    params.permit(:client_name, :nursing_number, :telephone_number, :client_birthday, :sex, date_of_day: [])
   end  
   
   

@@ -46,6 +46,7 @@
         end
         collection do
           get 'asesment_new'
+          post 'create_asesment_basic_info'
         end  
       end  
     end
