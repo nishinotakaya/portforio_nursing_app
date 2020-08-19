@@ -6,18 +6,32 @@
        <p><span class="under">作成年月日<%= f.date_select(:asesment_create_year, discard_month:true, discard_day:true) %>年
                                          <%= f.date_select(:asesment_create_day, discard_year:true)+'日' %></span>
                                          &emsp;<span class="under"><%= f.label "実施場所", class: "label-#{yield(:class_text)}" %></span>
-                                         &emsp;<span class="under"><%= f.text_area :praxis_place, class: "hoge", size: "10x1" %></span>
+                                         &emsp;<span class="under"><%= f.text_area :praxis_place, class: "hoge", size: "15x1" %></span>
                                          &emsp;<span class="under"><%= f.label "記入者", class: "label-#{yield(:class_text)}" %></span>
-                                         &emsp;<span class="under"><%= f.text_area :filling_up, class: "hoge", size: "10x1" %></span></p>
-     <table border="1" width="1000" cellspacing="0" cellpadding="5">
+                                         &emsp;<span class="under"><%= f.text_area :filling_up, class: "hoge", size: "15x1" %></span></p>
+     <table class="asesmentTable", border="2" width="1000" cellspacing="0" cellpadding="5">
         <tr>
           <th align="right" nowrap><%= f.label "アセスメント理由", class: "label-#{yield(:class_text)}" %></th>
           <td align="left" width="800"><%= f.text_area :why_assesment, class: "hoge", size: "150x1" %></td>
         </tr>
+      </table>
+  <br><table border="2" cellspacing="0", cellpadding="5">
         <tr>
           <th align="right" nowrap><%= f.label "ふりがな", class: "label-#{yield(:class_text)}" %></th>
-          <td align="left" width="800"><%= f.text_area :why_assesment, class: "hoge", size: "150x1" %></td>
+          <td align="left"><%= f.text_area :client_name_japanese, class: "hoge", size: "30x1" %>
+         </td>
+        <div class = "birthdaydiv">  
+         <th nowrap rowspan="2"><%= @client.sex %><th>
+         <th nowrap　rowspan="2">生年月日</th>
+         <th nowrap　rowspan="2"><%= @client.client_birthday.strftime("%F")if @client.client_birthday.present? %></th>
+
+        </div> 
+        </tr>
+        <tr>
+          <th align="right" nowrap ><%= f.label "名前", class: "label-#{yield(:class_text)}" %></th>
+          <td align="left" width="30"><%= @client.client_name %>様</td>
         </tr>                                      
-    </table>                                  
+      </table>                                  
     <% end %>
+          
 
