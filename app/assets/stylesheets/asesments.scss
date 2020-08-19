@@ -1,3 +1,18 @@
 // Place all the styles related to the Asesments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+table{
+    width: 70%;
+  }
+  
+  th{
+    width: 10%;
+  }
+  
+  td{
+    width: 10%;
+  }
+
+  th,td{
+    border:solid 3px ;
+  }

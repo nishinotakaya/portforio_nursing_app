@@ -5,8 +5,11 @@
   <%= f.label :client_name, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :client_name, class: "form-control" %>
 
-  <%= f.label :telephone_number, class: "label-#{yield(:class_text)}" %>
+  <%= f.label :電話番号, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :telephone_number, class: "form-control" %>
+
+  <%= f.label :住所, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :client_email, class: "form-control" %>
 
   
   <%= f.label :介護度, class: "label-#{yield(:class_text)}" %>

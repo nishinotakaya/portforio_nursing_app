@@ -1,37 +1,97 @@
-<div class= "center">
-  <table class="table table-bordered table-condensed table-hover" id="table-client">
-    <meta charset = " utf-8 " />
-    <h1>アセスメントシート（基本情報）</h1>
-    <%= form_with( model: @asesment, url: create_asesment_basic_info_client_asesments_path(@client, @asesment), local: true, method: :post) do |f| %>
-       <p><span class="under">作成年月日<%= f.date_select(:asesment_create_year, discard_month:true, discard_day:true) %>年
-                                         <%= f.date_select(:asesment_create_day, discard_year:true)+'日' %></span>
-                                         &emsp;<span class="under"><%= f.label "実施場所", class: "label-#{yield(:class_text)}" %></span>
-                                         &emsp;<span class="under"><%= f.text_area :praxis_place, class: "hoge", size: "15x1" %></span>
-                                         &emsp;<span class="under"><%= f.label "記入者", class: "label-#{yield(:class_text)}" %></span>
-                                         &emsp;<span class="under"><%= f.text_area :filling_up, class: "hoge", size: "15x1" %></span></p>
-     <table class="asesmentTable", border="2" width="1000" cellspacing="0" cellpadding="5">
-        <tr>
-          <th align="right" nowrap><%= f.label "アセスメント理由", class: "label-#{yield(:class_text)}" %></th>
-          <td align="left" width="800"><%= f.text_area :why_assesment, class: "hoge", size: "150x1" %></td>
-        </tr>
-      </table>
-  <br><table border="2" cellspacing="0", cellpadding="5">
-        <tr>
-          <th align="right" nowrap><%= f.label "ふりがな", class: "label-#{yield(:class_text)}" %></th>
-          <td align="left"><%= f.text_area :client_name_japanese, class: "hoge", size: "30x1" %>
-         </td>
-        <div class = "birthdaydiv">  
-         <th nowrap rowspan="2"><%= @client.sex %><th>
-         <th nowrap　rowspan="2">生年月日</th>
-         <th nowrap　rowspan="2"><%= @client.client_birthday.strftime("%F")if @client.client_birthday.present? %></th>
+<div class="center">
+  <meta charset = " utf-8 " />
+  <h1>通所介護フェイスシート</h1>
+  <%= form_with( model: @asesment, url: create_asesment_basic_info_client_asesments_path(@client, @asesment), local: true, method: :post) do |f| %>
+    <p><span class="under">記入年月日<%= f.date_select(:asesment_create_year, discard_month:true, discard_day:true) %>年
+                                      <%= f.date_select(:asesment_create_day, discard_year:true)+'日' %></span>
+                                      &emsp;<span class="under"><%= f.label "実施場所", class: "label-#{yield(:class_text)}" %></span>
+                                      &emsp;<span class="under"><%= f.text_area :praxis_place, class: "hoge", size: "15x1" %></span>
+                                      &emsp;<span class="under"><%= f.label "記入者", class: "label-#{yield(:class_text)}" %></span>
+                                      &emsp;<span class="under"><%= f.text_area :filling_up, class: "hoge", size: "15x1" %></span></p>
+                                    <%= f.radio_button :new_or_continuation, "新規" %>
+                                    <%= f.label "新規", class: "label-#{yield(:class_text)}" %>
+                                    <%= f.radio_button  :new_or_continuation, "継続" %>
+                                    <%= f.label "継続", class: "label-#{yield(:class_text)}" %>
 
-        </div> 
+<br><table align="center" cellspacing="0", cellpadding="5">
+        <tr>
+          <th class="center" rowspan="4">写真</th>
         </tr>
         <tr>
-          <th align="right" nowrap ><%= f.label "名前", class: "label-#{yield(:class_text)}" %></th>
-          <td align="left" width="30"><%= @client.client_name %>様</td>
+          <th class="center" nowrap rowspan="1">ふりがな<br><%= f.label "本人氏名", class: "label-#{yield(:class_text)}" %></th>
+          <td text-align="center"><%= f.text_area :client_name_japanese, class: "center", size: "20x1" %>
+          <br><%= @client.client_name %>&emsp;様</td>
+          <th class="center" rowspan="1">性別<br><%= @client.sex %><th>
+          <th nowrap colspan="2">生年月日
+          <br><%= @client.client_birthday.strftime("%F")if @client.client_birthday.present? %>(歳)</th>
+        </tr>
+        <tr>
+          <th class="center">被保険者番号</th>
+          <th class="center"><%= f.text_area :insurance_number, class: "hoge", size: "15x1" %></th>
+          <th class="center" rowspan="2" colspan="4"><%= @client.nursing_number %></th>   
+        </tr>
+        <tr>
+          <th class="center">世帯携帯</th>
+          <th><%= f.radio_button :crying_email, "同居世帯" %>
+              <%= f.label "同居世帯", class: "label-#{yield(:class_text)}" %>
+              <br><%= f.radio_button  :crying_email, "同居世帯（日中一人)" %>
+              <%= f.label "同居世帯（日中一人)", class: "label-#{yield(:class_text)}" %>
+              <br><%= f.radio_button :crying_email, "高齢夫婦世帯" %>
+              <%= f.label "高齢夫婦世帯", class: "label-#{yield(:class_text)}" %>
+              <br><%= f.radio_button  :crying_email, "一人暮らし" %>
+              <%= f.label "一人暮らし", class: "label-#{yield(:class_text)}" %></th>  
         </tr>                                      
-      </table>                                  
-    <% end %>
+    </table>
+      <table align="center" cellspacing="0", cellpadding="5">
+        <tr>
+          <th colspan= "2"><%= f.label "住所", class: "label-#{yield(:class_text)}" %>
+          &emsp;<%= @client.client_email %></th>
+          <th colspan= "2"><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
+          &emsp;<%= @client.telephone_number %></th>
+        </tr>
+        <tr>
+          <th rowspan= "10" >上記以外の連絡先
+          <th>
+        </tr>
+        <tr>
+          <th class= "center"><%= f.label "氏名", class: "label-#{yield(:class_text)}" %>
+           &emsp;<%= f.text_area :relation_name, class: "hoge", size: "15x1" %>
+            <th class= "center"><%= f.label "住所", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :relation_email, class: "hoge", size: "15x1" %>
+            <th class= "center">
+            <%= f.label "本人との続柄", class: "label-#{yield(:class_text)}" %>
+            <%= f.text_area :relation_joining, class: "hoge", size: "15x1" %>
+            <br><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
+            <br><%= f.text_area :relation_cellphone, class: "hoge", size: "15x1" %></th>
+        </tr>
+        <tr>
+          <th class= "center"><%= f.label "氏名", class: "label-#{yield(:class_text)}" %>
+           &emsp;<%= f.text_area :relation_name, class: "hoge", size: "15x1" %>
+            <th class= "center"><%= f.label "住所", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :relation_email, class: "hoge", size: "15x1" %>
+             <th class= "center">
+            <%= f.label "本人との続柄", class: "label-#{yield(:class_text)}" %>
+            <%= f.text_area :relation_joining, class: "hoge", size: "15x1" %>
+            <br><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
+            <br><%= f.text_area :relation_cellphone, class: "hoge", size: "15x1" %></th>
+        </tr>
+        <tr>
+          <th class= "center"><%= f.label "氏名", class: "label-#{yield(:class_text)}" %>
+           &emsp;<%= f.text_area :relation_name, class: "hoge", size: "15x1" %>
+            <th class= "center"><%= f.label "住所", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :relation_email, class: "hoge", size: "15x1" %>
+            <th class= "center">
+            <%= f.label "本人との続柄", class: "label-#{yield(:class_text)}" %>
+            <%= f.text_area :relation_joining, class: "hoge", size: "15x1" %>
+            <br><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
+            <br><%= f.text_area :relation_cellphone, class: "hoge", size: "15x1" %></th>
+        </tr>                
+      </table>
+      健康状態
+      <table align="center" cellspacing="0", cellpadding="5">
+      </table>                             
+  <% end %>
+</div>        
+
           
 
