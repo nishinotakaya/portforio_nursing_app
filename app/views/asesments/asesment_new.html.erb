@@ -3,6 +3,21 @@
     <meta charset = " utf-8 " />
     <h1>アセスメントシート（基本情報）</h1>
     <%= form_with( model: @asesment, url: create_asesment_basic_info_client_asesments_path(@client, @asesment), local: true, method: :post) do |f| %>
-      
+       <p><span class="under">作成年月日<%= f.date_select(:asesment_create_year, discard_month:true, discard_day:true) %>年
+                                         <%= f.date_select(:asesment_create_day, discard_year:true)+'日' %></span>
+                                         &emsp;<span class="under"><%= f.label "実施場所", class: "label-#{yield(:class_text)}" %></span>
+                                         &emsp;<span class="under"><%= f.text_area :praxis_place, class: "hoge", size: "10x1" %></span>
+                                         &emsp;<span class="under"><%= f.label "記入者", class: "label-#{yield(:class_text)}" %></span>
+                                         &emsp;<span class="under"><%= f.text_area :filling_up, class: "hoge", size: "10x1" %></span></p>
+     <table border="1" width="1000" cellspacing="0" cellpadding="5">
+        <tr>
+          <th align="right" nowrap><%= f.label "アセスメント理由", class: "label-#{yield(:class_text)}" %></th>
+          <td align="left" width="800"><%= f.text_area :why_assesment, class: "hoge", size: "150x1" %></td>
+        </tr>
+        <tr>
+          <th align="right" nowrap><%= f.label "ふりがな", class: "label-#{yield(:class_text)}" %></th>
+          <td align="left" width="800"><%= f.text_area :why_assesment, class: "hoge", size: "150x1" %></td>
+        </tr>                                      
+    </table>                                  
     <% end %>
 

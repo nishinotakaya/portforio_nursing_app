@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '~> 2.6.6'
 gem 'rails',        '~> 5.1.6'
 gem 'rails-i18n'
 gem 'bcrypt'
@@ -19,9 +20,10 @@ gem 'roo'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'rubyXL'
+gem 'wdm', '>= 0.1.0'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
+  gem 'sqlite3', '1.4.2'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -33,7 +35,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '0.20.0'
+  gem 'pg'
 end
 
 # Windows環境ではtzinfo-dataというgemを含める必要があります

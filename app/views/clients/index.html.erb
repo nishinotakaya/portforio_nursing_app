@@ -12,7 +12,8 @@
         <th>利用日</th>
         <th>性別</th>
         <th>生年月日</th>
-        <th>モニタリング</th>
+        <th>モニタリング（利用者情報報告書）</th>
+        <th>業務日誌</th>
         <th>退所</th>
       </tr>
     </thead>
@@ -28,6 +29,7 @@
           <td><%= client.sex %></td>
           <td><%= client.client_birthday.strftime("%F")if client.client_birthday.present? %></td>
           <td><%= link_to "利用者情報一覧",client_path(client) %></td>
+          <td><%= link_to "業務日誌"%></td>
           <td><%= link_to "退所", client_path(client), method: :delete,
                     data: { confirm: "削除してよろしいですか？" },
                     class: "btn btn-danger" %></td>

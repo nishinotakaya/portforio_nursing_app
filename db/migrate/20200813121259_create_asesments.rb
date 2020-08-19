@@ -5,6 +5,7 @@ class CreateAsesments < ActiveRecord::Migration[5.1]
       t.string :praxis_place #実行場所
       t.string :filling_up #記入者
       t.string :why_assesment #アセスメント理由
+      t.string :client_name_japanese #利用者名ふりがな
       t.string :family_name #家族構成名前
       t.string :family_joining #続柄
       t.string :family_age #年齢
