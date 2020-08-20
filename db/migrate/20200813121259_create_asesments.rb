@@ -12,16 +12,29 @@ class CreateAsesments < ActiveRecord::Migration[5.1]
       t.string :relation_email #上記以外の住所
       t.string :relation_joining #本人との続柄続柄
       t.string :relation_cellphone #上記以外の電話番号
+      t.string :relation_name_2 #上記以外の連絡先の方の名前
+      t.string :relation_email_2 #上記以外の住所
+      t.string :relation_joining_2 #本人との続柄続柄
+      t.string :relation_cellphone_2 #上記以外の電話番号
+      t.string :relation_name_3 #上記以外の連絡先の方の名前
+      t.string :relation_email_3 #上記以外の住所
+      t.string :relation_joining_3 #本人との続柄続柄
+      t.string :relation_cellphone_3 #上記以外の電話番号
       t.string :family_health_disease #健康状態現在の疾患
       t.string :family_health_disease_past#健康状態過去の疾患
       t.string :eyesight #視力
       t.string :audition #聴力
       t.string :prosthesis #義歯
       t.string :nomal_vital_body_temperature #平常時バイタル 体温
-      t.string :nomal_vital_blood_pressure #平常時血圧
+      t.string :nomal_vital_blood_pressure_up #平常時血圧 最大
+      t.string :nomal_vital_blood_pressure_down #平常時血圧 最小
       t.string :nomal_vital_pulse #脈
       t.string :medicina #配薬名
       t.string :information_medicina #配薬情報源
+      t.string :information_medicina_family #配薬情報源家族カッコ内
+      t.string :information_medicina_another #その他カッコ内
+      t.string :hedge_medicine_food #避けるべき食材、薬
+      t.string :hedge_medicine_food_information #情報
       t.string :hospital_name #かかりつけ医
       t.string :hospital_doctor #医者
       t.string :hospital_doctor_nymber #病院電話番号
