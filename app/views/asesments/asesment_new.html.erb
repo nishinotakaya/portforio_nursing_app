@@ -165,25 +165,43 @@
             ℡&emsp;<%= f.text_area :hospital_doctor_nymber, class: "hoge", size: "20x1" %></th>    
       </tr>
       <tr>
-        <th rowspan= "4">医師の指示注意事項</th>  
-          <th>入浴の可否
-          <%= f.radio_button :doctor_bath, "可" %>
-                                      <%= f.label "可", class: "label-#{yield(:class_text)}" %>
-                                      <%= f.radio_button  :doctor_bath, "継続" %>
-                                      <%= f.label "否", class: "label-#{yield(:class_text)}" %></th>
-        <tr>                              
-          <th>皮膚疾患</th>
-        </tr>
-        <tr>  
-          <th>移送時の留意点</th>
-        </tr>
-        <tr> 
-          <th>その他制限事項</th>
-        </tr>
-      </tr>                    
+        <th>医師の指示注意事項</th>  
+          <th colspan= "4">入浴の可否
+             &emsp;<%= f.radio_button :doctor_bath, "可" %>
+            <%= f.label "可", class: "label-#{yield(:class_text)}" %>
+            <%= f.radio_button  :doctor_bath, "継続" %>
+            <%= f.label "否", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :doctor_bath_another, class: "hoge", size: "70x1" %>
+                                     
+          <br>皮膚疾患
+             &emsp;<%= f.radio_button :doctor_skin, "有" %>
+            <%= f.label "有", class: "label-#{yield(:class_text)}" %>
+            <%= f.radio_button  :doctor_skin, "無" %>
+            <%= f.label "無", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :doctor_skin_another, class: "hoge", size: "70x1" %>
+        
+          <br>移送時の留意点
+             &emsp;<%= f.radio_button :doctor_transfer, "有" %>
+            <%= f.label "有", class: "label-#{yield(:class_text)}" %>
+            <%= f.radio_button  :doctor_transfer, "無" %>
+            <%= f.label "無", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :doctor_transfer_another, class: "hoge", size: "70x1" %>
+        
+          <br>その他制限事項
+             &emsp;<%= f.radio_button :doctor_etcetera, "有" %>
+            <%= f.label "有", class: "label-#{yield(:class_text)}" %>
+            <%= f.radio_button  :doctor_etcetera, "無" %>
+            <%= f.label "無", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :doctor_etcetera_another, class: "hoge", size: "70x1" %>
+        </th>
+      </tr>
+        <tr>
+        <th class= "center" colspan= "4">【特機事項】<%= f.text_area :specialized_equipment, class: "hoge", size: "100x20" %></th>
+        </tr>                    
     </table>
   <% end %>
 </div>        
+       
 
     
     

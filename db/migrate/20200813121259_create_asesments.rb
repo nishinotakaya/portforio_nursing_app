@@ -39,9 +39,13 @@ class CreateAsesments < ActiveRecord::Migration[5.1]
       t.string :hospital_doctor #医者
       t.string :hospital_doctor_nymber #病院電話番号
       t.string :doctor_bath #医者の指示（入浴)
+      t.string :doctor_bath_another #医師の指示（入浴詳細）
       t.string :doctor_skin #医者の指示(皮膚疾患)
+      t.string :doctor_skin_another #医者の指示(皮膚疾患詳細)
       t.string :doctor_transfer #移送時留意点
+      t.string :doctor_transfer_another #移送時留意点詳細
       t.string :doctor_etcetera #その他制限
+      t.string :doctor_etcetera_another #その他制限(詳細)
       t.string :specialized_equipment #特機事項
       t.timestamps
     end
