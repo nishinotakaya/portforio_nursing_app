@@ -47,6 +47,7 @@ class CreateAsesments < ActiveRecord::Migration[5.1]
       t.string :doctor_etcetera #その他制限
       t.string :doctor_etcetera_another #その他制限(詳細)
       t.string :specialized_equipment #特機事項
+      t.references :client, foreign_key: true
       t.timestamps
     end
   end

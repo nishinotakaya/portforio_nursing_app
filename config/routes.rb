@@ -24,9 +24,7 @@
         patch 'update_basic_info'
        
       end
-      
-      resources :use_times, only: :update do #利用時間
-      end  
+        
       
       
       resources :monitorings, only: :update do #モニタリング

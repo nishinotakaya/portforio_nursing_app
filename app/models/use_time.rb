@@ -1,2 +1,0 @@
-class UseTime < ApplicationRecord
-end

@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  use_worked_on: 2020-08-03
-
-two:
-  use_worked_on: 2020-08-03

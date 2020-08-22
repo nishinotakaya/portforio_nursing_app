@@ -15,12 +15,19 @@ class MonitoringsController < ApplicationController
   
   def update_monitoring_basic_info_affter
     @monitoring = Monitoring.find(params[:id])
+    if params[:monitoring][:check_monitoring] == "true"
       if @monitoring.update_attributes(client_monitoring_params)
         flash[:success] = "#{@client.client_name}様の利用者情報報告書を更新しました。"
+        redirect_to client_url(@client)
       else
         flash[:danger] = "#{@client.client_name}様の利用者情報報告書の更新は失敗しました。<br>" + @client.errors.full_messages.join("<br>")
+        redirect_to monitoring_basic_info_affter_client_monitoring_url(@client, @monitoring)
+        #render monitoring_basic_info_affter @client,@monitoring
       end
-      redirect_to client_url @client
+    else
+      flash[:danger] = "確認をチェックしてください"
+      redirect_to monitoring_basic_info_affter_client_monitoring_url(@client, @monitoring) 
+    end    
   end
   
   
