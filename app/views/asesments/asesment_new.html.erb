@@ -199,10 +199,11 @@
         <th class= "center" colspan= "4">【特機事項】<%= f.text_area :specialized_equipment, class: "hoge", size: "100x20" %></th>
         </tr>                    
     </table>
+     <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
+          <%= f.check_box :check_a, {checked: false}, "true", "false" %>
     <br><%= f.submit "追加", class: "btn btn-primary " %>
   <% end %>
 </div>        
-          
        
 
     

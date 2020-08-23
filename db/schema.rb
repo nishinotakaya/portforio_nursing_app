@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200813121259) do
+ActiveRecord::Schema.define(version: 20200823143722) do
 
   create_table "asesments", force: :cascade do |t|
     t.datetime "asesment_create_day"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20200813121259) do
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "check_a", default: false, null: false
     t.index ["client_id"], name: "index_asesments_on_client_id"
   end
 

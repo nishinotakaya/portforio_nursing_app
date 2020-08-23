@@ -1,6 +1,7 @@
 class CreateAsesments < ActiveRecord::Migration[5.1]
   def change
     create_table :asesments do |t|
+      t.boolean :check_a, default: false, null: false #確認ボタン
       t.datetime :asesment_create_year #作成年
       t.datetime :asesment_create_day #作成日
       t.string :praxis_place #実行場所
@@ -47,7 +48,6 @@ class CreateAsesments < ActiveRecord::Migration[5.1]
       t.string :doctor_etcetera #その他制限
       t.string :doctor_etcetera_another #その他制限(詳細)
       t.string :specialized_equipment #特機事項
-      t.boolean :check_asesment #確認ボタン
       t.references :client, foreign_key: true
       t.timestamps
     end
