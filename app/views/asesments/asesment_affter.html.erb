@@ -1,0 +1,206 @@
+<div class="center">
+  <meta charset = " utf-8 " />
+  <h1>通所介護フェイスシート</h1>
+  <%= form_with( model: @asesment, url: asesment_update_client_asesment_path(@client, @asesment), local: true, method: :patch) do |f| %>
+    <p><span class="under">記入年月日<%= f.date_select(:asesment_create_year, discard_month:true, discard_day:true) %>年
+                                      <%= f.date_select(:asesment_create_day, discard_year:true)+'日' %></span>
+                                      &emsp;<span class="under"><%= f.label "実施場所", class: "label-#{yield(:class_text)}" %></span>
+                                      &emsp;<span class="under"><%= f.text_area :praxis_place, class: "hoge", size: "15x1" %></span>
+                                      &emsp;<span class="under"><%= f.label "記入者", class: "label-#{yield(:class_text)}" %></span>
+                                      &emsp;<span class="under"><%= f.text_area :filling_up, class: "hoge", size: "15x1" %></span></p>
+                                    <%= f.radio_button :new_or_continuation, "新規" %>
+                                    <%= f.label "新規", class: "label-#{yield(:class_text)}" %>
+                                    <%= f.radio_button  :new_or_continuation, "継続" %>
+                                    <%= f.label "継続", class: "label-#{yield(:class_text)}" %>
+<br>
+1.利用者
+<br>
+    <table align="center" cellspacing="0", cellpadding="5">
+      <tr>
+        <th class="center" rowspan="4">写真</th>
+      </tr>
+      <tr>
+        <th class="center" nowrap rowspan="1">ふりがな<br><%= f.label "本人氏名", class: "label-#{yield(:class_text)}" %></th>
+        <td text-align="center"><%= @client.client_name_japanese %>
+        <br><%= @client.client_name %>&emsp;様</td>
+        <th class="center" rowspan="1">性別<br><%= @client.sex %><th>
+        <th nowrap colspan="2">生年月日
+        <br><%= @client.client_birthday.strftime("%F")if @client.client_birthday.present? %>(歳)</th>
+      </tr>
+      <tr>
+        <th class="center">被保険者番号</th>
+        <th class="center"><%= f.text_area :insurance_number, class: "hoge", size: "15x1" %></th>
+        <th class="center" rowspan="2" colspan="4"><%= @client.nursing_number %></th>   
+      </tr>
+      <tr>
+        <th class="center">世帯携帯</th>
+        <th><%= f.radio_button :crying_email, "同居世帯" %>
+            <%= f.label "同居世帯", class: "label-#{yield(:class_text)}" %>
+            <br><%= f.radio_button  :crying_email, "同居世帯（日中一人)" %>
+            <%= f.label "同居世帯（日中一人)", class: "label-#{yield(:class_text)}" %>
+            <br><%= f.radio_button :crying_email, "高齢夫婦世帯" %>
+            <%= f.label "高齢夫婦世帯", class: "label-#{yield(:class_text)}" %>
+            <br><%= f.radio_button  :crying_email, "一人暮らし" %>
+            <%= f.label "一人暮らし", class: "label-#{yield(:class_text)}" %></th>  
+      </tr>                                      
+    </table>
+    <table align="center" cellspacing="0", cellpadding="5">
+      <tr>
+        <th colspan= "2"><%= f.label "住所", class: "label-#{yield(:class_text)}" %>
+        &emsp;<%= @client.client_email %></th>
+        <th colspan= "2"><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
+        &emsp;<%= @client.telephone_number %></th>
+      </tr>
+      <tr>
+        <th rowspan= "10" >上記以外の連絡先
+        <th>
+      </tr>
+      <tr>
+        <th class= "center"><%= f.label "氏名", class: "label-#{yield(:class_text)}" %>
+          &emsp;<%= f.text_area :relation_name, class: "hoge", size: "15x1" %>
+          <th class= "center"><%= f.label "住所", class: "label-#{yield(:class_text)}" %>
+          &emsp;<%= f.text_area :relation_email, class: "hoge", size: "15x1" %>
+          <th class= "center">
+          <%= f.label "本人との続柄", class: "label-#{yield(:class_text)}" %>
+          <%= f.text_area :relation_joining, class: "hoge", size: "15x1" %>
+          <br><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
+          <br><%= f.text_area :relation_cellphone, class: "hoge", size: "15x1" %></th>
+      </tr>
+      <tr>
+        <th class= "center"><%= f.label "氏名", class: "label-#{yield(:class_text)}" %>
+          &emsp;<%= f.text_area :relation_name_2, class: "hoge", size: "15x1" %>
+          <th class= "center"><%= f.label "住所", class: "label-#{yield(:class_text)}" %>
+          &emsp;<%= f.text_area :relation_email_2, class: "hoge", size: "15x1" %>
+            <th class= "center">
+          <%= f.label "本人との続柄", class: "label-#{yield(:class_text)}" %>
+          <%= f.text_area :relation_joining_2, class: "hoge", size: "15x1" %>
+          <br><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
+          <br><%= f.text_area :relation_cellphone_2, class: "hoge", size: "15x1" %></th>
+      </tr>
+      <tr>
+        <th class= "center"><%= f.label "氏名", class: "label-#{yield(:class_text)}" %>
+          &emsp;<%= f.text_area :relation_name_3, class: "hoge", size: "15x1" %>
+          <th class= "center"><%= f.label "住所", class: "label-#{yield(:class_text)}" %>
+          &emsp;<%= f.text_area :relation_email_3, class: "hoge", size: "15x1" %>
+          <th class= "center">
+          <%= f.label "本人との続柄", class: "label-#{yield(:class_text)}" %>
+          <%= f.text_area :relation_joining_3, class: "hoge", size: "15x1" %>
+          <br><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
+          <br><%= f.text_area :relation_cellphone_3, class: "hoge", size: "15x1" %></th>
+      </tr>
+    </table>
+    2.健康状態
+    <table align="center">
+      <tr>
+        <th class= "left" colspan= "2"><%= f.label "現症", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.text_area :family_health_disease, class: "hoge", size: "50x10" %></th>
+        <th class= "left"  colspan= "2"><%= f.label "既存症", class: "label-#{yield(:class_text)}" %>
+        <br><%= f.text_area :family_health_disease_past, class: "hoge", size: "50x10" %></th>
+      </tr>
+      <tr>
+        <th class= "center" nowrap>視力</th>
+        <th class= "center"><%= f.text_area :eyesight, class: "hoge", size: "15x1" %></th>
+        <th  class= "center" rowspan= "3"><span class="under">平常時バイタル</span>
+        <br>体温
+        <%= f.text_area :nomal_vital_body_temperature, class: "hoge", size: "5x1" %>℃
+        <br>脈拍
+        <%= f.text_area :nomal_vital_pulse, class: "hoge", size: "5x1" %>回/分
+        <br>血圧
+        <%= f.text_area :nomal_vital_blood_pressure_up, class: "hoge", size: "5x1" %>mmHg~
+        <%= f.text_area :nomal_vital_blood_pressure_down, class: "hoge", size: "5x1" %>mmHg</th>
+      </tr>
+      <tr>
+        <th class= "center" nowrap>聴力</th>
+        <th class= "center"><%= f.text_area :audition, class: "hoge", size: "15x1" %></th>
+      </tr>
+      <tr>
+        <th class= "center" rowspan= "1" nowrap>義歯</th>
+        <th class= "center"><%= f.radio_button :prosthesis, "有" %>
+            <%= f.label "有", class: "label-#{yield(:class_text)}" %>
+            （<%= f.check_box :prosthesis, {multiple: true}, "上", nil %>
+            <%= f.label "上", class: "label-#{yield(:class_text)}" %>
+            ・<%= f.check_box :prosthesis, {multiple: true}, "下", nil%>
+            <%= f.label "下", class: "label-#{yield(:class_text)}" %>）
+
+            <%= f.radio_button  :prosthesis, "無" %>
+            <%= f.label "無", class: "label-#{yield(:class_text)}" %>
+            <br>
+            <%= f.label "有の場合義歯、自歯本数", class: "label-#{yield(:class_text)}" %>
+            <br><%= f.text_area :prosthesis, class: "hoge", size: "20x1" %></th>
+      </tr>
+      <tr>
+        <th class= "center" rowspan= "1" nowrap>服薬</th>
+        <th><span class="under">通所介護利用時の服薬内容</span>
+          <%= f.text_area :nomal_vital_blood_pressure_down, class: "hoge", size: "50x2" %>
+          <br><%= f.label "情報源", class: "label-#{yield(:class_text)}" %>
+          <br>
+          <%= f.check_box :information_medicina, {multiple: true}, "本人", nil %>本人
+          <%= f.check_box :information_medicina, {multiple: true}, "家族", nil %>家族
+          <%= f.text_area :information_medicina_family, class: "hoge", size: "20x1" %>
+          <%= f.check_box :information_medicina, {multiple: true}, "ケアマネージャー", nil %>ケアマネージャー
+          <br><%= f.check_box :information_medicina, {multiple: true}, "かかりつけ医", nil %>かかりつけ医
+          <%= f.check_box :information_medicina, {multiple: true}, "その他", nil %>その他
+          <%= f.text_area :information_medicina_another, class: "hoge", size: "20x1" %>
+        </th>
+        <th><span class="under">避けるべき薬剤・食材（・嗜好）</span>
+        <%= f.text_area :hedge_medicine_food, class: "hoge", size: "50x5" %>
+       <br><%= f.label "情報源", class: "label-#{yield(:class_text)}" %>
+          <br>
+          <%= f.check_box :hedge_medicine_food_information, {multiple: true}, "本人", nil %>本人
+          <%= f.check_box :hedge_medicine_food_information, {multiple: true}, "家族", nil %>家族
+          <%= f.text_area :hedge_medicine_food_information, class: "hoge", size: "20x1" %>
+          <%= f.check_box :hedge_medicine_food_information, {multiple: true}, "ケアマネージャー", nil %>ケアマネージャー
+          <br><%= f.check_box :hedge_medicine_food_information, {multiple: true}, "かかりつけ医", nil %>かかりつけ医
+          <%= f.check_box :hedge_medicine_food_information, {multiple: true}, "その他", nil %>その他
+          <%= f.text_area :hedge_medicine_food_information, class: "hoge", size: "20x1" %>
+      </tr>
+      <tr>
+        <th class= "center" colspan= "4">かかりつけ医
+             &emsp;<%= f.text_area :hospital_name, class: "hoge", size: "20x1" %>
+            医師&emsp;<%= f.text_area :hospital_doctor, class: "hoge", size: "20x1" %>
+            ℡&emsp;<%= f.text_area :hospital_doctor_nymber, class: "hoge", size: "20x1" %>
+          <br>かかりつけ医
+          &emsp;<%= f.text_area :hospital_name, class: "hoge", size: "20x1" %>
+            医師&emsp;<%= f.text_area :hospital_doctor, class: "hoge", size: "20x1" %>
+            ℡&emsp;<%= f.text_area :hospital_doctor_nymber, class: "hoge", size: "20x1" %></th>    
+      </tr>
+      <tr>
+        <th>医師の指示注意事項</th>  
+          <th colspan= "4">入浴の可否
+             &emsp;<%= f.radio_button :doctor_bath, "可" %>
+            <%= f.label "可", class: "label-#{yield(:class_text)}" %>
+            <%= f.radio_button  :doctor_bath, "継続" %>
+            <%= f.label "否", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :doctor_bath_another, class: "hoge", size: "70x1" %>
+                                     
+          <br>皮膚疾患
+             &emsp;<%= f.radio_button :doctor_skin, "有" %>
+            <%= f.label "有", class: "label-#{yield(:class_text)}" %>
+            <%= f.radio_button  :doctor_skin, "無" %>
+            <%= f.label "無", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :doctor_skin_another, class: "hoge", size: "70x1" %>
+        
+          <br>移送時の留意点
+             &emsp;<%= f.radio_button :doctor_transfer, "有" %>
+            <%= f.label "有", class: "label-#{yield(:class_text)}" %>
+            <%= f.radio_button  :doctor_transfer, "無" %>
+            <%= f.label "無", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :doctor_transfer_another, class: "hoge", size: "70x1" %>
+        
+          <br>その他制限事項
+             &emsp;<%= f.radio_button :doctor_etcetera, "有" %>
+            <%= f.label "有", class: "label-#{yield(:class_text)}" %>
+            <%= f.radio_button  :doctor_etcetera, "無" %>
+            <%= f.label "無", class: "label-#{yield(:class_text)}" %>
+            &emsp;<%= f.text_area :doctor_etcetera_another, class: "hoge", size: "70x1" %>
+        </th>
+      </tr>
+        <tr>
+        <th class= "center" colspan= "4">【特機事項】<%= f.text_area :specialized_equipment, class: "hoge", size: "100x20" %></th>
+        </tr>                    
+    </table>
+     <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
+          <%= f.check_box :check_a, {checked: false}, "true", "false" %>
+    <br><%= f.submit "編集", class: "btn btn-primary " %>
+  <% end %>
+</div> 

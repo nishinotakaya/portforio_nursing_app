@@ -7,13 +7,40 @@ class AsesmentsController < ApplicationController
   
   def create_asesment_basic_info
     @client = Client.find(params[:client_id])
-    @asesment = @client.asesments.new(asesment_params)
-    if @asesment.save
-       flash[:success] = "アセスメントを追加しました！"
-       redirect_back_or @client
+      @asesment = @client.asesments.new(asesment_params)
+        if params[:asesment][:check_a] == "true"  
+          if @asesment.save
+            flash[:success] = "アセスメントを追加しました！"
+            redirect_back_or @client
+          else
+            render action: :asesment_new
+          end
+        else
+          flash[:danger] = "確認チェックをしてください！"
+          render action: :asesment_new 
+        end  
+  end
+  
+  def asesment_affter
+    @client = Client.find(params[:client_id])
+    @asesment = Asesment.find(params[:id])
+  end 
+  
+  def asesment_update
+    @client = Client.find(params[:client_id])
+    @asesment = Asesment.find(params[:id])
+    if @asesment.update_attributes(asesment_params)
+      if params[:asesment][:check_a] == "true"
+        flash[:success] = "#{@client.client_name}様の利用者情報報告書を更新しました。"
+        redirect_to client_url(@client)
+      else 
+        flash[:danger] = "確認をチェックしてください"
+        render action: :asesment_affter  
+      end    
     else
-      render asesment_new @client 
-    end  
+      flash[:danger] = "#{@client.client_name}様の利用者情報報告書の更新は失敗しました。<br>" + @client.errors.full_messages.join("<br>")
+      render action: :asesment_affter 
+    end
   end  
   
   

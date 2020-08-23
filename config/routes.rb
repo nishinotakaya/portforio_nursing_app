@@ -41,6 +41,8 @@
       
       resources :asesments, only: :update do
         member do
+          get 'asesment_affter'
+          patch 'asesment_update'
         end
         collection do
           get 'asesment_new'

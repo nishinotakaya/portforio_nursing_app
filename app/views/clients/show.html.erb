@@ -23,7 +23,8 @@
         </td>
         <td>
       <% @asesments.each do |asesment| %>
-          <%=link_to %>
+          <%= link_to "アセスメント", 
+          asesment_affter_client_asesment_path(@client, asesment), class: "btn btn-primary" %>
       <% end %>
         </td>
       </tr>
