@@ -1,12 +1,12 @@
 class CreateAsesments < ActiveRecord::Migration[5.1]
   def change
     create_table :asesments do |t|
+      t.datetime :asesment_create_year #作成年
       t.datetime :asesment_create_day #作成日
       t.string :praxis_place #実行場所
       t.string :filling_up #記入者
       t.string :new_or_continuation #新規か継続
       t.string :insurance_number #保険番号
-      t.string :client_name_japanese #利用者名ふりがな
       t.string :crying_email #世帯携帯
       t.string :relation_name #上記以外の連絡先の方の名前
       t.string :relation_email #上記以外の住所
@@ -47,6 +47,7 @@ class CreateAsesments < ActiveRecord::Migration[5.1]
       t.string :doctor_etcetera #その他制限
       t.string :doctor_etcetera_another #その他制限(詳細)
       t.string :specialized_equipment #特機事項
+      t.boolean :check_asesment #確認ボタン
       t.references :client, foreign_key: true
       t.timestamps
     end

@@ -2,6 +2,9 @@
 <%= form_with(model: @client, url:  update_basic_info_client_path(@client), local: true, method: :patch) do |f| %>
   <%= render 'shared/error_messages',  object: @client %>
 
+  <%= f.label "利用者名［ふりがな］", class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :client_name_japanese, class: "form-control" %>
+
   <%= f.label :client_name, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :client_name, class: "form-control" %>
 
@@ -26,9 +29,9 @@
     <%= f.check_box :date_of_day, {multiple: true}, "日", nil %>日
   
   <br><%= f.label :性別, class: "label-#{yield(:class_text)}" %>
-  <br><%= f.radio_button :sex, :男, checked: "checked" %>
+  <br><%= f.radio_button :sex, :男性, checked: "checked" %>
         <%= f.label "男性", class: "label-#{yield(:class_text)}" %>
-        <%= f.radio_button :sex, :女, checked: "checked" %>
+        <%= f.radio_button :sex, :女性, checked: "checked" %>
         <%= f.label "女性", class: "label-#{yield(:class_text)}" %>
   
   <br><%= f.label "生年月日", class: "label-#{yield(:class_text)}" %>

@@ -6,6 +6,7 @@ class AsesmentsController < ApplicationController
   end
   
   def create_asesment_basic_info
+    @client = Client.find(params[:client_id])
     @asesment = @client.asesments.new(asesment_params)
     if @asesment.save
        flash[:success] = "アセスメントを追加しました！"
@@ -19,9 +20,12 @@ class AsesmentsController < ApplicationController
   private
   
   def asesment_params  
-    params.require(:asesment).permit(:asesment_create_day, :praxis_place, :filling_up, :why_assesment, :family_name, :family_joining, :family_age, :family_health, :crying_email_name, :crying_email_joining,
-    :crying_email_life, :crying_call, :first_time_reception, :reception_method, :reception_requester, :counselling_route, :life_history, :life_now, :trauma_old_people_adl, :dementia_old_people_adl, 
-    :nursing_number_day, :nursing_number_duration, :nursing_care_on_sickness_insurance, :health_insurence, :handicapped_notebook, :livelihood_protection, :nursing_care_service, :nursing_care_service_call, 
-    :nursing_care_service_content)
+    params.require(:asesment).permit(:asesment_create_day, :praxis_place, :filling_up, :new_or_continuation, :insurance_number,
+      :crying_email, :relation_name, :relation_email, :relation_joining, :relation_cellphone, :relation_name_2, :relation_email_2,
+      :relation_joining_2, :relation_cellphone_2, :relation_name_3, :relation_email_3, :relation_joining_3, :relation_cellphone_3,
+      :family_health_disease, :family_health_disease_past, :eyesight, :audition, :prosthesis, :nomal_vital_body_temperature, :nomal_vital_blood_pressure_up,
+     :nomal_vital_blood_pressure_down, :nomal_vital_pulse, :medicina, :information_medicina, :information_medicina_family, :information_medicina_another,
+    :hedge_medicine_food, :hedge_medicine_food_information, :hospital_name,:hospital_doctor, :hospital_doctor_nymber, :doctor_bath, :doctor_bath_another, :doctor_skin,
+    :doctor_skin_another, :doctor_transfer, :doctor_transfer_another, :doctor_etcetera, :doctor_etcetera_another,:specialized_equipment)
   end  
 end

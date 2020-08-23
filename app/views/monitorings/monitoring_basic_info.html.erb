@@ -2,7 +2,7 @@
   <table class="table table-bordered table-condensed table-hover" id="table-client">
     <meta charset = " utf-8 " />
     <h1>利用者情報報告書</h1>
-    <%= form_with( model: @monitoring, url: create_monitoring_basic_info_client_monitorings_path(@client, @monitoring), local: true, method: :post) do |f| %>
+    <%= form_with( model: @monitoring, url: create_monitoring_new_client_monitorings_path(@client, @monitoring), local: true, method: :post) do |f| %>
   <p><span class="under">利用者名: <%= @client.client_name %>様の
     <%= f.date_select(:monitoring_worked_on_year, discard_month:true) %>年
     <%= f.date_select(:monitoring_worked_on_month, discard_year:true, discard_day:true) %>

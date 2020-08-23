@@ -13,9 +13,9 @@ before_action :set_one_month, only: :show
   
   def show
     @client = Client.find(params[:id])
-   @monitorings = @client.monitorings.where(check_monitoring: true).order(:monitoring_worked_on_year, :monitoring_worked_on_month).reverse_order
-  end  
-  
+    @monitorings = @client.monitorings.where(check_monitoring: true).order(:monitoring_worked_on_year, :monitoring_worked_on_month).reverse_order
+    @asesments = @client.asesments.where(check_asesment: true)
+  end
   #def client_show
     #@client = Client.find(params[:id])
      #respond_to do |format|
@@ -78,11 +78,11 @@ before_action :set_one_month, only: :show
   
   
   def client_params
-    params.require(:client).permit(:client_name, :client_email, :telephone_number, :nursing_number, :client_birthday, :sex,  date_of_day: [] )
+    params.require(:client).permit(:client_name_japanese, :client_name, :client_email, :telephone_number, :nursing_number, :client_birthday, :sex,  date_of_day: [] )
   end
   
   def client_create_params
-    params.permit(:client_name, :nursing_number, :client_email, :telephone_number, :client_birthday, :sex, date_of_day: [])
+    params.permit(:client_name_japanese, :client_name, :nursing_number, :client_name_japanese, :client_email, :telephone_number, :client_birthday, :sex, date_of_day: [])
   end  
   
   

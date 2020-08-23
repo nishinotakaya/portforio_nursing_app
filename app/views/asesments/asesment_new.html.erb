@@ -21,7 +21,7 @@
       </tr>
       <tr>
         <th class="center" nowrap rowspan="1">ふりがな<br><%= f.label "本人氏名", class: "label-#{yield(:class_text)}" %></th>
-        <td text-align="center"><%= f.text_area :client_name_japanese, size: "20x1" %>
+        <td text-align="center"><%= @client.client_name_japanese %>
         <br><%= @client.client_name %>&emsp;様</td>
         <th class="center" rowspan="1">性別<br><%= @client.sex %><th>
         <th nowrap colspan="2">生年月日
@@ -199,8 +199,10 @@
         <th class= "center" colspan= "4">【特機事項】<%= f.text_area :specialized_equipment, class: "hoge", size: "100x20" %></th>
         </tr>                    
     </table>
+    <br><%= f.submit "追加", class: "btn btn-primary " %>
   <% end %>
 </div>        
+          
        
 
     

@@ -12,43 +12,52 @@
 
 ActiveRecord::Schema.define(version: 20200813121259) do
 
-  create_table "adl_checks", force: :cascade do |t|
-    t.integer "client_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_adl_checks_on_client_id"
-  end
-
   create_table "asesments", force: :cascade do |t|
     t.datetime "asesment_create_day"
     t.string "praxis_place"
     t.string "filling_up"
-    t.string "why_assesment"
-    t.string "family_name"
-    t.string "family_joining"
-    t.string "family_age"
-    t.string "family_health"
-    t.string "crying_email_name"
-    t.string "crying_email_joining"
-    t.string "crying_email_life"
-    t.string "crying_call"
-    t.datetime "first_time_reception"
-    t.string "reception_method"
-    t.string "reception_requester"
-    t.string "counselling_route"
-    t.string "life_history"
-    t.string "life_now"
-    t.string "trauma_old_people_adl"
-    t.string "dementia_old_people_adl"
-    t.datetime "nursing_number_day"
-    t.string "nursing_number_duration"
-    t.string "nursing_care_on_sickness_insurance"
-    t.string "health_insurence"
-    t.string "handicapped_notebook"
-    t.string "livelihood_protection"
-    t.string "nursing_care_service"
-    t.string "nursing_care_service_call"
-    t.string "nursing_care_service_content"
+    t.string "new_or_continuation"
+    t.string "insurance_number"
+    t.string "crying_email"
+    t.string "relation_name"
+    t.string "relation_email"
+    t.string "relation_joining"
+    t.string "relation_cellphone"
+    t.string "relation_name_2"
+    t.string "relation_email_2"
+    t.string "relation_joining_2"
+    t.string "relation_cellphone_2"
+    t.string "relation_name_3"
+    t.string "relation_email_3"
+    t.string "relation_joining_3"
+    t.string "relation_cellphone_3"
+    t.string "family_health_disease"
+    t.string "family_health_disease_past"
+    t.string "eyesight"
+    t.string "audition"
+    t.string "prosthesis"
+    t.string "nomal_vital_body_temperature"
+    t.string "nomal_vital_blood_pressure_up"
+    t.string "nomal_vital_blood_pressure_down"
+    t.string "nomal_vital_pulse"
+    t.string "medicina"
+    t.string "information_medicina"
+    t.string "information_medicina_family"
+    t.string "information_medicina_another"
+    t.string "hedge_medicine_food"
+    t.string "hedge_medicine_food_information"
+    t.string "hospital_name"
+    t.string "hospital_doctor"
+    t.string "hospital_doctor_nymber"
+    t.string "doctor_bath"
+    t.string "doctor_bath_another"
+    t.string "doctor_skin"
+    t.string "doctor_skin_another"
+    t.string "doctor_transfer"
+    t.string "doctor_transfer_another"
+    t.string "doctor_etcetera"
+    t.string "doctor_etcetera_another"
+    t.string "specialized_equipment"
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,6 +65,7 @@ ActiveRecord::Schema.define(version: 20200813121259) do
   end
 
   create_table "clients", force: :cascade do |t|
+    t.string "client_name_japanese"
     t.string "client_name"
     t.string "client_email"
     t.string "telephone_number"
@@ -109,13 +119,6 @@ ActiveRecord::Schema.define(version: 20200813121259) do
     t.boolean "counselor", default: false
     t.boolean "nursing_care_staff", default: false
     t.index ["email"], name: "index_staffs_on_email", unique: true
-  end
-
-  create_table "use_times", force: :cascade do |t|
-    t.date "use_worked_on"
-    t.date "use_worked_on_month"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

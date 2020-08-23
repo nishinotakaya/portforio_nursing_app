@@ -13,34 +13,38 @@ class MonitoringsController < ApplicationController
     @monitorings = Monitoring.where(check_monitoring: true).order(:monitoring_worked_on_year && :monitoring_worked_on_month)
   end
   
-  def update_monitoring_basic_info_affter
+  def update_monitoring_basic
     @monitoring = Monitoring.find(params[:id])
-    if params[:monitoring][:check_monitoring] == "true"
-      if @monitoring.update_attributes(client_monitoring_params)
+    if @monitoring.update_attributes(client_monitoring_params)
+      if params[:monitoring][:check_monitoring] == "true"
         flash[:success] = "#{@client.client_name}様の利用者情報報告書を更新しました。"
         redirect_to client_url(@client)
+      else 
+        flash[:danger] = "確認をチェックしてください"
+        render action: :monitoring_basic_info_affter  
+      end    
+    else
+      flash[:danger] = "#{@client.client_name}様の利用者情報報告書の更新は失敗しました。<br>" + @client.errors.full_messages.join("<br>")
+      render action: :monitoring_basic_info_affter 
+    end
+  end
+        
+  
+  
+  
+  def create_monitoring_new
+    @monitoring = @client.monitorings.new(client_monitoring_params)
+    if params[:monitoring][:check_monitoring] == "true"
+      if @monitoring.save
+        flash[:success] = "利用者情報報告書（モニタリング)を追加しました！"
+        redirect_back_or @client 
       else
-        flash[:danger] = "#{@client.client_name}様の利用者情報報告書の更新は失敗しました。<br>" + @client.errors.full_messages.join("<br>")
-        redirect_to monitoring_basic_info_affter_client_monitoring_url(@client, @monitoring)
-        #render monitoring_basic_info_affter @client,@monitoring
+        render monitoring_basic_info @client
       end
     else
-      flash[:danger] = "確認をチェックしてください"
-      redirect_to monitoring_basic_info_affter_client_monitoring_url(@client, @monitoring) 
+     flash[:danger] = "確認をチェックしてください"
+     render action: :monitoring_basic_info       
     end    
-  end
-  
-  
-  
-  def create_monitoring_basic_info
-      @monitoring = @client.monitorings.new(client_monitoring_params)
-    if @monitoring.save
-      flash[:success] = "利用者情報報告書（モニタリング)を追加しました！"
-      redirect_back_or @client 
-    else
-      render monitoring_basic_info @client
-    end
-    
      
   end
   
