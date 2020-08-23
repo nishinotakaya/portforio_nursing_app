@@ -22,10 +22,10 @@
       <% end %>
         </td>
         <td>
-      <% @asesments.each do |asesment| %>
-          <%= link_to "アセスメント", 
-          asesment_affter_client_asesment_path(@client, asesment), class: "btn btn-primary" %>
-      <% end %>
+        <% @asesments.each do |asesment| %>
+             <br><%= link_to asesment.asesment_create_year.strftime("%Y年"), 
+             asesment_affter_client_asesment_path(@client, asesment), class: "btn btn-primary" %></br>
+        <% end %>
         </td>
       </tr>
     </tbody>

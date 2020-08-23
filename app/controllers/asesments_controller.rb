@@ -47,7 +47,7 @@ class AsesmentsController < ApplicationController
   private
   
   def asesment_params  
-    params.require(:asesment).permit(:asesment_create_day, :praxis_place, :filling_up, :new_or_continuation, :insurance_number,
+    params.require(:asesment).permit(:asesment_create_year, :asesment_create_day, :praxis_place, :filling_up, :new_or_continuation, :insurance_number,
       :crying_email, :relation_name, :relation_email, :relation_joining, :relation_cellphone, :relation_name_2, :relation_email_2,
       :relation_joining_2, :relation_cellphone_2, :relation_name_3, :relation_email_3, :relation_joining_3, :relation_cellphone_3,
       :family_health_disease, :family_health_disease_past, :eyesight, :audition, :prosthesis, :nomal_vital_body_temperature, :nomal_vital_blood_pressure_up,

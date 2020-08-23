@@ -2,7 +2,7 @@
   <meta charset = " utf-8 " />
   <h1>通所介護フェイスシート</h1>
   <%= form_with( model: @asesment, url: create_asesment_basic_info_client_asesments_path(@client, @asesment), local: true, method: :post) do |f| %>
-    <p><span class="under">記入年月日<%= f.date_select(:asesment_create_year, discard_month:true, discard_day:true) %>年
+    <p><span class="under">記入年月日<%= f.date_select(:asesment_create_year, discard_month:true) %>年
                                       <%= f.date_select(:asesment_create_day, discard_year:true)+'日' %></span>
                                       &emsp;<span class="under"><%= f.label "実施場所", class: "label-#{yield(:class_text)}" %></span>
                                       &emsp;<span class="under"><%= f.text_area :praxis_place, class: "hoge", size: "15x1" %></span>
