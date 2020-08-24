@@ -16,16 +16,20 @@
     <tbody>
       <tr>
         <td>
+        <%= paginate(@monitorings) %>
       <% @monitorings.each do |monitoring| %>
         <br><%= link_to monitoring.monitoring_worked_on_year.strftime("%Y年")+monitoring.monitoring_worked_on_month.strftime("%m月"), 
              monitoring_basic_info_affter_client_monitoring_path(@client, monitoring), class: "btn btn-primary" %></br>
       <% end %>
+        <%= paginate(@monitorings) %>
         </td>
         <td>
+        <%= paginate(@asesments) %>
         <% @asesments.each do |asesment| %>
-             <br><%= link_to asesment.asesment_create_year.strftime("%Y年"), 
-             asesment_affter_client_asesment_path(@client, asesment), class: "btn btn-primary" %></br>
+          <br><%= link_to asesment.asesment_create_year.strftime("%Y年")+asesment.asesment_create_day.strftime("%-m月%-d日"),
+              asesment_affter_client_asesment_path(@client, asesment), class: "btn btn-primary" %></br>
         <% end %>
+        <%= paginate(@asesments) %>
         </td>
       </tr>
     </tbody>
