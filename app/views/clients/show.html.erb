@@ -1,16 +1,14 @@
 <h1><%= @client.client_name %>様の個別記録</h1>
 <div>
   <table class="table table-bordered table-condensed client-table">
-    
-    <!--< %= link_to "⇦先月 ", client_path(date: @first_day.prev_month), class: "btn btn-info" %>-->
-        
-    <!--< %= link_to " 翌月⇨", client_path(date: @first_day.next_month), class: "btn btn-info" %>-->
-    <%= link_to "利用者情報報告書新規作成", monitoring_basic_info_client_monitorings_path(@client), class: "btn btn-info" %>&thinsp;
-    <%= link_to "アセスメントシート新規作成", asesment_new_client_asesments_path(@client), class: "btn btn-info" %>
     <thead>
     <tr>
-      <th>利用者情報報告書</th>
-      <th>アセスメントシート</th>
+      <th>利用者情報報告書
+      <br><%= link_to "新規作成", monitoring_basic_info_client_monitorings_path(@client), class: "btn btn-info" %></th>
+      <th>フェイスシート
+       <br><%= link_to "新規作成", asesment_new_client_asesments_path(@client), class: "btn btn-info" %></th>
+      <th>個別記録（業務日誌）
+      <br><%= link_to "新規作成",  new_business_log_client_business_log_index_path(@client), class: "btn btn-info" %></th>
     </tr>
     </thead>
     <tbody>
@@ -29,6 +27,7 @@
         <% end %>
         <%= paginate(@asesments) %>
         </td>
+        <td></td>
       </tr>
     </tbody>
   </table>

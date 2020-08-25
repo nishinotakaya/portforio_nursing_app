@@ -48,7 +48,17 @@
           get 'asesment_new'
           post 'create_asesment_basic_info'
         end  
-      end  
+      end
+      resources :business_log, only: :update do #業務日誌
+        collection do
+          get 'new_business_log' #業務日誌新規作成
+          post 'create_business_log'
+        end
+        member do
+          get 'affter_business_log' #業務日誌作成後
+          patch 'update_business_log'
+        end  
+      end   
     end
     
     

@@ -117,9 +117,9 @@
         <th class= "center" rowspan= "1" nowrap>義歯</th>
         <th class= "center"><%= f.radio_button :prosthesis, "有" %>
             <%= f.label "有", class: "label-#{yield(:class_text)}" %>
-            （<%= f.check_box :prosthesis, {multiple: true}, "上", nil %>
+            （<%= f.check_box :prosthss_up ,{}, "true", "false" %>
             <%= f.label "上", class: "label-#{yield(:class_text)}" %>
-            ・<%= f.check_box :prosthesis, {multiple: true}, "下", nil%>
+            ・<%= f.check_box :prosthss_down, {}, "true", "false"%>
             <%= f.label "下", class: "label-#{yield(:class_text)}" %>）
 
             <%= f.radio_button  :prosthesis, "無" %>
@@ -134,24 +134,24 @@
           <%= f.text_area :nomal_vital_blood_pressure_down, class: "hoge", size: "50x2" %>
           <br><%= f.label "情報源", class: "label-#{yield(:class_text)}" %>
           <br>
-          <%= f.check_box :information_medicina, {multiple: true}, "本人", nil %>本人
-          <%= f.check_box :information_medicina, {multiple: true}, "家族", nil %>家族
+          <%= f.radio_button :information_medicina,"本人"%>本人
+          <%= f.radio_button :information_medicina,"家族" %>家族
           <%= f.text_area :information_medicina_family, class: "hoge", size: "20x1" %>
-          <%= f.check_box :information_medicina, {multiple: true}, "ケアマネージャー", nil %>ケアマネージャー
-          <br><%= f.check_box :information_medicina, {multiple: true}, "かかりつけ医", nil %>かかりつけ医
-          <%= f.check_box :information_medicina, {multiple: true}, "その他", nil %>その他
+          <%= f.radio_button :information_medicina, "ケアマネージャー"  %>ケアマネージャー
+          <br><%= f.radio_button :information_medicina, "かかりつけ医" %>かかりつけ医
+          <%= f.radio_button :information_medicina, "その他"%>その他
           <%= f.text_area :information_medicina_another, class: "hoge", size: "20x1" %>
         </th>
         <th><span class="under">避けるべき薬剤・食材（・嗜好）</span>
         <%= f.text_area :hedge_medicine_food, class: "hoge", size: "50x5" %>
        <br><%= f.label "情報源", class: "label-#{yield(:class_text)}" %>
           <br>
-          <%= f.check_box :hedge_medicine_food_information, {multiple: true}, "本人", nil %>本人
-          <%= f.check_box :hedge_medicine_food_information, {multiple: true}, "家族", nil %>家族
+          <%= f.radio_button :hedge_medicine_food_information, "本人" %>本人
+          <%= f.radio_button :hedge_medicine_food_information,"家族"%>家族
           <%= f.text_area :hedge_medicine_food_information, class: "hoge", size: "20x1" %>
-          <%= f.check_box :hedge_medicine_food_information, {multiple: true}, "ケアマネージャー", nil %>ケアマネージャー
-          <br><%= f.check_box :hedge_medicine_food_information, {multiple: true}, "かかりつけ医", nil %>かかりつけ医
-          <%= f.check_box :hedge_medicine_food_information, {multiple: true}, "その他", nil %>その他
+          <%= f.radio_button :hedge_medicine_food_information, "ケアマネージャー" %>ケアマネージャー
+          <br><%= f.radio_button :hedge_medicine_food_information,"かかりつけ医" %>かかりつけ医
+          <%= f.radio_button :hedge_medicine_food_information, "その他" %>その他
           <%= f.text_area :hedge_medicine_food_information, class: "hoge", size: "20x1" %>
       </tr>
       <tr>
@@ -201,6 +201,6 @@
     </table>
      <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
           <%= f.check_box :check_a, {checked: false}, "true", "false" %>
-    <br><%= f.submit "編集", class: "btn btn-primary " %>
+    <br><%= f.submit "追加", class: "btn btn-primary " %>
   <% end %>
 </div> 

@@ -1,0 +1,2 @@
+class BusinessLog < ApplicationRecord
+end
