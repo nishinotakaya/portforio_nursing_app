@@ -17,31 +17,33 @@
 <br>
     <table align="center" cellspacing="0", cellpadding="5">
       <tr>
-        <th class="center" rowspan="4">写真</th>
+        <th class="parent" rowspan= "4">写真</th>
       </tr>
       <tr>
-        <th class="center" nowrap rowspan="1">ふりがな<br><%= f.label "本人氏名", class: "label-#{yield(:class_text)}" %></th>
-        <td text-align="center"><%= @client.client_name_japanese %>
-        <br><%= @client.client_name %>&emsp;様</td>
-        <th class="center" rowspan="1">性別<br><%= @client.sex %><th>
-        <th nowrap colspan="2">生年月日
-        <br><%= @client.client_birthday.strftime("%F")if @client.client_birthday.present? %>(歳)</th>
+        <th class= "center"><small><%= f.label "(ふりがな)", class: "label-#{yield(:class_text)}" %> 
+        &emsp;&emsp;&emsp; (<%= @client.client_name_japanese %>)</small>
+        <br><%= f.label "本人氏名", class: "label-#{yield(:class_text)}" %>
+        &emsp;<%= @client.client_name %>&emsp;様</th>
+        <th class="center" rowspan="1">性別<br><%= @client.sex %></th>
       </tr>
       <tr>
-        <th class="center">被保険者番号</th>
-        <th class="center"><%= f.text_area :insurance_number, class: "hoge", size: "15x1" %></th>
-        <th class="center" rowspan="2" colspan="4"><%= @client.nursing_number %></th>   
+        <th class="center">被保険者番号
+        <%= f.text_area :insurance_number, class: "hoge", size: "15x1" %></th>
+        <th class="center"><%= @client.nursing_number %></th>   
       </tr>
       <tr>
-        <th class="center">世帯携帯</th>
-        <th><%= f.radio_button :crying_email, "同居世帯" %>
+          
+        <th class="center">世帯携帯
+            <br><%= f.radio_button :crying_email, "同居世帯" %>
             <%= f.label "同居世帯", class: "label-#{yield(:class_text)}" %>
             <br><%= f.radio_button  :crying_email, "同居世帯（日中一人)" %>
             <%= f.label "同居世帯（日中一人)", class: "label-#{yield(:class_text)}" %>
             <br><%= f.radio_button :crying_email, "高齢夫婦世帯" %>
             <%= f.label "高齢夫婦世帯", class: "label-#{yield(:class_text)}" %>
             <br><%= f.radio_button  :crying_email, "一人暮らし" %>
-            <%= f.label "一人暮らし", class: "label-#{yield(:class_text)}" %></th>  
+            <%= f.label "一人暮らし", class: "label-#{yield(:class_text)}" %></th>
+            <th class="center">生年月日
+        <br><%= @client.client_birthday.strftime("%F")if @client.client_birthday.present? %>(歳)</th>  
       </tr>                                      
     </table>
     <table align="center" cellspacing="0", cellpadding="5">
@@ -62,7 +64,7 @@
           &emsp;<%= f.text_area :relation_email, class: "hoge", size: "15x1" %>
           <th class= "center">
           <%= f.label "本人との続柄", class: "label-#{yield(:class_text)}" %>
-          <%= f.text_area :relation_joining, class: "hoge", size: "15x1" %>
+          <br><%= f.text_area :relation_joining, class: "hoge", size: "15x1" %>
           <br><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
           <br><%= f.text_area :relation_cellphone, class: "hoge", size: "15x1" %></th>
       </tr>
@@ -73,7 +75,7 @@
           &emsp;<%= f.text_area :relation_email_2, class: "hoge", size: "15x1" %>
             <th class= "center">
           <%= f.label "本人との続柄", class: "label-#{yield(:class_text)}" %>
-          <%= f.text_area :relation_joining_2, class: "hoge", size: "15x1" %>
+          <br><%= f.text_area :relation_joining_2, class: "hoge", size: "15x1" %>
           <br><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
           <br><%= f.text_area :relation_cellphone_2, class: "hoge", size: "15x1" %></th>
       </tr>
@@ -84,7 +86,7 @@
           &emsp;<%= f.text_area :relation_email_3, class: "hoge", size: "15x1" %>
           <th class= "center">
           <%= f.label "本人との続柄", class: "label-#{yield(:class_text)}" %>
-          <%= f.text_area :relation_joining_3, class: "hoge", size: "15x1" %>
+          <br><%= f.text_area :relation_joining_3, class: "hoge", size: "15x1" %>
           <br><%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
           <br><%= f.text_area :relation_cellphone_3, class: "hoge", size: "15x1" %></th>
       </tr>
@@ -199,8 +201,8 @@
         <th class= "center" colspan= "4">【特機事項】<%= f.text_area :specialized_equipment, class: "hoge", size: "100x20" %></th>
         </tr>                    
     </table>
-     <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
-          <%= f.check_box :check_a, {checked: false}, "true", "false" %>
+    <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
+        <%= f.check_box :check_a, {checked: false}, "true", "false" %>
     <br><%= f.submit "追加", class: "btn btn-primary " %>
   <% end %>
 </div>        

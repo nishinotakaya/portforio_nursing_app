@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200825121932) do
+ActiveRecord::Schema.define(version: 20200826112748) do
 
   create_table "asesments", force: :cascade do |t|
     t.datetime "asesment_create_day"
@@ -98,6 +98,10 @@ ActiveRecord::Schema.define(version: 20200825121932) do
     t.boolean "check_log"
     t.string "log_bath_machine"
     t.boolean "log_foods"
+    t.boolean "log_check_return"
+    t.boolean "check_log_hand_washing"
+    t.boolean "check_log_brush_teeth"
+    t.date "log_worked_on"
   end
 
   create_table "clients", force: :cascade do |t|

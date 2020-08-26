@@ -15,6 +15,7 @@ class CreateBusinessLogs < ActiveRecord::Migration[5.1]
         t.string :log_pressure_up #血圧上
         t.string :log_pressure_down #血圧下
         t.string :log_pulse #脈
+        t.boolean :log_check_return #再検査チェック
         t.string :re_log_pressure_up #再検 血圧上
         t.string :re_log_pressure_down #再検 血圧下
         t.string :re_log_body_temperature #再検査 体温
