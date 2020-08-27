@@ -1,0 +1,19 @@
+<h1>食事チェック表</h1>
+<%= form_with( model: @food, url: creat_food_check_client_foodcooks_path(@client, @food), local: true, method: :post) do |f| %>
+	<table align="center" cellspacing="0", cellpadding="5">
+		<tr>
+			<th class= "center" colspan= "2"><%= f.date_select(:food_worked_on, discard_month:true) %>年
+					<%= f.date_select(:food_worked_on, discard_year:true)+'日' %>
+					&emsp;&emsp;&emsp;&emsp;検食者
+					<%= f.text_area :food_sience, class: "hoge", size: "15x1" %></th>
+		</tr>
+		<tr>
+			<th>職員</th>
+			<th>利用者</th>
+		</tr>
+			<th><%= f.text_area :food_staff, class: "hoge", size: "10x1" %>
+			<%= f.check_box :staff_food,{checked: false}, "true", "false" %></th>
+			<th><%= @client.client_name %>
+			<%= f.check_box :client_food,{checked: false}, "true", "false" %></th>
+	</table>
+<% end %>	

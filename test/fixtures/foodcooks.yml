@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  food_worked_on: 2020-08-27
+  client: one
+
+two:
+  food_worked_on: 2020-08-27
+  client: two

@@ -58,7 +58,24 @@
           get 'affter_business_log' #業務日誌作成後
           patch 'update_business_log'
         end  
-      end   
+      end
+      resources :nurselogs, only: :update do #看護日誌
+        collection do
+          get 'new_nurse_log'
+          post 'create_nurse_log'
+        end
+        member do
+        end
+      end  
+        resources :foodcooks, only: :update do #厨房提出食事確認欄
+          collection do
+            get 'food_check'
+            post 'creat_food_check'
+          end
+          member do
+          end  
+        end
+
     end
     
     

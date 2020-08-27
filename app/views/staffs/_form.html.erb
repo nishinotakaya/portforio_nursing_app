@@ -1,7 +1,7 @@
-<%= form_with(model: @user, local: true  ) do |f| %>
-  <%= render 'shared/error_messages',  object: @user %>
+<%= form_with(model: @staff, local: true  ) do |f| %>
+  <%= render 'shared/error_messages',  object: @staff %>
 
-  <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+  <%= f.label "名前", class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :name, class: "form-control" %>
 
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>

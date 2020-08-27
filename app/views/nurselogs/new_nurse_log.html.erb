@@ -1,0 +1,62 @@
+<div class="center">
+  <h1>デイサービス看護日誌</h1>
+	<%= form_with( model: @nursedate, url: create_nurse_log_client_nurselogs_path(@client, @nursedate), local: true, method: :post) do |f| %>
+	<table align="center" cellspacing="0", cellpadding="5">
+		<tr>
+			<th colspan= "7" class="center">
+				<%= f.date_select(:nurse_worked_on, discard_month:true) %>年
+      	<%= f.date_select(:nurse_worked_on, discard_year:true)+'日' %>
+			<th class= "center">登録者数
+			<br>11名</th>
+			<th class= "center">出席者数
+			<br>14名</th>
+			<th class= "center">欠席者数
+			<br>3名</th>
+			</th>
+		</tr>
+		<th class= "center">氏名</th>
+		<th class= "center">来所時体温</th>
+		<th class= "center">帰宅前体温</th>
+		<th class= "center">血圧</th>
+		<th class= "center">脈拍</th>
+		<th class= "center">入浴</th>
+		<th class= "center">薬</th>
+		<th class= "center">食事</th>
+		<th class= "center">服薬</th>
+		<th class= "center">備考</th>
+		<tr>
+		<th class= "center"><%=@client.client_name%></th>
+		<th class= "center"><%= f.text_area :nurse_body_temperature, class: "hoge", size: "3x1" %>℃</th>
+		<th class= "center"><%= f.text_area :nurse_pressure_up, class: "hoge", size: "3x1" %>℃</th>
+		<th class= "center"><%= f.text_area :nomal_vital_blood_pressure_up, class: "hoge", size: "5x1" %>/
+				<%= f.text_area :nurse_pressure_down, class: "hoge", size: "5x1" %></th>
+		<th class= "center"><%= f.text_area :nomal_vital_pulse, class: "hoge", size: "3x1" %></th>
+		<th class= "center"><%= f.radio_button :nurse_both, "ok" %>
+            						<%= f.label "ok", class: "label-#{yield(:class_text)}" %>
+            						<%= f.radio_button  :nurse_both, "短浴" %>
+            						<%= f.label "短浴", class: "label-#{yield(:class_text)}" %>
+												<%= f.radio_button :nurse_both, "無" %>
+            						<%= f.label "無", class: "label-#{yield(:class_text)}" %>
+            						<%= f.radio_button  :nurse_both, "✖" %>
+            						<%= f.label "✖", class: "label-#{yield(:class_text)}" %></th>
+		<th class= "center"><%= f.radio_button :nurse_medicine, "有" %>
+            						<%= f.label "有", class: "label-#{yield(:class_text)}" %>
+												
+												（<%= f.label "食前", class: "label-#{yield(:class_text)}" %>
+												<%= f.check_box :nurse_medicine_yes, {checked: false}, "true", "false" %>
+												<%= f.label "食後", class: "label-#{yield(:class_text)}" %>
+        								<%= f.check_box :nurse_medicine_after, {checked: false}, "true", "false" %>）
+            						<%= f.radio_button  :nurse_medicine, "無" %>
+            						<%= f.label "無", class: "label-#{yield(:class_text)}" %>
+												<br><%= f.radio_button :nurse_medicine, "自" %>
+            						<%= f.label "自", class: "label-#{yield(:class_text)}" %>
+            						<%= f.radio_button :nurse_medicine, "なし" %>
+            						<%= f.label "✖", class: "label-#{yield(:class_text)}" %></th>
+		<th class= "center">主食<%= f.select :nurse_food_main,[['1/5'],['2/5'],['3/5'],['4/5'],['ほ全'],['全'],['0'],['1くち'],['2~3くち']],{ include_blank: true} %>
+										<br>副食<%= f.select :nurse_food_sub,[['1/5'],['2/5'],['3/5'],['4/5'],['ほ全'],['全'],['0'],['1くち'],['2~3くち']],{ include_blank: true} %></th>
+		<th class= "center">確認<br><%= f.check_box :nurse_medicine_check, {checked: false}, "true", "false" %></th>
+		<th class= "center"><%= f.text_area :nurse_note, class: "hoge", size: "5x3" %></th></th>
+		</tr>
+	</table>
+	<% end %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200826112748) do
+ActiveRecord::Schema.define(version: 20200827132313) do
 
   create_table "asesments", force: :cascade do |t|
     t.datetime "asesment_create_day"
@@ -116,6 +116,19 @@ ActiveRecord::Schema.define(version: 20200826112748) do
     t.string "sex"
   end
 
+  create_table "foodcooks", force: :cascade do |t|
+    t.date "food_worked_on"
+    t.boolean "staff_food"
+    t.boolean "client_food"
+    t.string "food_note"
+    t.integer "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "food_sience"
+    t.string "food_staff"
+    t.index ["client_id"], name: "index_foodcooks_on_client_id"
+  end
+
   create_table "monitorings", force: :cascade do |t|
     t.datetime "monitoring_worked_on_year"
     t.datetime "monitoring_worked_on_month"
@@ -143,6 +156,32 @@ ActiveRecord::Schema.define(version: 20200826112748) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_monitorings_on_client_id"
+  end
+
+  create_table "nurselogs", force: :cascade do |t|
+    t.string "nurse_body_temperature"
+    t.string "nurse_body_temperature_after"
+    t.string "nurse_pressure_up"
+    t.string "nurse_pulse"
+    t.boolean "nurse_both_ok"
+    t.boolean "nurse_both_noshing"
+    t.boolean "nurse_both_no"
+    t.boolean "nurse_both_little"
+    t.boolean "nurse_medicine_my"
+    t.boolean "nurse_medicine_yes"
+    t.boolean "nurse_medicine_after"
+    t.string "nurse_food_main"
+    t.string "nurse_food_sub"
+    t.boolean "nurse_medicine_check"
+    t.string "nurse_note"
+    t.integer "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "nurse_worked_on"
+    t.string "nurse_pressure_down"
+    t.string "nurse_both"
+    t.string "nurse_medicine"
+    t.index ["client_id"], name: "index_nurselogs_on_client_id"
   end
 
   create_table "staffs", force: :cascade do |t|

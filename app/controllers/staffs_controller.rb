@@ -78,7 +78,7 @@ private
     
 
     def basic_info_params
-      params.require(:staff).permit(:name, :email, :department, :affiliation, :password, :password_confirmation, :employee_number, :uid, :designated_work_start_time, :designated_work_end_time)
+      params.require(:staff).permit(:name, :email, :affiliation, :password, :password_confirmation, :employee_number, :uid, :designated_work_start_time, :designated_work_end_time)
     end
 
     def user_params

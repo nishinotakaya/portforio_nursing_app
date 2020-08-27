@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nurse_body_temperature: MyString
+  client: one
+
+two:
+  nurse_body_temperature: MyString
+  client: two
