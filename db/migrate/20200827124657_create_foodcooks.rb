@@ -8,6 +8,15 @@ class CreateFoodcooks < ActiveRecord::Migration[5.1]
       t.references :client, foreign_key: true
       t.string :food_sience #検食者
       t.string :food_staff #スタッフ
+      add_column :foodcooks,  :food_staff_1, :boolean #スタッフチェック
+      add_column :foodcooks,  :food_staff_2, :boolean #スタッフチェック
+      add_column :foodcooks,  :food_staff_3, :boolean #スタッフチェック
+      add_column :foodcooks,  :food_staff_4, :boolean #スタッフチェック
+      add_column :foodcooks,  :food_staff_5, :boolean #スタッフチェック
+      add_column :foodcooks,  :food_staff_6, :boolean #スタッフチェック
+      add_column :foodcooks,  :food_staff_7, :boolean #スタッフチェック
+      add_column :foodcooks,  :food_staff_8, :boolean #スタッフチェック
+      add_column :foodcooks,  :food_staff_9, :boolean #スタッフチェック
       t.timestamps
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200827132313) do
+ActiveRecord::Schema.define(version: 20200827133730) do
 
   create_table "asesments", force: :cascade do |t|
     t.datetime "asesment_create_day"
@@ -126,6 +126,15 @@ ActiveRecord::Schema.define(version: 20200827132313) do
     t.datetime "updated_at", null: false
     t.string "food_sience"
     t.string "food_staff"
+    t.boolean "food_staff_1"
+    t.boolean "food_staff_2"
+    t.boolean "food_staff_3"
+    t.boolean "food_staff_4"
+    t.boolean "food_staff_5"
+    t.boolean "food_staff_6"
+    t.boolean "food_staff_7"
+    t.boolean "food_staff_8"
+    t.boolean "food_staff_9"
     t.index ["client_id"], name: "index_foodcooks_on_client_id"
   end
 
