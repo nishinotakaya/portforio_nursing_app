@@ -16,8 +16,6 @@ class StaffsController < ApplicationController
   
  
  
-  def show
-  end
   
     
   
@@ -78,11 +76,11 @@ private
     
 
     def basic_info_params
-      params.require(:staff).permit(:name, :email, :affiliation, :password, :password_confirmation, :employee_number, :uid, :designated_work_start_time, :designated_work_end_time)
+      params.require(:staff).permit(:name, :email, :password, :password_confirmation)
     end
 
     def user_params
-      params.require(:staff).permit(:name, :email, :affiliation, :password, :password_confirmation, :employee_number, :uid, :designated_work_start_time, :designated_work_end_time)
+      params.require(:staff).permit(:name, :email, :password, :password_confirmation)
     end
     
     def set_user
@@ -100,7 +98,7 @@ private
     end
 
     # アクセスしたユーザーが現在ログインしているユーザーか確認します。
-    def correct_user
+    def correct_staff
       redirect_to(root_url) unless current_staff?(@staff)
     end
 

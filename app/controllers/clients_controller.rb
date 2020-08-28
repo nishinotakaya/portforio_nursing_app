@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
 before_action :set_one_month, only: :show
+# before_action :set_staff
  
   
   def index
@@ -106,5 +107,8 @@ before_action :set_one_month, only: :show
     params.permit(:use_check)
   end  
   
+  # def set_staff
+  #   @staff = Staff.find(params[:staff_id])
+  # end
   
 end

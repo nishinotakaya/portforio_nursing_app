@@ -6,8 +6,8 @@
         <li><%= link_to "トップへ", root_path %></li>
         <% if logged_in? %>
           <li><%= link_to "利用者ー覧", clients_path %></li>
-          <li><%= link_to "厨房提出食事確認欄", food_check_client_foodcooks_path(current_staff) %></li>
-          <li><%= link_to "看護日誌" ,new_nurse_log_client_nurselogs_path(current_staff) %></li>
+          <li><%= link_to "厨房提出食事確認欄", food_check_client_foodcooks_path(current_staff, @client.id) %></li>
+          <li><%= link_to "看護日誌" ,new_nurse_log_client_nurselogs_path(current_staff, @client.id) %></li>
           <li><%= link_to "本日の利用者の業務日誌" %></li>
           <li class="dropdown">
                <%= link_to "ログアウト", logout_path, method: :delete %>

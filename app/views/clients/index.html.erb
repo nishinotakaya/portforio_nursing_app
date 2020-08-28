@@ -4,7 +4,7 @@
   <table class="table table-bordered table-condensed table-hover" id="table-clientes">
     <thead>
       <tr>
-        <th class= "center">利用者情報報告書作成</th>
+        <th class= "center">業務日誌</th>
         <th class="center">利用者情報編集</th>
         <th class="center">(ふりがな)
         <br>利用者名</th>
@@ -22,7 +22,7 @@
     <tbody>
       <% @clients.each do |client| %>
         <tr>
-          <td class= "center"><%= link_to "新規作成", monitoring_basic_info_client_monitorings_path(client), class: "btn btn-primary" %></td>
+          <td class= "center"><%= link_to "新規作成",new_businesslog_client_businesslogs_path(client), class: "btn btn-primary" %></td>
           <td class="center"><%= link_to "編集", edit_basic_info_client_path(client), class: "btn btn-success" %></td>
           <td class="center"><small>(<%= client.client_name_japanese %>)</small>
           <br><%= client.client_name %>様</td>
@@ -32,7 +32,7 @@
           <td class="center"><%= client.sex %></td>
           <td class="center"><%= client.client_birthday.strftime("%F")if client.client_birthday.present? %></td>
           <td class="center"><%= link_to "詳細",client_path(client),class: "btn btn-primary" %></td>
-          <td class="center"><%= link_to "退所", client_path(client), method: :delete,
+          <td class="center"><%= link_to "退所",client_path(client), method: :delete,
                     data: { confirm: "削除してよろしいですか？" },
                     class: "btn btn-danger" %></td>
         </tr>

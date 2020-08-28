@@ -1,4 +1,5 @@
 class AsesmentsController < ApplicationController
+  # before_action :set_staff
     
   def asesment_new
     @client = Client.find(params[:client_id])
@@ -54,5 +55,7 @@ class AsesmentsController < ApplicationController
      :nomal_vital_blood_pressure_down, :nomal_vital_pulse, :medicina, :information_medicina, :information_medicina_family, :information_medicina_another,
     :hedge_medicine_food, :hedge_medicine_food_information, :hospital_name,:hospital_doctor, :hospital_doctor_nymber, :doctor_bath, :doctor_bath_another, :doctor_skin,
     :doctor_skin_another, :doctor_transfer, :doctor_transfer_another, :doctor_etcetera, :doctor_etcetera_another,:specialized_equipment, :check_a, :prosthss_up, :prosthss_down)
-  end  
+  end 
+  
+ 
 end

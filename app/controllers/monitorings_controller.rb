@@ -1,6 +1,6 @@
 class MonitoringsController < ApplicationController
-   before_action :set_client
-  
+  before_action :set_client
+  # before_action :set_staff
   
 
   
@@ -64,6 +64,10 @@ private
                                 :monitoring_both, :monitoring_both_truble, :monitoring_changing_clothes, :monitoring_community, :monitoring_situation_dey, :monitoring_vacation_dey_buy, :monitoring_service_need, :check_monitoring,
                                 :monitoring_community_what, :monitoring_service_need_what) #(:monitoring)はform_withと一緒
   end
+  private
+    # def set_staff
+    #     @staff = Staff.find(params[:staff_id])
+    # end
   
     
   
