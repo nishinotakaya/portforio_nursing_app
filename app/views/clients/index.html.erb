@@ -4,7 +4,6 @@
   <table class="table table-bordered table-condensed table-hover" id="table-clientes">
     <thead>
       <tr>
-        <th class= "center">利用</th>
         <th class= "center">利用者情報報告書作成</th>
         <th class="center">利用者情報編集</th>
         <th class="center">(ふりがな)
@@ -23,7 +22,6 @@
     <tbody>
       <% @clients.each do |client| %>
         <tr>
-          <td class= "center"><%= link_to "本日利用", monitoring_basic_info_client_monitorings_path(client), class: "btn btn-primary" %></td>
           <td class= "center"><%= link_to "新規作成", monitoring_basic_info_client_monitorings_path(client), class: "btn btn-primary" %></td>
           <td class="center"><%= link_to "編集", edit_basic_info_client_path(client), class: "btn btn-success" %></td>
           <td class="center"><small>(<%= client.client_name_japanese %>)</small>
@@ -37,9 +35,8 @@
           <td class="center"><%= link_to "退所", client_path(client), method: :delete,
                     data: { confirm: "削除してよろしいですか？" },
                     class: "btn btn-danger" %></td>
-      <% end %>
-          </td>    
         </tr>
+      <% end %>    
       <%= link_to "利用者追加", new_client_path, class: "btn btn-success" %>
     </tbody>
   </table>  

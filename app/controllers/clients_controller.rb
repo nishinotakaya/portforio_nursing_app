@@ -13,8 +13,9 @@ before_action :set_one_month, only: :show
   
   def show
     @client = Client.find(params[:id])
-    @monitorings = @client.monitorings.where(check_monitoring: true).order(:monitoring_worked_on_year, :monitoring_worked_on_month).reverse_order.page(params[:page]).per(5)
-    @asesments = @client.asesments.where(check_a: true).order(:asesment_create_year, :asesment_create_day).reverse_order.page(params[:page]).per(5)
+    @monitorings = @client.monitorings.where(check_monitoring: true).order(:monitoring_worked_on_year, :monitoring_worked_on_month).reverse_order.page(params[:page]).per(10)
+    @asesments = @client.asesments.where(check_a: true).order(:asesment_create_year, :asesment_create_day).reverse_order.page(params[:page]).per(10)
+    @businesslogs = @client.businesslogs.where(check_log: true).order(:log_year,:log_month).reverse_order.page(params[:page]).per(10)
   end
   #def client_show
     #@client = Client.find(params[:id])
@@ -65,6 +66,22 @@ before_action :set_one_month, only: :show
     flash[:success] = "利用者を削除しました。"
     redirect_to clients_url
   end
+
+  def create_use_check
+    if params[:use_check] == "true"
+      @client = Client.new(client_check)
+      if @client.save
+        log_in @client
+        flash[:success] = '本日利用に追加しました。'
+        redirect_to clients_url and return
+      else
+        render action: :index 
+      end
+    else
+      flash[:success] = 'チェックしてください。'
+      render action: :index 
+    end   
+  end  
   
   
   
@@ -85,6 +102,9 @@ before_action :set_one_month, only: :show
     params.permit(:client_name_japanese, :client_name, :nursing_number, :client_name_japanese, :client_email, :telephone_number, :client_birthday, :sex, date_of_day: [])
   end  
   
+  def client_check
+    params.permit(:use_check)
+  end  
   
   
 end

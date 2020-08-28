@@ -28,7 +28,11 @@
         <%= paginate(@asesments) %>
         </td>
         <td>
-          
+          <% @businesslogs.each do |log| %>
+          <br><%= link_to log.log_year.strftime("%Y年")+log.log_month.strftime("%-m月%-d日"),
+           affter_businesslog_client_businesslog_path(@client, log), class: "btn btn-primary"%></br>
+          <% end %>
+          <%= paginate(@businesslogs) %>
         </td>
       </tr>
     </tbody>

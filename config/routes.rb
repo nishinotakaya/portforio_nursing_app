@@ -22,6 +22,7 @@
       member do
         get 'edit_basic_info'
         patch 'update_basic_info'
+        post 'create_use_check'
        
       end
         
