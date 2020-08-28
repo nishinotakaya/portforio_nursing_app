@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200827132313) do
+ActiveRecord::Schema.define(version: 20200828134407) do
 
   create_table "asesments", force: :cascade do |t|
     t.datetime "asesment_create_day"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20200827132313) do
     t.index ["client_id"], name: "index_asesments_on_client_id"
   end
 
-  create_table "business_logs", force: :cascade do |t|
+  create_table "businesslogs", force: :cascade do |t|
     t.datetime "log_year"
     t.datetime "log_month"
     t.datetime "log_day"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(version: 20200827132313) do
     t.boolean "check_log_hand_washing"
     t.boolean "check_log_brush_teeth"
     t.date "log_worked_on"
+    t.integer "client_id"
+    t.index ["client_id"], name: "index_businesslogs_on_client_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -126,6 +128,15 @@ ActiveRecord::Schema.define(version: 20200827132313) do
     t.datetime "updated_at", null: false
     t.string "food_sience"
     t.string "food_staff"
+    t.boolean "food_staff_1"
+    t.boolean "food_staff_2"
+    t.boolean "food_staff_3"
+    t.boolean "food_staff_4"
+    t.boolean "food_staff_5"
+    t.boolean "food_staff_6"
+    t.boolean "food_staff_7"
+    t.boolean "food_staff_8"
+    t.boolean "food_staff_9"
     t.index ["client_id"], name: "index_foodcooks_on_client_id"
   end
 

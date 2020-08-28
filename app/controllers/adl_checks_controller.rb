@@ -1,2 +1,0 @@
-class AdlChecksController < ApplicationController
-end

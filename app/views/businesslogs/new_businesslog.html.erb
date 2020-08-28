@@ -1,7 +1,7 @@
 <div class="center">
   <meta charset = " utf-8 " />
 		<h1>個別記録</h1>
-		<%=form_with( model: @log, url: create_business_log_client_business_log_index_path(@client, @log), local: true, method: :post) do |f| %>
+		<%=form_with( model: @businesslog, url: create_businesslog_client_businesslogs_path(@client, @businesslog), local: true, method: :post) do |f| %>
 			<p><span class="under">氏名&emsp;<%= @client.client_name %>様</span></p>
 			<table align="center" cellspacing="", cellpadding="5">
 				<tr>
@@ -56,10 +56,10 @@
 					<br><%= f.text_area :log_pulse, class: "hoge", size: "3x1" %></th>
 					<th class ="center"rowpan="2">［再検査］
 					<br><%= f.check_box :log_check_return ,{}, "true", "false"%></th>
-					<th class ="center">[血圧]<br><%= f.text_area :log_pressure_up, class: "hoge", size: "3x1" %>/
-					<%= f.text_area :log_pressure_down, class: "hoge", size: "3x1" %></th>
-					<th class ="center">[体温]<br><%= f.text_area :log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
-					<th class ="center">[脈]<br><%= f.text_area :log_pulse, class: "hoge", size: "3x1" %></th>
+					<th class ="center">[血圧]<br><%= f.text_area :re_log_pressure_up, class: "hoge", size: "3x1" %>/
+					<%= f.text_area :re_log_pressure_down, class: "hoge", size: "3x1" %></th>
+					<th class ="center">[体温]<br><%= f.text_area :re_log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
+					<th class ="center">[脈]<br><%= f.text_area :re_log_pulse, class: "hoge", size: "3x1" %></th>
 				</tr>
 				<tr>
 					<th class ="center" colspan= "8">
@@ -80,6 +80,8 @@
 				</tr>
 				<th class ="center" colspan= "2"><%= f.text_area :log_record_stamp, class: "hope", size: "4x1" %></th>	
 			</table>
+			<%= f.check_box :check_log ,{}, "true", "false" %>
+			確認
 			<br><%= f.submit "追加", class: "btn btn-primary " %>
 		<% end %>
 </div>					

@@ -49,14 +49,14 @@
           post 'create_asesment_basic_info'
         end  
       end
-      resources :business_log, only: :update do #業務日誌
+      resources :businesslogs, only: :update do #業務日誌
         collection do
-          get 'new_business_log' #業務日誌新規作成
-          post 'create_business_log'
+          get 'new_businesslog' #業務日誌新規作成
+          post 'create_businesslog'
         end
         member do
-          get 'affter_business_log' #業務日誌作成後
-          patch 'update_business_log'
+          get 'affter_businesslog' #業務日誌作成後
+          patch 'update_businesslog'
         end  
       end
       resources :nurselogs, only: :update do #看護日誌

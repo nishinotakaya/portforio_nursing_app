@@ -1,6 +1,7 @@
 class Client < ApplicationRecord
   has_many :monitorings, dependent: :destroy
   has_many :asesments, dependent: :destroy
+  has_many :businesslogs, dependent: :destroy 
   paginates_per 5 
 
   before_save do

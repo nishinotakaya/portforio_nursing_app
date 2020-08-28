@@ -1,2 +1,0 @@
-class BusinessLog < ApplicationRecord
-end

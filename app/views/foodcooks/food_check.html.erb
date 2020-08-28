@@ -1,5 +1,5 @@
 <h1>食事チェック表</h1>
-<%= form_with( model: @food, url: creat_food_check_client_foodcooks_path(@client, @food), local: true, method: :post) do |f| %>
+<%= form_with( model: @client, url: creat_food_check_client_foodcooks_path(@client, @food), local: true, method: :post) do |f| %>
 	<table align="center" cellspacing="0", cellpadding="5">
 		<tr>
 			<th class= "center" colspan= "2"><%= f.date_select(:food_worked_on, discard_month:true) %>年

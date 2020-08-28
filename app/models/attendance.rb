@@ -1,5 +1,5 @@
 class Attendance < ApplicationRecord
-  belongs_to :user
+  belongs_to :staff
   belongs_to :client
 
   validates :worked_on, presence: true
