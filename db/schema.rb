@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200828155151) do
+ActiveRecord::Schema.define(version: 20200829203607) do
 
   create_table "asesments", force: :cascade do |t|
     t.datetime "asesment_create_day"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20200828155151) do
     t.boolean "check_log_brush_teeth"
     t.date "log_worked_on"
     t.integer "client_id"
+    t.boolean "business_log_use_check"
     t.index ["client_id"], name: "index_businesslogs_on_client_id"
   end
 

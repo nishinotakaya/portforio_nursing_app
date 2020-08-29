@@ -22,7 +22,7 @@
         member do
           get 'edit_basic_info'
           patch 'update_basic_info'
-          post 'create_use_check'
+          patch 'create_use_check'
         
         end
           
@@ -50,10 +50,13 @@
             post 'create_asesment_basic_info'
           end  
         end
-        resources :businesslogs, only: :update do #業務日誌
+        resources :businesslogs,only: :update do #業務日誌
           collection do
             get 'new_businesslog' #業務日誌新規作成
             post 'create_businesslog'
+            get 'businesslog_clients' #本日の業務日誌
+            post 'businesslog_clients_create' #業務日誌完成
+            post 'create_businesslog_client_now' #利用者の追加
           end
           member do
             get 'affter_businesslog' #業務日誌作成後
@@ -62,7 +65,7 @@
         end
         resources :nurselogs, only: :update do #看護日誌
           collection do
-            get 'new_nurse_log'
+            get 'new_nurse_log' #昼休みやること、indexにしてeachしてその日のデータをとってくる！
             post 'create_nurse_log'
           end
           member do
@@ -70,7 +73,7 @@
         end  
           resources :foodcooks, only: :update do #厨房提出食事確認欄
             collection do
-              get 'food_check'
+              get 'food_check' #8/28昼休みやること、indexにしてeachしてその日のデータをとってくる！まずはeach!!
               post 'creat_food_check'
             end
             member do

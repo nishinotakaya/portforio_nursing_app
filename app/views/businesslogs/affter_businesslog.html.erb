@@ -1,0 +1,87 @@
+<div class="center">
+  <meta charset = " utf-8 " />
+		<h1>個別記録</h1>
+		<%=form_with( model: @businesslog, url: update_businesslog_client_businesslog_path(@client, @businesslog), local: true, method: :patch) do |f| %>
+			<p><span class="under">氏名&emsp;<%= @client.client_name %>様</span></p>
+			<table align="center" cellspacing="", cellpadding="5">
+				<tr>
+					<th><%= f.date_select(:log_year, discard_month:true)+'年'%>
+							<%= f.date_select(:log_month, discard_year:true)+'日' %>
+					</th>
+				</tr>		
+				<tr>
+					<th class ="center" rowspan = "2"><div class ="center">[送迎]</div>
+					<%= f.radio_button :log_farewell, "往復" %>
+					<%= f.label "往復", class: "label-#{yield(:class_text)}" %>
+					<%= f.radio_button  :log_farewell, "片道" %>
+					<%= f.label "片道", class: "label-#{yield(:class_text)}" %>
+					<br><%= f.radio_button :log_farewell, "ケアハウス" %>
+					<%= f.label "ケアハウス", class: "label-#{yield(:class_text)}" %>
+					</th>
+					<th rowspan = "2" colspan= "3"class= "center">
+					<div class ="center">[入浴]</div>
+					一般浴 &nbsp;<%= f.radio_button :log_bath, "利用" %>
+					<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
+					<%= f.radio_button :log_bath, "シャワー浴" %>
+					<%= f.label "シャワー浴", class: "label-#{yield(:class_text)}" %>
+					<%= f.radio_button  :log_bath, "プラン無し" %>
+					<%= f.label "プラン無", class: "label-#{yield(:class_text)}" %>
+					<%= f.radio_button  :log_bath, "中止" %>
+					<%= f.label "中止", class: "label-#{yield(:class_text)}" %>
+					<br>機械浴 &nbsp;<%= f.radio_button :log_bath, "機械浴 利用" %>
+					<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
+					</th>
+					<th class ="center" rowspan = "2">
+					<div class ="center">［食事］</div>
+					<%= f.check_box  :log_foods ,{}, "true", "false"%>
+					<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
+					</th>
+					<th class ="center" colspan= "2">［主食］
+					<br><%= f.select :log_good_staple_dosage,[['1/5'],['2/5'],['3/5'],['4/5'],['ほ全'],['全'],['0'],['1くち'],['2~3くち']],{ include_blank: true} %></th>
+					<th></th>
+				</tr>
+				<tr>
+					<th class ="center" colspan= "2">［副食］
+					<br><%= f.select :log_good_side_dosage,[['1/5'],['2/5'],['3/5'],['4/5'],['ほ全'],['全'],['0'],['1くち'],['2~3くち']],{ include_blank: true} %></th>
+					<th></th>
+				</tr>
+				<tr>
+					<th class ="center">[バイタル]</th>
+					<th class ="center">[体温]
+					<br><%= f.text_area :log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
+					<th class ="center">[血圧]
+					<br><%= f.text_area :log_pressure_up, class: "hoge", size: "3x1" %>/
+					<%= f.text_area :log_pressure_down, class: "hoge", size: "3x1" %></th>
+					<th class ="center">[脈]
+					<br><%= f.text_area :log_pulse, class: "hoge", size: "3x1" %></th>
+					<th class ="center"rowpan="2">［再検査］
+					<br><%= f.check_box :log_check_return ,{}, "true", "false"%></th>
+					<th class ="center">[血圧]<br><%= f.text_area :re_log_pressure_up, class: "hoge", size: "3x1" %>/
+					<%= f.text_area :re_log_pressure_down, class: "hoge", size: "3x1" %></th>
+					<th class ="center">[体温]<br><%= f.text_area :re_log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
+					<th class ="center">[脈]<br><%= f.text_area :re_log_pulse, class: "hoge", size: "3x1" %></th>
+				</tr>
+				<tr>
+					<th class ="center" colspan= "8">
+						うがい
+						<%= f.check_box  :check_log_hand_washing ,{}, "true", "false"%>
+						&emsp;&emsp;&emsp;&emsp; 食後歯磨き
+						<%= f.check_box :check_log_brush_teeth ,{}, "true", "false"%>
+					</th>
+				</tr>
+				<tr>
+					<th colspan = "6" rowspan= "2">
+						[特記事項]
+						<%= f.text_area :log_pulse, class: "hoge", size: "100x4" %>
+					</th>
+					<th class = "center"colspan= "2">
+					[記録者印]
+					</th>
+				</tr>
+				<th class ="center" colspan= "2"><%= f.text_area :log_record_stamp, class: "hope", size: "4x1" %></th>	
+			</table>
+			<%= f.check_box :check_log ,{checked: false}, "true", "false" %>
+			確認
+			<br><%= f.submit "編集", class: "btn btn-success" %>
+		<% end %>
+</div>					

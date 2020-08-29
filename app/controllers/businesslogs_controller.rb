@@ -1,6 +1,16 @@
 class BusinesslogsController < ApplicationController
 	# before_action :set_staff	
 	
+	def businesslog_clients
+		@client= Client.find(params[:client_id])
+		@clients= Client.all
+	end	
+
+	def businesslog_clients_create #本日の業務日誌client提出
+
+	end	
+
+
 	def new_businesslog
 		@client= Client.find(params[:client_id])
 	  end
@@ -17,7 +27,11 @@ class BusinesslogsController < ApplicationController
 			flash[:danger] = "確認チェックをしてください！"	
 			render action: :new_businesslog
 			end
-	  end
+		end
+	def affter_businesslog
+		@client = Client.find(params[:client_id])
+		@businesslog = Businesslog.find(params[:id])
+	end	
 	
 		private
 

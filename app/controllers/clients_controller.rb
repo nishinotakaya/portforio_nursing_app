@@ -4,7 +4,7 @@ before_action :set_one_month, only: :show
  
   
   def index
-    @clients = Client.paginate(page: params[:page])
+    @clients = Client.all
 
   end
   
@@ -70,9 +70,7 @@ before_action :set_one_month, only: :show
 
   def create_use_check
     if params[:use_check] == "true"
-      @client = Client.new(client_check)
-      if @client.save
-        log_in @client
+      if @client.update_attributes(client_check)
         flash[:success] = '本日利用に追加しました。'
         redirect_to clients_url and return
       else

@@ -1,0 +1,21 @@
+<div class="center">
+  <h1>本日の利用チェック</h1>
+	<table class="table table-bordered table-condensed table-hover" id="table-clientes">
+		 <thead>
+      <tr>
+        <th class= "center">本日利用チェック</th>
+        <th class="center">利用者名</th>
+        <th class="center">詳細</th>
+			</tr>
+			<%=form_with( model: @businesslog, url: create_businesslog_client_now_client_businesslogs_path(@client, @businesslog, @clients), local: true, method: :post) do |f| %>
+				<tbody>
+					<% @clients.each do |client| %>
+						<tr>
+							<td><%= f.check_box :business_log_use_check ,{}, "true", "false" %></td>
+							<td class= "center"><%=client.client_name %></td>
+							<td class="center"><%= link_to "詳細",client_path(client),class: "btn btn-primary" %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			<% end %>	
+		</table>				
