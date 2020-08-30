@@ -1,19 +1,47 @@
 class BusinesslogsController < ApplicationController
 	# before_action :set_staff	
 	
-	def businesslog_clients
-		@client= Client.find(params[:client_id])
+	def businesslog_clients #本日の利用者チェック業務日誌一覧
 		@clients= Client.all
+		@client =Client.find(params[:client_id])
 	end	
 
-	def businesslog_clients_create #本日の業務日誌client提出
-
+	def update_businesslog_client_now #本日の利用者の業務日誌
+		ActiveRecord::Base.transaction do
+			@client= Client.find(params[:client_id])
+			n1 = 0
+			check_params.each do |item|
+				if item[:business_log_use_check] == "true"
+					if item[:business_log_use_check] == "true"
+						n1 = n1 + 1
+					end
+						@clients.update_attributes!(item)
+				end
+					flash[:success] = "業務日誌を#{x1}追加しました！"
+					redirect_to  businesslog_clients_url @client 
+			end
+		end					
+	rescue ActiveRecord::RecordInvalid
+		flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+	redirect_to crients_url(@client)
 	end	
+					
+		
+
+				
+	
+	def affter_businesslog
+		@client = Client.find(params[:client_id])
+		@businesslog = Businesslog.find(params[:id])
+	end	
+
+
+	
 
 
 	def new_businesslog
 		@client= Client.find(params[:client_id])
-	  end
+	end
 	  
 	  def create_businesslog
 			@client = Client.find(params[:client_id])
@@ -28,10 +56,7 @@ class BusinesslogsController < ApplicationController
 			render action: :new_businesslog
 			end
 		end
-	def affter_businesslog
-		@client = Client.find(params[:client_id])
-		@businesslog = Businesslog.find(params[:id])
-	end	
+
 	
 		private
 
@@ -40,9 +65,9 @@ class BusinesslogsController < ApplicationController
 				                                  	:re_log_body_temperature, :re_log_pulse,:log_special_mention, :log_record_stamp,:check_log, :log_foods, :log_check_return, :check_log_hand_washing, :check_log_brush_teeth, :log_worked_on)
 		end
 		
-		# def set_staff
-		# 	@staff = Staff.find(params[:staff_id])
-		# end
+		def check_params #本日の業務日誌チェック
+			params.require(:client).permit(businesslogs: [:business_log_use_check])[:businesslog]
+		end	
 	  
 
 

@@ -56,7 +56,7 @@
             post 'create_businesslog'
             get 'businesslog_clients' #本日の業務日誌
             post 'businesslog_clients_create' #業務日誌完成
-            post 'create_businesslog_client_now' #利用者の追加
+            patch 'update_businesslog_client_now' #利用者の追加
           end
           member do
             get 'affter_businesslog' #業務日誌作成後
