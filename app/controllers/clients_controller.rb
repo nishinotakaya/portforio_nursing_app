@@ -80,7 +80,31 @@ before_action :set_one_month, only: :show
       flash[:success] = 'チェックしてください。'
       render action: :index 
     end   
-  end  
+  end
+  
+  def businesslog_clients #本日の利用者チェック業務日誌一覧
+		@clients = Client.all
+		@client = Client.find(params[:id])
+  end	
+  
+  def update_businesslog_client_now #本日の利用者の業務日誌
+		ActiveRecord::Base.transaction do
+      @client= Client.find(params[:id])
+      n1 = 0
+      client_check.each do |id, item|
+        if item[:use_check] == "true"
+          n1 = n1 + 1
+          client = Client.find(id)
+          client.update_attributes!(item)
+        end
+      end
+      flash[:success] = "業務日誌を#{n1}追加しました！"
+      redirect_to businesslog_clients
+		end					
+	rescue ActiveRecord::RecordInvalid
+		flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+    redirect_to crients_url	
+  end	
   
   
   
@@ -102,7 +126,7 @@ before_action :set_one_month, only: :show
   end  
   
   def client_check
-    params.permit(:use_check)
+    params.require(:client).permit(clients: [:use_check])[:clients]
   end  
   
   # def set_staff

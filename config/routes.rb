@@ -23,6 +23,8 @@
           get 'edit_basic_info'
           patch 'update_basic_info'
           patch 'create_use_check'
+          get 'businesslog_clients' #本日の業務日誌
+          patch 'update_businesslog_client_now' #利用者の追加
         
         end
           
@@ -32,6 +34,7 @@
           member do #idが付く！memberは特定のデータにアクションを利用する
             get 'monitoring_basic_info_affter' #過去のモニタリング
             patch 'update_monitoring_basic' #編集
+            get 'monitoring_completion' #モニタリング完成
           end
           collection do
             get 'monitoring_basic_info' #モニタリング新規作成
@@ -54,9 +57,7 @@
           collection do
             get 'new_businesslog' #業務日誌新規作成
             post 'create_businesslog'
-            get 'businesslog_clients' #本日の業務日誌
             post 'businesslog_clients_create' #業務日誌完成
-            patch 'update_businesslog_client_now' #利用者の追加
           end
           member do
             get 'affter_businesslog' #業務日誌作成後

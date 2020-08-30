@@ -47,6 +47,10 @@ class MonitoringsController < ApplicationController
     end    
      
   end
+
+  def monitoring_completion
+    @client= Client.find(params[:client_id])
+  end  
   
   
   

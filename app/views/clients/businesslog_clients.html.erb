@@ -7,13 +7,13 @@
         <th class="center">利用者名</th>
         <th class="center">詳細</th>
 			</tr>
-			<%= form_with( model: @client, url: update_businesslog_client_now_client_businesslogs_path(@client), local: true, method: :patch) do |f| %>
+			<%= form_with( model: @client, url: update_businesslog_client_now_client_path(@client), local: true, method: :patch) do |f| %>
 					<% @clients.each do |client| %>
-						<%= f.fields_for "businesslogs[]", client do |a| %> 
+						<%= f.fields_for "clients[]", client do |a| %> 
 							<tbody>
 								<tr>
-									<td><%= f.check_box :business_log_use_check ,{}, "true", "false" %></td>
-									<td class= "center"><%=client.client_name %></td>
+									<td><%= a.check_box :use_check, {}, "true", "false" %></td>
+									<td class= "center"><%= client.client_name %></td>
 									<td class="center"><%= link_to "詳細",client_path(client),class: "btn btn-primary" %></td>
 								</tr>
 							</tbody>
