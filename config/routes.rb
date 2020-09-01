@@ -58,10 +58,12 @@
             get 'new_businesslog' #業務日誌新規作成
             post 'create_businesslog'
             post 'businesslog_clients_create' #業務日誌完成
+            get 'businesslog_clients_index' #業務日誌ユーザー一覧
           end
           member do
             get 'affter_businesslog' #業務日誌作成後
             patch 'update_businesslog'
+            get 'businesslog_completion' #業務日誌完成盤
           end  
         end
         resources :nurselogs, only: :update do #看護日誌

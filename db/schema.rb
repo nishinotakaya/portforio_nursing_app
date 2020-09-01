@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200829203607) do
+ActiveRecord::Schema.define(version: 20200901122244) do
 
   create_table "asesments", force: :cascade do |t|
     t.datetime "asesment_create_day"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20200829203607) do
     t.string "prosthsis_down"
     t.boolean "prosthss_up"
     t.boolean "prosthss_down"
+    t.string "hedge_medicine_food_information_1"
     t.index ["client_id"], name: "index_asesments_on_client_id"
   end
 

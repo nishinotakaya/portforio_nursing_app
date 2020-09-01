@@ -1,19 +1,19 @@
 <div class= "center">
-  <table class="table table-bordered table-condensed table-hover" id="table-client">
+  <table class="table table-bordered table-condensed table-hover" id="table-client" >
     <meta charset = " utf-8 " />
     <h1>利用者情報報告書</h1>
     <%= form_with( model: @monitoring, url: create_monitoring_new_client_monitorings_path(@client, @monitoring), local: true, method: :post) do |f| %>
   <p><span class="under">利用者名: <%= @client.client_name %>様の
-    <%= f.date_select(:monitoring_worked_on_year, discard_month:true) %>年
-    <%= f.date_select(:monitoring_worked_on_month, discard_year:true, discard_day:true) %>
+    <%= @monitoring.monitoring_worked_on_year.strftime("%Y") if @monitoring.monitoring_worked_on_year.present? %>年
+    <%= @monitoring.monitoring_worked_on_month.strftime("%m") if @monitoring.monitoring_worked_on_month.present?%>月
     の利用者の状況をご報告いたします。
     </span></p>
   
     <%= f.label "【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)", class: "label-#{yield(:class_text)}" %>
-    <br><%= f.text_area :monitoring_needs, class: "hoge", size: "50x7" %></br>
+    <br><p><%= f.text_area :monitoring_needs, class: "hoge", size: "50x7" %></p></br>
   
     <br><%= f.label "【居宅介護支援計画書の短期目標】", class: "label-#{yield(:class_text)}" %>
-    <br><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "50x7" %></br>
+    <br><p><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "50x7" %></p></br>
   
     <br><%= f.label "基本的サービスの状況(ＡⅮⅬを含む)" ,class: "label-#{yield(:class_text)}" %></br>
     
@@ -81,7 +81,7 @@
         <%= f.label "全介助", class: "label-#{yield(:class_text)}" %>
         
         <br><%= f.label "皮膚トラブル" , class: "label-#{yield(:class_text)}" %>
-        <br><%= f.text_area :monitoring_both, class: "hoge", size: "40x3" %>
+        <br><p><%= f.text_area :monitoring_both, class: "hoge", size: "40x3" %></p>
         
         <!--更衣-->
          <br><%= f.label "［更衣］", class: "label-#{yield(:class_text)}" %>
@@ -120,7 +120,7 @@
         <td>
           <br><%= f.label "【日常生活上の留意点 及び 介護の工夫など(総合的評価)】", class: "label-#{yield(:class_text)}" %>
           <br>※ 上記の内容を詳しく 又は利用中の様子や気づいた点を記入
-          <br><%= f.text_area :monitoring_attention, class: "hoge", size: "50x10" %></br>
+          <br><p><%= f.text_area :monitoring_attention, class: "hoge", size: "50x10" %></br></p>
         </td>
         
       </tr>
@@ -132,10 +132,7 @@
               <%= f.radio_button :monitoring_service_need, :必要なし, checked: "checked" %>
               <%= f.label "必要なし", class: "label-#{yield(:class_text)}" %>
           <br><%= f.label "必要あり理由", class: "label-#{yield(:class_text)}" %>
-              <br><%= f.text_area :monitoring_service_need, class: "hoge", size: "40x3" %>
-          <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
-              <%= f.check_box :check_monitoring, {}, "true", "false" %>
-          <br><%= f.submit "追加", class: "btn btn-primary "  %>
+              <br><p><%= f.text_area :monitoring_service_need, class: "hoge", size: "40x3" %></p>
         </td>
       <% end %>  
     </table>  

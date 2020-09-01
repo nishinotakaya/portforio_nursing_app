@@ -1,0 +1,92 @@
+<h1>本日の利用者業務日誌一覧</h1>
+
+<div class="center">
+	<%= form_with( model: @client, url: create_businesslog_client_businesslogs_path(@client, @businesslog), local: true, method: :post) do |f| %>
+		<% @clients.each do |client| %>
+			<%= f.fields_for "clients[]", client do |c| %>
+				<p><span class="under">氏名&emsp;<%= client.client_name %>様</span></p>
+				<table align="center" cellspacing="", cellpadding="5">
+					<tr>
+							<th><%= c.date_select(:log_year, discard_month:true)+'年'%>
+									<%= c.date_select(:log_month, discard_year:true)+'日' %>
+							</th>
+					</tr>		
+					<tr>
+						<th class ="center" rowspan = "2"><div class ="center">[送迎]</div>
+							<%= c.radio_button :log_farewell, "往復" %>
+							<%= c.label "往復", class: "label-#{yield(:class_text)}" %>
+							<%= c.radio_button  :log_farewell, "片道" %>
+							<%= c.label "片道", class: "label-#{yield(:class_text)}" %>
+							<br><%= c.radio_button :log_farewell, "ケアハウス" %>
+							<%= c.label "ケアハウス", class: "label-#{yield(:class_text)}" %>
+						</th>
+						<th rowspan = "2" colspan= "3"class= "center">
+							<div class ="center">[入浴]</div>
+							一般浴 &nbsp;<%= f.radio_button :log_bath, "利用" %>
+							<%= c.label "利用", class: "label-#{yield(:class_text)}" %>
+							<%= c.radio_button :log_bath, "シャワー浴" %>
+							<%= c.label "シャワー浴", class: "label-#{yield(:class_text)}" %>
+							<%= c.radio_button  :log_bath, "プラン無し" %>
+							<%= c.label "プラン無", class: "label-#{yield(:class_text)}" %>
+							<%= c.radio_button  :log_bath, "中止" %>
+							<%= c.label "中止", class: "label-#{yield(:class_text)}" %>
+							<br>機械浴 &nbsp;<%= f.radio_button :log_bath, "機械浴 利用" %>
+							<%= c.label "利用", class: "label-#{yield(:class_text)}" %>
+						</th>
+							<th class ="center" rowspan = "2">
+							<div class ="center">［食事］</div>
+							<%= c.check_box  :log_foods ,{}, "true", "false"%>
+							<%= c.label "利用", class: "label-#{yield(:class_text)}" %>
+							</th>
+							<th class ="center" colspan= "2">［主食］
+							<br><%= c.select :log_good_staple_dosage,[['1/5'],['2/5'],['3/5'],['4/5'],['ほ全'],['全'],['0'],['1くち'],['2~3くち']],{ include_blank: true} %></th>
+							<th></th>
+						</tr>
+						<tr>
+								<th class ="center" colspan= "2">［副食］
+								<br><%= c.select :log_good_side_dosage,[['1/5'],['2/5'],['3/5'],['4/5'],['ほ全'],['全'],['0'],['1くち'],['2~3くち']],{ include_blank: true} %></th>
+								<th></th>
+						</tr>
+						<tr>
+								<th class ="center">[バイタル]</th>
+								<th class ="center">[体温]
+								<br><%= c.text_area :log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
+								<th class ="center">[血圧]
+								<br><%= c.text_area :log_pressure_up, class: "hoge", size: "3x1" %>/
+								<%= c.text_area :log_pressure_down, class: "hoge", size: "3x1" %></th>
+								<th class ="center">[脈]
+								<br><%= c.text_area :log_pulse, class: "hoge", size: "3x1" %></th>
+								<th class ="center"rowpan="2">［再検査］
+								<br><%= c.check_box :log_check_return ,{}, "true", "false"%></th>
+								<th class ="center">[血圧]<br><%= f.text_area :re_log_pressure_up, class: "hoge", size: "3x1" %>/
+								<%= c.text_area :re_log_pressure_down, class: "hoge", size: "3x1" %></th>
+								<th class ="center">[体温]<br><%= c.text_area :re_log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
+								<th class ="center">[脈]<br><%= c.text_area :re_log_pulse, class: "hoge", size: "3x1" %></th>
+						</tr>
+						<tr>
+								<th class ="center" colspan= "8">
+										うがい
+										<%= c.check_box  :check_log_hand_washing ,{}, "true", "false"%>
+										&emsp;&emsp;&emsp;&emsp; 食後歯磨き
+										<%= c.check_box :check_log_brush_teeth ,{}, "true", "false"%>
+								</th>
+						</tr>
+						<tr>
+								<th colspan = "6" rowspan= "2">
+										[特記事項]
+										<%= c.text_area :log_special_mention, class: "hoge", size: "100x4" %>
+								</th>
+								<th class = "center"colspan= "2">
+								[記録者印]
+								</th>
+						</tr>
+							<th class ="center" colspan= "2"><%= c.text_area :log_record_stamp, class: "hope", size: "4x1" %>
+							</th>	
+					</table>
+							<%= c.check_box :check_log ,{}, "true", "false" %>
+							確認
+				<br><%= c.submit "追加", class: "btn btn-primary " %>
+			<% end %>
+		<% end %>
+	<% end %>
+</div>					

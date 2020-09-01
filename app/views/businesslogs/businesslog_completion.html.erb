@@ -12,8 +12,9 @@
                       when '日'
                         'text-danger'
                       end %>
-					<th class="<%= css_class %>"><%= f.date_select(:log_year, discard_month:true)+'年'%>
-							<%= f.date_select(:log_month, discard_year:true)+'日' %>
+					<th class="<%= css_class %>"><%= @businesslog.log_year.strftime("%Y") if @businesslog.log_year.present?%>年
+							<%= @businesslog.log_month.strftime("%m") if @businesslog.log_month.present? %>月
+							<%= @businesslog.log_month.strftime("%d") if @businesslog.log_month.present? %>日
 							(<%= %w{日 月 火 水 木 金 土}[@businesslog.log_month.wday] %>)
 					</th>
 				</tr>		
@@ -45,29 +46,29 @@
 					<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
 					</th>
 					<th class ="center" colspan= "2">［主食］
-					<br><%= f.select :log_good_staple_dosage,[['1/5'],['2/5'],['3/5'],['4/5'],['ほ全'],['全'],['0'],['1くち'],['2~3くち']],{ include_blank: true} %></th>
+					<br>【<%= @businesslog.log_good_staple_dosage %>】</th>
 					<th></th>
 				</tr>
 				<tr>
 					<th class ="center" colspan= "2">［副食］
-					<br><%= f.select :log_good_side_dosage,[['1/5'],['2/5'],['3/5'],['4/5'],['ほ全'],['全'],['0'],['1くち'],['2~3くち']],{ include_blank: true} %></th>
+					<br>【<%= @businesslog.log_good_side_dosage %>】</th>
 					<th></th>
 				</tr>
 				<tr>
 					<th class ="center">[バイタル]</th>
 					<th class ="center">[体温]
-					<br><%= f.text_area :log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
+					<br>【<%= @businesslog.log_body_temperature %>℃】</th>
 					<th class ="center">[血圧]
-					<br><%= f.text_area :log_pressure_up, class: "hoge", size: "3x1" %>/
-					<%= f.text_area :log_pressure_down, class: "hoge", size: "3x1" %></th>
+					<br>【<%= @businesslog.log_pressure_up %>/
+					<%= @businesslog.log_pressure_down %>】</th>
 					<th class ="center">[脈]
-					<br><%= f.text_area :log_pulse, class: "hoge", size: "3x1" %></th>
+					<br>【<%= @businesslog.log_pulse %>】</th>
 					<th class ="center"rowpan="2">［再検査］
 					<br><%= f.check_box :log_check_return ,{}, "true", "false"%></th>
-					<th class ="center">[血圧]<br><%= f.text_area :re_log_pressure_up, class: "hoge", size: "3x1" %>/
-					<%= f.text_area :re_log_pressure_down, class: "hoge", size: "3x1" %></th>
-					<th class ="center">[体温]<br><%= f.text_area :re_log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
-					<th class ="center">[脈]<br><%= f.text_area :re_log_pulse, class: "hoge", size: "3x1" %></th>
+					<th class ="center">[血圧]<br>【<%= @businesslog.re_log_pressure_up %>/
+					<%= @businesslog.re_log_pressure_down %>】</th>
+					<th class ="center">[体温]<br>【<%= @businesslog.re_log_body_temperature %>℃】</th>
+					<th class ="center">[脈]<br>【<%= @businesslog.re_log_pulse %>】</th>
 				</tr>
 				<tr>
 					<th class ="center" colspan= "8">
@@ -86,10 +87,7 @@
 					[記録者印]
 					</th>
 				</tr>
-				<th class ="center" colspan= "2"><%= f.text_area :log_record_stamp, class: "hope", size: "4x1" %></th>	
+				<th class ="center" colspan= "2">【<%= @businesslog.log_record_stamp %>】</th>	
 			</table>
-			<%= f.check_box :check_log ,{checked: false}, "true", "false" %>
-			確認
-			<br><%= f.submit "編集", class: "btn btn-success" %>
 		<% end %>
-</div>					
+</div>	

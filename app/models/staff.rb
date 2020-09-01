@@ -1,5 +1,5 @@
 class Staff < ApplicationRecord
-  has_many :attendances, dependent: :destroy
+  
   # 「remember_token」という仮想の属性を作成します。
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
@@ -61,7 +61,7 @@ class Staff < ApplicationRecord
 
   # 更新を許可するカラムを定義
   def self.updatable_attributes
-    ["name", "email",	"affiliation",	"designated_work_end_time",	"superior",	"admin", "password"
+    ["name", "email",	"admin", "password"
     ]
   end
 end

@@ -1,10 +1,12 @@
 <div class="center">
   <h1>本日の利用チェック</h1>
+	<%= link_to "本日の業務日誌一覧記入", businesslog_clients_index_client_businesslogs_path(@client) %>
 	<table class="table table-bordered table-condensed table-hover" id="table-clientes">
 		 <thead>
       <tr>
         <th class= "center">本日利用チェック</th>
         <th class="center">利用者名</th>
+				<th class="center">利用曜日</th>
         <th class="center">詳細</th>
 			</tr>
 			<%= form_with( model: @client, url: update_businesslog_client_now_client_path(@client), local: true, method: :patch) do |f| %>
@@ -14,6 +16,7 @@
 								<tr>
 									<td><%= a.check_box :use_check, {}, "true", "false" %></td>
 									<td class= "center"><%= client.client_name %></td>
+									<td class= "center"><%= client.date_of_day %></td>
 									<td class="center"><%= link_to "詳細",client_path(client),class: "btn btn-primary" %></td>
 								</tr>
 							</tbody>

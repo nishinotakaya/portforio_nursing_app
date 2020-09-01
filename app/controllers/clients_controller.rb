@@ -98,7 +98,7 @@ before_action :set_one_month, only: :show
           client.update_attributes!(item)
         end
       end
-      flash[:success] = "業務日誌を#{n1}追加しました！"
+      flash[:success] = "本日の利用人数は#{n1}人です！！今日も一日頑張っていきましょう！！<^0^>"
       redirect_to businesslog_clients
 		end					
 	rescue ActiveRecord::RecordInvalid

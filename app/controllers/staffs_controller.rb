@@ -2,7 +2,7 @@ class StaffsController < ApplicationController
   before_action :set_staff, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info] #before_actionは一番最初に定義される！
   before_action :logged_in_staff, only: [:show, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_staff, only: [:show, :edit, :update]
-  before_action :admin_staff, only: [:index, :update, :destroy, :working_employee_list]
+ 
   before_action :admin_or_correct_staff, only: :show
   before_action :set_one_month, only: :show
   
@@ -25,7 +25,7 @@ class StaffsController < ApplicationController
   end
 
   def create
-    @staff = Staff.new(user_params)
+    @staff = Staff.new(staff_params)
     if @staff.save
       log_in @staff
       flash[:success] = '新規作成に成功しました。'
@@ -50,7 +50,7 @@ class StaffsController < ApplicationController
   def destroy
    @staff.destroy
     flash[:success] = "#{@staff.name}のデータを削除しました。"
-    redirect_to users_url
+    redirect_to staffs_url
   end
 
   def edit_basic_info
@@ -62,7 +62,7 @@ class StaffsController < ApplicationController
     else
       flash[:danger] = "#{@staff.name}の更新は失敗しました。<br>" + @staff.errors.full_messages.join("<br>")
     end
-    redirect_to users_url
+    redirect_to staffs_url
   end
 
   
@@ -79,11 +79,11 @@ private
       params.require(:staff).permit(:name, :email, :password, :password_confirmation)
     end
 
-    def user_params
+    def staff_params
       params.require(:staff).permit(:name, :email, :password, :password_confirmation)
     end
     
-    def set_user
+    def set_staff
       @staff = Staff.find(params[:id])
     end
   
@@ -102,10 +102,7 @@ private
       redirect_to(root_url) unless current_staff?(@staff)
     end
 
-    # システム管理権限所有かどうか判定します。
-    def admin_staff
-      redirect_to (root_url) unless current_staff.admin?
-    end
+    
     
     def admin_or_correct_staff
       @staff = Staff.find(params[:id]) if @staff.blank?

@@ -36,6 +36,7 @@ class CreateAsesments < ActiveRecord::Migration[5.1]
       t.string :information_medicina_another #その他カッコ内
       t.string :hedge_medicine_food #避けるべき食材、薬
       t.string :hedge_medicine_food_information #情報
+      t.string :hedge_medicine_food_information_1 #避けるべき、食材(その他)
       t.string :hospital_name #かかりつけ医
       t.string :hospital_doctor #医者
       t.string :hospital_doctor_nymber #病院電話番号
