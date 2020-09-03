@@ -1,6 +1,6 @@
 <div class="center">
   <h1>本日の利用チェック</h1>
-	<%= link_to "本日の業務日誌一覧記入", businesslog_clients_index_client_businesslogs_path(@client) %>
+	<%= link_to "本日の業務日誌一覧記入", businesslog_clients_index_client_path(@client), local: true, method: :get %>
 	<table class="table table-bordered table-condensed table-hover" id="table-clientes">
 		 <thead>
       <tr>

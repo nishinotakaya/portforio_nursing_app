@@ -31,6 +31,7 @@ class CreateBusinesslogs < ActiveRecord::Migration[5.1]
       t.boolean :check_log_hand_washing
       t.boolean :check_log_brush_teeth
       t.date :log_worked_on 
+      t.boolean :business_log_use_check
 
       t.references :client, foreign_key: true
 

@@ -25,7 +25,8 @@
           patch 'create_use_check'
           get 'businesslog_clients' #本日の業務日誌
           patch 'update_businesslog_client_now' #利用者の追加
-        
+          get 'businesslog_clients_index' #業務日誌ユーザー一覧
+          post 'businesslog_clients_create' #業務日誌完成
         end
           
         
@@ -47,6 +48,7 @@
           member do
             get 'asesment_affter'
             patch 'asesment_update'
+            get 'asesment_completion'
           end
           collection do
             get 'asesment_new'
@@ -57,13 +59,12 @@
           collection do
             get 'new_businesslog' #業務日誌新規作成
             post 'create_businesslog'
-            post 'businesslog_clients_create' #業務日誌完成
-            get 'businesslog_clients_index' #業務日誌ユーザー一覧
           end
           member do
             get 'affter_businesslog' #業務日誌作成後
             patch 'update_businesslog'
-            get 'businesslog_completion' #業務日誌完成盤
+            get 'businesslog_completion' #業務日誌完成盤 
+            get 'businesslog_completion_copy' #業務日誌コピー専用page         
           end  
         end
         resources :nurselogs, only: :update do #看護日誌

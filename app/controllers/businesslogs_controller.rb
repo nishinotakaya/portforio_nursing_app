@@ -49,12 +49,19 @@ class BusinesslogsController < ApplicationController
 		def businesslog_completion
 			@client = Client.find(params[:client_id])
 			@businesslog = Businesslog.find(params[:id])
+		end
+		
+		def businesslog_completion_copy
+			@client = Client.find(params[:client_id])
+			#@businesslog = Businesslog.find(params[:id])
+			@businesslogs = Businesslog.where(check_log: true).where(client_id: @client.id).order(:log_year,:log_month,:client_id).reverse_order.page(params[:page]).per(4)
 		end	
 
-		def businesslog_clients_index
-			@client = Client.find(params[:client_id])
-			@clients = Client.where(use_check: true)
-		end	
+			
+
+		
+
+	
 
 	
 		private
@@ -66,12 +73,13 @@ class BusinesslogsController < ApplicationController
 
 		def log_update_params
 			params.require(:businesslog).permit(:log_year, :log_month, :log_day, :log_week, :log_farewell, :log_bath, :log_food, :log_good_staple_dosage, :log_good_side_dosage, :log_body_temperature, :log_pressure_up, :log_pressure_down, :log_pulse, :re_log_pressure_up, :re_log_pressure_down,
-				                                  	:re_log_body_temperature, :re_log_pulse,:log_special_mention, :log_record_stamp,:check_log, :log_foods, :log_check_return, :check_log_hand_washing, :check_log_brush_teeth, :log_special_mention, :log_worked_on)
+																						:re_log_body_temperature, :re_log_pulse,:log_special_mention, :log_record_stamp,:check_log, :log_foods, :log_check_return, :check_log_hand_washing, :check_log_brush_teeth, :log_special_mention, :log_worked_on)
 		end
-		
+
 		def check_params #本日の業務日誌チェック
 			params.require(:client).permit(businesslogs: [:business_log_use_check])[:businesslog]
-		end	
+		end
+		
 	  
 
 

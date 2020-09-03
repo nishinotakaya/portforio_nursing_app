@@ -42,6 +42,11 @@ class AsesmentsController < ApplicationController
       flash[:danger] = "#{@client.client_name}様の利用者情報報告書の更新は失敗しました。<br>" + @client.errors.full_messages.join("<br>")
       render action: :asesment_affter 
     end
+  end
+  
+  def asesment_completion
+    @client = Client.find(params[:client_id])
+    @asesment = Asesment.find(params[:id])
   end  
   
   

@@ -10,6 +10,7 @@ class CreateClients < ActiveRecord::Migration[5.1]
       t.datetime :client_birthday #生年月日
       t.date :worked_on #日付
       t.string :sex #性別
+      t.boolean :use_check
     end
   end
 end
