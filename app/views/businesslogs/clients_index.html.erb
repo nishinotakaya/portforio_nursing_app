@@ -1,10 +1,10 @@
 <h1>本日の利用者業務日誌一覧</h1>
 
 <div class="center">
-	<%= form_with( model: @businesslog, url:businesslog_clients_create_client_path(@clients, @client.businesslogs.build ), local: true, method: :post) do |f| %>
-		<% @clients.each do |client| %>
-			<%= f.fields_for client.businesslogs.build, client do |c| %>
-				<p><span class="under">氏名&emsp;<%= client.client_name %>様</span></p>
+	<%= form_with( model: @businesslogs, url: businesslogs_clients_create_path, local: true, method: :patch) do |f| %>
+		<% @businesslogs.each do |businesslog| %>
+			<%= f.fields_for "businesslogs[]", businesslog do |c| %>
+				<p><span class="under">氏名&emsp;<%= Client.find(businesslog.client_id).client_name %>様</span></p>
 				<table align="center" cellspacing="", cellpadding="5">
 					<tr>
 							<th><%= c.date_select(:log_year, discard_month:true)+'年'%>

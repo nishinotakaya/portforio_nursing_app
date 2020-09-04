@@ -1,7 +1,7 @@
 class CreateBusinesslogs < ActiveRecord::Migration[5.1]
   def change
     create_table :businesslogs do |t|
-      t.datetime :log_year
+      t.date :log_year
       t.datetime :log_month
       t.datetime :log_day
       t.datetime :log_week

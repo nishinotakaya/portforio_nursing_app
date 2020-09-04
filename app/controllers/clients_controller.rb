@@ -16,7 +16,7 @@ before_action :set_one_month, only: :show
     @client = Client.find(params[:id])
     @monitorings = @client.monitorings.where(check_monitoring: true).order(:monitoring_worked_on_year, :monitoring_worked_on_month).reverse_order.page(params[:page]).per(10)
     @asesments = @client.asesments.where(check_a: true).order(:asesment_create_year, :asesment_create_day).reverse_order.page(params[:page]).per(10)
-    @businesslogs = @client.businesslogs.where(check_log: true).order(:log_year,:log_month).reverse_order.page(params[:page]).per(10)
+    @businesslogs = @client.businesslogs.where(check_log: true).order(:log_year,:log_month).reverse_order.page(params[:page]).per(4)
   end
   #def client_show
     #@client = Client.find(params[:id])
@@ -107,39 +107,9 @@ before_action :set_one_month, only: :show
     redirect_to  businesslog_clients_client_url(@client)	
   end
 
-  def businesslog_clients_index
-      # @client = Client.find(params[:id])
-			@clients = Client.where(use_check: true)
-			@businesslogs = Businesslog.where(client_id: id, log_year: Date.today, log_month: Date.today).order(:client_id)
-	end	
 
-  def businesslog_clients_create
-    ActiveRecord::Base.transaction do
-      @client = Client.find(params[:id])
-      n1 = 0
-      logs_create_params.each do |item|
-        if item[:check_log] == "true"
-          n1 = n1 + 1  
-          client = Client.businesslogs.find(id)
-          Client.businesslogs.create(item)  
-        end
-      end
-      flash[:success] = "業務日誌お疲れ様でした！"
-      redirect_to businesslog_clients_client_url(@client)  		
-    end
-  end  	
-  
-  
-  
-   
-
-  
-  
-    
   private
-  
-  
-  
+
   def client_params
     params.require(:client).permit(:client_name_japanese, :client_name, :client_email, :telephone_number, :nursing_number, :client_birthday, :sex,  date_of_day: [] )
   end
@@ -152,10 +122,6 @@ before_action :set_one_month, only: :show
     params.require(:client).permit(clients: [:use_check])[:clients]
   end  
   
-  def logs_create_params #本日利用業務日誌追加
-    params.require(:client).permit(businesslogs_attributes: [:log_year, :log_month, :log_day, :log_week, :log_farewell, :log_bath, :log_food, :log_good_staple_dosage, :log_good_side_dosage, :log_body_temperature, :log_pressure_up, :log_pressure_down, :log_pulse, :re_log_pressure_up, :re_log_pressure_down,
-                                          :re_log_body_temperature, :re_log_pulse,:log_special_mention, :log_record_stamp,:check_log, :log_foods, :log_check_return, :check_log_hand_washing, :check_log_brush_teeth, :log_special_mention, :log_worked_on])
-  end
   # def set_staff
   #   @staff = Staff.find(params[:staff_id])
   # end

@@ -55,16 +55,31 @@ class BusinesslogsController < ApplicationController
 			@client = Client.find(params[:client_id])
 			#@businesslog = Businesslog.find(params[:id])
 			@businesslogs = Businesslog.where(check_log: true).where(client_id: @client.id).order(:log_year,:log_month,:client_id).reverse_order.page(params[:page]).per(4)
+		end
+		
+		def clients_index
+			# @client = Client.find(params[:id])
+			@clients = Client.where(use_check: true)
+			@businesslogs = Businesslog.where(log_year: Date.today).order(:client_id) # Businesslog.create!(client_id: id, log_year: Date.today, log_month: Date.today) により飛んでくる
 		end	
-
-			
-
+	  
+		def clients_create
+		  ActiveRecord::Base.transaction do
+				n1 = 0
+				logs_create_params.each do |id, item|
+					if item[:check_log] == "true"
+						n1 = n1 + 1  
+						businesslog = Businesslog.find(id)
+						businesslog.update_attributes!(item)  
+					end
+				end
+				flash[:success] = "業務日誌お疲れ様でした！"
+				redirect_to clients_url
+			end  		
+		end
 		
 
-	
-
-	
-		private
+	private
 
 		def log_params
 			params.permit(:log_year, :log_month, :log_day, :log_week, :log_farewell, :log_bath, :log_food, :log_good_staple_dosage, :log_good_side_dosage, :log_body_temperature, :log_pressure_up, :log_pressure_down, :log_pulse, :re_log_pressure_up, :re_log_pressure_down,
@@ -80,7 +95,8 @@ class BusinesslogsController < ApplicationController
 			params.require(:client).permit(businesslogs: [:business_log_use_check])[:businesslog]
 		end
 		
-	  
-
-
+		def logs_create_params #本日利用業務日誌追加
+			params.require(:businesslog).permit(businesslogs: [:log_year, :log_month, :log_day, :log_week, :log_farewell, :log_bath, :log_food, :log_good_staple_dosage, :log_good_side_dosage, :log_body_temperature, :log_pressure_up, :log_pressure_down, :log_pulse, :re_log_pressure_up, :re_log_pressure_down,
+																		:re_log_body_temperature, :re_log_pulse,:log_special_mention, :log_record_stamp,:check_log, :log_foods, :log_check_return, :check_log_hand_washing, :check_log_brush_teeth, :log_special_mention, :log_worked_on])[:businesslogs]
+		end
 end

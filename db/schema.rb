@@ -10,9 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200901122244) do
+ActiveRecord::Schema.define(version: 20200828134407) do
 
   create_table "asesments", force: :cascade do |t|
+    t.boolean "check_a", default: false, null: false
+    t.datetime "asesment_create_year"
     t.datetime "asesment_create_day"
     t.string "praxis_place"
     t.string "filling_up"
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 20200901122244) do
     t.string "information_medicina_another"
     t.string "hedge_medicine_food"
     t.string "hedge_medicine_food_information"
+    t.string "hedge_medicine_food_information_1"
     t.string "hospital_name"
     t.string "hospital_doctor"
     t.string "hospital_doctor_nymber"
@@ -61,19 +64,14 @@ ActiveRecord::Schema.define(version: 20200901122244) do
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "check_a", default: false, null: false
-    t.datetime "asesment_create_year"
-    t.boolean "whrite_year"
-    t.string "prosthsis_up"
-    t.string "prosthsis_down"
+    t.datetime "whrite_year"
     t.boolean "prosthss_up"
     t.boolean "prosthss_down"
-    t.string "hedge_medicine_food_information_1"
     t.index ["client_id"], name: "index_asesments_on_client_id"
   end
 
   create_table "businesslogs", force: :cascade do |t|
-    t.datetime "log_year"
+    t.date "log_year"
     t.datetime "log_month"
     t.datetime "log_day"
     t.datetime "log_week"
@@ -103,8 +101,8 @@ ActiveRecord::Schema.define(version: 20200901122244) do
     t.boolean "check_log_hand_washing"
     t.boolean "check_log_brush_teeth"
     t.date "log_worked_on"
-    t.integer "client_id"
     t.boolean "business_log_use_check"
+    t.integer "client_id"
     t.index ["client_id"], name: "index_businesslogs_on_client_id"
   end
 
@@ -127,8 +125,6 @@ ActiveRecord::Schema.define(version: 20200901122244) do
     t.boolean "client_food"
     t.string "food_note"
     t.integer "client_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "food_sience"
     t.string "food_staff"
     t.boolean "food_staff_1"
@@ -140,6 +136,8 @@ ActiveRecord::Schema.define(version: 20200901122244) do
     t.boolean "food_staff_7"
     t.boolean "food_staff_8"
     t.boolean "food_staff_9"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_foodcooks_on_client_id"
   end
 
@@ -173,14 +171,14 @@ ActiveRecord::Schema.define(version: 20200901122244) do
   end
 
   create_table "nurselogs", force: :cascade do |t|
+    t.date "nurse_worked_on"
     t.string "nurse_body_temperature"
     t.string "nurse_body_temperature_after"
     t.string "nurse_pressure_up"
+    t.string "nurse_pressure_down"
     t.string "nurse_pulse"
-    t.boolean "nurse_both_ok"
-    t.boolean "nurse_both_noshing"
-    t.boolean "nurse_both_no"
-    t.boolean "nurse_both_little"
+    t.string "nurse_both"
+    t.string "nurse_medicine"
     t.boolean "nurse_medicine_my"
     t.boolean "nurse_medicine_yes"
     t.boolean "nurse_medicine_after"
@@ -191,10 +189,6 @@ ActiveRecord::Schema.define(version: 20200901122244) do
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "nurse_worked_on"
-    t.string "nurse_pressure_down"
-    t.string "nurse_both"
-    t.string "nurse_medicine"
     t.index ["client_id"], name: "index_nurselogs_on_client_id"
   end
 
