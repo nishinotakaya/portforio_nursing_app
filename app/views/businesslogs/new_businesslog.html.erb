@@ -1,7 +1,7 @@
 <div class="center">
   <meta charset = " utf-8 " />
 		<h1>個別記録</h1>
-		<%=form_with( model: @businesslog, url: create_businesslog_client_businesslogs_path(@client, @businesslog), local: true, method: :post) do |f| %>
+		<%=form_with( model: @businesslog, url: create_businesslog_client_businesslogs_path(@client, @businesslog, @businesslogs), local: true, method: :post) do |f| %>
 			<p><span class="under">氏名&emsp;<%= @client.client_name %>様</span></p>
 			<table align="center" cellspacing="", cellpadding="5">
 				<tr>

@@ -46,4 +46,12 @@ ja:
           monitoring_situation_dey: ［利用状況］
           monitoring_attention: 【日常生活上の留意点 及び 介護の工夫など(総合的評価)】
           monitoring_service_need: 【サービス変更の必要性】
+          enums:
+          businesslog:
+          log_farewell:
+          reciprocating:
+          one_way: 
+          nursing_home:
+
+
           
