@@ -9,7 +9,7 @@
 				<th class="center">利用曜日</th>
         <th class="center">詳細</th>
 			</tr>
-			<%= form_with( model: @client, url: update_businesslog_client_now_client_path(@client), local: true, method: :patch) do |f| %>
+			<%= form_with( model: @clients, url: update_businesslog_client_now_client_path(@clients), local: true, method: :patch) do |f| %>
 					<% @clients.each do |client| %>
 						<%= f.fields_for "clients[]", client do |a| %> 
 							<tbody>

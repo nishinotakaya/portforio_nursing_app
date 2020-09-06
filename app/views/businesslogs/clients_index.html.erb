@@ -22,7 +22,7 @@
 						</th>
 						<th rowspan = "2" colspan= "3"class= "center">
 							<div class ="center">[入浴]</div>
-							一般浴 &nbsp;<%= f.radio_button :log_bath, "利用" %>
+							一般浴 &nbsp;<%= c.radio_button :log_bath, "利用" %>
 							<%= c.label "利用", class: "label-#{yield(:class_text)}" %>
 							<%= c.radio_button :log_bath, "シャワー浴" %>
 							<%= c.label "シャワー浴", class: "label-#{yield(:class_text)}" %>

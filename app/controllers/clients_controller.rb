@@ -84,12 +84,12 @@ before_action :set_one_month, only: :show
   
   def businesslog_clients #本日の利用者チェック業務日誌一覧
 		@clients = Client.all
-		@client = Client.find(params[:id])
+	  #@client = Client.find(params[:id])
   end	
   
   def update_businesslog_client_now #本日の利用者の業務日誌
 		ActiveRecord::Base.transaction do
-      @client= Client.find(params[:id])
+      #@client= Client.find(params[:id])
       n1 = 0
       client_check.each do |id, item|
         if item[:use_check] == "true"
@@ -100,12 +100,14 @@ before_action :set_one_month, only: :show
         end
       end
       flash[:success] = "本日の利用人数は#{n1}人です！！今日も一日頑張っていきましょう！！<^0^>"
-      redirect_to businesslog_clients_client_url(@client)
+      redirect_to businesslog_clients_client_url
 		end					
 	rescue ActiveRecord::RecordInvalid
 		flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
-    redirect_to  businesslog_clients_client_url(@client)	
+    redirect_to  businesslog_clients_client_url	
   end
+
+
 
 
   private

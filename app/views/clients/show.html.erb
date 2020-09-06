@@ -33,7 +33,7 @@
           <%= link_to "編集", affter_businesslog_client_businesslog_path(@client, log), class: "btn btn-primary"%></br>
           <% end %>
           <%= paginate(@businesslogs) %>
-          <%= link_to "業務日誌コピー専用ページ", businesslog_completion_copy_client_businesslog_path(@client, @businesslogs) %>
+          <br><%= link_to "業務日誌コピー専用ページ", businesslog_completion_copy_client_businesslog_path(@client, @businesslogs), class: "btn btn-info" %>
         </td>
       </tr>
     </tbody>
