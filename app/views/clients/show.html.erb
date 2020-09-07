@@ -16,7 +16,7 @@
         <td>
       <% @monitorings.each do |monitoring| %>
         <br><%= link_to monitoring.monitoring_worked_on_year.strftime("%Y年")+monitoring.monitoring_worked_on_month.strftime("%m月"),monitoring_completion_client_monitoring_path(@client, monitoring),data: {"turbolinks" => false}, class: "btn btn-primary" %>
-            <%= link_to "編集", monitoring_basic_info_affter_client_monitoring_path(@client, monitoring), class: "btn btn-success" %>又は削除も可能</br>
+            <%= link_to "編集", monitoring_basic_info_affter_client_monitoring_path(@client, monitoring),data: {"turbolinks" => false}, class: "btn btn-success" %>又は削除も可能</br>
       <% end %>
         <%= paginate(@monitorings) %>
         </td>
