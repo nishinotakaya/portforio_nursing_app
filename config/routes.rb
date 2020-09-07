@@ -32,6 +32,7 @@
           get 'monitoring_basic_info_affter' #過去のモニタリング
           patch 'update_monitoring_basic' #編集
           get 'monitoring_completion' #モニタリング完成
+          delete 'monitoring_delete' #モニタリング削除 
         end
         collection do
           get 'monitoring_basic_info' #モニタリング新規作成
@@ -44,6 +45,7 @@
         member do
           get 'asesment_affter'
           patch 'asesment_update'
+          delete 'asesment_delete' #アセスメント削除 
           get 'asesment_completion'
         end
         collection do
@@ -54,11 +56,11 @@
       resources :businesslogs,only: :update do #業務日誌
         collection do
           get 'new_businesslog' #業務日誌新規作成
-          post 'create_businesslog' 
-          delete 'businesslog_delete' #業務日誌削除       
+          post 'create_businesslog'       
         end
         member do
           get 'affter_businesslog' #業務日誌作成後
+          delete 'businesslog_delete' #業務日誌削除 
           patch 'update_businesslog'
           get 'businesslog_completion' #業務日誌完成盤 
           get 'businesslog_completion_copy' #業務日誌コピー専用page

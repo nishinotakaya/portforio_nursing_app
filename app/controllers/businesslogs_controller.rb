@@ -28,7 +28,7 @@ class BusinesslogsController < ApplicationController
 	
 	def businesslog_delete
 		@client = Client.find(params[:client_id])
-    @businesslog = usinesslog.find(params[:id])
+    @businesslog = Businesslog.find(params[:id])
     @businesslog.destroy
     flash[:success] = "利用者の業務日誌を削除しました。"
     redirect_to client_url(@client)

@@ -28,7 +28,14 @@ class MonitoringsController < ApplicationController
       render action: :monitoring_basic_info_affter 
     end
   end
-        
+
+  def monitoring_delete
+      @client = Client.find(params[:client_id])
+      @monitoring = Monitoring.find(params[:id])
+      @monitoring.destroy
+      flash[:success] = "利用者の利用者情報報告書を削除しました。"
+      redirect_to client_url(@client)
+  end    
   
   
   

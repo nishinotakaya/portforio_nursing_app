@@ -43,6 +43,14 @@ class AsesmentsController < ApplicationController
       render action: :asesment_affter 
     end
   end
+
+  def asesment_delete
+    @client = Client.find(params[:client_id])
+    @asesment = Asesment.find(params[:id])
+    @asesment.destroy
+    flash[:success] = "利用者の通所介護フェイスシートを削除しました。"
+    redirect_to client_url(@client)
+  end  
   
   def asesment_completion
     @client = Client.find(params[:client_id])

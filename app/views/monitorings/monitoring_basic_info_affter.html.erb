@@ -139,7 +139,10 @@
           <br><%= f.submit "編集", class: "btn btn-success " %>
         </td>
       <% end %>  
-    </table>  
+    </table>
+    <%= link_to "削除", monitoring_delete_client_monitoring_path(@client, @monitoring), method: :delete,
+                    data: { confirm: "削除してよろしいですか？" },
+                    class: "btn btn-danger" %>  
   </div>      
     
     

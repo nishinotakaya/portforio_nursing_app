@@ -92,4 +92,7 @@
 			確認
 			<br><%= f.submit "編集", class: "btn btn-success" %>
 		<% end %>
+		<br><%= link_to "削除", businesslog_delete_client_businesslog_path(@client, @businesslog), method: :delete,
+                    data: { confirm: "削除してよろしいですか？" },
+                    class: "btn btn-danger" %>
 </div>					
