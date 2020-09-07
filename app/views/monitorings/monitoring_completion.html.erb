@@ -4,8 +4,8 @@
     <h1>利用者情報報告書</h1>
     <%= form_with( model: @monitoring, url: create_monitoring_new_client_monitorings_path(@client, @monitoring), local: true, method: :post) do |f| %>
   <p><span class="under">利用者名: <%= @client.client_name %>様の
-    <%= @monitoring.monitoring_worked_on_year.strftime("%Y") if @monitoring.monitoring_worked_on_year.present? %>年
-    <%= @monitoring.monitoring_worked_on_month.strftime("%m") if @monitoring.monitoring_worked_on_month.present?%>月
+    <%= f.date_select(:monitoring_worked_on_year, discard_month:true) %>年
+    <%= f.date_select(:monitoring_worked_on_month, discard_year:true, discard_day:true) %>
     の利用者の状況をご報告いたします。
     </span></p>
   
@@ -81,7 +81,7 @@
         <%= f.label "全介助", class: "label-#{yield(:class_text)}" %>
         
         <br><%= f.label "皮膚トラブル" , class: "label-#{yield(:class_text)}" %>
-        <br><%= f.text_area :monitoring_both, class: "hoge", size: "70x3" %>
+        <br><%= f.text_area :monitoring_both_truble, class: "hoge", size: "70x3" %>
         
         <!--更衣-->
          <br><%= f.label "［更衣］", class: "label-#{yield(:class_text)}" %>
@@ -102,7 +102,7 @@
         <%= f.label "実施なし", class: "label-#{yield(:class_text)}" %>
         
         <br><%= f.label "社会参加しているもの", class: "label-#{yield(:class_text)}" %>
-        <br><%= f.text_area :monitoring_community, class: "hoge", size: "70x1" %>
+        <br><%= f.text_area :monitoring_community_what, class: "hoge", size: "70x3" %>
         
         <!--利用状況-->
         <br><%= f.label "［利用状況］", class: "label-#{yield(:class_text)}" %>
@@ -111,7 +111,7 @@
         <%= f.radio_button :monitoring_situation_dey, :休んだ日がある %>
         <%= f.label "休んだ日がある", class: "label-#{yield(:class_text)}" %>
         <br><%= f.label "休んだ日がある理由" , class: "label-#{yield(:class_text)}" %>
-        <br><%= f.text_area :monitoring_situation_dey, class: "hoge", size: "70x3" %>
+        <br><%= f.text_area :monitoring_vacation_dey_buy, class: "hoge", size: "70x3" %>
         
       </td>
     </tr>
@@ -129,11 +129,14 @@
           
           <br><%= f.radio_button :monitoring_service_need, :必要あり %>
               <%= f.label "必要あり", class: "label-#{yield(:class_text)}" %>
-              <%= f.radio_button :monitoring_service_need, :必要なし%>
+              <%= f.radio_button :monitoring_service_need, :必要なし, checked: "checked" %>
               <%= f.label "必要なし", class: "label-#{yield(:class_text)}" %>
           <br><%= f.label "必要あり理由", class: "label-#{yield(:class_text)}" %>
-              <br><%= f.text_area :monitoring_service_need, class: "hoge", size: "70x3" %>
+              <br><%= f.text_area :monitoring_service_need_what, class: "hoge", size: "70x3" %>
+          <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
+              <%= f.check_box :check_monitoring, {checked: true}, "true", "false" %>
+          <br><%= f.submit "追加", class: "btn btn-primary "  %>
         </td>
-      <% end %>  
+      <% end %>    
     </table>  
   </div>  

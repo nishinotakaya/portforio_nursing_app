@@ -4,7 +4,7 @@
     <thead>
     <tr>
       <th>利用者情報報告書
-      <br><%= link_to "新規作成", monitoring_basic_info_client_monitorings_path(@client), class: "btn btn-info" %></th>
+      <br><%= link_to "新規作成", monitoring_basic_info_client_monitorings_path(@client),data: {"turbolinks" => false}, class: "btn btn-info" %></th>
       <th>フェイスシート
        <br><%= link_to "新規作成", asesment_new_client_asesments_path(@client), class: "btn btn-info" %></th>
       <th>個別記録（業務日誌）
@@ -15,7 +15,7 @@
       <tr>
         <td>
       <% @monitorings.each do |monitoring| %>
-        <br><%= link_to monitoring.monitoring_worked_on_year.strftime("%Y年")+monitoring.monitoring_worked_on_month.strftime("%m月"),monitoring_completion_client_monitoring_path(@client, monitoring), class: "btn btn-primary" %>
+        <br><%= link_to monitoring.monitoring_worked_on_year.strftime("%Y年")+monitoring.monitoring_worked_on_month.strftime("%m月"),monitoring_completion_client_monitoring_path(@client, monitoring),data: {"turbolinks" => false}, class: "btn btn-primary" %>
             <%= link_to "編集", monitoring_basic_info_affter_client_monitoring_path(@client, monitoring), class: "btn btn-success" %>又は削除も可能</br>
       <% end %>
         <%= paginate(@monitorings) %>
