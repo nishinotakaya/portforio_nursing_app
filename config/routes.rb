@@ -54,13 +54,14 @@
       resources :businesslogs,only: :update do #業務日誌
         collection do
           get 'new_businesslog' #業務日誌新規作成
-          post 'create_businesslog'
+          post 'create_businesslog' 
+          delete 'businesslog_delete' #業務日誌削除       
         end
         member do
           get 'affter_businesslog' #業務日誌作成後
           patch 'update_businesslog'
           get 'businesslog_completion' #業務日誌完成盤 
-          get 'businesslog_completion_copy' #業務日誌コピー専用page         
+          get 'businesslog_completion_copy' #業務日誌コピー専用page
         end  
       end
       resources :nurselogs, only: :update do #看護日誌

@@ -51,6 +51,41 @@ Client.create!(client_name: "すがはら",
                nursing_number: "要介護5",
                )                  
 
+Client.create!(client_name: "いし子",
+                telephone_number: "0471-33333",
+                nursing_number: "要介護2",
+                )
+                
+Client.create!(client_name: "一郎",
+							telephone_number: "0471999",
+							nursing_number: "要介護1",
+							)
+                
+Client.create!(client_name: "ふく",
+							telephone_number: "0471999",
+							nursing_number: "要介護5",
+							)          
+
+Client.create!(client_name: "白坂",
+              telephone_number: "0471999",
+              nursing_number: "要介護5",
+              )                  
+     
+Client.create!(client_name: "美紀子",
+              telephone_number: "0471-33333",
+              nursing_number: "要介護2",
+               )
+                     
+Client.create!(client_name: "昭一郎",
+              telephone_number: "0471999",
+              nursing_number: "要介護1",
+              )
+                     
+Client.create!(client_name: "りさ子",
+              telephone_number: "0471999",
+              nursing_number: "要介護5",
+              )                        
+
 
                          
 

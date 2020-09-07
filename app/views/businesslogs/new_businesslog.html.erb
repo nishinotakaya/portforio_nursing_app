@@ -80,7 +80,7 @@
 				</tr>
 				<th class ="center" colspan= "2"><%= f.text_area :log_record_stamp, class: "hope", size: "4x1" %></th>	
 			</table>
-			<%= f.check_box :check_log ,{}, "true", "false" %>
+			<%= f.check_box :check_log ,{checked: true}, "true", "false" %>
 			確認
 			<br><%= f.submit "追加", class: "btn btn-primary " %>
 		<% end %>

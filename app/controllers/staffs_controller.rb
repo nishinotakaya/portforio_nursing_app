@@ -48,7 +48,7 @@ class StaffsController < ApplicationController
   end
 
   def destroy
-   @staff.destroy
+    @staff.destroy
     flash[:success] = "#{@staff.name}のデータを削除しました。"
     redirect_to staffs_url
   end

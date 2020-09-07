@@ -30,7 +30,10 @@
         <td>
           <% @businesslogs.each do |log| %>
           <br><%= link_to log.log_year.strftime("%Y年")+log.log_month.strftime("%-m月%-d日"),businesslog_completion_client_businesslog_path(@client, log), class: "btn btn-primary" %>
-          <%= link_to "編集", affter_businesslog_client_businesslog_path(@client, log), class: "btn btn-primary"%></br>
+          <%= link_to "編集", affter_businesslog_client_businesslog_path(@client, log), class: "btn btn-primary"%>
+          <%= link_to "削除", businesslog_delete_client_businesslogs_path(@client,log), method: :delete,
+                    data: { confirm: "削除してよろしいですか？" },
+                    class: "btn btn-danger" %></br>
           <% end %>
           <%= paginate(@businesslogs) %>
           <br><%= link_to "業務日誌コピー専用ページ", businesslog_completion_copy_client_businesslog_path(@client, @businesslogs), class: "btn btn-info" %>

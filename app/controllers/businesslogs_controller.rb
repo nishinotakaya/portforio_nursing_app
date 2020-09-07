@@ -5,7 +5,9 @@ class BusinesslogsController < ApplicationController
 	def affter_businesslog
 		@client = Client.find(params[:client_id])
 		@businesslog = Businesslog.find(params[:id])
-	end	
+	end
+
+	
 
 	def update_businesslog
 		@client = Client.find(params[:client_id])
@@ -22,7 +24,17 @@ class BusinesslogsController < ApplicationController
 			flash[:danger] = "#{@client.client_name}様の利用者情報報告書の更新は失敗しました。<br>" + @client.errors.full_messages.join("<br>")
 			render action: :affter_businesslog 
 		end    
-	end	
+	end
+	
+	def businesslog_delete
+		@client = Client.find(params[:client_id])
+    @businesslog = usinesslog.find(params[:id])
+    @businesslog.destroy
+    flash[:success] = "利用者の業務日誌を削除しました。"
+    redirect_to client_url(@client)
+  end
+	
+	
 
 
 	
@@ -34,8 +46,8 @@ class BusinesslogsController < ApplicationController
 	  
 	  def create_businesslog
 			@client = Client.find(params[:client_id])
-			if params[:check_log] == "true" 
-				@businesslog = @client.businesslogs.new(log_params) 
+		  if params[:check_log] == "true" 
+				@businesslog = @client.businesslogs.create(log_params) 
 					if @businesslog.save
 					flash[:success] = "業務日誌を追加しました！"
 					redirect_back_or @client
@@ -45,6 +57,7 @@ class BusinesslogsController < ApplicationController
 			render action: :new_businesslog
 			end
 		end
+		
 
 		def businesslog_completion
 			@client = Client.find(params[:client_id])
@@ -77,6 +90,7 @@ class BusinesslogsController < ApplicationController
 				redirect_to clients_url
 			end  		
 		end
+
 		
 
 	private

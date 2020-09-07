@@ -47,8 +47,14 @@ before_action :set_one_month, only: :show
       redirect_to clients_url and return
   
   end
-  
- 
+
+  def destroy
+    @client = Client.find(params[:id])
+    @client.destroy
+    flash[:success] = "利用者を削除しました。"
+    redirect_to clients_url
+  end
+
   
   def create
     @client = Client.new(client_create_params)
@@ -61,12 +67,9 @@ before_action :set_one_month, only: :show
     end
   end
   
-  def destroy
-    @client = Client.find(params[:id])
-    @client.destroy
-    flash[:success] = "利用者を削除しました。"
-    redirect_to clients_url
-  end
+
+ 
+
 
   def create_use_check
     if params[:use_check] == "true"
