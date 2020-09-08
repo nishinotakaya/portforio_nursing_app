@@ -1,6 +1,6 @@
 <div class="center">
   <h1>本日の利用チェック</h1>
-	<%= link_to "本日の業務日誌一覧", businesslogs_clients_index_path, local: true, method: :get, class: "btn btn-primary" %>
+	<p class="under">本日ご利用のご利用者様をチェックして、本日利用ボタンをクリックして、本日の業務日誌一覧に進み、業務を開始してください！</p>	
 		<%= form_with( model: @clients, url: update_businesslog_client_now_client_path(@clients), local: true, method: :patch) do |f| %>
 			<table class="table table-bordered table-condensed table-hover" id="table-clientes">
 				<thead>
@@ -23,6 +23,8 @@
 						</tbody>
 					<% end %>
 				<% end %>
-			</table>				
-		<br><%= f.submit "本日利用！！", class: "btn btn-primary " %>
+			</table>			
+			<%= f.submit "本日利用！！", class: "btn btn-primary " %>
+			<br>↓
+			<br><%= link_to "本日の業務日誌一覧", businesslogs_clients_index_path, local: true, method: :get, class: "btn btn-primary" %>
 		<% end %>	
