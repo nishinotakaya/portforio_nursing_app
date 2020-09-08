@@ -3,8 +3,7 @@
   <h1>00の里デイサービス
   <br>利用者管理システム</h1>
   <% if logged_in? %>
-   <a class= "btn btn-lg btn-primary disabled">ログイン済み</a>
-  
+   <a class= "btn btn-lg btn-primary disabled">ログイン済</a>
   <% else %>
   <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %>
   <p>アカウント作成は<%= link_to "こちら", new_staff_path, class: "btn primary" %>から</p>
