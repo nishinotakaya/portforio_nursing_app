@@ -1,7 +1,7 @@
 class StaffsController < ApplicationController
   before_action :set_staff, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info] #before_actionは一番最初に定義される！
-  before_action :logged_in_staff, only: [:show, :update, :destroy, :edit_basic_info, :update_basic_info]
-  before_action :correct_staff, only: [:show, :edit, :update]
+  before_action :logged_in_staff, only: [:show, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :correct_staff, only: [:show]
  
   before_action :admin_or_correct_staff, only: :show
   before_action :set_one_month, only: :show
@@ -36,12 +36,13 @@ class StaffsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
-    if @staff.update_attributes(user_params)
-      flash[:success] = "ユーザー情報を更新しました。"
-      redirect_to @staff
+    if @staff.update_attributes(staff_params)
+      flash[:success] = "従業員情報を更新しました。"
+      redirect_to staffs_url and return
     else
       render :index      
     end
@@ -76,11 +77,11 @@ private
     
 
     def basic_info_params
-      params.require(:staff).permit(:name, :email, :password, :password_confirmation)
+      params.require(:staff).permit(:name, :email, :cellphone, :password, :password_confirmation)
     end
 
     def staff_params
-      params.require(:staff).permit(:name, :email, :password, :password_confirmation)
+      params.require(:staff).permit(:name, :email, :cellphone, :password, :password_confirmation)
     end
     
     def set_staff

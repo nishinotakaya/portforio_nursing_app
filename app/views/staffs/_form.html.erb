@@ -6,11 +6,13 @@
 
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>
   <%= f.email_field :email, class: "form-control" %>
+
+
+  <%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :cellphone, class: "form-control" %>
   
-  
-  <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+  <%= f.label :パスワード, class: "label-login" %>
   <%= f.password_field :password, class: 'form-control' %>
-  
   
  
 

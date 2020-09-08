@@ -25,6 +25,7 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'rubyXL'
 gem 'wdm', '>= 0.1.0'
+gem 'line-bot-api'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'

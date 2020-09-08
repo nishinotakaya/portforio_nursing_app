@@ -3,18 +3,26 @@
 
   
   <%= will_paginate %>
-  <div class="col-md-10 col-md-offset-1">
-    
-    <table class="table">
-      <% @staffs.each do |staff| %>
+    <table class="table table-bordered table-condensed table-hover" id="table-staffs">
+      <thead>
         <tr>
-          <td>
-            <%= staff.name %>
-            <%= link_to "削除", staff, method: :delete,
-                  data: { confirm: "削除してよろしいですか？" },
-                  class: "btn btn-primary" %>
-          </td>
+          <th class="center">従業員</th>
+          <th class="center">電話番号</th>
+          <th class="center">削除</th>
         </tr>
+      </thead>
+      <% @staffs.each do |staff| %>
+      <tbody>
+        <tr>
+          <td class="center">
+            <%= staff.name %>
+          </td>
+          <td class="center"><%= staff.cellphone %></td>
+          <td class="center"><%= link_to "削除", staff, method: :delete,
+                  data: { confirm: "削除してよろしいですか？" },
+                  class: "btn btn-primary" %></td>
+        </tr>
+        </tbody>
       <% end %>
     </table>
       <%= will_paginate %>
