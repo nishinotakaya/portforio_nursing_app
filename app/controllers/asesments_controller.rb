@@ -67,7 +67,8 @@ class AsesmentsController < ApplicationController
       :family_health_disease, :family_health_disease_past, :eyesight, :audition, :prosthesis, :nomal_vital_body_temperature, :nomal_vital_blood_pressure_up,
      :nomal_vital_blood_pressure_down, :nomal_vital_pulse, :medicina, :information_medicina, :information_medicina_family, :information_medicina_another,
     :hedge_medicine_food, :hedge_medicine_food_information, :hospital_name,:hospital_doctor, :hospital_doctor_nymber, :doctor_bath, :doctor_bath_another, :doctor_skin,
-    :doctor_skin_another, :doctor_transfer, :doctor_transfer_another, :doctor_etcetera, :doctor_etcetera_another,:specialized_equipment, :check_a, :prosthss_up, :prosthss_down)
+    :doctor_skin_another, :doctor_transfer, :doctor_transfer_another, :doctor_etcetera, :doctor_etcetera_another,:specialized_equipment, :check_a, :prosthss_up, :prosthss_down,
+     :hospital_name_1, :hospital_doctor_1, :hospital_doctor_nymber_1)
   end 
   
  

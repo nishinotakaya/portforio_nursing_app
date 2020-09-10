@@ -144,35 +144,6 @@ ActiveRecord::Schema.define(version: 20200907212615) do
     t.index ["client_id"], name: "index_foodcooks_on_client_id"
   end
 
-  create_table "monitoringas", force: :cascade do |t|
-    t.datetime "monitoring_worked_on_year"
-    t.datetime "monitoring_worked_on_month"
-    t.string "monitoring_needs"
-    t.string "monitoring_short_run_target"
-    t.string "monitoring_service_adl"
-    t.string "monitoring_exchange"
-    t.string "monitoring_go_to_home"
-    t.string "monitoring_go_to_home_buy"
-    t.string "monitoring_walking"
-    t.string "monitoring_eating"
-    t.string "monitoring_situation_of_participation"
-    t.string "monitoring_both"
-    t.string "monitoring_both_truble"
-    t.string "monitoring_changing_clothes"
-    t.string "monitoring_community"
-    t.string "monitoring_community_what"
-    t.string "monitoring_situation_dey"
-    t.string "monitoring_vacation_dey_buy"
-    t.string "monitoring_attention"
-    t.string "monitoring_service_need"
-    t.string "monitoring_service_need_what"
-    t.boolean "check_monitoring"
-    t.integer "client_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_monitoringas_on_client_id"
-  end
-
   create_table "monitorings", force: :cascade do |t|
     t.datetime "monitoring_worked_on_year"
     t.datetime "monitoring_worked_on_month"
@@ -229,6 +200,7 @@ ActiveRecord::Schema.define(version: 20200907212615) do
     t.string "email"
     t.string "age"
     t.string "place"
+    t.string "cellphone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
@@ -237,7 +209,6 @@ ActiveRecord::Schema.define(version: 20200907212615) do
     t.boolean "nurse", default: false
     t.boolean "counselor", default: false
     t.boolean "nursing_care_staff", default: false
-    t.string "cellphone"
     t.index ["email"], name: "index_staffs_on_email", unique: true
   end
 

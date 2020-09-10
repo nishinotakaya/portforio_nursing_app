@@ -22,21 +22,21 @@
 					<tr>
 						<th class ="center" rowspan = "2"><div class ="center">[送迎]</div>
 					 	<% if log.log_farewell == "往復" %>
-						<input type="radio" value="往復" name="log_farewell" id="businesslog_save" checked>
+						<%= f.radio_button :log_farewell, "往復", checked: "checked" %>
 						<% else %>
-						<input type="radio" value="往復" name="log_farewell" id="businesslog_save">
+						<%= f.radio_button :log_farewell, "往復" %>
 						<% end %>
 						<%= f.label "往復", class: "label-#{yield(:class_text)}" %>
 						<% if log.log_farewell == "片道" %>
-						<input type="radio" value="片道" name="log_farewell" id="businesslog_save" checked>
+						<%= f.radio_button :log_farewell, "片道", checked: "checked" %>
 						<% else %>
-						<input type="radio" value="片道" name="log_farewell" id="businesslog_save">
+						<%= f.radio_button :log_farewell, "片道" %>
 						<% end %>
 						<%= f.label "片道", class: "label-#{yield(:class_text)}" %>
 						<% if log.log_farewell == "ケアハウス" %>
-						<br><input type="radio" value="ケアハウス" name="log_farewell" id="businesslog_save" checked>
+						<br><%= f.radio_button :log_farewell, "ケアハウス", checked: "checked" %>
 						<% else %>
-						<br><input type="radio" value="ケアハウス" name="log_farewell" id="businesslog_save">
+						<br><%= f.radio_button :log_farewell, "ケアハウス" %>
 						<% end %>
 						<%= f.label "ケアハウス", class: "label-#{yield(:class_text)}" %>
 						</th>
