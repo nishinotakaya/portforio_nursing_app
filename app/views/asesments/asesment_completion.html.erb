@@ -44,7 +44,10 @@
             <br><%= f.radio_button  :crying_email, "一人暮らし" %>
             <%= f.label "一人暮らし", class: "label-#{yield(:class_text)}" %></th>
             <th class="center">生年月日
-        <br>【<%= @client.client_birthday.strftime("%F")if @client.client_birthday.present? %>(歳)】</th>  
+        <br><%= @client.client_birthday.strftime("%F")if @client.client_birthday.present? %>
+         <% if @client.client_birthday.present? %>
+            <br>【<%= age(@client.client_birthday) %>歳】
+          <% end %></th>  
       </tr>                                      
     </table>
     <table align="center" cellspacing="0", cellpadding="5">
