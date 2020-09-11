@@ -1,9 +1,9 @@
 <div class="center">
   <meta charset = " utf-8 " />
 		<h1>個別記録</h1>
-		<%=form_with( model: @businesslogs, url: update_businesslog_client_businesslog_path(@client, @businesslogs, @businesslog), local: true, method: :patch) do |f| %>
-			<p><span class="under">氏名&emsp;<%= @client.client_name %>様</span></p>
+			<p><span class="under">氏名&emsp;<%= Client.find(params[:client_id]).client_name %>様</span></p>
 			<% @businesslogs.each do |log| %>
+		<%=form_with( model: log, url: update_businesslog_client_businesslog_path(log), local: true, method: :patch) do |f| %>
 		<br><table align="center" cellspacing="", cellpadding="5">
 					<tr>
 					<% css_class = 
@@ -21,76 +21,81 @@
 					</tr>		
 					<tr>
 						<th class ="center" rowspan = "2"><div class ="center">[送迎]</div>
-					 	<% if log.log_farewell == "往復" %>
-						<%= f.radio_button :log_farewell, "往復", checked: "checked" %>
-						<% else %>
-						<%= f.radio_button :log_farewell, "往復" %>
-						<% end %>
-						<%= f.label "往復", class: "label-#{yield(:class_text)}" %>
-						<% if log.log_farewell == "片道" %>
-						<%= f.radio_button :log_farewell, "片道", checked: "checked" %>
-						<% else %>
-						<%= f.radio_button :log_farewell, "片道" %>
-						<% end %>
-						<%= f.label "片道", class: "label-#{yield(:class_text)}" %>
-						<% if log.log_farewell == "ケアハウス" %>
-						<br><%= f.radio_button :log_farewell, "ケアハウス", checked: "checked" %>
-						<% else %>
-						<br><%= f.radio_button :log_farewell, "ケアハウス" %>
-						<% end %>
-						<%= f.label "ケアハウス", class: "label-#{yield(:class_text)}" %>
+							<% if log.log_farewell == "往復" %>
+								<%= f.radio_button :log_farewell, "往復", checked: "checked" %>
+							<% else %>
+								<%= f.radio_button :log_farewell, "往復" %>
+							<% end %>
+							<%= f.label "往復", class: "label-#{yield(:class_text)}" %>
+							<% if log.log_farewell == "片道" %>
+								<%= f.radio_button :log_farewell, "片道", checked: "checked" %>
+							<% else %>
+								<%= f.radio_button :log_farewell, "片道" %>
+							<% end %>
+							<%= f.label "片道", class: "label-#{yield(:class_text)}" %>
+							<% if log.log_farewell == "ケアハウス" %>
+								<br><%= f.radio_button :log_farewell, "ケアハウス", checked: "checked" %>
+							<% else %>
+								<br><%= f.radio_button :log_farewell, "ケアハウス" %>
+							<% end %>
+							<%= f.label "ケアハウス", class: "label-#{yield(:class_text)}" %>
 						</th>
+
 						<th rowspan = "2" colspan= "3"class= "center">
-						<div class ="center">[入浴]</div>
-						<% if log.log_bath == "利用" %>
-						一般浴 &nbsp;<input type="radio" value="利用" name="log_bath" id="businesslog_save" checked>
-						<% else %>
-						一般浴 &nbsp;<input type="radio" value="利用" name="log_bath" id="businesslog_save">
-						<% end %>
-						<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
-						<% if log.log_bath == "シャワー浴" %>
-						<input type="radio" value="シャワー浴" name="log_bath" id="businesslog_save" checked>
-						<% else %>
-						<input type="radio" value="シャワー浴" name="log_bath" id="businesslog_save">
-						<% end %>
-						<%= f.label "シャワー浴", class: "label-#{yield(:class_text)}" %>
-						<% if log.log_bath == "プラン無し" %>
-						<input type="radio" value="プラン無し" name="log_bath" id="businesslog_save" checked>
-						<% else %>
-						<input type="radio" value="プラン無し" name="log_bath" id="businesslog_save" >
-						<% end %>
-						<%= f.label "プラン無", class: "label-#{yield(:class_text)}" %>
-						<% if log.log_bath == "中止" %>
-						<input type="radio" value="中止" name="log_bath" id="businesslog_save" checked>
-						<% else %>
-						<input type="radio" value="中止" name="log_bath" id="businesslog_save">
-						<% end %>
-						<%= f.label "中止", class: "label-#{yield(:class_text)}" %>
-						<% if log.log_bath == "機械浴 利用" %>
-						<br>機械浴 &nbsp;<input type="radio" value="機械浴 利用" name="log_bath" id="businesslog_save" checked>
-						<% else %>
-						<br>機械浴 &nbsp;<input type="radio" value="機械浴 利用" name="log_bath" id="businesslog_save">
-						<% end %>
-						<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
+							<div class ="center">[入浴]</div>
+							<% if log.log_bath == "利用" %>
+								一般浴 &nbsp;<input type="radio" value="利用" name="log_bath" id="businesslog_save" checked>
+							<% else %>
+								一般浴 &nbsp;<input type="radio" value="利用" name="log_bath" id="businesslog_save">
+							<% end %>
+							<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
+							<% if log.log_bath == "シャワー浴" %>
+								<input type="radio" value="シャワー浴" name="log_bath" id="businesslog_save" checked>
+							<% else %>
+								<input type="radio" value="シャワー浴" name="log_bath" id="businesslog_save">
+							<% end %>
+							<%= f.label "シャワー浴", class: "label-#{yield(:class_text)}" %>
+							<% if log.log_bath == "プラン無し" %>
+								<input type="radio" value="プラン無し" name="log_bath" id="businesslog_save" checked>
+							<% else %>
+								<input type="radio" value="プラン無し" name="log_bath" id="businesslog_save" >
+							<% end %>
+							<%= f.label "プラン無", class: "label-#{yield(:class_text)}" %>
+							<% if log.log_bath == "中止" %>
+								<input type="radio" value="中止" name="log_bath" id="businesslog_save" checked>
+							<% else %>
+								<input type="radio" value="中止" name="log_bath" id="businesslog_save">
+							<% end %>
+							<%= f.label "中止", class: "label-#{yield(:class_text)}" %>
+							<% if log.log_bath == "機械浴 利用" %>
+								<br>機械浴 &nbsp;<input type="radio" value="機械浴 利用" name="log_bath" id="businesslog_save" checked>
+							<% else %>
+								<br>機械浴 &nbsp;<input type="radio" value="機械浴 利用" name="log_bath" id="businesslog_save">
+							<% end %>
+							<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
 						</th>
+
 						<th class ="center" rowspan = "2">
-						<div class ="center">［食事］</div>
-						<% if log.log_foods == true %>
-						<input type="checkbox" value= true name="log_foods" id="businesslog_save" checked>
-						<% else %>
-						<input type="checkbox" value= false name="log_foods" id="businesslog_save">
-						<% end %>
-						<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
+							<div class ="center">［食事］</div>
+							<% if log.log_foods == true %>
+								<input type="checkbox" value= true name="log_foods" id="businesslog_save" checked>
+							<% else %>
+								<input type="checkbox" value= false name="log_foods" id="businesslog_save">
+							<% end %>
+							<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
+							</th>
+							<th class ="center" colspan= "2">［主食］
+							<br>【<%= log.log_good_staple_dosage %>】
 						</th>
-						<th class ="center" colspan= "2">［主食］
-						<br>【<%= log.log_good_staple_dosage %>】</th>
 						<th></th>
 					</tr>
+
 					<tr>
 						<th class ="center" colspan= "2">［副食］
 						<br>【<%= log.log_good_side_dosage %>】</th>
 						<th></th>
 					</tr>
+
 					<tr>
 						<th class ="center">[バイタル]</th>
 						<th class ="center">[体温]
@@ -139,5 +144,5 @@
 					<th class ="center" colspan= "2">【<%= log.log_record_stamp %>】</th>	
 				</table>
 			<% end %>
-			<%= paginate(@businesslogs) %>	
 		<% end %>
+			<%= paginate(@businesslogs) %>	

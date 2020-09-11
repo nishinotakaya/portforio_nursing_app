@@ -44,7 +44,7 @@ Client.create!(client_name: "よしこ",
                
 Client.create!(client_name: "近藤",
                telephone_number: "0471999",
-               date_of_day: "月,水,金",
+               date_of_day: "火,木,土",
                nursing_number: "要介護1",
                )
                
@@ -56,46 +56,10 @@ Client.create!(client_name: "すがはら",
 
 Client.create!(client_name: "いし子",
                 telephone_number: "0471-33333",
-                date_of_day: "月,水,金",
+                date_of_day: "月,木,金",
                 nursing_number: "要介護2",
                 )
-                
-Client.create!(client_name: "一郎",
-              telephone_number: "0471999",
-              date_of_day: "月,水,金",
-							nursing_number: "要介護1",
-							)
-                
-Client.create!(client_name: "ふく",
-							telephone_number: "0471999",
-							date_of_day: "月,水,金",
-							nursing_number: "要介護5",
-							)          
-
-Client.create!(client_name: "白坂",
-							telephone_number: "0471999",
-							date_of_day: "月,水,金",
-              nursing_number: "要介護5",
-              )                  
-     
-Client.create!(client_name: "美紀子",
-							telephone_number: "0471-33333",
-							date_of_day: "月,水,金",
-              nursing_number: "要介護2",
-               )
-                     
-Client.create!(client_name: "昭一郎",
-							telephone_number: "0471999",
-							date_of_day: "月,木,金",
-              nursing_number: "要介護1",
-              )
-                     
-Client.create!(client_name: "りさ子",
-							telephone_number: "ばばー",
-							sex: "ばばー",
-							date_of_day: "とにかく",
-              nursing_number: "ばばー",
-              )                        
+                                    
 
 
                          

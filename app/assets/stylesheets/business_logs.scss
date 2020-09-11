@@ -1,3 +1,63 @@
 // Place all the styles related to the business_logs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.checkmark{
+	padding-left:24px;
+	position:relative;
+}
+
+.checkmark:before,
+.checkmark:after{
+	content:"";
+	display:block;
+	position:absolute;
+}
+.checkmark:before{
+	width:16px;
+	height:16px;
+	border-radius:8px;
+	background:#ffffff;
+	border:1px solid #000000;
+	left:45px;top:4px;
+}
+.checkmark:after{
+	border-left:2px solid #ff0000;
+	border-bottom:2px solid #ff0000;
+	width:6px;
+	height:3px;
+	-webkit-transform:rotate(-45deg);
+	transform:rotate(-45deg);
+	left:50px;
+	top:8px;
+}
+
+.checkmark{
+	padding-left:24px;
+	position:relative;
+}
+
+.checkmark01:before,
+.checkmark01:after{
+	content:"";
+	display:block;
+	position:absolute;
+}
+.checkmark01:before{
+	width:16px;
+	height:16px;
+	border-radius:8px;
+	background:#ffffff;
+	border:1px solid #000000;
+	left:45px;top:4px;
+}
+.checkmark01:after{
+	//border-left:2px solid #ff0000;
+	//border-bottom:2px solid #ff0000;
+	width:6px;
+	height:3px;
+	-webkit-transform:rotate(-45deg);
+	transform:rotate(-45deg);
+	left:50px;
+	top:8px;
+}

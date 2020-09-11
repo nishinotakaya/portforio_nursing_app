@@ -135,7 +135,7 @@
           <br><%= f.label "必要あり理由", class: "label-#{yield(:class_text)}" %>
               <br><%= f.text_area :monitoring_service_need_what, class: "hoge", size: "70x3" %>
           <br><%= f.label "確認", class: "label-#{yield(:class_text)}" %>
-              <%= f.check_box :check_monitoring, {checked: true}, "true", "false" %>
+              <%= f.check_box :check_monitoring, {checked: false}, "true", "false" %>
           <br><%= f.submit "追加", class: "btn btn-primary "  %>
         </td>
       <% end %>   
