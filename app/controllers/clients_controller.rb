@@ -5,7 +5,8 @@ before_action :set_one_month, only: :show
   
   def index
     @clients = Client.all
-
+    @search_params = client_search_params
+    @clients = Client.search(@search_params)
   end
   
 
@@ -86,8 +87,9 @@ before_action :set_one_month, only: :show
   end
   
   def businesslog_clients #本日の利用者チェック業務日誌一覧
-		@clients = Client.all
-	  #@client = Client.find(params[:id])
+    @clients = Client.all
+    @search_params = client_search_params
+    @clients = Client.search(@search_params)
   end	
   
   def update_businesslog_client_now #本日の利用者の業務日誌
@@ -127,6 +129,9 @@ before_action :set_one_month, only: :show
     params.require(:client).permit(clients: [:use_check])[:clients]
   end  
   
+  def client_search_params
+    params.fetch(:search, {}).permit(:client_name, :date_of_day, :client_birthday)
+  end
   # def set_staff
   #   @staff = Staff.find(params[:staff_id])
   # end

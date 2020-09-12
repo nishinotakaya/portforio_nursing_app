@@ -10,8 +10,15 @@ class Client < ApplicationRecord
   before_save do
     self.date_of_day.gsub!(/[\[\]\"]/, "") if attribute_present?("date_of_day")
   end
-  
-  #before_save do
-  #self.monitoring_exchange.gsub!(/[\[\]\"]/, "") if attribute_present?("monitoring_exchange")
-  #end    
+
+  scope :search, -> (search_params) do
+    return if search_params.blank?
+
+    client_name_like(search_params[:client_name])
+    .date_of_day_is(search_params[:date_of_day])
+    .client_birthday_from(search_params[:client_birthday])
+  end
+  scope :client_name_like, -> (client_name) { where('client_name LIKE ?', "%#{client_name}%") if client_name.present? }
+  scope :date_of_day_is, -> (date_of_day) { where('date_of_day LIKE ?', "%#{date_of_day}%") if date_of_day.present? }
+  scope :client_birthday_from, -> (client_birthday) { where('? <= client_birthday', client_birthday) if client_birthday.present? }
 end

@@ -1,5 +1,25 @@
 <div class="center">
   <h1>本日の利用チェック</h1>
+
+<div class="search-form">
+  <%= form_with(scope: :search, url: businesslog_clients_client_path, method: :get, local: true) do |f| %>
+    <div class="field">
+      <%= f.label "名前", class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :client_name, value: @search_params[:client_name] %>
+    </div>
+
+
+
+    <div class="field">
+      <%= f.label "利用日", class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :date_of_day, value: @search_params[:date_of_day] %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "検索する" %>
+    </div>
+  <% end %>
+
 	<p class="under">本日ご利用のご利用者様をチェックして、本日利用ボタンをクリックして、本日の業務日誌一覧に進み、業務を開始してください！</p>	
 		<%= form_with( model: @clients, url: update_businesslog_client_now_client_path(@clients), local: true, method: :patch) do |f| %>
 			<table class="table table-bordered table-condensed table-hover" id="table-clientes">
