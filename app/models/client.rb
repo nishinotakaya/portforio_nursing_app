@@ -20,5 +20,5 @@ class Client < ApplicationRecord
   end
   scope :client_name_like, -> (client_name) { where('client_name LIKE ?', "%#{client_name}%") if client_name.present? }
   scope :date_of_day_is, -> (date_of_day) { where('date_of_day LIKE ?', "%#{date_of_day}%") if date_of_day.present? }
-  scope :client_birthday_from, -> (client_birthday) { where('? <= client_birthday', client_birthday) if client_birthday.present? }
+  scope :client_birthday_from, -> (client_birthday) { where('client_birthday', client_birthday) if client_birthday.present? }
 end

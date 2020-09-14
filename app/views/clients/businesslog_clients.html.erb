@@ -11,8 +11,8 @@
 
 
     <div class="field">
-      <%= f.label "利用日", class: "label-#{yield(:class_text)}" %>
-      <%= f.text_field :date_of_day, value: @search_params[:date_of_day] %>
+      <%= f.label "利用曜日", class: "label-#{yield(:class_text)}" %>
+      <%= f.select :date_of_day, [[""],["月"],["火"],["水"],["木"],["金"],["土"],["日"]], value: @search_params[:date_of_day] %>
     </div>
 
     <div class="actions">
@@ -20,7 +20,7 @@
     </div>
   <% end %>
 
-	<p class="under">本日ご利用のご利用者様をチェックして、本日利用ボタンをクリックして、本日の業務日誌一覧に進み、業務を開始してください！</p>	
+	<p class="under">本日ご利用のご利用者様をチェックして、本日利用ボタンをクリックして、本日の個別記録一覧に進み、業務を開始してください！</p>	
 		<%= form_with( model: @clients, url: update_businesslog_client_now_client_path(@clients), local: true, method: :patch) do |f| %>
 			<table class="table table-bordered table-condensed table-hover" id="table-clientes">
 				<thead>
@@ -46,5 +46,5 @@
 			</table>			
 			<%= f.submit "本日利用！！", class: "btn btn-primary " %>
 			<br>↓
-			<br><%= link_to "本日の業務日誌一覧", businesslogs_clients_index_path, local: true, method: :get, class: "btn btn-primary" %>
+			<br><%= link_to "本日の個別記録一覧", businesslogs_clients_index_path, local: true, method: :get, class: "btn btn-primary" %>
 		<% end %>	

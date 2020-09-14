@@ -68,6 +68,12 @@ class BusinesslogsController < ApplicationController
 			@client = Client.find(params[:client_id])
 			#@businesslog = Businesslog.find(params[:id])
 			@businesslogs = Businesslog.where(check_log: true).where(client_id: @client.id).order(:log_year,:log_month,:client_id).reverse_order.page(params[:page]).per(4)
+			respond_to do |format|
+				format.html
+				format.pdf do
+					render pdf: "businesslog-#{@businesslogs.id}" # PDFファイル名
+				end
+			end
 		end
 		
 		def clients_index

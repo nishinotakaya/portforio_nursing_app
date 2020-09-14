@@ -7,8 +7,8 @@
     </div>
 
     <div class="field">
-      <%= f.label "利用日", class: "label-#{yield(:class_text)}" %>
-      <%= f.text_field :date_of_day, value: @search_params[:date_of_day] %>
+      <%= f.label "利用曜日", class: "label-#{yield(:class_text)}" %>
+       <%= f.select :date_of_day, [[""],["月"],["火"],["水"],["木"],["金"],["土"],["日"]], value: @search_params[:date_of_day] %>
     </div>
 
     <div class="actions">
@@ -16,16 +16,16 @@
     </div>
   <% end %>
 
-  <table class="table table-bordered table-condensed table-hover" id="table-clientes">
+  <br><table class="table table-bordered table-condensed table-hover" id="table-clientes">
     <thead>
       <tr>
-        <th class= "center">業務日誌</th>
+        <th class= "center">個別記録</th>
         <th class="center">利用者情報編集</th>
         <th class="center">(ふりがな)
         <br>利用者名</th>
         <th class="center">電話番号</th>
         <th class="center">介護度</th>
-        <th class="center">利用日</th>
+        <th class="center">利用曜日</th>
         <th class="center">性別</th>
         <th class="center">生年月日</th>
         <th class="center">詳細</th>

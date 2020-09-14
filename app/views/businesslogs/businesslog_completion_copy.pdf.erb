@@ -1,0 +1,23 @@
+class HtmlToPdfService
+  DEFAULT_LAYOUT = "pdf/layouts/application"
+
+  attr_reader :template, :out_file, :data, :layout, :pdf_options
+
+  def initialize template, out_file, data = {}, layout: DEFAULT_LAYOUT, pdf_options: {}
+    @template = template
+    @out_file = out_file
+    @data = data # ファイルテンプレートに使われるローカル変数のハッシュ
+    @layout = layout # 使われる共通レイアウト
+    @pdf_options = pdf_options # ページサイズ・オリエンテーションなどのオプション
+  end
+
+  def perform
+    html = ActionController::Base.render template: template, layout: layout, locals: data
+    pdf = WickedPdf.new.pdf_from_string html, pdf_options
+    File.write out_file, pdf, mode: "wb"
+    true
+  rescue StandardError => e
+    Rails.logger.error e.message
+    false
+  end
+end
