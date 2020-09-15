@@ -11,6 +11,10 @@
   <%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :cellphone, class: "form-control" %>
   
+  <%= f.label :パスワード, class: "label-login" %>
+  <%= f.password_field :password, class: 'form-control' %>
+  
+ 
 
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
 <% end %>

@@ -26,6 +26,8 @@ gem 'wkhtmltopdf-binary'
 gem 'rubyXL'
 gem 'wdm', '>= 0.1.0'
 gem 'line-bot-api'
+gem 'prawn'
+gem 'prawn-table'
 
 
 group :development, :test do

@@ -145,4 +145,6 @@
 				</table>
 			<% end %>
 		<% end %>
-		<%= paginate(@businesslogs) %>	
+		<%= link_to "PDFを表示", record_pdfs_index_path(format: "pdf") %>
+		<%= paginate(@businesslogs) %>
+</div>			

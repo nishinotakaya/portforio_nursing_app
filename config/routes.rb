@@ -1,6 +1,8 @@
   Rails.application.routes.draw do
   
 
+  get 'record_pdfs/index'
+
     root 'static_pages#top'
     get '/signup', to: 'staffs#new'
   
@@ -89,6 +91,8 @@
     get 'businesslogs/clients_index' #業務日誌ユーザー一覧
     patch 'businesslogs/clients_create' #業務日誌一覧完成
     get 'things/show', to: 'things#show' #pdf
+
+    
     
     namespace :api, {format: 'json'} do
       namespace :v1 do

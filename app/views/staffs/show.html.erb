@@ -1,6 +1,7 @@
 <div class= "center">
         <h1><%= @staff.name %>さん00の里へようこそ！<^0^></h1>
-        <p>業務専用サイトです！まずは、利用者一覧ページより利用者様を確認してください！</p>
-																	↓↓↓
+        <p>業務専用サイトです！まずは、利用者一覧ページより利用者様を確認してください！</p>															↓↓↓
         <br><%= link_to "利用者ー覧", clients_path, class: "btn btn-primary"%>
+        <br>
+        <%= link_to "編集" ,edit_staff_path(@staff), class: "btn btn-success"%>
 </div>
