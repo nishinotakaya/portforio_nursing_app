@@ -1,4 +1,4 @@
-  <% provide(:title, 'All Staffs') %>
+<% provide(:title, 'All Staffs') %>
   <h1>職員一覧</h1>
 
   
@@ -7,8 +7,8 @@
       <thead>
         <tr>
           <th class="center">従業員</th>
+          <th class="center">所属</th>
           <th class="center">電話番号</th>
-          <th class="center">編集</th>
           <th class="center">削除</th>
         </tr>
       </thead>
@@ -18,8 +18,8 @@
           <td class="center">
             <%= staff.name %>
           </td>
+          <td class="center"><%= staff.attachment %></td>
           <td class="center"><%= staff.cellphone %></td>
-          <td class="center"><%= link_to "編集" ,edit_staff_path(staff), class: "btn btn-success"%></td>
           <td class="center"><%= link_to "削除", staff, method: :delete,
                   data: { confirm: "削除してよろしいですか？" },
                   class: "btn btn-primary" %></td>
@@ -27,18 +27,9 @@
         </tbody>
       <% end %>
     </table>
-      <%= will_paginate %>
-  </div>
-
-
-     
-    
-    
-    
+    <%= will_paginate %>
   
-    
-  
-  <div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
         
          
   

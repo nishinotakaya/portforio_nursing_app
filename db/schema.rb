@@ -61,12 +61,11 @@ ActiveRecord::Schema.define(version: 20200907212615) do
     t.string "doctor_etcetera"
     t.string "doctor_etcetera_another"
     t.string "specialized_equipment"
+    t.boolean "prosthss_up"
+    t.boolean "boolean"
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "whrite_year"
-    t.boolean "prosthss_up"
-    t.boolean "prosthss_down"
     t.string "hospital_name_1"
     t.string "hospital_doctor_1"
     t.string "hospital_doctor_nymber_1"
@@ -202,6 +201,7 @@ ActiveRecord::Schema.define(version: 20200907212615) do
     t.string "age"
     t.string "place"
     t.string "cellphone"
+    t.string "attachment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
@@ -210,7 +210,6 @@ ActiveRecord::Schema.define(version: 20200907212615) do
     t.boolean "nurse", default: false
     t.boolean "counselor", default: false
     t.boolean "nursing_care_staff", default: false
-    t.index ["email"], name: "index_staffs_on_email", unique: true
   end
 
 end

@@ -77,11 +77,11 @@ private
     
 
     def basic_info_params
-      params.require(:staff).permit(:name, :email, :cellphone, :password, :password_confirmation)
+      params.require(:staff).permit(:name, :email, :cellphone, :password, :password_confirmation, :attachment)
     end
 
     def staff_params
-      params.require(:staff).permit(:name, :email, :cellphone, :password, :password_confirmation)
+      params.require(:staff).permit(:name, :email, :cellphone, :password, :password_confirmation, :attachment)
     end
     
     def set_staff

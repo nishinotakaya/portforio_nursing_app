@@ -1,7 +1,23 @@
 <div class= "center">
         <h1><%= @staff.name %>さん00の里へようこそ！<^0^></h1>
         <p>業務専用サイトです！まずは、利用者一覧ページより利用者様を確認してください！</p>															↓↓↓
-        <br><%= link_to "利用者ー覧", clients_path, class: "btn btn-primary"%>
+        <br><%= link_to "利用者ー覧", clients_path, class: "btn btn-primary"%></br>
         <br>
-        <%= link_to "編集" ,edit_staff_path(@staff), class: "btn btn-success"%>
+        <table align="center" cellspacing="0", cellpadding="5"  width="1000">
+					<thead>
+						<tr>
+							<th class= "center">名前</th>
+							<th class= "center">所属</th>
+							<th class= "center">電話番号</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%= @staff.name %></td>
+							<td><%= @staff.attachment %></td>
+							<td><%= @staff.cellphone %></td>
+						</tr>
+					</tbody>
+        <table>
+        <br><%= link_to "編集" ,edit_staff_path(@staff), class: "btn btn-success"%>
 </div>

@@ -13,10 +13,15 @@
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>
   <%= f.email_field :email, class: "form-control" %>
 
+  <%= f.label "所属", class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :attachment, class: "form-control" %>
+  
 
   <%= f.label "電話番号", class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :cellphone, class: "form-control" %>
   
+  <%= f.label :パスワード, class: "label-login" %>
+  <%= f.password_field :password, class: 'form-control' %>
   
  
 
