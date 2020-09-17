@@ -56,18 +56,18 @@
 				<tr>
 					<th class ="center">[バイタル]</th>
 					<th class ="center">[体温]
-					<br><%= f.text_area :log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
+					<br><%= f.number_field :log_body_temperature, min: 33, step: '0.1',  class: "hoge" %>℃</th>
 					<th class ="center">[血圧]
-					<br><%= f.text_area :log_pressure_up, class: "hoge", size: "3x1" %>/
-					<%= f.text_area :log_pressure_down, class: "hoge", size: "3x1" %></th>
+					<br><%= f.number_field :log_pressure_up, class: "hoge", min: 30, max: 300 %>/
+					<%= f.number_field :log_pressure_down, class: "hoge", min: 30, max: 300 %></th>
 					<th class ="center">[脈]
-					<br><%= f.text_area :log_pulse, class: "hoge", size: "3x1" %></th>
+					<br><%= f.number_field :log_pulse,  class: "hoge", min: 20, max: 200 %></th>
 					<th class ="center"rowpan="2">［再検査］
 					<br><%= f.check_box :log_check_return ,{}, "true", "false"%></th>
-					<th class ="center">[血圧]<br><%= f.text_area :re_log_pressure_up, class: "hoge", size: "3x1" %>/
-					<%= f.text_area :re_log_pressure_down, class: "hoge", size: "3x1" %></th>
-					<th class ="center">[体温]<br><%= f.text_area :re_log_body_temperature, class: "hoge", size: "3x1" %>℃</th>
-					<th class ="center">[脈]<br><%= f.text_area :re_log_pulse, class: "hoge", size: "3x1" %></th>
+					<th class ="center">[血圧]<br><%=  f.number_field :re_log_pressure_up, min: 20, max: 200 %>/
+					<%=  f.number_field :re_log_pressure_down, min: 20, max: 200 %></th>
+					<th class ="center">[体温]<br><%= f.number_field :re_log_body_temperature,  min: 33, step: '0.1',  class: "hoge" %>℃</th>
+					<th class ="center">[脈]<br><%=  f.number_field :re_log_pulse, min: 20, max: 200 %></th>
 				</tr>
 				<tr>
 					<th class ="center" colspan= "8">
