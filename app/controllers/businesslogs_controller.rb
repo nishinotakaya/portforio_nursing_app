@@ -67,7 +67,7 @@ class BusinesslogsController < ApplicationController
 		def businesslog_completion_copy
 			@client = Client.find(params[:client_id])
 			#@businesslog = Businesslog.find(params[:id])
-			@businesslogs = Businesslog.where(check_log: true).where(client_id: @client.id).order(:log_year,:log_month,:client_id).reverse_order.page(params[:page]).per(5)
+			@businesslogs = Businesslog.where(check_log: true).where(client_id: @client.id).order(:log_year,:log_month,:client_id).reverse_order.page(params[:page]).per(6)
 			respond_to do |format|
 				format.html
 				format.pdf do

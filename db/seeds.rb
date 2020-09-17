@@ -36,31 +36,83 @@ Staff.create!(name: "厨房",
              password_confirmation: "password",
              )
                
-Client.create!(client_name: "よしこ",
+Client.create!(client_name: "近藤 A",
                telephone_number: "0471-33333",
-               date_of_day: "月,水,金",
+               date_of_day: "火,木,土",
                nursing_number: "要介護2",
                )
                
-Client.create!(client_name: "近藤",
+Client.create!(client_name: "近藤 S",
                telephone_number: "0471999",
-               date_of_day: "火,木,土",
+               date_of_day: "月,水,金",
                nursing_number: "要介護1",
                )
                
-Client.create!(client_name: "すがはら",
+Client.create!(client_name: "三00000",
                telephone_number: "0471999",
-               date_of_day: "月,水,金",
+               date_of_day: "火,土",
                nursing_number: "要介護5",
                )                  
 
-Client.create!(client_name: "いし子",
+Client.create!(client_name: "有0",
                 telephone_number: "0471-33333",
-                date_of_day: "月,木,金",
-                nursing_number: "要介護2",
+                date_of_day: "火",
+                nursing_number: "要介護2"
                 )
-                                    
+Client.create!(client_name: "須0 0子",
+                telephone_number: "0471-33333",
+                date_of_day: "火,土",
+                nursing_number: "要介護2"
+                 ) 
 
+Client.create!(client_name: "小mat",
+                telephone_number: "0471-33333",
+                date_of_day: "木",
+                nursing_number: "要介護2"
+                     ) 
 
-                         
+Client.create!(client_name: "田00",
+                telephone_number: "0471-33333",
+                date_of_day: "火,木",
+                nursing_number: "要介護2"
+                             )
+                     
+Client.create!(client_name: "染０",
+                telephone_number: "0471-33333",
+                date_of_day: "月,火,水,木,金",
+                nursing_number: "要介護1"
+             )
+             
+Client.create!(client_name: "本０",
+                telephone_number: "0471-33333",
+                date_of_day: "月,水,金",
+                nursing_number: "要介護2"
+                             )              
+
+Client.create!(client_name: "ふく",
+                telephone_number: "0471-33333",
+                date_of_day: "月,水,金",
+                nursing_number: "要介護2"
+                )
+                                     
+Client.create!(client_name: "しょう0000",
+                telephone_number: "0471-33333",
+                date_of_day: "月,水,金",
+                nursing_number: "要介護1"
+                )
+                             
+Client.create!(client_name: "sugahara",
+                telephone_number: "0471-33333",
+                date_of_day: "月,火,水,木,金",
+                nursing_number: "要介護2"
+                                             )              
+            
+Client.create!(client_name: "一郎",
+                telephone_number: "0471-33333",
+                date_of_day: "月,水,金,土",
+                nursing_number: "要介護2"
+                 )              
+                                                                                             
+
+            
 

@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20200907212615) do
     t.string "doctor_etcetera_another"
     t.string "specialized_equipment"
     t.boolean "prosthss_up"
-    t.boolean "boolean"
+    t.boolean "prosthss_down"
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

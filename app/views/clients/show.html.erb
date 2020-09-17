@@ -3,11 +3,11 @@
   <table class="table table-bordered table-condensed client-table">
     <thead>
     <tr>
-      <th>利用者情報報告書
+      <th class= "center">利用者情報報告書
       <br><%= link_to "新規作成", monitoring_basic_info_client_monitorings_path(@client),data: {"turbolinks" => false}, class: "btn btn-info" %></th>
-      <th>フェイスシート
+      <th class= "center">フェイスシート
        <br><%= link_to "新規作成", asesment_new_client_asesments_path(@client), class: "btn btn-info" %></th>
-      <th>個別記録（業務日誌）
+      <th class= "center">個別記録
       <br><%= link_to "新規作成",new_businesslog_client_businesslogs_path(@client), class: "btn btn-info" %></th>
     </tr>
     </thead>
@@ -17,7 +17,6 @@
       <% @monitorings.each do |monitoring| %>
         <br><%= link_to monitoring.monitoring_worked_on_year.strftime("%Y年")+monitoring.monitoring_worked_on_month.strftime("%m月"),monitoring_completion_client_monitoring_path(@client, monitoring),data: {"turbolinks" => false}, class: "btn btn-primary" %>
             <%= link_to "編集", monitoring_basic_info_affter_client_monitoring_path(@client, monitoring),data: {"turbolinks" => false}, class: "btn btn-success" %>又は削除も可能</br>
-            ↑コピー専用↑
       <% end %>
         <%= paginate(@monitorings) %>
         </td>
@@ -25,7 +24,6 @@
         <% @asesments.each do |asesment| %>
           <br><%= link_to asesment.asesment_create_year.strftime("%Y年")+asesment.asesment_create_day.strftime("%-m月%-d日"), asesment_completion_client_asesment_path(@client,asesment), class: "btn btn-primary" %>
           <%= link_to "編集", asesment_affter_client_asesment_path(@client, asesment), class: "btn btn-success" %>又は削除も可能</br>
-          ↑コピー専用↑
         <% end %>
         <%= paginate(@asesments) %>
         </td>
@@ -33,10 +31,9 @@
           <% @businesslogs.each do |log| %>
           <br><%= link_to log.log_year.strftime("%Y年")+log.log_month.strftime("%-m月%-d日"),businesslog_completion_client_businesslog_path(@client, log), class: "btn btn-primary" %>
           <%= link_to "編集", affter_businesslog_client_businesslog_path(@client, log), class: "btn btn-success"%>又は削除も可能</br>
-          ↑コピー専用↑
           <% end %>
           <%= paginate(@businesslogs) %>
-          <br><%= link_to "業務日誌コピー専用ページ", businesslog_completion_copy_client_businesslog_path(@client, @businesslogs), class: "btn btn-info" %>
+          <br><%= link_to "個別記録コピー専用ページ", businesslog_completion_copy_client_businesslog_path(@client, @businesslogs), class: "btn btn-info" %>
         </td>
       </tr>
     </tbody>

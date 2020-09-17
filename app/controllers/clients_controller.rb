@@ -15,9 +15,9 @@ before_action :set_one_month, only: :show
   
   def show
     @client = Client.find(params[:id])
-    @monitorings = @client.monitorings.where(check_monitoring: true).order(:monitoring_worked_on_year, :monitoring_worked_on_month).reverse_order.page(params[:page]).per(10)
-    @asesments = @client.asesments.where(check_a: true).order(:asesment_create_year, :asesment_create_day).reverse_order.page(params[:page]).per(10)
-    @businesslogs = @client.businesslogs.where(check_log: true).order(:log_year,:log_month).reverse_order.page(params[:page]).per(4)
+    @monitorings = @client.monitorings.where(check_monitoring: true).order(:monitoring_worked_on_year, :monitoring_worked_on_month).reverse_order.page(params[:page]).per(6)
+    @asesments = @client.asesments.where(check_a: true).order(:asesment_create_year, :asesment_create_day).reverse_order.page(params[:page]).per(6)
+    @businesslogs = @client.businesslogs.where(check_log: true).order(:log_year,:log_month).reverse_order.page(params[:page]).per(6)
   end
   #def client_show
     #@client = Client.find(params[:id])
