@@ -7,9 +7,9 @@ class Client < ApplicationRecord
   has_many :nurselogs, dependent: :destroy 
   paginates_per 5 
 
-  before_save do
-    self.date_of_day.gsub!(/[\[\]\"]/, "") if attribute_present?("date_of_day")
-  end
+  # before_save do
+  #   self.date_of_day.gsub!(/[\[\]\"]/, "") if attribute_present?("date_of_day")
+  # end
 
   scope :search, -> (search_params) do
     return if search_params.blank?
