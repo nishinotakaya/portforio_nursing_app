@@ -1,7 +1,7 @@
 class Staff < ApplicationRecord
   # 「remember_token」という仮想の属性を作成します。
   attr_accessor :remember_token
-  before_save { self.email = email.downcase }
+  # before_save { self.email = email.downcase }
 
   validates :name, presence: true, length: { maximum: 50 }
 
