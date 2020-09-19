@@ -216,7 +216,8 @@ GEM
     will_paginate (3.3.0)
     wkhtmltopdf-binary (0.12.6.4)
 
-
+PLATFORMS
+  x64-mingw32
 
 DEPENDENCIES
   bcrypt
