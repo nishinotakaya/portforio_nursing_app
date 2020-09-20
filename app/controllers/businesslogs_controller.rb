@@ -92,7 +92,7 @@ class BusinesslogsController < ApplicationController
 						businesslog.update_attributes!(item)  
 					end
 				end
-				flash[:success] = "業務日誌お疲れ様でした！"
+				flash[:success] = "個別記録お疲れ様でした！"
 				redirect_to clients_url
 			end  		
 		end
