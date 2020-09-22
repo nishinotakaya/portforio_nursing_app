@@ -51,6 +51,8 @@ class CreateAsesments < ActiveRecord::Migration[5.1]
       t.string :specialized_equipment #特機事項
       t.boolean :prosthss_up
       t.boolean :prosthss_down
+      t.string :hedge_medicine_food_information_1 #情報源家族
+      t.string :hedge_medicine_food_information_2 #情報源その他
       t.references :client, foreign_key: true
       t.timestamps
     end

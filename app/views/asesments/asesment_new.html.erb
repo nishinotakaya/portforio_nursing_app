@@ -150,14 +150,14 @@
         <th><span class="under">避けるべき薬剤・食材（・嗜好）</span>
         <%= f.text_area :hedge_medicine_food, class: "hoge", size: "50x5" %>
        <br><%= f.label "情報源", class: "label-#{yield(:class_text)}" %>
-          <br>
+         <br>
           <%= f.radio_button :hedge_medicine_food_information, "本人" %>本人
           <%= f.radio_button :hedge_medicine_food_information,"家族"%>家族
-          <%= f.text_area :hedge_medicine_food_information, class: "hoge", size: "20x1" %>
+          <%= f.text_area :hedge_medicine_food_information_1, class: "hoge", size: "20x1" %>
           <%= f.radio_button :hedge_medicine_food_information, "ケアマネージャー" %>ケアマネージャー
           <br><%= f.radio_button :hedge_medicine_food_information,"かかりつけ医" %>かかりつけ医
           <%= f.radio_button :hedge_medicine_food_information, "その他" %>その他
-          <%= f.text_area :hedge_medicine_food_information_1, class: "hoge", size: "20x1" %>
+          <%= f.text_area :hedge_medicine_food_information_2, class: "hoge", size: "20x1" %>
       </tr>
       <tr>
         <th class= "center" colspan= "4">かかりつけ医

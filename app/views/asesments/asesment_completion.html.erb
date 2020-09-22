@@ -139,14 +139,14 @@
         <th><span class="under">通所介護利用時の服薬内容</span>
           <%= f.text_area :medicina, class: "hoge", size: "50x2" %>
           <br><%= f.label "情報源", class: "label-#{yield(:class_text)}" %>
-          <br>
-          <%= f.radio_button :information_medicina,"本人"%>本人
-          <%= f.radio_button :information_medicina,"家族" %>家族
-          <%= f.text_area :information_medicina_family, class: "hoge", size: "20x1" %>
-          <%= f.radio_button :information_medicina, "ケアマネージャー"  %>ケアマネージャー
-          <br><%= f.radio_button :information_medicina, "かかりつけ医" %>かかりつけ医
-          <%= f.radio_button :information_medicina, "その他"%>その他
-          <%= f.text_area :information_medicina_another, class: "hoge", size: "20x1" %>
+         <br>
+          <%= f.radio_button :hedge_medicine_food_information, "本人" %>本人
+          <%= f.radio_button :hedge_medicine_food_information,"家族"%>家族
+          <%= f.text_area :hedge_medicine_food_information_1, class: "hoge", size: "20x1" %>
+          <%= f.radio_button :hedge_medicine_food_information, "ケアマネージャー" %>ケアマネージャー
+          <br><%= f.radio_button :hedge_medicine_food_information,"かかりつけ医" %>かかりつけ医
+          <%= f.radio_button :hedge_medicine_food_information, "その他" %>その他
+          <%= f.text_area :hedge_medicine_food_information_2, class: "hoge", size: "20x1" %>
         </th>
         <th><span class="under">避けるべき薬剤・食材（・嗜好）</span>
         <%= f.text_area :hedge_medicine_food, class: "hoge", size: "50x5" %>

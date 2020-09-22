@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20200907212615) do
     t.string "specialized_equipment"
     t.boolean "prosthss_up"
     t.boolean "prosthss_down"
+    t.string "hedge_medicine_food_information_2"
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
