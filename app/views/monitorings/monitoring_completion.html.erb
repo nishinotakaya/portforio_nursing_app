@@ -130,7 +130,7 @@
           
           <br><%= f.radio_button :monitoring_service_need, :必要あり %>
               <%= f.label "必要あり", class: "label-#{yield(:class_text)}" %>
-              <%= f.radio_button :monitoring_service_need, :必要なし, checked: "checked" %>
+              <%= f.radio_button :monitoring_service_need, :必要なし %>
               <%= f.label "必要なし", class: "label-#{yield(:class_text)}" %>
           <br><%= f.label "必要あり理由", class: "label-#{yield(:class_text)}" %>
               <br><%= f.text_area :monitoring_service_need_what, class: "hoge", size: "70x3" %>

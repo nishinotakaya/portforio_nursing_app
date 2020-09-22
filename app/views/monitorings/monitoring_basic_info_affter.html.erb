@@ -110,7 +110,7 @@
         
         <!--利用状況-->
         <br><%= f.label "［利用状況］", class: "label-#{yield(:class_text)}" %>
-        <br><%= f.radio_button :monitoring_situation_dey, :休みなく利用, checked: "checked" %>
+        <br><%= f.radio_button :monitoring_situation_dey, :休みなく利用 %>
         <%= f.label "休みなく利用", class: "label-#{yield(:class_text)}" %>
         <%= f.radio_button :monitoring_situation_dey, :休んだ日がある %>
         <%= f.label "休んだ日がある", class: "label-#{yield(:class_text)}" %>
