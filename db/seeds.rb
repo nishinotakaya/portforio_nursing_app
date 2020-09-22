@@ -5,109 +5,114 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Staff.create!(name: "相談員",
+Staff.create!(name: "A",
              email: "sample@email.com",
+             attachment: "相談員",
              password: "password",
              password_confirmation: "password",
              admin: true)
              
              
-Staff.create!(name: "介護職員1",
+Staff.create!(name: "B",
              email: "sample-1@email.com",
+             attachment: "介護職",
              password: "password",
              password_confirmation: "password",
              nursing_care_staff: true)
              
-Staff.create!(name: "介護職員2",
+Staff.create!(name: "C",
              email: "sample-2@email.com",
+             attachment: "介護職",
              password: "password",
              password_confirmation: "password",
              nursing_care_staff: true)            
              
-Staff.create!(name: "看護師",
+Staff.create!(name: "D",
              email: "sample-3@email.com",
+             attachment: "看護師",
              password: "password",
              password_confirmation: "password",
              nurse: true)
              
-Staff.create!(name: "厨房",
+Staff.create!(name: "E",
              email: "food@email.com",
+             attachment: "介護職",
              password: "password",
              password_confirmation: "password",
              )
                
-Client.create!(client_name: "近藤 A",
+Client.create!(client_name: "K_A",
                telephone_number: "0471-33333",
                date_of_day: "火,木,土",
                nursing_number: "要介護2",
                )
                
-Client.create!(client_name: "近藤 S",
+Client.create!(client_name: "K_S",
                telephone_number: "0471999",
                date_of_day: "月,水,金",
                nursing_number: "要介護1",
                )
                
-Client.create!(client_name: "三00000",
+Client.create!(client_name: "M_H",
                telephone_number: "0471999",
                date_of_day: "火,土",
                nursing_number: "要介護5",
                )                  
 
-Client.create!(client_name: "有0",
+Client.create!(client_name: "A_Y",
                 telephone_number: "0471-33333",
                 date_of_day: "火",
                 nursing_number: "要介護2"
                 )
-Client.create!(client_name: "須0 0子",
+Client.create!(client_name: "S_J",
                 telephone_number: "0471-33333",
                 date_of_day: "火,土",
                 nursing_number: "要介護2"
                  ) 
 
-Client.create!(client_name: "小mat",
+Client.create!(client_name: "K",
                 telephone_number: "0471-33333",
                 date_of_day: "木",
                 nursing_number: "要介護2"
                      ) 
 
-Client.create!(client_name: "田00",
+Client.create!(client_name: "T_T",
                 telephone_number: "0471-33333",
                 date_of_day: "火,木",
                 nursing_number: "要介護2"
                              )
                      
-Client.create!(client_name: "染０",
+Client.create!(client_name: "S_Y",
                 telephone_number: "0471-33333",
                 date_of_day: "月,火,水,木,金",
                 nursing_number: "要介護1"
              )
              
-Client.create!(client_name: "本０",
+Client.create!(client_name: "H_T",
                 telephone_number: "0471-33333",
                 date_of_day: "月,水,金",
                 nursing_number: "要介護2"
                              )              
 
-Client.create!(client_name: "ふく",
+Client.create!(client_name: "K_W",
                 telephone_number: "0471-33333",
                 date_of_day: "月,水,金",
                 nursing_number: "要介護2"
                 )
                                      
-Client.create!(client_name: "しょう0000",
+Client.create!(client_name: "K_S",
                 telephone_number: "0471-33333",
                 date_of_day: "月,水,金",
                 nursing_number: "要介護1"
                 )
                              
-Client.create!(client_name: "sugahara",
+Client.create!(client_name: "S_?",
                 telephone_number: "0471-33333",
                 date_of_day: "月,火,水,木,金",
                 nursing_number: "要介護2"
                                              )              
             
-Client.create!(client_name: "一郎",
+Client.create!(client_name: "O_I",
                 telephone_number: "0471-33333",
                 date_of_day: "月,水,金,土",
                 nursing_number: "要介護2"
