@@ -3,21 +3,21 @@
     <meta charset = " utf-8 " />
     <h1>利用者情報報告書</h1>
     <%= form_with( model: @monitoring, url: create_monitoring_new_client_monitorings_path(@client, @monitoring), local: true, method: :post) do |f| %>
-  <p><span class="under">利用者名: <%= @client.client_name %>様の
+  <font size="5"><span class="under">利用者名: <%= @client.client_name %>様の
     <%= @monitoring.monitoring_worked_on_year.strftime("%Y") if @monitoring.monitoring_worked_on_year.present? %>年
     <%= @monitoring.monitoring_worked_on_month.strftime("%m")if @monitoring.monitoring_worked_on_month.present? %>月
     の利用者の状況をご報告いたします。
-    </span></p>
+    </span></font>
   
-    <td align="center"><%= f.label "【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)", class: "label-#{yield(:class_text)}" %>
+    <td align="center"><font size="4"><%= f.label "【居宅介護支援計画書の生活全般の解決すべき課題(ニーズ)", class: "label-#{yield(:class_text)}" %>
     <br><%= f.text_area :monitoring_needs, class: "hoge", size: "70x7" %></br>
   
     <br><%= f.label "【居宅介護支援計画書の短期目標】", class: "label-#{yield(:class_text)}" %>
-    <br><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "70x7" %></br>
+    <br><%= f.text_area :monitoring_short_run_target, class: "hoge", size: "70x7" %></br></font>
     </td>
     <tr>  
       <td align="center">
-        <br><%= f.label "基本的サービスの状況(ＡⅮⅬを含む)" ,class: "label-#{yield(:class_text)}" %></br>
+        <br><font size="4"><%= f.label "基本的サービスの状況(ＡⅮⅬを含む)" ,class: "label-#{yield(:class_text)}" %></br>
     
         <%= f.label "［他者交流］", class: "label-#{yield(:class_text)}" %>
         <br><%= f.radio_button :monitoring_exchange, "保たれている" %>
@@ -112,28 +112,28 @@
         <%= f.radio_button :monitoring_situation_dey, :休んだ日がある %>
         <%= f.label "休んだ日がある", class: "label-#{yield(:class_text)}" %>
         <br><%= f.label "休んだ日がある理由" , class: "label-#{yield(:class_text)}" %>
-        <br><%= f.text_area :monitoring_vacation_dey_buy, class: "hoge", size: "70x3" %>
+        <br><%= f.text_area :monitoring_vacation_dey_buy, class: "hoge", size: "70x3" %></font>
         
       </td>
     </tr>
       <!--#日常生活上の留意点 及び 介護の工夫など(総合的評価)-->
       <tr>
         <td>
-          <br><%= f.label "【日常生活上の留意点 及び 介護の工夫など(総合的評価)】", class: "label-#{yield(:class_text)}" %>
+          <br><font size="4"><%= f.label "【日常生活上の留意点 及び 介護の工夫など(総合的評価)】", class: "label-#{yield(:class_text)}" %>
           <br>※ 上記の内容を詳しく 又は利用中の様子や気づいた点を記入
-          <br><%= f.text_area :monitoring_attention, class: "hoge", size: "70x10" %></br>
+          <br><%= f.text_area :monitoring_attention, class: "hoge", size: "70x10" %></br></font>
         </td>
         
       </tr>
         <td>
-          <br><%= f.label "【サービス変更の必要性】", class: "label-#{yield(:class_text)}" %>
+          <br><font size="4"><%= f.label "【サービス変更の必要性】", class: "label-#{yield(:class_text)}" %>
           
           <br><%= f.radio_button :monitoring_service_need, :必要あり %>
               <%= f.label "必要あり", class: "label-#{yield(:class_text)}" %>
               <%= f.radio_button :monitoring_service_need, :必要なし %>
               <%= f.label "必要なし", class: "label-#{yield(:class_text)}" %>
           <br><%= f.label "必要あり理由", class: "label-#{yield(:class_text)}" %>
-              <br><%= f.text_area :monitoring_service_need_what, class: "hoge", size: "70x3" %>
+              <br><%= f.text_area :monitoring_service_need_what, class: "hoge", size: "70x3" %><font size="4">
         </td>
       <% end %>    
     </table>  
