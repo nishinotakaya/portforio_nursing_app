@@ -16,6 +16,12 @@
       member do
        
       end
+
+      resources :shifts, only: :update do #シフト
+        collection do
+          # get 'staff_sfift'
+        end  
+      end   
     end
 
     post '/import', to: 'users#import', as: 'import'
@@ -87,7 +93,7 @@
       end
     end
 
-    
+    get 'shifts/staff_sfift' #スタッフシフト
     get 'businesslogs/clients_index' #業務日誌ユーザー一覧
     patch 'businesslogs/clients_create' #業務日誌一覧完成
     get 'things/show', to: 'things#show' #pdf

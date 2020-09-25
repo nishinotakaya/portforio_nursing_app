@@ -34,12 +34,20 @@ Staff.create!(name: "D",
              password_confirmation: "password",
              nurse: true)
              
-Staff.create!(name: "E",
-             email: "food@email.com",
+Staff.create!(name: "itaya",
+             email: "itaya@email.com",
              attachment: "介護職",
              password: "password",
              password_confirmation: "password",
              )
+
+
+Staff.create!(name: "ITAYA",
+            email: "itaya@email.com",
+            attachment: "介護職",
+            password: "password",
+            password_confirmation: "password",
+            shift_admin: true)
                
 Client.create!(client_name: "K_A",
                telephone_number: "0471-33333",

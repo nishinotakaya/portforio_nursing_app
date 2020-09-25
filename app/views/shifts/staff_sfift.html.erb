@@ -1,0 +1,23 @@
+<h1>シフト</h1>
+
+<table align="center" cellspacing="5", cellpadding="5">
+	<thead>
+	<% [*@first_day..@last_day].each do |day| %>
+		<tr>
+			<th></th>
+			<th><%= day.strftime("%d") %></th>
+		</tr>
+		<tr>
+			<th></th>
+			<th><%= $days_of_the_week[day.wday] %></th>
+		</tr>
+	<% end %>	
+	</thead>
+	<% @staffs.each do |staff| %>
+		<tbody>
+			<tr>
+				<td><%= staff.name %></td>
+			</tr>
+		</tbody>
+	<% end %>	
+</table>

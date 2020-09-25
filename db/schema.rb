@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200907212615) do
+ActiveRecord::Schema.define(version: 20200924113144) do
 
   create_table "asesments", force: :cascade do |t|
     t.boolean "check_a", default: false, null: false
@@ -194,6 +194,15 @@ ActiveRecord::Schema.define(version: 20200907212615) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_nurselogs_on_client_id"
+  end
+
+  create_table "shifts", force: :cascade do |t|
+    t.string "day_shift"
+    t.date "shift_day"
+    t.integer "staff_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["staff_id"], name: "index_shifts_on_staff_id"
   end
 
   create_table "staffs", force: :cascade do |t|
