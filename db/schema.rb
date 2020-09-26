@@ -198,7 +198,10 @@ ActiveRecord::Schema.define(version: 20200924113144) do
 
   create_table "shifts", force: :cascade do |t|
     t.string "day_shift"
+    t.string "day_shift_a"
     t.date "shift_day"
+    t.string "night_shift"
+    t.string "night_duty"
     t.integer "staff_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -212,6 +215,7 @@ ActiveRecord::Schema.define(version: 20200924113144) do
     t.string "place"
     t.string "cellphone"
     t.string "attachment"
+    t.boolean "shift_admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

@@ -33,13 +33,6 @@ Staff.create!(name: "D",
              password: "password",
              password_confirmation: "password",
              nurse: true)
-             
-Staff.create!(name: "itaya",
-             email: "itaya@email.com",
-             attachment: "介護職",
-             password: "password",
-             password_confirmation: "password",
-             )
 
 
 Staff.create!(name: "ITAYA",

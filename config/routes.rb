@@ -19,8 +19,9 @@
 
       resources :shifts, only: :update do #シフト
         collection do
-          # get 'staff_sfift'
-        end  
+          get 'shifts_edit'
+          patch 'shifts_update'
+        end
       end   
     end
 

@@ -1,23 +1,30 @@
-<h1>シフト</h1>
-
+<h1>OOの里 デイサービス 勤務表
+<% today = Date.today%>
+<br><%= today.strftime('%Y年%m月')%></h1>
+<% month = today.strftime('%m')%>
 <table align="center" cellspacing="5", cellpadding="5">
 	<thead>
-	<% [*@first_day..@last_day].each do |day| %>
 		<tr>
-			<th></th>
-			<th><%= day.strftime("%d") %></th>
+			<% [*@first_day..@last_day].each do |day| %>
+				<th></th>
+				<th><%= day.strftime("%d") %></th>
+			<% end %>
 		</tr>
 		<tr>
-			<th></th>
-			<th><%= $days_of_the_week[day.wday] %></th>
+			<% [*@first_day..@last_day].each do |day| %>
+				<th></th>
+				<th><%= $days_of_the_week[day.wday] %></th>
+			<% end %>
 		</tr>
-	<% end %>	
 	</thead>
-	<% @staffs.each do |staff| %>
-		<tbody>
+	<tbody>
+		<% @staffs.each do |staff| %>
 			<tr>
 				<td><%= staff.name %></td>
+			<% @shifts.each do |shift| %>
+				<td></td>
+			<% end %>
 			</tr>
-		</tbody>
-	<% end %>	
+		<% end %>	
+	</tbody>
 </table>
