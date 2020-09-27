@@ -2,7 +2,7 @@
   <meta charset = " utf-8 " />
 		<h1>個別記録</h1>
 		<%=form_with( model: @businesslog, url: update_businesslog_client_businesslog_path(@client, @businesslog), local: true, method: :patch) do |f| %>
-			<font size= "4"><p><span class="under">氏名&emsp;<%= @client.client_name %>様</span></p>
+			<p><span class="under">氏名&emsp;<%= @client.client_name %>様</span></p>
 			<table align="center" cellspacing="", cellpadding="5">
 				<tr>
 				<% css_class = 
@@ -94,5 +94,5 @@
 		<% end %>
 		<br><%= link_to "削除", businesslog_delete_client_businesslog_path(@client, @businesslog), method: :delete,
                     data: { confirm: "削除してよろしいですか？" },
-                    class: "btn btn-danger" %></font>
+                    class: "btn btn-danger" %>
 </div>					

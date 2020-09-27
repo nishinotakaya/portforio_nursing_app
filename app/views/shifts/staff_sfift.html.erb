@@ -7,20 +7,23 @@
 		<tr>
 			<% [*@first_day..@last_day].each do |day| %>
 				<th></th>
-				<th><%= day.strftime("%d") %></th>
+				<th></th>
+				<th><font size="5"><%= day.strftime("%d") %></font></th>
 			<% end %>
 		</tr>
 		<tr>
 			<% [*@first_day..@last_day].each do |day| %>
 				<th></th>
-				<th><%= $days_of_the_week[day.wday] %></th>
+				<th></th>
+				<th><font size= "5"><%= $days_of_the_week[day.wday] %></font></th>
 			<% end %>
 		</tr>
 	</thead>
 	<tbody>
 		<% @staffs.each do |staff| %>
 			<tr>
-				<td><%= staff.name %></td>
+				<th></th>
+				<td><font size= "5"><%= staff.name %></font></td>
 			<% @shifts.each do |shift| %>
 				<td></td>
 			<% end %>

@@ -1,7 +1,7 @@
 <h1>本日の利用者個別記録一覧</h1>
 
 
-<font size= "4"><div class="center">
+<div class="center">
 	<%= form_with( model: @businesslogs, url: businesslogs_clients_create_path, local: true, method: :patch) do |f| %>
 		<% @businesslogs.each do |businesslog| %>
 			<%= f.fields_for "businesslogs[]", businesslog do |c| %>
@@ -52,17 +52,17 @@
 								<tr>
 					<th class ="center">[バイタル]</th>
 					<th class ="center">[体温]
-					<br><%= c.number_field :log_body_temperature, min: 33, step: '0.1',  class: "log" %>℃</th>
+					<br><%= c.number_field :log_body_temperature, min: 33, step: '0.1' %>℃</th>
 					<th class ="center">[血圧]
-					<br><%= c.number_field :log_pressure_up, class: "log", min: 50, max: 300 %>/
-					<%= c.number_field :log_pressure_down, class: "log", min: 30, max: 300 %></th>
+					<br><%= c.number_field :log_pressure_up,  min: 50, max: 300 %>/
+					<%= c.number_field :log_pressure_down, min: 30, max: 300 %></th>
 					<th class ="center">[脈]
-					<br><%= c.number_field :log_pulse,  class: "log", min: 20, max: 200 %></th>
+					<br><%= c.number_field :log_pulse, min: 20, max: 200 %></th>
 					<th class ="center"rowpan="2">［再検査］
 					<br><%= c.check_box :log_check_return ,{}, "true", "false"%></th>
 					<th class ="center">[血圧]<br><%= c.number_field :re_log_pressure_up, min: 50, max: 200 %>/
 					<%=  c.number_field :re_log_pressure_down, min: 20, max: 200 %></th>
-					<th class ="center">[体温]<br><%= c.number_field :re_log_body_temperature,  min: 33, step: '0.1',  class: "hoge" %>℃</th>
+					<th class ="center">[体温]<br><%= c.number_field :re_log_body_temperature,  min: 33, step: '0.1'%>℃</th>
 					<th class ="center">[脈]<br><%=  c.number_field :re_log_pulse, min: 30, max: 200 %></th>
 				</tr>
 						</tr>
@@ -90,5 +90,5 @@
 			<% end %>
 		<% end %>
 		<br><%= f.submit "終了", class: "btn btn-primary " %>
-	<% end %></font>
+	<% end %>
 </div>					
