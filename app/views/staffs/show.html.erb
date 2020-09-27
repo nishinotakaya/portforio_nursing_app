@@ -19,5 +19,8 @@
 						</tr>
 					</tbody>
         <table>
-        <br><%= link_to "編集" ,edit_staff_path(@staff), class: "btn btn-success"%>
+        <br><%= link_to "編集" , edit_staff_path(@staff), class: "btn btn-success" %>
+		<br><% if current_staff.shift_admin? %>
+		<br><%= link_to "シフト編集スタッフチェック", shifts_edit_staff_path, class: "btn btn-primary" %>
+		<% end %>
 </div>

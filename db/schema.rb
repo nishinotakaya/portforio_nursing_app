@@ -215,6 +215,7 @@ ActiveRecord::Schema.define(version: 20200924113144) do
     t.string "place"
     t.string "cellphone"
     t.string "attachment"
+    t.boolean "check_shift"
     t.boolean "shift_admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -69,7 +69,7 @@ before_action :set_one_month, only: :show
   end
   
 
- 
+  
 
 
   def create_use_check

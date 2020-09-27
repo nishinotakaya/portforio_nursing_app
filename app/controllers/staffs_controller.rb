@@ -66,7 +66,13 @@ class StaffsController < ApplicationController
     redirect_to staffs_url
   end
 
-  
+  def shifts_edit
+    @staffs = Staff.all
+  end  
+
+  def check_shifts_update
+    
+  end  
   
   
   

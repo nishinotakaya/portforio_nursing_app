@@ -14,12 +14,13 @@
   
     resources :staffs do
       member do
-       
+        get 'shifts_edit' #今月ののシフトメンバー
+        patch 'check_shifts_update'
       end
 
       resources :shifts, only: :update do #シフト
         collection do
-          get 'shifts_edit'
+          #get 'shifts_edit'
           patch 'shifts_update'
         end
       end   
@@ -94,6 +95,7 @@
       end
     end
 
+    #get 'shifts/shifts_edit' #スタッフシフトチェック
     get 'shifts/staff_sfift' #スタッフシフト
     get 'businesslogs/clients_index' #業務日誌ユーザー一覧
     patch 'businesslogs/clients_create' #業務日誌一覧完成

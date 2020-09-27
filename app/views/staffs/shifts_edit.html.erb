@@ -1,0 +1,22 @@
+<h1>来月のシフトスタッフチェック</h1>
+
+	<table class="table table-bordered table-condensed table-hover" id="table-clientes">
+		<thead>
+			<tr>
+				<th class= "center">シフトチェック</th>
+				<th class="center">従業員名</th>
+				<th class="center">所属</th>
+				<th class="center">電話番号</th>
+			</tr>
+		</thead>
+		<% @staffs.each do |staff| %>
+			<tbody>
+				<tr>
+					<td></td>
+					<td><%= staff.name %></td>
+					<td><%= staff.attachment %></td>
+					<td><%= staff.cellphone %></td>
+				</tr>
+			</tbody>
+		<% end %>	
+	</table>		
