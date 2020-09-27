@@ -1,7 +1,7 @@
 <div class="center">
   <meta charset = " utf-8 " />
 		<h1>個別記録</h1>
-		<%=form_with( model: @businesslog, url: update_businesslog_client_businesslog_path(@client, @businesslog), local: true, method: :patch) do |f| %>
+		<font size= "4"><%=form_with( model: @businesslog, url: update_businesslog_client_businesslog_path(@client, @businesslog), local: true, method: :patch) do |f| %>
 			<p><span class="under">氏名&emsp;<%= @client.client_name %>様</span></p>
 			<table align="center" cellspacing="", cellpadding="5">
 				<tr>
@@ -87,7 +87,7 @@
 					[記録者印]
 					</th>
 				</tr>
-				<th class ="center" colspan= "2">【<%= @businesslog.log_record_stamp %>】</th>	
+				<th class ="center" colspan= "2">【<%= @businesslog.log_record_stamp %>】</th></font>	
 			</table>
 		<% end %>
 </div>	

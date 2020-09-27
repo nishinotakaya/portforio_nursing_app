@@ -1,7 +1,7 @@
 <div class="center">
   <meta charset = " utf-8 " />
 		<h1>個別記録</h1>
-		<%=form_with( model: @businesslog, url: create_businesslog_client_businesslogs_path(@client, @businesslog, @businesslogs), local: true, method: :post) do |f| %>
+		<font size= "4"><%=form_with( model: @businesslog, url: create_businesslog_client_businesslogs_path(@client, @businesslog, @businesslogs), local: true, method: :post) do |f| %>
 			<p><span class="under">氏名&emsp;<%= @client.client_name %>様</span></p>
 			<table align="center" cellspacing="", cellpadding="5">
 				<tr>
@@ -48,18 +48,18 @@
 				<tr>
 					<th class ="center">[バイタル]</th>
 					<th class ="center">[体温]
-					<br><%= f.number_field :log_body_temperature, min: 33, step: '0.1',  class: "log" %>℃</th>
+					<br><%= f.number_field :log_body_temperature, min: 33, step: '0.1', class: "logs", maxlength: "10" %>℃</th>
 					<th class ="center">[血圧]
-					<br><%= f.number_field :log_pressure_up, class: "log", min: 30, max: 300 %>/
-					<%= f.number_field :log_pressure_down, class: "log", min: 30, max: 300 %></th>
+					<br><%= f.number_field :log_pressure_up, class: "logs", min: 30, max: 300 %>/
+					<%= f.number_field :log_pressure_down, class: "logs", min: 30, max: 300 %></th>
 					<th class ="center">[脈]
-					<br><%= f.number_field :log_pulse,  class: "log", min: 20, max: 200 %></th>
+					<br><%= f.number_field :log_pulse,  class: "logs", min: 20, max: 200 %></th>
 					<th class ="center"rowpan="2">［再検査］
 					<br><%= f.check_box :log_check_return ,{}, "true", "false"%></th>
 					<th class ="center">[血圧]<br><%=  f.number_field :re_log_pressure_up, min: 20, max: 200 %>/
 					<%=  f.number_field :re_log_pressure_down, min: 20, max: 200 %></th>
-					<th class ="center">[体温]<br><%= f.number_field :re_log_body_temperature,  min: 33, step: '0.1',  class: "log" %>℃</th>
-					<th class ="center">[脈]<br><%=  f.number_field :re_log_pulse, min: 20, max: 200 %></th>
+					<th class ="center">[体温]<br><%= f.number_field :re_log_body_temperature,  min: 33, step: '0.1',  class: "logs" %>℃</th>
+					<th class ="center">[脈]<br><%=  f.number_field :re_log_pulse, min: 20, max: 200, class: "logs" %></th>
 				</tr>
 				<tr>
 					<th class ="center" colspan= "8">
@@ -82,7 +82,7 @@
 			</table>
 			<%= f.check_box :check_log ,{checked: true}, "true", "false" %>
 			確認
-			<br><%= f.submit "追加", class: "btn btn-primary " %>
+			<br><%= f.submit "追加", class: "btn btn-primary " %></font>
 		<% end %>
 </div>					
 						

@@ -1,7 +1,7 @@
 <h1>本日の利用者個別記録一覧</h1>
 
 
-<div class="center">
+<font size= "4"><div class="center">
 	<%= form_with( model: @businesslogs, url: businesslogs_clients_create_path, local: true, method: :patch) do |f| %>
 		<% @businesslogs.each do |businesslog| %>
 			<%= f.fields_for "businesslogs[]", businesslog do |c| %>
@@ -90,5 +90,5 @@
 			<% end %>
 		<% end %>
 		<br><%= f.submit "終了", class: "btn btn-primary " %>
-	<% end %>
+	<% end %></font>
 </div>					
