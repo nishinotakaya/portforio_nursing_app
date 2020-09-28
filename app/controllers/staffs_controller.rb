@@ -67,13 +67,29 @@ class StaffsController < ApplicationController
   end
 
   def shifts_edit
+
     @staffs = Staff.all
   end  
 
   def check_shifts_update
-    
-  end  
-  
+    ActiveRecord::Base.transaction do
+     # m1 = 0
+      check_staff_shift.each do |id, item|
+        if params[:check_shift] = "true"
+          #m1 = m1 + 1
+          staff = Staff.find(id)
+          staff.update_attributes(item)
+          #staff.shifts.update(staff_id: id, shift_day: Date.current.beginning_of_month..Date.current.beginning_of_month.end_of_month)
+        end
+      end    
+    end
+    flash[:success] = "従業員のシフト業務の準備整いました！" 
+    redirect_to shifts_edit_staff_url(current_staff)
+  rescue ActiveRecord::RecordInvalid
+    flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+    redirect_to  shifts_edit_staff_url(current_staff)	
+  end
+
   
   
   
@@ -93,6 +109,10 @@ private
     def set_staff
       @staff = Staff.find(params[:id])
     end
+
+    def check_staff_shift
+      params.require(:staff).permit(staffs: [:check_shift])[:staffs]
+    end  
   
 
     # ログイン済みのユーザーか確認します。

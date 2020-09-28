@@ -1,5 +1,5 @@
 <h1>来月のシフトスタッフチェック</h1>
-
+<%= form_with( model: @staffs, url: check_shifts_update_staff_url(@staffs), local: true, method: :patch) do |f|%>
 	<table class="table table-bordered table-condensed table-hover" id="table-clientes">
 		<thead>
 			<tr>
@@ -10,13 +10,17 @@
 			</tr>
 		</thead>
 		<% @staffs.each do |staff| %>
-			<tbody>
-				<tr>
-					<td></td>
-					<td><%= staff.name %></td>
-					<td><%= staff.attachment %></td>
-					<td><%= staff.cellphone %></td>
-				</tr>
-			</tbody>
+			<%= f.fields_for "staffs[]", staff do |s| %>
+				<tbody>
+					<tr>
+						<td><%= s.check_box	:check_shift, {checked: false}, "true", "false" %></td>
+						<td><%= staff.name %></td>
+						<td><%= staff.attachment %></td>
+						<td><%= staff.cellphone %></td>
+					</tr>
+				</tbody>
+			<% end %>
 		<% end %>	
-	</table>		
+	</table>
+	<%= f.submit "シフトを記入する！", class: "btn btn-primary" %>
+<% end %>			

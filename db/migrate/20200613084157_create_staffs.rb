@@ -10,6 +10,7 @@ class CreateStaffs < ActiveRecord::Migration[5.1]
       t.boolean :check_shift #シフトチェック
       t.boolean :shift_admin #シフトを作る人
       t.timestamps
+      
     end
   end
 end

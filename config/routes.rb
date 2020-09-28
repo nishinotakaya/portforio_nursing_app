@@ -14,14 +14,14 @@
   
     resources :staffs do
       member do
-        get 'shifts_edit' #今月ののシフトメンバー
+        get 'shifts_edit' #今月のシフトメンバー
         patch 'check_shifts_update'
       end
 
       resources :shifts, only: :update do #シフト
         collection do
           #get 'shifts_edit'
-          patch 'shifts_update'
+          #patch 'shifts_update'
         end
       end   
     end
