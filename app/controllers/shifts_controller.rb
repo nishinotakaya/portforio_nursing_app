@@ -15,6 +15,8 @@ class ShiftsController < ApplicationController
 		@staffs = Staff.where(check_shift: true)
 	end
 	
-	
+	def shifts_update
+		
+	end	
 end
 

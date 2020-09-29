@@ -98,6 +98,7 @@
     #get 'shifts/shifts_edit' #スタッフシフトチェック
     get 'shifts/staff_sfift' #スタッフシフト
     get 'shifts/shifts_change' #シフト編集
+    patch 'shifts/shifts_update' #シフトupdate
     get 'businesslogs/clients_index' #業務日誌ユーザー一覧
     patch 'businesslogs/clients_create' #業務日誌一覧完成
     get 'things/show', to: 'things#show' #pdf

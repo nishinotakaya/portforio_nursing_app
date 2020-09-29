@@ -67,7 +67,6 @@ class StaffsController < ApplicationController
   end
 
   def shifts_edit
-
     @staffs = Staff.all
   end  
 
@@ -79,7 +78,7 @@ class StaffsController < ApplicationController
           #m1 = m1 + 1
           staff = Staff.find(id)
           staff.update_attributes(item)
-          #staff.shifts.update(staff_id: id, shift_day: Date.current.beginning_of_month..Date.current.beginning_of_month.end_of_month)
+          staff.shifts.update(staff_id: id, shift_day: Date.current.beginning_of_month..Date.current.beginning_of_month.end_of_month)
         end
       end    
     end
