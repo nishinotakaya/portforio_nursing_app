@@ -9,9 +9,10 @@
       </td>
 		</tr>
 	</table>	
-	<table align="left" class="table-border-dark table-condensed table-hover shifts-table">
-			<!--< %= f.fields_for "staffs[]", staff do |s| %>-->
+	<br><table align="left" class="table-border-dark table-condensed table-hover shifts-table">
+			<!--< %= f.fields_for "shifts[]", shifts do |s| %>-->
 				<thead>
+				<%= f.fields_for "shifts[]", shifts do |s| %>
 					<tr>
 						<th></th>
 						<% [*@first_day..@last_day].each do |day| %>
@@ -24,17 +25,19 @@
 							<th><%= $days_of_the_week[day.wday] %></th>
 						<% end %>
 					</tr>
-					<tr>
-						<th></th>
+					<% @shifts.each do |shift| %>
+						<tr>
+							<th></th>
 						<% [*@first_day..@last_day].each do |day| %>
-							<th><%= f.text_area :day_shift_a ,size: "1x7" %></th>
+							<th><%= f.text_area :day_shift_a ,class: "shifts_event", size: "1x7" %></th>
 						<% end %>
+					<% end %>
 					</tr>
 				</thead>
 				<tbody>
-					<% @staffs.each do |staff| %>
+					<% @shifts.each do |shift| %>
 						<tr>
-							<th width="0"><%= staff.name %></th>
+							<th width="0"><%= Staff.find(shift.staff_id).staff %></th>
 							<% [*@first_day..@last_day].each do |day| %>
 								<td><%= f.select :day_shift,[['日'],['A'],['休'],['(休)'],['夜'],['明'],['/休'],['休/'],['(有)']],{ include_blank: true} %></td>
 							<% end %>	

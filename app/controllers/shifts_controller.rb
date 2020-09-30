@@ -13,16 +13,16 @@ class ShiftsController < ApplicationController
 		@first_day = params[:date].nil? ? 
     #params[:date]（showの月の隣の矢印が押されたか？)がnilか？
     #月初日が今月か？先月か？先々月か？のもの #当月分のデータを取得してだしてあげてる！
-    Date.current.beginning_of_month : params[:date].to_date
+    	Date.current.beginning_of_month : params[:date].to_date
 		@last_day = @first_day.end_of_month
-		@staffs = Staff.where(check_shift: true)
+		@staffs = Staff.where(check_shift: true) 
+		@shifts = Shift.where(day_shift: "日").order(:staff_id, :shift_day)
 	end
 	
 	def shifts_update
 		
 	end	
 
-	private
 
 end
 
