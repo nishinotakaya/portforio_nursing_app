@@ -1,35 +1,75 @@
-<div class= "center"> 
-	<table align="center" class="table-border-dark table-condensed table-hover shifts-table">
-	<%=%>
-		<thead>
-			<tr>
-				<th></th>
-				<% [*@first_day..@last_day].each do |day| %>
-					<th width="1"><%= day.strftime("%d") %></th>
-				<% end %>
-			</tr>
-			<tr>
-				<th></th>
-				<% [*@first_day..@last_day].each do |day| %>
-					<th width="1"><%= $days_of_the_week[day.wday] %></th>
-				<% end %>
-			</tr>
-			<tr>
-				<th></th>
-				<% [*@first_day..@last_day].each do |day| %>
-					<th width="1"></th>
-				<% end %>
-			</tr>
-		</thead>
-		<tbody>
-			<% @staffs.each do |staff| %>
+<div class= "shiht_all">
+<%= link_to "⇦ ", shifts_shifts_change_path(date: @first_day.prev_month), class: "btn btn-info" %>
+        【<%= l(@first_day, format: :middle) %>】シフト管理表
+  <%= link_to " ⇨", shifts_shifts_change_path(date: @first_day.next_month), class: "btn btn-info" %> 
+<h1>シフト編集</h1>
+	<%= form_with( model: @staffs, url: shifts_shifts_update_path(@staffs), local: true, method: :patch) do |f| %>
+
+		<table class="table-border-dark table-condensed table-hover shifts-table">
+			<thead>
 				<tr>
-					<th width="0"><%= staff.name %></th>
+					<th></th>
 					<% [*@first_day..@last_day].each do |day| %>
-						<td width="1"></td>
-					<% end %>	
+						<th class="shift_day"><%= day.strftime("%d") %></th>
+					<% end %>
+					<th class="shift_all_count">aaa</th>
+					<th class="shift_all_count">bbb</th>
 				</tr>
-			<% end %>	
-		</tbody>
-	</table>
+				<tr>
+					<th></th>
+					<% [*@first_day..@last_day].each do |day| %>
+						<th class="shift_day"><%= $days_of_the_week[day.wday] %></th>
+					<% end %>
+						<th class="shift_all_count">ccc</th>
+						<th class="shift_all_count">ddd</th>
+				</tr>
+				<tr>
+					<th></th>
+					<% [*@first_day..@last_day].each do |day| %>
+						<th class="shift_day"></th>
+					<% end %>
+					<th class="shift_all_count">e</th>
+					<th class="shift_all_count">f</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @staffs.each do |staff| %>
+					<tr>
+						<th class="shift_day"><%= staff.name %></th>
+						<% [*@first_day..@last_day].each do |day| %>
+							<td class="shift_day"><%= f.select :day_shift, {'休': 1, '(休)': 2, '〇': 3, '夜': 4, '明': 5, 'A': 6 }, { include_blank: ''}, { class: 'form-shift' , required: true } %></td>
+						<% end %>	
+						<th class="shift_all_count"></th>
+						<th class="shift_all_count"></th>
+					</tr>
+				<% end %>
+				<tr>
+					<th class="shift_all_count"></th>
+					<th class="shift_all_count"></th>
+					<th class="shift_all_count"></th>
+					<% [*@first_day..@last_day].each do |day| %>
+							<th class="shift_all_count"></th>
+					<% end %>
+					<% @staffs.each do |staff| %>
+					<tr>
+						<th class="shift_day"><%= staff.name %></th>
+						<% [*@first_day..@last_day].each do |day| %>
+							<td class="shift_day"><%= f.select :day_shift, {'休': 1, '(休)': 2, '〇': 3, '夜': 4, '明': 5, 'A': 6 }, { include_blank: ''}, { class: 'form-shift' , required: true } %></td>
+						<% end %>	
+						<th class="shift_all_count"></th>
+						<th class="shift_all_count"></th>
+					</tr>
+				<% end %>
+				<tr>
+					<th class="shift_all_count"></th>
+					<th class="shift_all_count"></th>
+					<th class="shift_all_count"></th>
+					<% [*@first_day..@last_day].each do |day| %>
+							<th class="shift_all_count"></th>
+					<% end %>
+				</tr>	
+			</tbody>
+		</table>
+		 <%= f.submit "編集", class: "btn btn-primary btn-block btn-login" %>
+	<% end %>
 </div> 
