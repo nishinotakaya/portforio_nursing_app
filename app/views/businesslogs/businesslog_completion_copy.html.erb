@@ -1,49 +1,50 @@
-<div class="center">
 		<meta charset = " utf-8 " />
-			<h1>個別記録</h1>
-				<font size ="4"><p><span class="under">氏名&emsp;<%= Client.find(params[:client_id]).client_name %>様</span></p>
+<div class="businesslog_copy_all">
 	<div class="businesslog_copy">
+			<h1 class="h1_businesslog_copy">個別記録</h1>
+				<p class="client_name_place">氏名&emsp;<%= Client.find(params[:client_id]).client_name %>様</p>
 				<% @businesslogs.each do |log| %>
 			<%=form_with( model: log, url: update_businesslog_client_businesslog_path(log), local: true, method: :patch) do |f| %>
-			<br><table align="center" cellspacing="", cellpadding="5">
-						<tr>
-						<% css_class = 
-													case %w{日 月 火 水 木 金 土}[log.log_month.wday]
-													when '土'
-														'text-primary'
-													when '日'
-														'text-danger'
-													end %>
-							<th class="<%= css_class %>"><%= log.log_year.strftime("%Y") if log.log_year.present?%>年
-									<%= log.log_month.strftime("%m") if log.log_month.present? %>月
-									<%= log.log_month.strftime("%d") if log.log_month.present? %>日
-									(<%= %w{日 月 火 水 木 金 土}[log.log_month.wday] %>)
-							</th>
-						</tr>		
-						<tr>
-							<th class ="center" rowspan = "2"><div class ="center">[送迎]</div>
-								<% if log.log_farewell == "往復" %>
-									<%= f.radio_button :log_farewell, "往復", checked: "checked" %>
-								<% else %>
-									<%= f.radio_button :log_farewell, "往復" %>
-								<% end %>
-								<%= f.label "往復", class: "label-#{yield(:class_text)}" %>
-								<% if log.log_farewell == "片道" %>
-									<%= f.radio_button :log_farewell, "片道", checked: "checked" %>
-								<% else %>
-									<%= f.radio_button :log_farewell, "片道" %>
-								<% end %>
-								<%= f.label "片道", class: "label-#{yield(:class_text)}" %>
-								<% if log.log_farewell == "ケアハウス" %>
-									<br><%= f.radio_button :log_farewell, "ケアハウス", checked: "checked" %>
-								<% else %>
-									<br><%= f.radio_button :log_farewell, "ケアハウス" %>
-								<% end %>
-								<%= f.label "ケアハウス", class: "label-#{yield(:class_text)}" %>
-							</th>
+			<table class="businesslog-copy-table">
+				<tr>
+					<% css_class = 
+												case %w{日 月 火 水 木 金 土}[log.log_month.wday]
+												when '土'
+													'text-primary'
+												when '日'
+													'text-danger'
+												end %>
+						<th class="log_day <%= css_class %>"><%= log.log_year.strftime("%Y") if log.log_year.present?%>年
+								<%= log.log_month.strftime("%m") if log.log_month.present? %>月
+								<%= log.log_month.strftime("%d") if log.log_month.present? %>日
+								(<%= %w{日 月 火 水 木 金 土}[log.log_month.wday] %>)
+						</th>
+				</tr>		
+					<tr>
+						<th class ="log_farewell_select" rowspan = "2"><div class ="center">[送迎]</div>
+							<% if log.log_farewell == "往復" %>
+								<%= f.radio_button :log_farewell, "往復", checked: "checked" %>
+							<% else %>
+								<%= f.radio_button :log_farewell, "往復" %>
+							<% end %>
+							<%= f.label "往復", class: "label-#{yield(:class_text)}" %>
+							<% if log.log_farewell == "片道" %>
+								<%= f.radio_button :log_farewell, "片道", checked: "checked" %>
+							<% else %>
+								<%= f.radio_button :log_farewell, "片道" %>
+							<% end %>
+							<%= f.label "片道", class: "label-#{yield(:class_text)}" %>
+							<% if log.log_farewell == "ケアハウス" %>
+								<br><%= f.radio_button :log_farewell, "ケアハウス", checked: "checked" %>
+							<% else %>
+								<br><%= f.radio_button :log_farewell, "ケアハウス" %>
+							<% end %>
+							<%= f.label "ケアハウス", class: "label-#{yield(:class_text)}" %>
+						</th>
 
-							<th rowspan = "2" colspan= "3"class= "center">
-								<div class ="center">[入浴]</div>
+						<th class= "log_both_select" rowspan = "2" colspan= "3">
+							<div class ="log_both">[入浴]</div>
+							<div class="log_bath_up_select">
 								<% if log.log_bath == "利用" %>
 									一般浴 &nbsp;<input type="radio" value="利用" name="log_bath" id="businesslog_save" checked>
 								<% else %>
@@ -70,81 +71,86 @@
 								<%= f.label "中止", class: "label-#{yield(:class_text)}" %>
 								<% if log.log_bath == "機械浴 利用" %>
 									<br>機械浴 &nbsp;<input type="radio" value="機械浴 利用" name="log_bath" id="businesslog_save" checked>
+							</div>		
 								<% else %>
-									<br>機械浴 &nbsp;<input type="radio" value="機械浴 利用" name="log_bath" id="businesslog_save">
-								<% end %>
-								<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
-							</th>
-
-							<th class ="center" rowspan = "2">
-								<div class ="center">［食事］</div>
-								<% if log.log_foods == true %>
-									<input type="checkbox" value= true name="log_foods" id="businesslog_save" checked>
-								<% else %>
-									<input type="checkbox" value= false name="log_foods" id="businesslog_save">
-								<% end %>
-								<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
-								</th>
-								<th class ="center" colspan= "2">［主食］
-								<br>【<%= log.log_good_staple_dosage %>】
-							</th>
-							<th></th>
-						</tr>
-
-						<tr>
-							<th class ="center" colspan= "2">［副食］
-							<br>【<%= log.log_good_side_dosage %>】</th>
-							<th></th>
-						</tr>
-
-						<tr>
-							<th class ="center">[バイタル]</th>
-							<th class ="center">[体温]
-							<br>【<%= log.log_body_temperature %>℃】</th>
-							<th class ="center">[血圧]
-							<br>【<%= log.log_pressure_up %>/
-							<%= log.log_pressure_down %>】</th>
-							<th class ="center">[脈]
-							<br>【<%= log.log_pulse %>】</th>
-							<th class ="center"rowpan="2">［再検査］
-							<% if log.log_check_return == true %>
-							<br><input type="checkbox" value= true name="log_check_return" id="businesslog_save" checked>
-							<% else %>
-							<br><input type="checkbox" value= false name="log_check_return" id="businesslog_save">
+								<div class="log_bath_down_select">機械浴 &nbsp;<input type="radio" value="機械浴 利用" name="log_bath" id="businesslog_save">
 							<% end %>
-							<th class ="center">[血圧]<br>【<%= log.re_log_pressure_up %>/
-							<%= log.re_log_pressure_down %>】</th>
-							<th class ="center">[体温]<br>【<%= log.re_log_body_temperature %>℃】</th>
-							<th class ="center">[脈]<br>【<%= log.re_log_pulse %>】</th>
-						</tr>
-						<tr>
-							<th class ="center" colspan= "8">
-								うがい
-								<% if log.check_log_hand_washing == true %>
-								<input type="checkbox" value= true name="check_log_hand_washing" id="businesslog_save" checked>
-								<% else %>
-								<input type="checkbox" value= false name="check_log_hand_washing" id="businesslog_save">
-								<% end %>
-								&emsp;&emsp;&emsp;&emsp; 食後歯磨き
-								<% if log.check_log_brush_teeth == true %>
-								<input type="checkbox" value= true name="check_log_brush_teeth" id="businesslog_save" checked>
-								<% else %>
-								<input type="checkbox" value= false name="check_log_brush_teeth" id="businesslog_save">
-								<% end %>
+							<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
+						</th>
+
+						<th class ="log_food_select" rowspan = "2">
+							<div class ="log_food_font">［食事］</div>
+							<% if log.log_foods == true %>
+								<input type="checkbox" value= true name="log_foods" id="businesslog_save" checked>
+							<% else %>
+								<input type="checkbox" value= false name="log_foods" id="businesslog_save">
+							<% end %>
+							<%= f.label "利用", class: "label-#{yield(:class_text)}" %>
 							</th>
-						</tr>
-						<tr>
-							<th colspan = "6" rowspan= "2">
-								[特記事項]
-								<textarea name="log_special_mention" rows="4" cols="100" class= "log"><%= log.log_special_mention %></textarea>
-							</th>
-							<th class = "center"colspan= "2">
-							[記録者印]
-							</th>
-						</tr>
-						<th class ="center" colspan= "2">【<%= log.log_record_stamp %>】</th></font>
+							<th class ="log_good_staple_dosage_select" colspan= "2">［主食］
+							<br>【<%= log.log_good_staple_dosage %>】
+						</th>
+						<th class= "blank_space"></th>
+					</tr>
+
+					<tr>
+						<th class ="log_good_staple_dosage_select" colspan= "2">［副食］
+						<br>【<%= log.log_good_side_dosage %>】</th>
+						<th></th>
+					</tr>
+
+					<tr>
+						<th class ="vital_press">[バイタル]</th>
+						<th class ="body_temperature">[体温]
+						<br>【<%= log.log_body_temperature %>℃】</th>
+						<th class ="log_pressure">[血圧]
+						<br>【<%= log.log_pressure_up %>/
+						<%= log.log_pressure_down %>】</th>
+						<th class ="log_pulse">[脈]
+						<br>【<%= log.log_pulse %>】</th>
+						<th class ="re_check"rowpan="2">［再検査］
+						<% if log.log_check_return == true %>
+						<br><input type="checkbox" value= true name="log_check_return" id="businesslog_save" checked>
+						<% else %>
+						<br><input type="checkbox" value= false name="log_check_return" id="businesslog_save">
+						<% end %>
+						<th class ="re_log_press">[血圧]<br>【<%= log.re_log_pressure_up %>/
+						<%= log.re_log_pressure_down %>】</th>
+						<th class ="re_log_body_temperature">[体温]<br>【<%= log.re_log_body_temperature %>℃】</th>
+						<th class ="re_log_pulse">[脈]<br>【<%= log.re_log_pulse %>】</th>
+					</tr>
+					<tr>
+						<th colspan= "8">
+						<div class= "log_check_log_hand_washing">うがい							
+							<% if log.check_log_hand_washing == true %>
+							<input type="checkbox" value= true name="check_log_hand_washing" id="businesslog_save" checked>
+							<% else %>
+							<input type="checkbox" value= false name="check_log_hand_washing" id="businesslog_save">
+							<% end %>
+							<span class= "food_affter_brush">食後歯磨き</span>
+							<% if log.check_log_brush_teeth == true %>
+							<input type="checkbox" value= true name="check_log_brush_teeth" id="businesslog_save" checked>
+							<% else %>
+							<input type="checkbox" value= false name="check_log_brush_teeth" id="businesslog_save">
+							<% end %>
+						</div>		
+						</th>
+					</tr>
+					<tr>
+						<th class="special_report" colspan = "7" rowspan= "2">
+							<div class="special_report_title">[特記事項]</div>
+							<div class="report"><%= log.log_special_mention %></div>
+						</th>
+						<th class="recording_sign" colspan= "2">
+						[記録者印]
+						</th>
+					</tr>
+						<th class="recording_sign" colspan= "2">【<%= log.log_record_stamp %>】</th>
 					</table>
 				<% end %>
 			<% end %>
-			<%= paginate(@businesslogs) %>
-</div>			
+			<div class ="pagenate_log">
+				<%= paginate(@businesslogs) %>
+			</div>
+		</div>	
+	</div>			
